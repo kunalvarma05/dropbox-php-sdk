@@ -481,4 +481,24 @@ class Client
         return $responseContent;
     }
 
+    /**
+     * Search a folder
+     * @param  string $path  Folder Path to search
+     * @param  string $query Search Query
+     * @return Object
+     */
+    public function search($path, $query, array $bodyParams = array()){
+        $endpoint = "/files/search";
+        $uri = $this->buildUrl($endpoint);
+
+        $bodyParams['path'] = $path;
+        $bodyParams['query'] = $query;
+        $body = json_encode($bodyParams);
+
+        $response = $this->makeRequest('POST', $uri, [], $body);
+        $responseContent = $this->decodeResponse($response);
+
+        return $responseContent;
+    }
+
 }
