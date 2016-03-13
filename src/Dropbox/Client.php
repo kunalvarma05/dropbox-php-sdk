@@ -408,6 +408,25 @@ class Client
     }
 
     /**
+     * Create folder at the given path
+     * @param  string $path Path to create the folder at
+     * @return Object
+     */
+    public function createFolder($path){
+        $endpoint = "/files/create_folder";
+
+        $uri = $this->buildUrl($endpoint);
+
+        $bodyParams['path'] = $path;
+        $body = json_encode($bodyParams);
+
+        $response = $this->makeRequest('POST', $uri, [], $body);
+        $responseContent = $this->decodeResponse($response);
+
+        return $responseContent;
+    }
+
+    /**
      * Move a file or folder to a different location in the user's Dropbox.
      * @param  string $fromPath Source Path
      * @param  string $toPath   Destination Path
