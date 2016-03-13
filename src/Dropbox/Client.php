@@ -363,4 +363,24 @@ class Client
         return $responseContent;
     }
 
+    /**
+     * A way to quickly get a cursor for the folder's state.
+     * @param  string  $path        The path to the folder you want to see the contents of.
+     * @param  array   $bodyParams Additional Body Params
+     * @return Object
+     */
+    public function listFolderLatestCursor($path, array $bodyParams = array()){
+        $endpoint = "/files/list_folder/get_latest_cursor";
+
+        $uri = $this->buildUrl($endpoint);
+
+        $bodyParams['path'] = $path;
+        $body = json_encode($bodyParams);
+
+        $response = $this->makeRequest('POST', $uri, [], $body);
+        $responseContent = $this->decodeResponse($response);
+
+        return $responseContent;
+    }
+
 }
