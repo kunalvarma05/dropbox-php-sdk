@@ -505,4 +505,34 @@ class Client
         return $responseContent;
     }
 
+    /**
+     * Create a new file with the contents provided in the request.
+     * @param  string $path         Path in the user's Dropbox to save the file.
+     * @param  string $file         Path to the local file to upload.
+     * @param  array  $headerParams Additional Params
+     * @return Object
+     */
+    public function upload($path, $file, array $headerParams = array()){
+        $endpoint = "/files/upload";
+        $uri = $this->buildUrl($endpoint, "content");
+
+        $headerParams['path'] = $path;
+        $headerArg = json_encode($headerParams);
+        $headers = ["Dropbox-API-Arg" => $headerArg];
+
+        //Switch content type
+        $defaultContentType = $this->getContentType();
+        $this->setContentType("application/octet-stream");
+
+        //Upload file as stream
+        $body = fopen($file, "r");
+
+        $response = $this->makeRequest('POST', $uri, [], $body, $headers);
+        $responseContent = $this->decodeResponse($response);
+
+        //Reset content type
+        $this->setContentType($defaultContentType);
+        return $responseContent;
+    }
+
 }
