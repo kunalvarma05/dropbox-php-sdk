@@ -383,4 +383,24 @@ class Client
         return $responseContent;
     }
 
+    /**
+     * Returns revisions of a file
+     * @param  string  $path        The path to the file you want to see the revisions of.
+     * @param  array   $bodyParams Additional Body Params
+     * @return Object
+     */
+    public function listRevisions($path, array $bodyParams = array()){
+        $endpoint = "/files/list_revisions";
+
+        $uri = $this->buildUrl($endpoint);
+
+        $bodyParams['path'] = $path;
+        $body = json_encode($bodyParams);
+
+        $response = $this->makeRequest('POST', $uri, [], $body);
+        $responseContent = $this->decodeResponse($response);
+
+        return $responseContent;
+    }
+
 }
