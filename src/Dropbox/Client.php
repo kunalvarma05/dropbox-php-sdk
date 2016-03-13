@@ -327,10 +327,6 @@ class Client
      * @return Object
      */
     public function listFolder($path, array $bodyParams = array()){
-        if ($path == '') {
-            throw new DropboxClientException('A Valid Path is Required!');
-        }
-
         $endpoint = "/files/list_folder";
 
         $uri = $this->buildUrl($endpoint);
