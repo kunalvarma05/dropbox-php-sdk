@@ -443,4 +443,22 @@ class Client
         return $responseContent;
     }
 
+    /**
+     * Delete a file or folder
+     * @param  string $path File or Folder Path
+     * @return Object
+     */
+    public function delete($path){
+        $endpoint = "/files/delete";
+        $uri = $this->buildUrl($endpoint);
+
+        $bodyParams['path'] = $path;
+        $body = json_encode($bodyParams);
+
+        $response = $this->makeRequest('POST', $uri, [], $body);
+        $responseContent = $this->decodeResponse($response);
+
+        return $responseContent;
+    }
+
 }
