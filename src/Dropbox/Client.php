@@ -340,4 +340,27 @@ class Client
         return $responseContent;
     }
 
+    /**
+     * Paginate through all the folder contents using a cursor
+     * @param  string  $cursor  The cursor retrieved from listFolder
+     * @return Object
+     */
+    public function listFolderContinue($cursor){
+        if ($cursor == '') {
+            throw new DropboxClientException('A Valid Cursor is Required!');
+        }
+
+        $endpoint = "/files/list_folder/continue";
+
+        $uri = $this->buildUrl($endpoint);
+
+        $bodyParams['cursor'] = $cursor;
+        $body = json_encode($bodyParams);
+
+        $response = $this->makeRequest('POST', $uri, [], $body);
+        $responseContent = $this->decodeResponse($response);
+
+        return $responseContent;
+    }
+
 }
