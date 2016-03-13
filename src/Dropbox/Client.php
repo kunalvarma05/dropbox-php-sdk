@@ -320,4 +320,28 @@ class Client
         return $responseContent;
     }
 
+    /**
+     * Returns the contents of a folder.
+     * @param  string  $path        The path to the folder you want to see the contents of.
+     * @param  array   $bodyParams Additional Body Params
+     * @return Object
+     */
+    public function listFolder($path, array $bodyParams = array()){
+        if ($path == '') {
+            throw new DropboxClientException('A Valid Path is Required!');
+        }
+
+        $endpoint = "/files/list_folder";
+
+        $uri = $this->buildUrl($endpoint);
+
+        $bodyParams['path'] = $path;
+        $body = json_encode($bodyParams);
+
+        $response = $this->makeRequest('POST', $uri, [], $body);
+        $responseContent = $this->decodeResponse($response);
+
+        return $responseContent;
+    }
+
 }
