@@ -1,0 +1,19 @@
+{
+    "name": "kunalvarma05/dropbox-client",
+    "description": "Dropbox PHP Client",
+    "keywords" : ["dropbox", "client", "php"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kunal Varma",
+            "email": "kunalvarma05@gmail.com"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Kunnu\\Dropbox\\": "src/Dropbox"
+        }
+    }
+}
