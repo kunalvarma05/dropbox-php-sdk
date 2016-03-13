@@ -297,4 +297,27 @@ class Client
         return json_decode((string) $body);
     }
 
+    /**
+     * Returns the metadata for a file or folder.
+     * @param  string  $path      The path of a file or folder on Dropbox.
+     * @param  boolean $mediaInfo If true, FileMetadata.media_info is set for photo and video. The default for this field is False.
+     * @return Object
+     */
+    public function getMetadata($path, $mediaInfo = false){
+        if ($path == '') {
+            throw new DropboxClientException('A Valid Path is Required!');
+        }
+
+        $endpoint = "/files/get_metadata";
+        $uri = $this->buildUrl($endpoint);
+
+        $bodyParams = ['path' => $path, 'include_media_info' => $mediaInfo];
+        $body = json_encode($bodyParams);
+
+        $response = $this->makeRequest('POST', $uri, [], $body);
+        $responseContent = $this->decodeResponse($response);
+
+        return $responseContent;
+    }
+
 }
