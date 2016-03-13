@@ -461,4 +461,24 @@ class Client
         return $responseContent;
     }
 
+    /**
+     * Restore a file or folder to a specific revision
+     * @param  string $path File or Folder Path
+     * @param  string $rev  Revision
+     * @return Object
+     */
+    public function restore($path, $rev){
+        $endpoint = "/files/restore";
+        $uri = $this->buildUrl($endpoint);
+
+        $bodyParams['path'] = $path;
+        $bodyParams['rev'] = $rev;
+        $body = json_encode($bodyParams);
+
+        $response = $this->makeRequest('POST', $uri, [], $body);
+        $responseContent = $this->decodeResponse($response);
+
+        return $responseContent;
+    }
+
 }
