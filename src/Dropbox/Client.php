@@ -5,7 +5,7 @@ use GuzzleHttp\Psr7\Stream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Client as Guzzle;
 use Psr\Http\Message\ResponseInterface;
-use Kunnu\DropboxClientException;
+use Kunnu\Dropbox\Exceptions\DropboxClientException;
 
 class Client
 {
@@ -39,6 +39,13 @@ class Client
      * @var string
      */
     private $contentType = 'application/json';
+
+    /**
+     * Default options to send along a Request.
+     *
+     * @var array
+     */
+    private $defaultOptions = [];
 
     /**
      * The Constructor.
@@ -153,7 +160,7 @@ class Client
      */
     protected function getAuthHeader()
     {
-        return ['Authorization' => 'bearer '.$this->getAccessToken()];
+        return ['Authorization' => 'Bearer '.$this->getAccessToken()];
     }
 
     /**
@@ -224,8 +231,6 @@ class Client
      */
     protected function buildUrl($path = '')
     {
-        $path = urlencode($path);
-
         return $this->getBasePath().$path;
     }
 
