@@ -229,9 +229,13 @@ class Client
      *
      * @return string The Full URL
      */
-    protected function buildUrl($path = '')
+    protected function buildUrl($path = '', $type = "api")
     {
-        return $this->getBasePath().$path;
+        $base = $this->getBasePath();
+        if($type === "content"){
+            $base = $this->getContentPath();
+        }
+        return $base.$path;
     }
 
     /**
