@@ -423,4 +423,24 @@ class Client
         return $responseContent;
     }
 
+    /**
+     * Copy a file or folder to a different location in the user's Dropbox.
+     * @param  string $fromPath Source Path
+     * @param  string $toPath   Destination Path
+     * @return Object
+     */
+    public function copy($fromPath, $toPath){
+        $endpoint = "/files/copy";
+        $uri = $this->buildUrl($endpoint);
+
+        $bodyParams['from_path'] = $fromPath;
+        $bodyParams['to_path'] = $toPath;
+        $body = json_encode($bodyParams);
+
+        $response = $this->makeRequest('POST', $uri, [], $body);
+        $responseContent = $this->decodeResponse($response);
+
+        return $responseContent;
+    }
+
 }
