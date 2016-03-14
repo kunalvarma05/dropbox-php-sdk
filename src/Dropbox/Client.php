@@ -591,12 +591,38 @@ class Client
         return $downloadedFile;
     }
 
+    /**
+     * Create a sharing link
+     * @param  string $path     File Path
+     * @param  array  $settings Settings
+     * @return Object
+     */
     public function createSharingLink($path, array $settings = array()){
         $endpoint = "/sharing/create_shared_link_with_settings";
         $uri = $this->buildUrl($endpoint);
 
         $bodyParams['path'] = $path;
         $bodyParams['settings'] = (object) $settings;
+        $body = json_encode($bodyParams);
+
+        $response = $this->makeRequest('POST', $uri, [], $body);
+        $responseContent = $this->decodeResponse($response);
+
+        return $responseContent;
+    }
+
+
+    /**
+     * List Sharing Links of a File
+     * @param  string $path       File Path
+     * @param  array  $bodyParams Additional Body Params
+     * @return Object
+     */
+    public function listSharingLinks($path, array $bodyParams = array()){
+        $endpoint = "/sharing/list_shared_links";
+        $uri = $this->buildUrl($endpoint);
+
+        $bodyParams['path'] = $path;
         $body = json_encode($bodyParams);
 
         $response = $this->makeRequest('POST', $uri, [], $body);
