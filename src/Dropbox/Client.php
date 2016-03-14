@@ -591,4 +591,18 @@ class Client
         return $downloadedFile;
     }
 
+    public function createSharingLink($path, array $settings = array()){
+        $endpoint = "/sharing/create_shared_link_with_settings";
+        $uri = $this->buildUrl($endpoint);
+
+        $bodyParams['path'] = $path;
+        $bodyParams['settings'] = (object) $settings;
+        $body = json_encode($bodyParams);
+
+        $response = $this->makeRequest('POST', $uri, [], $body);
+        $responseContent = $this->decodeResponse($response);
+
+        return $responseContent;
+    }
+
 }
