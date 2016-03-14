@@ -229,12 +229,13 @@ class Client
      *
      * @return string The Full URL
      */
-    protected function buildUrl($path = '', $type = "api")
+    protected function buildUrl($path = '', $type = 'api')
     {
         $base = $this->getBasePath();
-        if($type === "content"){
+        if ($type === 'content') {
             $base = $this->getContentPath();
         }
+
         return $base.$path;
     }
 
@@ -260,7 +261,6 @@ class Client
      * @param array                           $headers Headers for the message
      *
      * @throws Exception
-     *
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
@@ -303,16 +303,19 @@ class Client
 
     /**
      * Returns the metadata for a file or folder.
-     * @param  string  $path       The path of a file or folder on Dropbox.
-     * @param  array   $bodyParams Additional Body Params
-     * @return Object
+     *
+     * @param string $path       The path of a file or folder on Dropbox.
+     * @param array  $bodyParams Additional Body Params
+     *
+     * @return object
      */
-    public function getMetadata($path, array $bodyParams = array()){
+    public function getMetadata($path, array $bodyParams = array())
+    {
         if ($path == '') {
             throw new DropboxClientException('A Valid Path is Required!');
         }
 
-        $endpoint = "/files/get_metadata";
+        $endpoint = '/files/get_metadata';
         $uri = $this->buildUrl($endpoint);
 
         $bodyParams['path'] = $path;
@@ -326,12 +329,15 @@ class Client
 
     /**
      * Returns the contents of a folder.
-     * @param  string  $path        The path to the folder you want to see the contents of.
-     * @param  array   $bodyParams Additional Body Params
-     * @return Object
+     *
+     * @param string $path       The path to the folder you want to see the contents of.
+     * @param array  $bodyParams Additional Body Params
+     *
+     * @return object
      */
-    public function listFolder($path, array $bodyParams = array()){
-        $endpoint = "/files/list_folder";
+    public function listFolder($path, array $bodyParams = array())
+    {
+        $endpoint = '/files/list_folder';
 
         $uri = $this->buildUrl($endpoint);
 
@@ -345,16 +351,19 @@ class Client
     }
 
     /**
-     * Paginate through all the folder contents using a cursor
-     * @param  string  $cursor  The cursor retrieved from listFolder
-     * @return Object
+     * Paginate through all the folder contents using a cursor.
+     *
+     * @param string $cursor The cursor retrieved from listFolder
+     *
+     * @return object
      */
-    public function listFolderContinue($cursor){
+    public function listFolderContinue($cursor)
+    {
         if ($cursor == '') {
             throw new DropboxClientException('A Valid Cursor is Required!');
         }
 
-        $endpoint = "/files/list_folder/continue";
+        $endpoint = '/files/list_folder/continue';
 
         $uri = $this->buildUrl($endpoint);
 
@@ -369,12 +378,15 @@ class Client
 
     /**
      * A way to quickly get a cursor for the folder's state.
-     * @param  string  $path        The path to the folder you want to see the contents of.
-     * @param  array   $bodyParams Additional Body Params
-     * @return Object
+     *
+     * @param string $path       The path to the folder you want to see the contents of.
+     * @param array  $bodyParams Additional Body Params
+     *
+     * @return object
      */
-    public function listFolderLatestCursor($path, array $bodyParams = array()){
-        $endpoint = "/files/list_folder/get_latest_cursor";
+    public function listFolderLatestCursor($path, array $bodyParams = array())
+    {
+        $endpoint = '/files/list_folder/get_latest_cursor';
 
         $uri = $this->buildUrl($endpoint);
 
@@ -388,13 +400,16 @@ class Client
     }
 
     /**
-     * Returns revisions of a file
-     * @param  string  $path        The path to the file you want to see the revisions of.
-     * @param  array   $bodyParams Additional Body Params
-     * @return Object
+     * Returns revisions of a file.
+     *
+     * @param string $path       The path to the file you want to see the revisions of.
+     * @param array  $bodyParams Additional Body Params
+     *
+     * @return object
      */
-    public function listRevisions($path, array $bodyParams = array()){
-        $endpoint = "/files/list_revisions";
+    public function listRevisions($path, array $bodyParams = array())
+    {
+        $endpoint = '/files/list_revisions';
 
         $uri = $this->buildUrl($endpoint);
 
@@ -408,12 +423,15 @@ class Client
     }
 
     /**
-     * Create folder at the given path
-     * @param  string $path Path to create the folder at
-     * @return Object
+     * Create folder at the given path.
+     *
+     * @param string $path Path to create the folder at
+     *
+     * @return object
      */
-    public function createFolder($path){
-        $endpoint = "/files/create_folder";
+    public function createFolder($path)
+    {
+        $endpoint = '/files/create_folder';
 
         $uri = $this->buildUrl($endpoint);
 
@@ -428,12 +446,15 @@ class Client
 
     /**
      * Move a file or folder to a different location in the user's Dropbox.
-     * @param  string $fromPath Source Path
-     * @param  string $toPath   Destination Path
-     * @return Object
+     *
+     * @param string $fromPath Source Path
+     * @param string $toPath   Destination Path
+     *
+     * @return object
      */
-    public function move($fromPath, $toPath){
-        $endpoint = "/files/move";
+    public function move($fromPath, $toPath)
+    {
+        $endpoint = '/files/move';
         $uri = $this->buildUrl($endpoint);
 
         $bodyParams['from_path'] = $fromPath;
@@ -448,12 +469,15 @@ class Client
 
     /**
      * Copy a file or folder to a different location in the user's Dropbox.
-     * @param  string $fromPath Source Path
-     * @param  string $toPath   Destination Path
-     * @return Object
+     *
+     * @param string $fromPath Source Path
+     * @param string $toPath   Destination Path
+     *
+     * @return object
      */
-    public function copy($fromPath, $toPath){
-        $endpoint = "/files/copy";
+    public function copy($fromPath, $toPath)
+    {
+        $endpoint = '/files/copy';
         $uri = $this->buildUrl($endpoint);
 
         $bodyParams['from_path'] = $fromPath;
@@ -467,12 +491,15 @@ class Client
     }
 
     /**
-     * Delete a file or folder
-     * @param  string $path File or Folder Path
-     * @return Object
+     * Delete a file or folder.
+     *
+     * @param string $path File or Folder Path
+     *
+     * @return object
      */
-    public function delete($path){
-        $endpoint = "/files/delete";
+    public function delete($path)
+    {
+        $endpoint = '/files/delete';
         $uri = $this->buildUrl($endpoint);
 
         $bodyParams['path'] = $path;
@@ -485,13 +512,16 @@ class Client
     }
 
     /**
-     * Restore a file or folder to a specific revision
-     * @param  string $path File or Folder Path
-     * @param  string $rev  Revision
-     * @return Object
+     * Restore a file or folder to a specific revision.
+     *
+     * @param string $path File or Folder Path
+     * @param string $rev  Revision
+     *
+     * @return object
      */
-    public function restore($path, $rev){
-        $endpoint = "/files/restore";
+    public function restore($path, $rev)
+    {
+        $endpoint = '/files/restore';
         $uri = $this->buildUrl($endpoint);
 
         $bodyParams['path'] = $path;
@@ -505,13 +535,16 @@ class Client
     }
 
     /**
-     * Search a folder
-     * @param  string $path  Folder Path to search
-     * @param  string $query Search Query
-     * @return Object
+     * Search a folder.
+     *
+     * @param string $path  Folder Path to search
+     * @param string $query Search Query
+     *
+     * @return object
      */
-    public function search($path, $query, array $bodyParams = array()){
-        $endpoint = "/files/search";
+    public function search($path, $query, array $bodyParams = array())
+    {
+        $endpoint = '/files/search';
         $uri = $this->buildUrl($endpoint);
 
         $bodyParams['path'] = $path;
@@ -526,49 +559,56 @@ class Client
 
     /**
      * Create a new file with the contents provided in the request.
-     * @param  string $path         Path in the user's Dropbox to save the file.
-     * @param  string $file         Path to the local file to upload.
-     * @param  array  $headerParams Additional Params
-     * @return Object
+     *
+     * @param string $path         Path in the user's Dropbox to save the file.
+     * @param string $file         Path to the local file to upload.
+     * @param array  $headerParams Additional Params
+     *
+     * @return object
      */
-    public function upload($path, $file, array $headerParams = array()){
-        $endpoint = "/files/upload";
-        $uri = $this->buildUrl($endpoint, "content");
+    public function upload($path, $file, array $headerParams = array())
+    {
+        $endpoint = '/files/upload';
+        $uri = $this->buildUrl($endpoint, 'content');
 
         $headerParams['path'] = $path;
         $headerArg = json_encode($headerParams);
-        $headers = ["Dropbox-API-Arg" => $headerArg];
+        $headers = ['Dropbox-API-Arg' => $headerArg];
 
         //Switch content type
         $defaultContentType = $this->getContentType();
-        $this->setContentType("application/octet-stream");
+        $this->setContentType('application/octet-stream');
 
         //Upload file as stream
-        $body = fopen($file, "r");
+        $body = fopen($file, 'r');
 
         $response = $this->makeRequest('POST', $uri, [], $body, $headers);
         $responseContent = $this->decodeResponse($response);
 
         //Reset content type
         $this->setContentType($defaultContentType);
+
         return $responseContent;
     }
 
     /**
-     * Download a file
-     * @param  string $path Path in the user's Dropbox to save the file.
-     * @return Resource
+     * Download a file.
+     *
+     * @param string $path Path in the user's Dropbox to save the file.
+     *
+     * @return resource
      */
-    public function download($path){
-        $endpoint = "/files/download";
-        $uri = $this->buildUrl($endpoint, "content");
+    public function download($path)
+    {
+        $endpoint = '/files/download';
+        $uri = $this->buildUrl($endpoint, 'content');
 
         $headerParams['path'] = $path;
         $headerArg = json_encode($headerParams);
-        $headers = ["Dropbox-API-Arg" => $headerArg];
+        $headers = ['Dropbox-API-Arg' => $headerArg];
         $this->setContentType('');
 
-        $response = $this->makeRequest('POST', $uri, [], "", $headers);
+        $response = $this->makeRequest('POST', $uri, [], '', $headers);
 
         $stream = $response->getBody();
 
@@ -592,13 +632,16 @@ class Client
     }
 
     /**
-     * Create a sharing link
-     * @param  string $path     File Path
-     * @param  array  $settings Settings
-     * @return Object
+     * Create a sharing link.
+     *
+     * @param string $path     File Path
+     * @param array  $settings Settings
+     *
+     * @return object
      */
-    public function createSharingLink($path, array $settings = array()){
-        $endpoint = "/sharing/create_shared_link_with_settings";
+    public function createSharingLink($path, array $settings = array())
+    {
+        $endpoint = '/sharing/create_shared_link_with_settings';
         $uri = $this->buildUrl($endpoint);
 
         $bodyParams['path'] = $path;
@@ -611,15 +654,17 @@ class Client
         return $responseContent;
     }
 
-
     /**
-     * List Sharing Links of a File
-     * @param  string $path       File Path
-     * @param  array  $bodyParams Additional Body Params
-     * @return Object
+     * List Sharing Links of a File.
+     *
+     * @param string $path       File Path
+     * @param array  $bodyParams Additional Body Params
+     *
+     * @return object
      */
-    public function listSharingLinks($path, array $bodyParams = array()){
-        $endpoint = "/sharing/list_shared_links";
+    public function listSharingLinks($path, array $bodyParams = array())
+    {
+        $endpoint = '/sharing/list_shared_links';
         $uri = $this->buildUrl($endpoint);
 
         $bodyParams['path'] = $path;
@@ -630,5 +675,4 @@ class Client
 
         return $responseContent;
     }
-
 }
