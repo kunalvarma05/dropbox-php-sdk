@@ -554,4 +554,41 @@ class Client
         return $responseContent;
     }
 
+    /**
+     * Download a file
+     * @param  string $path Path in the user's Dropbox to save the file.
+     * @return Resource
+     */
+    public function download($path){
+        $endpoint = "/files/download";
+        $uri = $this->buildUrl($endpoint, "content");
+
+        $headerParams['path'] = $path;
+        $headerArg = json_encode($headerParams);
+        $headers = ["Dropbox-API-Arg" => $headerArg];
+        $this->setContentType('');
+
+        $response = $this->makeRequest('POST', $uri, [], "", $headers);
+
+        $stream = $response->getBody();
+
+        $downloadedFile = fopen('php://temp', 'w+');
+
+        if ($downloadedFile === false) {
+            throw new \Exception('Error when saving the downloaded file');
+        }
+
+        while (!$stream->eof()) {
+            $writeResult = fwrite($downloadedFile, $stream->read(8000));
+            if ($writeResult === false) {
+                throw new \Exception('Error when saving the downloaded file');
+            }
+        }
+
+        $stream->close();
+        rewind($downloadedFile);
+
+        return $downloadedFile;
+    }
+
 }
