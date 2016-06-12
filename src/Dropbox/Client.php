@@ -880,4 +880,43 @@ class Client
         //Return the decoded response content
         return $responseContent;
     }
+
+    /**
+     * Get information about a user's account.
+     * @param  string $account_id A user's account identifier. Use `null` for current user's account.
+     *
+     * @return object
+     */
+    public function getAccountInfo($account_id = null)
+    {
+        //Current User Account endpoint
+        $endpoint = '/users/get_current_account';
+
+        $body = null;
+
+        //If a user account ID is provided
+        if(!is_null($account_id)) {
+            //Get Account endpoint
+            $endpoint = "/users/get_account";
+
+            //Set the account ID
+            $body = ['account_id' => $account_id];
+        }
+
+        //Built the URI
+        $uri = $this->buildUrl($endpoint);
+
+        //JSON Encode the body
+        $body = json_encode($body);
+
+        //Make the request and fetch the response
+        $response = $this->makeRequest('POST', $uri, [], $body);
+
+        //The response received is a JSON encoded
+        //string, it must be decoded & returned.
+        $responseContent = $this->decodeResponse($response);
+
+        //Return the decoded response content
+        return $responseContent;
+    }
 }
