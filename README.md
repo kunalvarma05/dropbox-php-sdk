@@ -55,6 +55,13 @@ $client->listSharingLinks("/logo.png");
 //Create Sharing Link of a file
 $client->createSharingLink("/logo.png");
 
+//Fetch Current User Account Details
+$client->getAccountInfo();
+
+//Fetch Specific User Account Details
+$client->getAccountInfo("dbid:AADRW_juaRY5na2jDSLf2tjzikRvZwBlpt2");
+
+
 ?>
 ```
 
