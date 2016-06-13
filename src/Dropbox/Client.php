@@ -297,7 +297,7 @@ class Client
      *
      * @param string|\Psr\Http\Message\ResponseInterface $response Response object or string to decode
      *
-     * @return string
+     * @return array
      */
     protected function decodeResponse($response)
     {
@@ -310,9 +310,9 @@ class Client
             $body = $response->getBody();
         }
 
-        //The response received is a JSON encoded
-        //string, it must be decoded & returned.
-        return json_decode((string) $body);
+        //The response received is a JSON encoded string,
+        //it must be decoded & returned as an array
+        return json_decode((string) $body, true);
     }
 
     /**
