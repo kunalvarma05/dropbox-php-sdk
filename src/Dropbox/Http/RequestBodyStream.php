@@ -1,0 +1,36 @@
+<?php
+namespace Kunnu\Dropbox\Http;
+
+use Kunnu\Dropbox\DropboxFile;
+
+class RequestBodyStream implements RequestBodyInterface
+{
+
+    /**
+     * File to be sent with the Request
+     *
+     * @var \Kunnu\Dropbox\DropboxFile
+     */
+    protected $file;
+
+    /**
+     * Create a new RequestBodyStream instance
+     *
+     * @param \Kunnu\Dropbox\DropboxFile $file
+     */
+    public function __construct(DropboxFile $file)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Get the Body of the Request
+     *
+     * @return resource
+     */
+    public function getBody()
+    {
+        return $this->file->getStream();
+    }
+
+}
