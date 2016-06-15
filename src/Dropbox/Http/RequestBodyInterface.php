@@ -6,7 +6,7 @@ interface RequestBodyInterface
     /**
      * Get the Body of the Request
      *
-     * @return string
+     * @return string|resource|Psr\Http\Message\StreamInterface
      */
     public function getBody();
 }
