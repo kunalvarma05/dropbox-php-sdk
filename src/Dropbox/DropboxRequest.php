@@ -1,6 +1,7 @@
 <?php
 namespace Kunnu\Dropbox;
 
+use Kunnu\Dropbox\Http\RequestBodyStream;
 use Kunnu\Dropbox\Http\RequestBodyJsonEncoded;
 
 class DropboxRequest
@@ -49,6 +50,13 @@ class DropboxRequest
     protected $headers = [];
 
     /**
+     * File to upload
+     *
+     * @var \Kunnu\Dropbox\DropboxFile
+     */
+    protected $file = null;
+
+    /**
      * Content Type for the Request
      *
      * @var string
@@ -68,15 +76,15 @@ class DropboxRequest
      */
     public function __construct($method, $endpoint, $access_token, $endpointType = "api", array $params = [], array $headers = [], $contentType = null)
     {
-        $this->method = $method;
-        $this->endpoint = $endpoint;
-        $this->access_token = $access_token;
-        $this->endpointType = $endpointType;
-        $this->params = $params;
-        $this->headers = $headers;
+        $this->setMethod($method);
+        $this->setEndpoint($endpoint);
+        $this->setAccessToken($access_token);
+        $this->setEndpointType($endpointType);
+        $this->setParams($params);
+        $this->setHeaders($headers);
 
         if($contentType)
-            $this->contentType = $contentType;
+            $this->setContentType($contentType);
     }
 
     /**
@@ -149,6 +157,16 @@ class DropboxRequest
     }
 
     /**
+     * Get the File to be sent with the Request
+     *
+     * @return \Kunnu\Dropbox\DropboxFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
      * Set the Request Method
      *
      * @param string
@@ -170,6 +188,10 @@ class DropboxRequest
      */
      public function setParams(array $params = [])
      {
+        //Process Params
+        $params = $this->processParams($params);
+
+        //Set the params
         $this->params = $params;
 
         return $this;
@@ -223,7 +245,7 @@ class DropboxRequest
      */
     public function setHeaders(array $headers)
     {
-        $this->headers = $headers;
+        $this->headers = array_merge($this->headers, $headers);
 
         return $this;
     }
@@ -242,6 +264,20 @@ class DropboxRequest
     }
 
     /**
+     * Set the File to be sent with the Request
+     *
+     * @param \Kunnu\Dropbox\DropboxFile
+     *
+     * @return \Kunnu\Dropbox\DropboxRequest
+     */
+    public function setFile(DropboxFile $file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    /**
      * Get JSON Encoded Request Body
      *
      * @return \Kunnu\Dropbox\Http\RequestBodyJsonEncoded
@@ -249,6 +285,46 @@ class DropboxRequest
     public function getJsonBody()
     {
         return new RequestBodyJsonEncoded($this->getParams());
+    }
+
+    /**
+     * Get Stream Request Body
+     *
+     * @return \Kunnu\Dropbox\Http\RequestBodyStream
+     */
+    public function getStreamBody()
+    {
+        return new RequestBodyStream($this->getFile());
+    }
+
+    /**
+     * Returns true if Request has file to be uploaded
+     *
+     * @return boolean
+     */
+    public function hasFile()
+    {
+        return !is_null($this->file) ? true : false;
+    }
+
+    /**
+     * Process Params for the File parameter
+     *
+     * @param  array  $params Request Params
+     *
+     * @return array
+     */
+    protected function processParams(array $params)
+    {
+        //If a file needs to be uploaded
+        if(isset($params['file']) && $params['file'] instanceof DropboxFile) {
+            //Set the file property
+            $this->setFile($params['file']);
+            //Remove the file item from the params array
+            unset($params['file']);
+        }
+
+        return $params;
     }
 
 }

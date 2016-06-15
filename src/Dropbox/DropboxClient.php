@@ -7,11 +7,15 @@ class DropboxClient
 {
     /**
      * Dropbox API Root URL.
+     *
+     * @const string
      */
     const BASE_PATH = 'https://api.dropboxapi.com/2';
 
     /**
      * Dropbox API Content Root URL.
+     *
+     * @const string
      */
     const CONTENT_PATH = 'https://content.dropboxapi.com/2';
 
@@ -139,22 +143,12 @@ class DropboxClient
         //Method
         $method = $request->getMethod();
 
-        //Build URL
-        $url = $this->buildUrl($request->getEndpoint(), $request->getEndpointType());
-
-        //Build headers
-        $headers = array_merge(
-            $this->buildAuthHeader($request->getAccessToken()),
-            $this->buildContentTypeHeader($request->getContentType()),
-            $request->getHeaders()
-            );
-
-        //Request Body
-        $requestBody = $request->getJsonBody();
+        //Prepare Request
+        list($url, $headers, $requestBody) = $this->prepareRequest($request);
 
         //Send the Request to the Server through the HTTP Client
         //and fetch the raw response as DropboxRawResponse
-        $rawResponse = $this->getHttpClient()->send($url, $method, $requestBody->getBody(), $headers);
+        $rawResponse = $this->getHttpClient()->send($url, $method, $requestBody, $headers);
 
         //Create DropboxResponse from DropboxRawResponse
         $dropboxResponse = new DropboxResponse(
@@ -166,6 +160,42 @@ class DropboxClient
 
         //Return the DropboxResponse
         return $dropboxResponse;
+    }
+
+    /**
+     * Prepare a Request before being sent to the HTTP Client
+     * @param  DropboxResponse $request
+     *
+     * @return array                   [Request URL, Request Headers, Request Body]
+     */
+    protected function prepareRequest(DropboxRequest $request)
+    {
+        //Build URL
+        $url = $this->buildUrl($request->getEndpoint(), $request->getEndpointType());
+
+        //File needs to be uploaded
+        if($request->hasFile()) {
+            //Dropbox requires the file metadata to be passed
+            //through the 'Dropbox-API-Arg' header
+            $request->setHeaders(['Dropbox-API-Arg' => json_encode($request->getParams())]);
+            $request->setContentType("application/octet-stream");
+
+            //Request Body
+            $requestBody = $request->getStreamBody()->getBody();
+        } else {
+            //Request Body
+            $requestBody = $request->getJsonBody()->getBody();
+        }
+
+        //Build headers
+        $headers = array_merge(
+            $this->buildAuthHeader($request->getAccessToken()),
+            $this->buildContentTypeHeader($request->getContentType()),
+            $request->getHeaders()
+            );
+
+        //Return the URL, Headers and Request Body
+        return [$url, $headers, $requestBody];
     }
 
 
