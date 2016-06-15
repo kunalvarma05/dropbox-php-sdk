@@ -57,6 +57,11 @@ class DropboxGuzzleHttpClient implements DropboxHttpClientInterface
             }
         }
 
+        //Something went wrong
+        if($rawResponse->getStatusCode() >= 400) {
+            throw new DropboxClientException($rawResponse->getBody());
+        }
+
         //Decode the Response Body
         $body = $this->decodeResponse($rawResponse);
 
