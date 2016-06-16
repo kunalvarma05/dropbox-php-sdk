@@ -21,9 +21,9 @@ class MetadataCollection
     /**
      * List of Files/Folder Metadata
      *
-     * @var \Kunnu\Dropbox\Models\FileMetadata | \Kunnu\Dropbox\Models\FolderMetadata
+     * @var \Kunnu\Dropbox\Models\ModelCollection
      */
-    protected $entries = [];
+    protected $entries = null;
 
     /**
      * Cursor for pagination and updates
@@ -41,16 +41,17 @@ class MetadataCollection
 
     /**
      * Create a new Metadata Collection
+     *
      * @param array $data Collection Data
      */
     public function __construct(array $data)
     {
         $this->data = $data;
-        $this->entries = isset($data[$this->getCollectionItemsKey()]) ? $data[$this->getCollectionItemsKey()] : [];
         $this->cursor = isset($data['cursor']) ? $data['cursor'] : '';
         $this->hasMore = isset($data['has_more']) && $data['has_more'] ? true : false;
 
-        $this->processEntries();
+        $entries = isset($data[$this->getCollectionItemsKey()]) ? $data[$this->getCollectionItemsKey()] : [];
+        $this->processEntries($entries);
     }
 
     /**
@@ -76,7 +77,7 @@ class MetadataCollection
     /**
      * Get the Entries
      *
-     * @return array
+     * @return \Kunnu\Dropbox\Models\ModelCollection
      */
     public function getEntries()
     {
@@ -107,19 +108,19 @@ class MetadataCollection
      * Process entries and cast them
      * to their respective Models
      *
+     * @param array $entries Unprocess Entries
+     *
      * @return void
      */
-    protected function processEntries()
+    protected function processEntries(array $entries)
     {
-        $entries = $this->getEntries();
-
         $processedEntries = [];
 
         foreach ($entries as $entry) {
             $processedEntries[] = ModelFactory::make($entry);
         }
 
-        $this->entries = $processedEntries;
+        $this->entries = new ModelCollection($processedEntries);
     }
 
 }
