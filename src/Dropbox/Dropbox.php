@@ -28,15 +28,15 @@ class Dropbox
      * Create a new Dropbox instance
      *
      * @param string $access_token Access Token
-     * @param \Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface  $client Client
+     * @param null|\GuzzleHttp\Client|\Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface  $httpClientHandler HTTP Client Handler
      */
-    public function __construct($access_token, DropboxHttpClientInterface $client = null)
+    public function __construct($access_token, $httpClientHandler = null)
     {
         //Set the access token
         $this->setAccessToken($access_token);
 
         //Make the HTTP Client
-        $httpClient = DropboxHttpClientFactory::make($client);
+        $httpClient = DropboxHttpClientFactory::make($httpClientHandler);
 
         //Make and Set the DropboxClient
         $this->client = new DropboxClient($httpClient);
