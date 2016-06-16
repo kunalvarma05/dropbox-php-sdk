@@ -168,7 +168,7 @@ class Dropbox
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-list_folder
      *
-     * @return \Kunnu\Dropbox\Models\FileMetadata or \Kunnu\Dropbox\Models\FolderMetadata
+     * @return \Kunnu\Dropbox\Models\ModelCollection
      */
     public function listFolder($path = null, array $params = [])
     {
@@ -183,6 +183,23 @@ class Dropbox
 
         //Get File Metadata
         $response = $this->postToAPI('/files/list_folder', $params);
+
+        //Make and Return the Model
+        return $this->makeModelFromResponse($response);
+    }
+
+    /**
+     * Once a cursor has been retrieved from list_folder, use this to
+     * paginate through all files and retrieve updates to the folder.
+     *
+     * @param  string $cursor The cursor returned by your
+     * last call to list_folder or list_folder/continue.
+     *
+     * @return \Kunnu\Dropbox\Models\ModelCollection
+     */
+    public function listFolderContinue($cursor)
+    {
+        $response = $this->postToAPI('/files/list_folder/continue', ['cursor' => $cursor]);
 
         //Make and Return the Model
         return $this->makeModelFromResponse($response);
