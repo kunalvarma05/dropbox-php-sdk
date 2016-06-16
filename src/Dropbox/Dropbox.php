@@ -102,4 +102,18 @@ class Dropbox
         return $this->getClient()->sendRequest($request);
     }
 
+    /**
+     * Make a HTTP POST Request to the API endpoint type
+     *
+     * @param  string $endpoint     API Endpoint to send Request to
+     * @param  array  $params       Request Query Params
+     * @param  string $access_token Access Token to send with the Request
+     *
+     * @return \Kunnu\Dropbox\DropboxResponse
+     */
+    public function postToAPI($endpoint, array $params = [], $access_token = null)
+    {
+        return $this->sendRequest("POST", $endpoint, 'api', $params, $access_token);
+    }
+
 }
