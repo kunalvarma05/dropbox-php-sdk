@@ -3,6 +3,7 @@ namespace Kunnu\Dropbox;
 
 use GuzzleHttp\Psr7\Stream;
 use GuzzleHttp\Psr7\Request;
+use Kunnu\Dropbox\Models\ModelFactory;
 use Psr\Http\Message\ResponseInterface;
 use Kunnu\Dropbox\Exceptions\DropboxClientException;
 use Kunnu\Dropbox\Http\Clients\DropboxHttpClientFactory;
@@ -116,4 +117,19 @@ class Dropbox
         return $this->sendRequest("POST", $endpoint, 'api', $params, $access_token);
     }
 
+    /**
+     * Make Model from DropboxResponse
+     *
+     * @param  DropboxResponse $response
+     *
+     * @return \Kunnu\Dropbox\Models\ModelInterface
+     */
+    public function makeModelFromResponse(DropboxResponse $response)
+    {
+        //Get the Decoded Body
+        $body = $response->getDecodedBody();
+
+        //Make and Return the Model
+        return ModelFactory::make($body);
+    }
 }
