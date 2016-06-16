@@ -4,17 +4,23 @@ namespace Kunnu\Dropbox\Http;
 class DropboxRawResponse
 {
     /**
-     * @var array Response headers
+     * Response headers
+     *
+     * @var array
      */
     protected $headers;
 
     /**
-     * @var string Raw response body
+     * Raw response body
+     *
+     * @var string
      */
     protected $body;
 
     /**
-     * @var int HTTP status response code
+     * HTTP status response code
+     *
+     * @var int
      */
     protected $httpResponseCode;
 

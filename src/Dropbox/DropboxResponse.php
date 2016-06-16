@@ -51,6 +51,8 @@ class DropboxResponse
         $this->body = $body;
         $this->httpStatusCode = $httpStatusCode;
         $this->headers = $headers;
+
+        $this->decodeBody();
     }
 
     /**
@@ -63,14 +65,24 @@ class DropboxResponse
         return $this->request;
     }
 
-     /**
+    /**
      * Get the Response Body
      *
      * @return string
      */
-     public function getBody()
-     {
+    public function getBody()
+    {
         return $this->body;
+    }
+
+    /**
+     * Get the Decoded Body
+     *
+     * @return string
+     */
+     public function getDecodedBody()
+     {
+        return $this->decodedBody;
     }
 
     /**
@@ -100,6 +112,18 @@ class DropboxResponse
     public function getHttpStatusCode()
     {
         return $this->httpStatusCode;
+    }
+
+    /**
+     * Decode the Body
+     *
+     * @return void
+     */
+    protected function decodeBody()
+    {
+        $body = $this->getBody();
+
+        $this->decodedBody = json_decode((string) $body, true);
     }
 
 }

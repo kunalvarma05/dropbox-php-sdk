@@ -3,6 +3,7 @@ namespace Kunnu\Dropbox\Http\Clients;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
+use Psr\Http\Message\StreamInterface;
 use GuzzleHttp\Exception\RingException;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
@@ -62,8 +63,9 @@ class DropboxGuzzleHttpClient implements DropboxHttpClientInterface
             throw new DropboxClientException($rawResponse->getBody());
         }
 
-        //Decode the Response Body
-        $body = $this->decodeResponse($rawResponse);
+
+        //Get the Response Body
+        $body = $this->getResponseBody($rawResponse);
 
         $rawHeaders = $rawResponse->getHeaders();
         $httpStatusCode = $rawResponse->getStatusCode();
@@ -73,26 +75,28 @@ class DropboxGuzzleHttpClient implements DropboxHttpClientInterface
     }
 
     /**
-     * Decode the Response.
+     * Get the Response Body
      *
-     * @param string|\Psr\Http\Message\ResponseInterface $response Response object or string to decode
+     * @param string|\Psr\Http\Message\ResponseInterface $response Response object
      *
-     * @return array
+     * @return string
      */
-    protected function decodeResponse($response)
+    protected function getResponseBody($response)
     {
         //Response must be string
         $body = $response;
 
-        //Response is an instance of ResponseInterface
         if ($response instanceof ResponseInterface) {
             //Fetch the body
             $body = $response->getBody();
         }
 
-        //The response received is a JSON encoded string,
-        //it must be decoded & returned as an array
-        return json_decode((string) $body, true);
+        if($body instanceof StreamInterface) {
+            $body = $body->getContents();
+        }
+
+        return $body;
+
     }
 
 }
