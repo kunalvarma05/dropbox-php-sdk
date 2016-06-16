@@ -160,4 +160,32 @@ class Dropbox
         return $this->makeModelFromResponse($response);
     }
 
+    /**
+     * Get the contents of a Folder
+     *
+     * @param  string $path   Path to the folder. Defaults to root.
+     * @param  array  $params Additional Params
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-list_folder
+     *
+     * @return \Kunnu\Dropbox\Models\FileMetadata or \Kunnu\Dropbox\Models\FolderMetadata
+     */
+    public function listFolder($path = null, array $params = [])
+    {
+        //Specify the root folder as an
+        //empty string rather than as "/"
+        if($path === '/') {
+            $path = "";
+        }
+
+        //Set the path
+        $params['path'] = $path;
+
+        //Get File Metadata
+        $response = $this->postToAPI('/files/list_folder', $params);
+
+        //Make and Return the Model
+        return $this->makeModelFromResponse($response);
+    }
+
 }
