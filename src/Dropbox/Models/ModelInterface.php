@@ -15,6 +15,6 @@ interface ModelInterface
      * @param  string $property
      * @return mixed
      */
-    protected function getDataProperty($property);
+    public function getDataProperty($property);
 
 }

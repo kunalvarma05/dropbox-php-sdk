@@ -33,7 +33,7 @@ class BaseModel implements ModelInterface
      * @param  string $property
      * @return mixed
      */
-    protected function getDataProperty($property)
+    public function getDataProperty($property)
     {
         return isset($this->data[$property]) ? $this->data[$property] : null;
     }
