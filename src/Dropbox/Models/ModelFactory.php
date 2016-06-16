@@ -24,6 +24,12 @@ class ModelFactory
                 return new FolderMetadata($data);
         }
 
+        //List
+        if(isset($data['entries']))
+        {
+            return new MetadataCollection($data);
+        }
+
         //Base Model
         return new BaseModel($data);
     }
