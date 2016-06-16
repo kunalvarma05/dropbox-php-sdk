@@ -4,7 +4,9 @@ namespace Kunnu\Dropbox;
 use GuzzleHttp\Psr7\Stream;
 use GuzzleHttp\Psr7\Request;
 use Kunnu\Dropbox\Models\ModelFactory;
+use Kunnu\Dropbox\Models\FileMetadata;
 use Psr\Http\Message\ResponseInterface;
+use Kunnu\Dropbox\Models\ModelCollection;
 use Kunnu\Dropbox\Exceptions\DropboxClientException;
 use Kunnu\Dropbox\Http\Clients\DropboxHttpClientFactory;
 use Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface;
@@ -244,4 +246,36 @@ class Dropbox
         return $cursor;
     }
 
+    /**
+     * Get Revisions of a File
+     *
+     * @param  string $path   Path to the file
+     * @param  array  $params Additional Params
+     *
+     * @return Kunnu\Dropbox\Models\ModelCollection
+     */
+    public function listRevisions($path, array $params = [])
+    {
+        //Set the Path
+        $params['path'] = $path;
+
+        //Fetch the Revisions
+        $response = $this->postToAPI('/files/list_revisions', $params);
+
+        //The file metadata of the entries, returned by this
+        //endpoint doesn't include a '.tag' attribute, which
+        //is used by the ModelFactory to resolve the correct
+        //model. But since we know that revisions returned
+        //are file metadata objects, we can explicitly cast
+        //them as \Kunnu\Dropbox\Models\FileMetadata manually.
+        $body = $response->getDecodedBody();
+        $entries = isset($body['entries']) ? $body['entries'] : [];
+        $processedEntries = [];
+
+        foreach ($entries as $entry) {
+            $processedEntries[] = new FileMetadata($entry);
+        }
+
+        return new ModelCollection($processedEntries);
+    }
 }
