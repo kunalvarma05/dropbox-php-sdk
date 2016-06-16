@@ -189,11 +189,13 @@ class Dropbox
     }
 
     /**
-     * Once a cursor has been retrieved from list_folder, use this to
-     * paginate through all files and retrieve updates to the folder.
+     * Paginate through all files and retrieve updates to the folder,
+     * using the cursor retrieved from listFolder or listFolderContinue
      *
      * @param  string $cursor The cursor returned by your
-     * last call to list_folder or list_folder/continue.
+     * last call to listFolder or listFolderContinue
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-list_folder-continue
      *
      * @return \Kunnu\Dropbox\Models\ModelCollection
      */
