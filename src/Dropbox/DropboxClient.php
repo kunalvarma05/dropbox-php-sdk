@@ -68,7 +68,7 @@ class DropboxClient
      */
     public function getBasePath()
     {
-        return self::BASE_PATH;
+        return static::BASE_PATH;
     }
 
     /**
@@ -78,7 +78,7 @@ class DropboxClient
      */
     public function getContentPath()
     {
-        return self::CONTENT_PATH;
+        return static::CONTENT_PATH;
     }
 
     /**
