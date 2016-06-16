@@ -132,4 +132,32 @@ class Dropbox
         //Make and Return the Model
         return ModelFactory::make($body);
     }
+
+    /**
+     * Get the Metadata for a file or folder
+     *
+     * @param  string $path   Path of the file or folder
+     * @param  array  $params Additional Params
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-get_metadata
+     *
+     * @return \Kunnu\Dropbox\Models\FileMetadata or \Kunnu\Dropbox\Models\FolderMetadata
+     */
+    public function getMetadata($path, array $params = [])
+    {
+        //Root folder is unsupported
+        if($path === '/') {
+            throw new DropboxClientException("Metadata for the root folder is unsupported.");
+        }
+
+        //Set the path
+        $params['path'] = $path;
+
+        //Get File Metadata
+        $response = $this->postToAPI('/files/get_metadata', $params);
+
+        //Make and Return the Model
+        return $this->makeModelFromResponse($response);
+    }
+
 }
