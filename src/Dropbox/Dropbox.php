@@ -207,4 +207,41 @@ class Dropbox
         return $this->makeModelFromResponse($response);
     }
 
+    /**
+     * Get a cursor for the folder's state.
+     *
+     * @param  string $path   Path to the folder. Defaults to root.
+     * @param  array  $params Additional Params
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-list_folder-get_latest_cursor
+     *
+     * @return string The Cursor for the folder's state
+     */
+    public function listFolderLatestCursor($path, array $params = [])
+    {
+        //Specify the root folder as an
+        //empty string rather than as "/"
+        if($path === '/') {
+            $path = "";
+        }
+
+        //Set the path
+        $params['path'] = $path;
+
+        //Fetch the cursor
+        $response = $this->postToAPI('/files/list_folder/get_latest_cursor', $params);
+
+        //Retrieve the cursor
+        $body = $response->getDecodedBody();
+        $cursor = isset($body['cursor']) ? $body['cursor'] : false;
+
+        //No cursor returned
+        if(!$cursor) {
+            throw new DropboxClientException("Could not retrieve cursor. Something went wrong.");
+        }
+
+        //Return the cursor
+        return $cursor;
+    }
+
 }
