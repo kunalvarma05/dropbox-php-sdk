@@ -396,4 +396,29 @@ class Dropbox
         return $this->makeModelFromResponse($response);
     }
 
+    /**
+     * Restore a file to the specific version
+     *
+     * @param  string $path Path to the file to restore
+     * @param  string $rev  Revision to store for the file
+     *
+     * @return \Kunnu\Dropbox\Models\FileMetadata|FileMetadata|DeletedMetadata
+     */
+    public function restore($path, $rev)
+    {
+        //Path and Revision cannot be null
+        if(is_null($path) || is_null($rev)) {
+            throw new DropboxClientException("Path and Revision cannot be null.");
+        }
+
+        //Response
+        $response = $this->postToAPI('/files/restore', ['path' => $path, 'rev' => $rev]);
+
+        //Fetch the Metadata
+        $body = $response->getDecodedBody();
+
+        //Make and Return the Model
+        return new FileMetadata($body);
+    }
+
 }
