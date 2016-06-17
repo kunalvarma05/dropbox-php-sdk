@@ -1,7 +1,7 @@
 <?php
 namespace Kunnu\Dropbox\Models;
 
-class DeletedtMetadata extends BaseModel
+class DeletedMetadata extends BaseModel
 {
 
     /**
