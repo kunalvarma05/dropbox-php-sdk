@@ -12,10 +12,13 @@ use Kunnu\Dropbox\Exceptions\DropboxClientException;
 use Kunnu\Dropbox\Http\Clients\DropboxHttpClientFactory;
 use Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface;
 
+/**
+ * Dropbox
+ */
 class Dropbox
 {
     /**
-     * OAuth2 Access Token.
+     * OAuth2 Access Token
      *
      * @var string
      */
@@ -253,6 +256,8 @@ class Dropbox
      * @param  string $path   Path to the file
      * @param  array  $params Additional Params
      *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-list_revisions
+     *
      * @return Kunnu\Dropbox\Models\ModelCollection
      */
     public function listRevisions($path, array $params = [])
@@ -287,6 +292,8 @@ class Dropbox
      * @param  string $query  Search Query
      * @param  array  $params Additional Params
      *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-search
+     *
      * @return \Kunnu\Dropbox\Models\SearchResults
      */
     public function search($path, $query, array $params = [])
@@ -313,6 +320,8 @@ class Dropbox
      *
      * @param  string $path Path to create
      *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-create_folder
+     *
      * @return \Kunnu\Dropbox\Models\FolderMetadata
      */
     public function createFolder($path)
@@ -337,6 +346,8 @@ class Dropbox
      *
      * @param  string $path Path to file/folder to delete
      *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-delete
+     *
      * @return \Kunnu\Dropbox\Models\FileMetadata|FileMetadata|DeletedMetadata
      */
     public function delete($path)
@@ -357,6 +368,8 @@ class Dropbox
      *
      * @param  string $fromPath Path to be moved
      * @param  string $toPath   Path to be moved to
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-move
      *
      * @return \Kunnu\Dropbox\Models\FileMetadata|FileMetadata|DeletedMetadata
      */
@@ -380,6 +393,8 @@ class Dropbox
      * @param  string $fromPath Path to be copied
      * @param  string $toPath   Path to be copied to
      *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-copy
+     *
      * @return \Kunnu\Dropbox\Models\FileMetadata|FileMetadata|DeletedMetadata
      */
     public function copy($fromPath, $toPath)
@@ -401,6 +416,8 @@ class Dropbox
      *
      * @param  string $path Path to the file to restore
      * @param  string $rev  Revision to store for the file
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-restore
      *
      * @return \Kunnu\Dropbox\Models\FileMetadata|FileMetadata|DeletedMetadata
      */

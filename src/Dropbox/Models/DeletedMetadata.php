@@ -5,33 +5,36 @@ class DeletedMetadata extends BaseModel
 {
 
     /**
-     * The last component of the path (including extension).
-     * This never contains a slash.
+     * The last component of the path (including extension)
+     *
      * @var string
      */
     protected $name;
 
     /**
-     * The lowercased full path in the user's Dropbox.
-     * This always starts with a slash.
+     * The lowercased full path in the user's Dropbox
+     *
      * @var string
      */
     protected $path_lower;
 
     /**
-     * Set if this file is contained in a shared folder.
+     * Set if this file is contained in a shared folder
+     *
      * @var \Kunnu\Dropbox\Models\FileSharingInfo
      */
     protected $sharing_info;
 
     /**
      * The cased path to be used for display purposes only.
-     * @var string
+     *
+     *  @var string
      */
     protected $path_display;
 
     /**
      * Create a new DeletedtMetadata instance
+     *
      * @param array $data
      */
     public function __construct(array $data)
@@ -45,6 +48,7 @@ class DeletedMetadata extends BaseModel
 
     /**
      * Get the 'name' property of the metadata.
+     *
      * @return string
      */
     public function getName()
@@ -54,6 +58,7 @@ class DeletedMetadata extends BaseModel
 
     /**
      * Get the 'path_lower' property of the metadata.
+     *
      * @return string
      */
     public function getPathLower()
@@ -63,6 +68,7 @@ class DeletedMetadata extends BaseModel
 
     /**
      * Get the 'path_display' property of the metadata.
+     *
      * @return string
      */
     public function getPathDisplay()
@@ -72,6 +78,7 @@ class DeletedMetadata extends BaseModel
 
     /**
      * Get the 'sharing_info' property of the file model.
+     *
      * @return \Kunnu\Dropbox\Models\FileSharingInfo
      */
     public function getSharingInfo()

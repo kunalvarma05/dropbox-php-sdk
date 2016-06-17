@@ -10,6 +10,9 @@ use GuzzleHttp\Exception\RequestException;
 use Kunnu\Dropbox\Http\DropboxRawResponse;
 use Kunnu\Dropbox\Exceptions\DropboxClientException;
 
+/**
+ * DropboxGuzzleHttpClient
+ */
 class DropboxGuzzleHttpClient implements DropboxHttpClientInterface
 {
     /**
@@ -32,6 +35,7 @@ class DropboxGuzzleHttpClient implements DropboxHttpClientInterface
 
     /**
      * Send request to the server and fetch the raw response
+     *
      * @param  string $url     URL/Endpoint to send the request to
      * @param  string $method  Request Method
      * @param  string|resource|StreamInterface $body Request Body
@@ -62,7 +66,6 @@ class DropboxGuzzleHttpClient implements DropboxHttpClientInterface
         if($rawResponse->getStatusCode() >= 400) {
             throw new DropboxClientException($rawResponse->getBody());
         }
-
 
         //Get the Response Body
         $body = $this->getResponseBody($rawResponse);

@@ -1,6 +1,9 @@
 <?php
 namespace Kunnu\Dropbox\Http;
 
+/**
+ * DropboxRawResponse
+ */
 class DropboxRawResponse
 {
     /**

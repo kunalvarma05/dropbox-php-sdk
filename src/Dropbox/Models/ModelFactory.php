@@ -6,7 +6,9 @@ class ModelFactory
 
     /**
      * Make a Model Factory
+     *
      * @param  array  $data Model Data
+     *
      * @return \Kunnu\Dropbox\Models\ModelInterface
      */
     public static function make(array $data = array())

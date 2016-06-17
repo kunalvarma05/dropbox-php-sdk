@@ -1,6 +1,11 @@
 <?php
 namespace Kunnu\Dropbox\Exceptions;
 
-class DropboxClientException extends \Exception
+use Exception;
+
+/**
+ * DropboxClientException
+ */
+class DropboxClientException extends Exception
 {
 }

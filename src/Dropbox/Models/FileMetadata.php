@@ -6,13 +6,14 @@ class FileMetadata extends BaseModel
 
     /**
      * A unique identifier of the file
+     *
      * @var string
      */
     protected $id;
 
     /**
      * The last component of the path (including extension).
-     * This never contains a slash.
+     *
      * @var string
      */
     protected $name;
@@ -21,37 +22,42 @@ class FileMetadata extends BaseModel
      * A unique identifier for the current revision of a file.
      * This field is the same rev as elsewhere in the API and
      * can be used to detect changes and avoid conflicts.
+     *
      * @var string
      */
     protected $rev;
 
     /**
      * The file size in bytes.
+     *
      * @var int
      */
     protected $size;
 
     /**
      * The lowercased full path in the user's Dropbox.
-     * This always starts with a slash.
+     *
      * @var string
      */
     protected $path_lower;
 
     /**
      * Additional information if the file is a photo or video.
+     *
      * @var \Kunnu\Dropbox\Models\MediaInfo
      */
     protected $media_info;
 
     /**
      * Set if this file is contained in a shared folder.
+     *
      * @var \Kunnu\Dropbox\Models\FileSharingInfo
      */
     protected $sharing_info;
 
     /**
      * The cased path to be used for display purposes only.
+     *
      * @var string
      */
     protected $path_display;
@@ -59,12 +65,14 @@ class FileMetadata extends BaseModel
     /**
      * For files, this is the modification time set by the
      * desktop client when the file was added to Dropbox.
+     *
      * @var DateTime
      */
     protected $client_modified;
 
     /**
      * The last time the file was modified on Dropbox.
+     *
      * @var DateTime
      */
     protected $server_modified;
@@ -77,6 +85,7 @@ class FileMetadata extends BaseModel
      * members. This is different from sharing_info in that
      * this could be true in the case where a file has explicit
      * members but is not contained within a shared folder.
+     *
      * @var bool
      */
     protected $has_explicit_shared_members;
@@ -84,6 +93,7 @@ class FileMetadata extends BaseModel
 
     /**
      * Create a new FileMetadata instance
+     *
      * @param array $data
      */
     public function __construct(array $data)
@@ -114,6 +124,7 @@ class FileMetadata extends BaseModel
 
     /**
      * Get the 'id' property of the file model.
+     *
      * @return string
      */
     public function getId()
@@ -123,6 +134,7 @@ class FileMetadata extends BaseModel
 
     /**
      * Get the 'name' property of the file model.
+     *
      * @return string
      */
     public function getName()
@@ -132,6 +144,7 @@ class FileMetadata extends BaseModel
 
     /**
      * Get the 'rev' property of the file model.
+     *
      * @return string
      */
     public function getRev()
@@ -141,6 +154,7 @@ class FileMetadata extends BaseModel
 
     /**
      * Get the 'size' property of the file model.
+     *
      * @return int
      */
     public function getSize()
@@ -150,6 +164,7 @@ class FileMetadata extends BaseModel
 
     /**
      * Get the 'path_lower' property of the file model.
+     *
      * @return string
      */
     public function getPathLower()
@@ -159,6 +174,7 @@ class FileMetadata extends BaseModel
 
     /**
      * Get the 'media_info' property of the file model.
+     *
      * @return \Kunnu\Dropbox\Models\MediaInfo
      */
     public function getMediaInfo()
@@ -168,6 +184,7 @@ class FileMetadata extends BaseModel
 
     /**
      * Get the 'sharing_info' property of the file model.
+     *
      * @return \Kunnu\Dropbox\Models\FileSharingInfo
      */
     public function getSharingInfo()
@@ -177,6 +194,7 @@ class FileMetadata extends BaseModel
 
     /**
      * Get the 'path_display' property of the file model.
+     *
      * @return string
      */
     public function getPathDisplay()
@@ -186,6 +204,7 @@ class FileMetadata extends BaseModel
 
     /**
      * Get the 'client_modified' property of the file model.
+     *
      * @return DateTime
      */
     public function getClientModified()
@@ -195,6 +214,7 @@ class FileMetadata extends BaseModel
 
     /**
      * Get the 'server_modified' property of the file model.
+     *
      * @return DateTime
      */
     public function getServerModified()
@@ -204,6 +224,7 @@ class FileMetadata extends BaseModel
 
     /**
      * Get the 'has_explicit_shared_members' property of the file model.
+     *
      * @return bool
      */
     public function hasExplicitSharedMembers()

@@ -1,6 +1,9 @@
 <?php
 namespace Kunnu\Dropbox\Http;
 
+/**
+ * RequestBodyJsonEncoded
+ */
 class RequestBodyJsonEncoded implements RequestBodyInterface
 {
 

@@ -6,12 +6,14 @@ class FileSharingInfo extends BaseModel
 
     /**
      * True if the file or folder is inside a read-only shared folder.
+     *
      * @var bool
      */
     protected $read_only;
 
     /**
      * ID of shared folder that holds this file.
+     *
      * @var string
      */
     protected $parent_shared_folder_id;
@@ -19,12 +21,14 @@ class FileSharingInfo extends BaseModel
     /**
      * The last user who modified the file.
      * This field will be null if the user's account has been deleted.
+     *
      * @var string
      */
     protected $modified_by;
 
     /**
      * Create a new File Sharing Info instance
+     *
      * @param array $data
      */
     public function __construct(array $data)
@@ -37,6 +41,7 @@ class FileSharingInfo extends BaseModel
 
     /**
      * True if the file or folder is inside a read-only shared folder.
+     *
      * @return bool
      */
     public function isReadOnly()
@@ -46,6 +51,7 @@ class FileSharingInfo extends BaseModel
 
     /**
      * ID of shared folder that holds this file.
+     *
      * @return string
      */
     public function getParentSharedFolderId()
@@ -55,6 +61,7 @@ class FileSharingInfo extends BaseModel
 
     /**
      * Get the last user who modified the file.
+     *
      * @return string
      */
     public function getModifiedBy()

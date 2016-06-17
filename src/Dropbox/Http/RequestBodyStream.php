@@ -3,6 +3,9 @@ namespace Kunnu\Dropbox\Http;
 
 use Kunnu\Dropbox\DropboxFile;
 
+/**
+ * RequestBodyStream
+ */
 class RequestBodyStream implements RequestBodyInterface
 {
 

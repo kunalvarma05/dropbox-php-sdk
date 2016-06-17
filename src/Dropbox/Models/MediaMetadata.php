@@ -8,18 +8,21 @@ class MediaMetadata extends BaseModel
 
     /**
      * The GPS coordinate of the photo/video.
+     *
      * @var array
      */
     protected $location = array();
 
     /**
      * Dimension of the photo/video.
+     *
      * @var array
      */
     protected $dimensions = array();
 
     /**
      * The timestamp when the photo/video is taken.
+     *
      * @var DateTime
      */
     protected $time_taken;
@@ -27,6 +30,7 @@ class MediaMetadata extends BaseModel
 
     /**
      * Create a new MediaMetadata instance
+     *
      * @param array $data
      */
     public function __construct(array $data)
@@ -43,6 +47,7 @@ class MediaMetadata extends BaseModel
 
     /**
      * Get the location of the Media
+     *
      * @return array
      */
     public function getLocation()
@@ -52,6 +57,7 @@ class MediaMetadata extends BaseModel
 
     /**
      * Get the dimensions of the Media
+     *
      * @return array
      */
     public function getDimensions()
@@ -61,6 +67,7 @@ class MediaMetadata extends BaseModel
 
     /**
      * Get the Time the Media was taken on
+     *
      * @return DateTime
      */
     public function getTimeTaken()

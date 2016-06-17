@@ -3,6 +3,9 @@ namespace Kunnu\Dropbox;
 
 use Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface;
 
+/**
+ * DropboxClient
+ */
 class DropboxClient
 {
     /**
@@ -132,6 +135,7 @@ class DropboxClient
 
     /**
      * Send the Request to the Server and return the Response
+     *
      * @param  DropboxRequest $request
      *
      * @return \Kunnu\Dropbox\DropboxResponse
@@ -164,9 +168,10 @@ class DropboxClient
 
     /**
      * Prepare a Request before being sent to the HTTP Client
+     *
      * @param  DropboxResponse $request
      *
-     * @return array                   [Request URL, Request Headers, Request Body]
+     * @return array [Request URL, Request Headers, Request Body]
      */
     protected function prepareRequest(DropboxRequest $request)
     {

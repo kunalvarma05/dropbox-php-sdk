@@ -7,12 +7,14 @@ class MediaInfo extends BaseModel
     /**
      * Indicate the photo/video is still under processing
      * and metadata is not available yet.
+     *
      * @var bool
      */
     protected $pending = false;
 
     /**
      * MediaMetadata
+     *
      * @var \Kunnu\Dropbox\Models\MediaMetadata
      */
     protected $mediaMetadata;
@@ -20,6 +22,7 @@ class MediaInfo extends BaseModel
 
     /**
      * Create a new MediaInfo instance
+     *
      * @param array $data
      */
     public function __construct(array $data)
@@ -52,6 +55,7 @@ class MediaInfo extends BaseModel
     /**
      * Indicates whether the photo/video is still under
      * processing and is the metadata available yet.
+     *
      * @return bool
      */
     public function isPending()
@@ -61,6 +65,7 @@ class MediaInfo extends BaseModel
 
     /**
      * The metadata for the photo/video.
+     *
      * @return \Kunnu\Dropbox\Models\MediaMetadata
      */
     public function getMediaMetadata()

@@ -1,6 +1,9 @@
 <?php
 namespace Kunnu\Dropbox\Http;
 
+/**
+ * RequestBodyInterface
+ */
 interface RequestBodyInterface
 {
     /**

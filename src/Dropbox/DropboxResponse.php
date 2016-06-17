@@ -39,7 +39,8 @@ class DropboxResponse
     protected $request;
 
     /**
-     * Create a new DropboxResponse
+     * Create a new DropboxResponse instance
+     *
      * @param DropboxRequest $request
      * @param string|null $body
      * @param int|null    $httpStatusCode
@@ -52,6 +53,7 @@ class DropboxResponse
         $this->httpStatusCode = $httpStatusCode;
         $this->headers = $headers;
 
+        //Decode the Response Body
         $this->decodeBody();
     }
 
@@ -97,6 +99,7 @@ class DropboxResponse
 
     /**
      * Get Request Headers
+     *
      * @return array
      */
     public function getHeaders()

@@ -6,6 +6,7 @@ class FolderSharingInfo extends BaseModel
 
     /**
      * True if the file or folder is inside a read-only shared folder.
+     *
      * @var bool
      */
     protected $read_only;
@@ -13,6 +14,7 @@ class FolderSharingInfo extends BaseModel
     /**
      * ID of shared folder that holds this folder.
      * Set if the folder is contained by a shared folder.
+     *
      * @var string
      */
     protected $parent_shared_folder_id;
@@ -20,6 +22,7 @@ class FolderSharingInfo extends BaseModel
     /**
      * If this folder is a shared folder mount point,
      * the ID of the shared folder mounted at this location.
+     *
      * @var string
      */
     protected $shared_folder_id;
@@ -27,6 +30,7 @@ class FolderSharingInfo extends BaseModel
 
     /**
      * Create a new Folder Sharing Info instance
+     *
      * @param array $data
      */
     public function __construct(array $data)
@@ -39,6 +43,7 @@ class FolderSharingInfo extends BaseModel
 
     /**
      * True if the folder or folder is inside a read-only shared folder.
+     *
      * @return bool
      */
     public function isReadOnly()
@@ -48,6 +53,7 @@ class FolderSharingInfo extends BaseModel
 
     /**
      * ID of shared folder that holds this folder.
+     *
      * @return string
      */
     public function getParentSharedFolderId()
@@ -57,6 +63,7 @@ class FolderSharingInfo extends BaseModel
 
     /**
      * ID of shared folder.
+     *
      * @return string
      */
     public function getSharedFolderId()

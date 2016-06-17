@@ -4,12 +4,16 @@ namespace Kunnu\Dropbox\Http\Clients;
 use InvalidArgumentException;
 use GuzzleHttp\Client as Guzzle;
 
+/**
+ * DropboxHttpClientFactory
+ */
 class DropboxHttpClientFactory
 {
     /**
      * Make HTTP Client
      *
      * @param  DropboxHttpClientInterface|GuzzleHttp\Client|null $handler
+     *
      * @return \Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface
      */
     public static function make($handler)

@@ -6,6 +6,7 @@ class FolderMetadata extends BaseModel
 
     /**
      * A unique identifier of the folder
+     *
      * @var string
      */
     protected $id;
@@ -13,6 +14,7 @@ class FolderMetadata extends BaseModel
     /**
      * The last component of the path (including extension).
      * This never contains a slash.
+     *
      * @var string
      */
     protected $name;
@@ -20,18 +22,21 @@ class FolderMetadata extends BaseModel
     /**
      * The lowercased full path in the user's Dropbox.
      * This always starts with a slash.
+     *
      * @var string
      */
     protected $path_lower;
 
     /**
      * Set if this folder is contained in a shared folder.
+     *
      * @var \Kunnu\Dropbox\Models\FolderSharingInfo
      */
     protected $sharing_info;
 
     /**
      * The cased path to be used for display purposes only.
+     *
      * @var string
      */
     protected $path_display;
@@ -39,6 +44,7 @@ class FolderMetadata extends BaseModel
 
     /**
      * Create a new FolderMetadata instance
+     *
      * @param array $data
      */
     public function __construct(array $data)
@@ -58,6 +64,7 @@ class FolderMetadata extends BaseModel
 
     /**
      * Get the 'id' property of the folder model.
+     *
      * @return string
      */
     public function getId()
@@ -67,6 +74,7 @@ class FolderMetadata extends BaseModel
 
     /**
      * Get the 'name' property of the folder model.
+     *
      * @return string
      */
     public function getName()
@@ -76,6 +84,7 @@ class FolderMetadata extends BaseModel
 
     /**
      * Get the 'path_lower' property of the folder model.
+     *
      * @return string
      */
     public function getPathLower()
@@ -85,6 +94,7 @@ class FolderMetadata extends BaseModel
 
     /**
      * Get the 'sharing_info' property of the folder model.
+     *
      * @return \Kunnu\Dropbox\Models\FolderSharingInfo
      */
     public function getSharingInfo()
@@ -94,6 +104,7 @@ class FolderMetadata extends BaseModel
 
     /**
      * Get the 'path_display' property of the folder model.
+     *
      * @return string
      */
     public function getPathDisplay()

@@ -6,12 +6,14 @@ class BaseModel implements ModelInterface
 
     /**
      * Model Data
+     *
      * @var array
      */
     protected $data;
 
     /**
      * Create a new Model instance
+     *
      * @param array $data
      */
     public function __construct(array $data)
@@ -21,6 +23,7 @@ class BaseModel implements ModelInterface
 
     /**
      * Get the Model data
+     *
      * @return array
      */
     public function getData()
@@ -30,7 +33,9 @@ class BaseModel implements ModelInterface
 
     /**
      * Get Data Property
+     *
      * @param  string $property
+     *
      * @return mixed
      */
     public function getDataProperty($property)
@@ -43,7 +48,9 @@ class BaseModel implements ModelInterface
      * Check whether an item with the key,
      * same as the property, is available
      * on the data property.
+     *
      * @param  string $property
+     *
      * @return mixed|null
      */
     public function __get($property)
@@ -59,8 +66,10 @@ class BaseModel implements ModelInterface
      * Handle calls to undefined properties.
      * Sets an item with the defined value
      * on the data property.
+     *
      * @param  string $property
      * @param  string $value
+     *
      * @return mixed|null
      */
     public function __set($property, $value)

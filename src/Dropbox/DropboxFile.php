@@ -3,6 +3,9 @@ namespace Kunnu\Dropbox;
 
 use Kunnu\Dropbox\Exceptions\DropboxClientException;
 
+/**
+ * DropboxFile
+ */
 class DropboxFile
 {
     /**
@@ -65,6 +68,8 @@ class DropboxFile
      * Opens the File Stream
      *
      * @throws DropboxClientException
+     *
+     * @return void
      */
     public function open()
     {
@@ -90,7 +95,7 @@ class DropboxFile
     }
 
     /**
-     * Stops the file stream
+     * Close the file stream
      */
     public function close()
     {
@@ -110,7 +115,7 @@ class DropboxFile
     }
 
     /**
-     * Return the name of the file
+     * Get the name of the file
      *
      * @return string
      */
@@ -120,7 +125,7 @@ class DropboxFile
     }
 
     /**
-     * Return the path of the file
+     * Get the path of the file
      *
      * @return string
      */
@@ -130,7 +135,7 @@ class DropboxFile
     }
 
     /**
-     * Return the size of the file
+     * Get the size of the file
      *
      * @return int
      */

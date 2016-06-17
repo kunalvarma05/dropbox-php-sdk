@@ -4,6 +4,9 @@ namespace Kunnu\Dropbox;
 use Kunnu\Dropbox\Http\RequestBodyStream;
 use Kunnu\Dropbox\Http\RequestBodyJsonEncoded;
 
+/**
+ * DropboxRequest
+ */
 class DropboxRequest
 {
 
@@ -149,6 +152,7 @@ class DropboxRequest
 
     /**
      * Get Request Headers
+     *
      * @return array
      */
     public function getHeaders()
@@ -184,6 +188,7 @@ class DropboxRequest
      * Set the Request Params
      *
      * @param array
+     *
      * @return \Kunnu\Dropbox\DropboxRequest
      */
      public function setParams(array $params = [])
@@ -201,6 +206,7 @@ class DropboxRequest
      * Set Access Token for the Request
      *
      * @param string
+     *
      * @return \Kunnu\Dropbox\DropboxRequest
      */
     public function setAccessToken($access_token)
@@ -214,6 +220,7 @@ class DropboxRequest
      * Set the Endpoint of the Request
      *
      * @param string
+     *
      * @return \Kunnu\Dropbox\DropboxRequest
      */
     public function setEndpoint($endpoint)
@@ -227,6 +234,7 @@ class DropboxRequest
      * Set the Endpoint Type of the Request
      *
      * @param string
+     *
      * @return \Kunnu\Dropbox\DropboxRequest
      */
     public function setEndpointType($endpointType)
@@ -241,6 +249,7 @@ class DropboxRequest
      * Set Request Headers
      *
      * @param array
+     *
      * @return \Kunnu\Dropbox\DropboxRequest
      */
     public function setHeaders(array $headers)
@@ -254,6 +263,7 @@ class DropboxRequest
      * Set the Content Type of the Request
      *
      * @param string
+     *
      * @return \Kunnu\Dropbox\DropboxRequest
      */
     public function setContentType($contentType)
