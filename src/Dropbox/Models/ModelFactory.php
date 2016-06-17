@@ -11,7 +11,7 @@ class ModelFactory
      */
     public static function make(array $data = array())
     {
-        if(isset($data['.tag']))
+        if(isset($data['.tag']) && isset($data['id']))
         {
             $tag = $data['.tag'];
 
@@ -34,6 +34,12 @@ class ModelFactory
         if(isset($data['matches']))
         {
             return new SearchResults($data);
+        }
+
+        //Deleted File/Folder
+        if(!isset($data['.tag']) || !isset($data['id']))
+        {
+            return new DeletedMetadata($data);
         }
 
         //Base Model
