@@ -352,4 +352,26 @@ class Dropbox
         return $this->makeModelFromResponse($response);
     }
 
+    /**
+     * Move a file or folder to a different location
+     *
+     * @param  string $fromPath Path to be moved
+     * @param  string $toPath   Path to be moved to
+     *
+     * @return \Kunnu\Dropbox\Models\FileMetadata|FileMetadata|DeletedMetadata
+     */
+    public function move($fromPath, $toPath)
+    {
+        //From and To paths cannot be null
+        if(is_null($fromPath) || is_null($toPath)) {
+            throw new DropboxClientException("From and To paths cannot be null.");
+        }
+
+        //Response
+        $response = $this->postToAPI('/files/move', ['from_path' => $fromPath, 'to_path' => $toPath]);
+
+        //Make and Return the Model
+        return $this->makeModelFromResponse($response);
+    }
+
 }
