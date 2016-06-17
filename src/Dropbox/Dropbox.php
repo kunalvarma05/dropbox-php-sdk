@@ -332,4 +332,24 @@ class Dropbox
         return new FolderMetadata($body);
     }
 
+    /**
+     * Delete a file or folder at the given path
+     *
+     * @param  string $path Path to file/folder to delete
+     *
+     * @return \Kunnu\Dropbox\Models\FileMetadata|FileMetadata|DeletedMetadata
+     */
+    public function delete($path)
+    {
+        //Root folder cannot be null
+        if(is_null($path)) {
+            throw new DropboxClientException("Path cannot be null.");
+        }
+
+        //Delete
+        $response = $this->postToAPI('/files/delete', ['path' => $path]);
+
+        return $this->makeModelFromResponse($response);
+    }
+
 }
