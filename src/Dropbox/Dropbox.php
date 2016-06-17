@@ -6,6 +6,7 @@ use GuzzleHttp\Psr7\Request;
 use Kunnu\Dropbox\Models\ModelFactory;
 use Kunnu\Dropbox\Models\FileMetadata;
 use Psr\Http\Message\ResponseInterface;
+use Kunnu\Dropbox\Models\FolderMetadata;
 use Kunnu\Dropbox\Models\ModelCollection;
 use Kunnu\Dropbox\Exceptions\DropboxClientException;
 use Kunnu\Dropbox\Http\Clients\DropboxHttpClientFactory;
@@ -305,6 +306,30 @@ class Dropbox
 
         //Make and Return the Model
         return $this->makeModelFromResponse($response);
+    }
+
+    /**
+     * Create a folder at the given path
+     *
+     * @param  string $path Path to create
+     *
+     * @return \Kunnu\Dropbox\Models\FolderMetadata
+     */
+    public function createFolder($path)
+    {
+        //Root folder cannot be null
+        if(is_null($path)) {
+            throw new DropboxClientException("Path cannot be null.");
+        }
+
+        //Create Folder
+        $response = $this->postToAPI('/files/create_folder', ['path' => $path]);
+
+        //Fetch the Metadata
+        $body = $response->getDecodedBody();
+
+        //Make and Return the Model
+        return new FolderMetadata($body);
     }
 
 }
