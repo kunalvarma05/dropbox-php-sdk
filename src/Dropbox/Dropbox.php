@@ -278,4 +278,33 @@ class Dropbox
 
         return new ModelCollection($processedEntries);
     }
+
+    /**
+     * Search a folder for files/folders
+     *
+     * @param  string $path   Path to search
+     * @param  string $query  Search Query
+     * @param  array  $params Additional Params
+     *
+     * @return \Kunnu\Dropbox\Models\SearchResults
+     */
+    public function search($path, $query, array $params = [])
+    {
+        //Specify the root folder as an
+        //empty string rather than as "/"
+        if($path === '/') {
+            $path = "";
+        }
+
+        //Set the path and query
+        $params['path'] = $path;
+        $params['query'] = $query;
+
+        //Fetch Search Results
+        $response = $this->postToAPI('/files/search', $params);
+
+        //Make and Return the Model
+        return $this->makeModelFromResponse($response);
+    }
+
 }
