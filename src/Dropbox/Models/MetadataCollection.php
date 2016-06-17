@@ -12,6 +12,20 @@ class MetadataCollection
     const COLLECTION_ITEMS_KEY = 'entries';
 
     /**
+     * Collection Cursor Key
+     *
+     * @const string
+     */
+    const COLLECTION_CURSOR_KEY = 'cursor';
+
+    /**
+     * Collection has-more-items Key
+     *
+     * @const string
+     */
+    const COLLECTION_HAS_MORE_ITEMS_KEY = 'has_more';
+
+    /**
      * Collection Data
      *
      * @var array
@@ -23,7 +37,7 @@ class MetadataCollection
      *
      * @var \Kunnu\Dropbox\Models\ModelCollection
      */
-    protected $entries = null;
+    protected $items = null;
 
     /**
      * Cursor for pagination and updates
@@ -33,11 +47,11 @@ class MetadataCollection
     protected $cursor;
 
     /**
-     * If more entries are available
+     * If more items are available
      *
      * @var boolean
      */
-    protected $hasMore;
+    protected $hasMoreItems;
 
     /**
      * Create a new Metadata Collection
@@ -47,11 +61,11 @@ class MetadataCollection
     public function __construct(array $data)
     {
         $this->data = $data;
-        $this->cursor = isset($data['cursor']) ? $data['cursor'] : '';
-        $this->hasMore = isset($data['has_more']) && $data['has_more'] ? true : false;
+        $this->cursor = isset($data[$this->getCollectionCursorKey()]) ? $data[$this->getCollectionCursorKey()] : '';
+        $this->hasMoreItems = isset($data[$this->getCollectionHasMoreItemsKey()]) && $data[$this->getCollectionHasMoreItemsKey()] ? true : false;
 
-        $entries = isset($data[$this->getCollectionItemsKey()]) ? $data[$this->getCollectionItemsKey()] : [];
-        $this->processEntries($entries);
+        $items = isset($data[$this->getCollectionItemsKey()]) ? $data[$this->getCollectionItemsKey()] : [];
+        $this->processItems($items);
     }
 
     /**
@@ -65,6 +79,26 @@ class MetadataCollection
     }
 
     /**
+     * Get the Collection has-more-items Key
+     *
+     * @return string
+     */
+    public function getCollectionHasMoreItemsKey()
+    {
+        return static::COLLECTION_HAS_MORE_ITEMS_KEY;
+    }
+
+    /**
+     * Get the Collection Cursor Key
+     *
+     * @return string
+     */
+    public function getCollectionCursorKey()
+    {
+        return static::COLLECTION_CURSOR_KEY;
+    }
+
+    /**
      * Get the Collection data
      *
      * @return array
@@ -75,13 +109,13 @@ class MetadataCollection
     }
 
     /**
-     * Get the Entries
+     * Get the Items
      *
      * @return \Kunnu\Dropbox\Models\ModelCollection
      */
-    public function getEntries()
+    public function getItems()
     {
-        return $this->entries;
+        return $this->items;
     }
 
     /**
@@ -95,32 +129,32 @@ class MetadataCollection
     }
 
     /**
-     * More entries are available
+     * More items are available
      *
      * @return boolean
      */
-    public function hasMore()
+    public function hasMoreItems()
     {
-        return $this->hasMore;
+        return $this->hasMoreItems;
     }
 
     /**
-     * Process entries and cast them
+     * Process items and cast them
      * to their respective Models
      *
-     * @param array $entries Unprocess Entries
+     * @param array $items Unprocessed Items
      *
      * @return void
      */
-    protected function processEntries(array $entries)
+    protected function processItems(array $items)
     {
-        $processedEntries = [];
+        $processedItems = [];
 
-        foreach ($entries as $entry) {
-            $processedEntries[] = ModelFactory::make($entry);
+        foreach ($items as $entry) {
+            $processedItems[] = ModelFactory::make($entry);
         }
 
-        $this->entries = new ModelCollection($processedEntries);
+        $this->items = new ModelCollection($processedItems);
     }
 
 }
