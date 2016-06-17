@@ -30,6 +30,12 @@ class ModelFactory
             return new MetadataCollection($data);
         }
 
+        //Search Results
+        if(isset($data['matches']))
+        {
+            return new SearchResults($data);
+        }
+
         //Base Model
         return new BaseModel($data);
     }
