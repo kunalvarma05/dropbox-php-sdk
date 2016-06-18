@@ -26,6 +26,11 @@ class ModelFactory
                 return new FolderMetadata($data);
         }
 
+        //Temporary Link
+        if(isset($data['metadata']) && isset($data['link'])) {
+            return new TemporaryLink($data);
+        }
+
         //List
         if(isset($data['entries']))
         {
