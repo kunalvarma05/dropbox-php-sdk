@@ -461,4 +461,32 @@ class Dropbox
         return new CopyReference($body);
     }
 
+    /**
+     * Save Copy Reference
+     *
+     * @param  string $path          Path to the file or folder to get a copy reference to
+     * @param  string $copyReference Copy reference returned by getCopyReference
+     *
+     * @return \Kunnu\Dropbox\Models\CopyReference
+     */
+    public function saveCopyReference($path, $copyReference)
+    {
+        //Path and Copy Reference cannot be null
+        if(is_null($path) || is_null($copyReference)) {
+            throw new DropboxClientException("Path and Copy Reference cannot be null.");
+        }
+
+        //Save Copy Reference
+        $response = $this->postToAPI('/files/copy_reference/save', ['path' => $path, 'copy_reference' => $copyReference]);
+        $body = $response->getDecodedBody();
+
+        //Response doesn't have Metadata
+        if(!isset($body['metadata']) || !is_array($body['metadata'])) {
+            throw new DropboxClientException("Invalid Response.");
+        }
+
+        //Make and return the Model
+        return ModelFactory::make($body['metadata']);
+    }
+
 }
