@@ -536,4 +536,35 @@ class Dropbox
         //Return the Asunc Job ID
         return $body['async_job_id'];
     }
+
+    /**
+     * Save a specified URL into a file in user's Dropbox
+     *
+     * @param  string $path Path where the URL will be saved
+     * @param  string $url  URL to be saved
+     *
+     * @return string|FileMetadata Status (failed|in_progress) or FileMetadata (if complete)
+     */
+    public function checkJobStatus($asyncJobId)
+    {
+        //Async Job ID cannot be null
+        if(is_null($asyncJobId)) {
+            throw new DropboxClientException("Async Job ID cannot be null.");
+        }
+
+        //Get Job Status
+        $response = $this->postToAPI('/files/save_url/check_job_status', ['async_job_id' => $asyncJobId]);
+        $body = $response->getDecodedBody();
+
+        //Status
+        $status = isset($body['.tag']) ? $body['.tag'] : '';
+
+        //If status is complete
+        if($status === 'complete') {
+            return new FileMetadata($body);
+        }
+
+        //Return the status
+        return $status;
+    }
 }
