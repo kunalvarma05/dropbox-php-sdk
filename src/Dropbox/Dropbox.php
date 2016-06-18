@@ -5,6 +5,7 @@ use GuzzleHttp\Psr7\Stream;
 use GuzzleHttp\Psr7\Request;
 use Kunnu\Dropbox\Models\ModelFactory;
 use Kunnu\Dropbox\Models\FileMetadata;
+use Kunnu\Dropbox\Models\CopyReference;
 use Psr\Http\Message\ResponseInterface;
 use Kunnu\Dropbox\Models\FolderMetadata;
 use Kunnu\Dropbox\Models\ModelCollection;
@@ -436,6 +437,28 @@ class Dropbox
 
         //Make and Return the Model
         return new FileMetadata($body);
+    }
+
+    /**
+     * Get Copy Reference
+     *
+     * @param  string $path Path to the file or folder to get a copy reference to
+     *
+     * @return \Kunnu\Dropbox\Models\CopyReference
+     */
+    public function getCopyReference($path)
+    {
+        //Path cannot be null
+        if(is_null($path)) {
+            throw new DropboxClientException("Path cannot be null.");
+        }
+
+        //Get Copy Reference
+        $response = $this->postToAPI('/files/copy_reference/get', ['path' => $path]);
+        $body = $response->getDecodedBody();
+
+        //Make and Return the Model
+        return new CopyReference($body);
     }
 
 }
