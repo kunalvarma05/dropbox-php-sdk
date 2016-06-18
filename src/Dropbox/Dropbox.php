@@ -125,6 +125,20 @@ class Dropbox
     }
 
     /**
+     * Make a HTTP POST Request to the Content endpoint type
+     *
+     * @param  string $endpoint     Content Endpoint to send Request to
+     * @param  array  $params       Request Query Params
+     * @param  string $access_token Access Token to send with the Request
+     *
+     * @return \Kunnu\Dropbox\DropboxResponse
+     */
+    public function postToContent($endpoint, array $params = [], $access_token = null)
+    {
+        return $this->sendRequest("POST", $endpoint, 'content', $params, $access_token);
+    }
+
+    /**
      * Make Model from DropboxResponse
      *
      * @param  DropboxResponse $response
@@ -576,5 +590,42 @@ class Dropbox
 
         //Return the status
         return $status;
+    }
+
+    /**
+     * Upload a File to Dropbox
+     *
+     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     * @param  string             $path        Path to upload the file to
+     * @param  array              $params      Additional Params
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload
+     *
+     * @return \Kunnu\Dropbox\Models\FileMetadata
+     */
+    public function upload($dropboxFile, $path, array $params = [])
+    {
+        //Uploading file by file path
+        if(!$dropboxFile instanceof DropboxFile) {
+            //File is valid
+            if(is_file($dropboxFile)) {
+                //Create a DropboxFile Object
+                $dropboxFile = new DropboxFile($dropboxFile);
+            } else {
+                //File invalid/doesn't exist
+                throw new DropboxClientException("File '{$dropboxFile}' is invalid.");
+            }
+        }
+
+        //Set the path and file
+        $params['path'] = $path;
+        $params['file'] = $dropboxFile;
+
+        //Upload File
+        $file = $this->postToContent('/files/upload', $params);
+        $body = $file->getDecodedBody();
+
+        //Make and Return the Model
+        return new FileMetadata($body);
     }
 }
