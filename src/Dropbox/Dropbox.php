@@ -489,4 +489,25 @@ class Dropbox
         return ModelFactory::make($body['metadata']);
     }
 
+    /**
+     * Get a temporary link to stream contents of a file
+     *
+     * @param  string $path Path to the file you want a temporary link to
+     *
+     * @return \Kunnu\Dropbox\Models\TemporaryLink
+     */
+    public function getTemporaryLink($path)
+    {
+        //Path cannot be null
+        if(is_null($path)) {
+            throw new DropboxClientException("Path cannot be null.");
+        }
+
+        //Get Temporary Link
+        $response = $this->postToAPI('/files/get_temporary_link', ['path' => $path]);
+
+        //Make and Return the Model
+        return $this->makeModelFromResponse($response);
+    }
+
 }
