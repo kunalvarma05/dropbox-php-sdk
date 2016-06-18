@@ -327,7 +327,7 @@ class Dropbox
      */
     public function createFolder($path)
     {
-        //Root folder cannot be null
+        //Path cannot be null
         if(is_null($path)) {
             throw new DropboxClientException("Path cannot be null.");
         }
@@ -353,7 +353,7 @@ class Dropbox
      */
     public function delete($path)
     {
-        //Root folder cannot be null
+        //Path cannot be null
         if(is_null($path)) {
             throw new DropboxClientException("Path cannot be null.");
         }
@@ -444,6 +444,8 @@ class Dropbox
      *
      * @param  string $path Path to the file or folder to get a copy reference to
      *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-copy_reference-get
+     *
      * @return \Kunnu\Dropbox\Models\CopyReference
      */
     public function getCopyReference($path)
@@ -466,6 +468,8 @@ class Dropbox
      *
      * @param  string $path          Path to the file or folder to get a copy reference to
      * @param  string $copyReference Copy reference returned by getCopyReference
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-copy_reference-save
      *
      * @return \Kunnu\Dropbox\Models\CopyReference
      */
@@ -494,6 +498,8 @@ class Dropbox
      *
      * @param  string $path Path to the file you want a temporary link to
      *
+     * https://www.dropbox.com/developers/documentation/http/documentation#files-get_temporary_link
+     *
      * @return \Kunnu\Dropbox\Models\TemporaryLink
      */
     public function getTemporaryLink($path)
@@ -515,6 +521,8 @@ class Dropbox
      *
      * @param  string $path Path where the URL will be saved
      * @param  string $url  URL to be saved
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-save_url
      *
      * @return string Async Job ID
      */
@@ -542,6 +550,8 @@ class Dropbox
      *
      * @param  string $path Path where the URL will be saved
      * @param  string $url  URL to be saved
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-save_url-check_job_status
      *
      * @return string|FileMetadata Status (failed|in_progress) or FileMetadata (if complete)
      */
