@@ -510,4 +510,30 @@ class Dropbox
         return $this->makeModelFromResponse($response);
     }
 
+    /**
+     * Save a specified URL into a file in user's Dropbox
+     *
+     * @param  string $path Path where the URL will be saved
+     * @param  string $url  URL to be saved
+     *
+     * @return string Async Job ID
+     */
+    public function saveUrl($path, $url)
+    {
+        //Path and URL cannot be null
+        if(is_null($path) || is_null($url)) {
+            throw new DropboxClientException("Path and URL cannot be null.");
+        }
+
+        //Save URL
+        $response = $this->postToAPI('/files/save_url', ['path' => $path, 'url' => $url]);
+        $body = $response->getDecodedBody();
+
+        if(!isset($body['async_job_id'])) {
+            throw new DropboxClientException("Could not retrieve Async Job ID.");
+        }
+
+        //Return the Asunc Job ID
+        return $body['async_job_id'];
+    }
 }
