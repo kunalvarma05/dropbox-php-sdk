@@ -155,6 +155,31 @@ class Dropbox
     }
 
     /**
+     * Make DropboxFile Object
+     *
+     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     *
+     * @return \Kunnu\Dropbox\DropboxFile
+     */
+    public function makeDropboxFile($dropboxFile)
+    {
+        //Uploading file by file path
+        if(!$dropboxFile instanceof DropboxFile) {
+            //File is valid
+            if(is_file($dropboxFile)) {
+                //Create a DropboxFile Object
+                $dropboxFile = new DropboxFile($dropboxFile);
+            } else {
+                //File invalid/doesn't exist
+                throw new DropboxClientException("File '{$dropboxFile}' is invalid.");
+            }
+        }
+
+        //Return the DropboxFile Object
+        return $dropboxFile;
+    }
+
+    /**
      * Get the Metadata for a file or folder
      *
      * @param  string $path   Path of the file or folder
@@ -605,17 +630,8 @@ class Dropbox
      */
     public function upload($dropboxFile, $path, array $params = [])
     {
-        //Uploading file by file path
-        if(!$dropboxFile instanceof DropboxFile) {
-            //File is valid
-            if(is_file($dropboxFile)) {
-                //Create a DropboxFile Object
-                $dropboxFile = new DropboxFile($dropboxFile);
-            } else {
-                //File invalid/doesn't exist
-                throw new DropboxClientException("File '{$dropboxFile}' is invalid.");
-            }
-        }
+        //Make Dropbox File
+        $dropboxFile = $this->makeDropboxFile($dropboxFile);
 
         //Set the path and file
         $params['path'] = $path;
@@ -628,4 +644,37 @@ class Dropbox
         //Make and Return the Model
         return new FileMetadata($body);
     }
+
+    /**
+     * Start an Upload Session
+     *
+     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     * @param  boolean             $close      Closes the session for "appendUploadSession"
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-start
+     *
+     * @return string A unique identifier for the upload session
+     */
+    public function startUploadSession($dropboxFile, $close = false)
+    {
+        //Make Dropbox File
+        $dropboxFile = $this->makeDropboxFile($dropboxFile);
+
+        //Set the close and file
+        $params['close'] = $close ? true : false;
+        $params['file'] = $dropboxFile;
+
+        //Upload File
+        $file = $this->postToContent('/files/upload_session/start', $params);
+        $body = $file->getDecodedBody();
+
+        //Cannot retrieve Session ID
+        if(!isset($body['session_id'])) {
+            throw new DropboxClientException("Cannot retrieve Session ID.");
+        }
+
+        //Return the Session ID
+        return $body['session_id'];
+    }
+
 }
