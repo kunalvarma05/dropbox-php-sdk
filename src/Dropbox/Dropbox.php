@@ -660,11 +660,13 @@ class Dropbox
      */
     public function startUploadSession($dropboxFile, $chunkSize = -1, $close = false)
     {
-        //Make Dropbox File
-        $dropboxFile = $this->makeDropboxFile($dropboxFile, $chunkSize, 0);
+        //Make Dropbox File with the given chunk size
+        $dropboxFile = $this->makeDropboxFile($dropboxFile, $chunkSize);
 
-        //Set the close and file
+        //Set the close param
         $params['close'] = $close ? true : false;
+
+        //Set the file param
         $params['file'] = $dropboxFile;
 
         //Upload File
@@ -673,11 +675,11 @@ class Dropbox
 
         //Cannot retrieve Session ID
         if(!isset($body['session_id'])) {
-            throw new DropboxClientException("Cannot retrieve Session ID.");
+            throw new DropboxClientException("Could not retrieve Session ID.");
         }
 
         //Return the Session ID
-        return [$body['session_id'], $size];
+        return $body['session_id'];
     }
 
 }
