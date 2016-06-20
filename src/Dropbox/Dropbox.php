@@ -158,17 +158,19 @@ class Dropbox
      * Make DropboxFile Object
      *
      * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     * @param int $maxLength   Max Bytes to read from the file
+     * @param int $offset      Seek to specified offset before reading
      *
      * @return \Kunnu\Dropbox\DropboxFile
      */
-    public function makeDropboxFile($dropboxFile)
+    public function makeDropboxFile($dropboxFile, $maxLength = -1, $offset = -1)
     {
         //Uploading file by file path
         if(!$dropboxFile instanceof DropboxFile) {
             //File is valid
             if(is_file($dropboxFile)) {
                 //Create a DropboxFile Object
-                $dropboxFile = new DropboxFile($dropboxFile);
+                $dropboxFile = new DropboxFile($dropboxFile, $maxLength, $offset);
             } else {
                 //File invalid/doesn't exist
                 throw new DropboxClientException("File '{$dropboxFile}' is invalid.");
@@ -649,16 +651,17 @@ class Dropbox
      * Start an Upload Session
      *
      * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
-     * @param  boolean             $close      Closes the session for "appendUploadSession"
+     * @param  int                $chunkSize   Size of file chunk to upload
+     * @param  boolean            $close       Closes the session for "appendUploadSession"
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-start
      *
-     * @return string A unique identifier for the upload session
+     * @return string Unique identifier for the upload session
      */
-    public function startUploadSession($dropboxFile, $close = false)
+    public function startUploadSession($dropboxFile, $chunkSize = -1, $close = false)
     {
         //Make Dropbox File
-        $dropboxFile = $this->makeDropboxFile($dropboxFile);
+        $dropboxFile = $this->makeDropboxFile($dropboxFile, $chunkSize, 0);
 
         //Set the close and file
         $params['close'] = $close ? true : false;
@@ -674,7 +677,7 @@ class Dropbox
         }
 
         //Return the Session ID
-        return $body['session_id'];
+        return [$body['session_id'], $size];
     }
 
 }
