@@ -682,4 +682,47 @@ class Dropbox
         return $body['session_id'];
     }
 
+    /**
+     * Finish an upload session and save the uploaded data to the given file path
+     *
+     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     * @param  string $sessionId   Session ID returned by `startUploadSession`
+     * @param  int    $offset      The amount of data that has been uploaded so far
+     * @param  int    $remaining   The amount of data that is remaining
+     * @param  string $path        Path to save the file to, on Dropbox
+     * @param  array  $params      Additional Params
+     *
+     * @return \Kunnu\Dropbox\Models\FileMetadata
+     */
+    public function finishUploadSession($dropboxFile, $sessionId, $offset, $remaining, $path, array $params = [])
+    {
+        //Make Dropbox File
+        $dropboxFile = $this->makeDropboxFile($dropboxFile, $remaining, $offset);
+
+        //Session ID, offset, remaining and path cannot be null
+        if(is_null($sessionId) || is_null($path) || is_null($offset) || is_null($remaining)) {
+            throw new DropboxClientException("Session ID, offset, remaining and path cannot be null");
+        }
+
+        $queryParams = [];
+
+        //Set the File
+        $queryParams['file'] = $dropboxFile;
+
+        //Set the Cursor: Session ID and Offset
+        $queryParams['cursor'] = ['session_id' => $sessionId, 'offset' => $offset];
+
+        //Set the path
+        $params['path'] = $path;
+        //Set the Commit
+        $queryParams['commit'] = $params;
+
+        //Upload File
+        $file = $this->postToContent('/files/upload_session/finish', $queryParams);
+        $body = $file->getDecodedBody();
+
+        //Make and Return the Model
+        return new FileMetadata($body);
+    }
+
 }
