@@ -33,7 +33,7 @@ class RequestBodyStream implements RequestBodyInterface
      */
     public function getBody()
     {
-        return $this->file->getStream();
+        return $this->file->getContents();
     }
 
 }
