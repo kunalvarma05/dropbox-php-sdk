@@ -725,4 +725,43 @@ class Dropbox
         return new FileMetadata($body);
     }
 
+    /**
+     * Append more data to an Upload Session
+     *
+     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     * @param  string             $sessionId   Session ID returned by `startUploadSession`
+     * @param  int                $offset      The amount of data that has been uploaded so far
+     * @param  int                $chunkSize   The amount of data to upload
+     * @param  boolean            $close       Closes the session for futher "appendUploadSession" calls
+     *
+     * @return string Unique identifier for the upload session
+     */
+    public function appendUploadSession($dropboxFile, $sessionId, $offset, $chunkSize, $close = false)
+    {
+        //Make Dropbox File
+        $dropboxFile = $this->makeDropboxFile($dropboxFile, $chunkSize, $offset);
+
+        //Session ID, offset, chunkSize and path cannot be null
+        if(is_null($sessionId) || is_null($offset) || is_null($chunkSize)) {
+            throw new DropboxClientException("Session ID, offset and chunk size cannot be null");
+        }
+
+        $queryParams = [];
+
+        //Set the File
+        $queryParams['file'] = $dropboxFile;
+
+        //Set the Cursor: Session ID and Offset
+        $queryParams['cursor'] = ['session_id' => $sessionId, 'offset' => $offset];
+
+        //Set the close param
+        $params['close'] = $close ? true : false;
+
+        //Upload File
+        $file = $this->postToContent('/files/upload_session/append_v2', $queryParams);
+
+        //Make and Return the Model
+        return $sessionId;
+    }
+
 }
