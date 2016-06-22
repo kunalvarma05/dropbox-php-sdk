@@ -692,6 +692,8 @@ class Dropbox
      * @param  string $path        Path to save the file to, on Dropbox
      * @param  array  $params      Additional Params
      *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-finish
+     *
      * @return \Kunnu\Dropbox\Models\FileMetadata
      */
     public function finishUploadSession($dropboxFile, $sessionId, $offset, $remaining, $path, array $params = [])
@@ -733,6 +735,8 @@ class Dropbox
      * @param  int                $offset      The amount of data that has been uploaded so far
      * @param  int                $chunkSize   The amount of data to upload
      * @param  boolean            $close       Closes the session for futher "appendUploadSession" calls
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-append_v2
      *
      * @return string Unique identifier for the upload session
      */
