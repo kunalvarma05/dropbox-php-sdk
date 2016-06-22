@@ -86,8 +86,9 @@ class DropboxRequest
         $this->setParams($params);
         $this->setHeaders($headers);
 
-        if($contentType)
+        if ($contentType) {
             $this->setContentType($contentType);
+        }
     }
 
     /**
@@ -107,8 +108,8 @@ class DropboxRequest
      */
      public function getParams()
      {
-        return $this->params;
-    }
+         return $this->params;
+     }
 
     /**
      * Get Access Token for the Request
@@ -193,14 +194,14 @@ class DropboxRequest
      */
      public function setParams(array $params = [])
      {
-        //Process Params
+         //Process Params
         $params = $this->processParams($params);
 
         //Set the params
         $this->params = $params;
 
-        return $this;
-    }
+         return $this;
+     }
 
     /**
      * Set Access Token for the Request
@@ -327,7 +328,7 @@ class DropboxRequest
     protected function processParams(array $params)
     {
         //If a file needs to be uploaded
-        if(isset($params['file']) && $params['file'] instanceof DropboxFile) {
+        if (isset($params['file']) && $params['file'] instanceof DropboxFile) {
             //Set the file property
             $this->setFile($params['file']);
             //Remove the file item from the params array
@@ -336,5 +337,4 @@ class DropboxRequest
 
         return $params;
     }
-
 }

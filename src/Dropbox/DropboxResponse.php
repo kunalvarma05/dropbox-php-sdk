@@ -84,8 +84,8 @@ class DropboxResponse
      */
      public function getDecodedBody()
      {
-        return $this->decodedBody;
-    }
+         return $this->decodedBody;
+     }
 
     /**
      * Get Access Token for the Request
@@ -128,5 +128,4 @@ class DropboxResponse
 
         $this->decodedBody = json_decode((string) $body, true);
     }
-
 }

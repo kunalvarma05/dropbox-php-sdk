@@ -179,14 +179,14 @@ class DropboxClient
         $url = $this->buildUrl($request->getEndpoint(), $request->getEndpointType());
 
         //The Endpoint is content
-        if($request->getEndpointType() === 'content') {
+        if ($request->getEndpointType() === 'content') {
             //Dropbox requires the parameters to be passed
             //through the 'Dropbox-API-Arg' header
             $request->setHeaders(['Dropbox-API-Arg' => json_encode($request->getParams())]);
         }
 
         //If a File is being uploaded
-        if($request->hasFile()) {
+        if ($request->hasFile()) {
             //Content Type
             $request->setContentType("application/octet-stream");
 
@@ -207,6 +207,4 @@ class DropboxClient
         //Return the URL, Headers and Request Body
         return [$url, $headers, $requestBody];
     }
-
-
 }

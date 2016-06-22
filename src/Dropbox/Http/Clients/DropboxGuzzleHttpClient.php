@@ -63,7 +63,7 @@ class DropboxGuzzleHttpClient implements DropboxHttpClientInterface
         }
 
         //Something went wrong
-        if($rawResponse->getStatusCode() >= 400) {
+        if ($rawResponse->getStatusCode() >= 400) {
             throw new DropboxClientException($rawResponse->getBody());
         }
 
@@ -94,12 +94,10 @@ class DropboxGuzzleHttpClient implements DropboxHttpClientInterface
             $body = $response->getBody();
         }
 
-        if($body instanceof StreamInterface) {
+        if ($body instanceof StreamInterface) {
             $body = $body->getContents();
         }
 
         return $body;
-
     }
-
 }

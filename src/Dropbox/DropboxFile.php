@@ -74,13 +74,13 @@ class DropboxFile
     public function open()
     {
         if (!$this->isRemoteFile($this->path) && !is_readable($this->path)) {
-            throw new DropboxClientException ('Failed to create DropboxFile instance. Unable to read resource: ' . $this->path . '.');
+            throw new DropboxClientException('Failed to create DropboxFile instance. Unable to read resource: ' . $this->path . '.');
         }
 
         $this->stream = fopen($this->path, 'r');
 
         if (!$this->stream) {
-            throw new DropboxClientException ('Failed to create DropboxFile instance. Unable to open resource: ' . $this->path . '.');
+            throw new DropboxClientException('Failed to create DropboxFile instance. Unable to open resource: ' . $this->path . '.');
         }
     }
 

@@ -35,5 +35,4 @@ class RequestBodyStream implements RequestBodyInterface
     {
         return $this->file->getContents();
     }
-
 }

@@ -166,9 +166,9 @@ class Dropbox
     public function makeDropboxFile($dropboxFile, $maxLength = -1, $offset = -1)
     {
         //Uploading file by file path
-        if(!$dropboxFile instanceof DropboxFile) {
+        if (!$dropboxFile instanceof DropboxFile) {
             //File is valid
-            if(is_file($dropboxFile)) {
+            if (is_file($dropboxFile)) {
                 //Create a DropboxFile Object
                 $dropboxFile = new DropboxFile($dropboxFile, $maxLength, $offset);
             } else {
@@ -194,7 +194,7 @@ class Dropbox
     public function getMetadata($path, array $params = [])
     {
         //Root folder is unsupported
-        if($path === '/') {
+        if ($path === '/') {
             throw new DropboxClientException("Metadata for the root folder is unsupported.");
         }
 
@@ -222,7 +222,7 @@ class Dropbox
     {
         //Specify the root folder as an
         //empty string rather than as "/"
-        if($path === '/') {
+        if ($path === '/') {
             $path = "";
         }
 
@@ -269,7 +269,7 @@ class Dropbox
     {
         //Specify the root folder as an
         //empty string rather than as "/"
-        if($path === '/') {
+        if ($path === '/') {
             $path = "";
         }
 
@@ -284,7 +284,7 @@ class Dropbox
         $cursor = isset($body['cursor']) ? $body['cursor'] : false;
 
         //No cursor returned
-        if(!$cursor) {
+        if (!$cursor) {
             throw new DropboxClientException("Could not retrieve cursor. Something went wrong.");
         }
 
@@ -342,7 +342,7 @@ class Dropbox
     {
         //Specify the root folder as an
         //empty string rather than as "/"
-        if($path === '/') {
+        if ($path === '/') {
             $path = "";
         }
 
@@ -369,7 +369,7 @@ class Dropbox
     public function createFolder($path)
     {
         //Path cannot be null
-        if(is_null($path)) {
+        if (is_null($path)) {
             throw new DropboxClientException("Path cannot be null.");
         }
 
@@ -395,7 +395,7 @@ class Dropbox
     public function delete($path)
     {
         //Path cannot be null
-        if(is_null($path)) {
+        if (is_null($path)) {
             throw new DropboxClientException("Path cannot be null.");
         }
 
@@ -418,7 +418,7 @@ class Dropbox
     public function move($fromPath, $toPath)
     {
         //From and To paths cannot be null
-        if(is_null($fromPath) || is_null($toPath)) {
+        if (is_null($fromPath) || is_null($toPath)) {
             throw new DropboxClientException("From and To paths cannot be null.");
         }
 
@@ -442,7 +442,7 @@ class Dropbox
     public function copy($fromPath, $toPath)
     {
         //From and To paths cannot be null
-        if(is_null($fromPath) || is_null($toPath)) {
+        if (is_null($fromPath) || is_null($toPath)) {
             throw new DropboxClientException("From and To paths cannot be null.");
         }
 
@@ -466,7 +466,7 @@ class Dropbox
     public function restore($path, $rev)
     {
         //Path and Revision cannot be null
-        if(is_null($path) || is_null($rev)) {
+        if (is_null($path) || is_null($rev)) {
             throw new DropboxClientException("Path and Revision cannot be null.");
         }
 
@@ -492,7 +492,7 @@ class Dropbox
     public function getCopyReference($path)
     {
         //Path cannot be null
-        if(is_null($path)) {
+        if (is_null($path)) {
             throw new DropboxClientException("Path cannot be null.");
         }
 
@@ -517,7 +517,7 @@ class Dropbox
     public function saveCopyReference($path, $copyReference)
     {
         //Path and Copy Reference cannot be null
-        if(is_null($path) || is_null($copyReference)) {
+        if (is_null($path) || is_null($copyReference)) {
             throw new DropboxClientException("Path and Copy Reference cannot be null.");
         }
 
@@ -526,7 +526,7 @@ class Dropbox
         $body = $response->getDecodedBody();
 
         //Response doesn't have Metadata
-        if(!isset($body['metadata']) || !is_array($body['metadata'])) {
+        if (!isset($body['metadata']) || !is_array($body['metadata'])) {
             throw new DropboxClientException("Invalid Response.");
         }
 
@@ -546,7 +546,7 @@ class Dropbox
     public function getTemporaryLink($path)
     {
         //Path cannot be null
-        if(is_null($path)) {
+        if (is_null($path)) {
             throw new DropboxClientException("Path cannot be null.");
         }
 
@@ -570,7 +570,7 @@ class Dropbox
     public function saveUrl($path, $url)
     {
         //Path and URL cannot be null
-        if(is_null($path) || is_null($url)) {
+        if (is_null($path) || is_null($url)) {
             throw new DropboxClientException("Path and URL cannot be null.");
         }
 
@@ -578,7 +578,7 @@ class Dropbox
         $response = $this->postToAPI('/files/save_url', ['path' => $path, 'url' => $url]);
         $body = $response->getDecodedBody();
 
-        if(!isset($body['async_job_id'])) {
+        if (!isset($body['async_job_id'])) {
             throw new DropboxClientException("Could not retrieve Async Job ID.");
         }
 
@@ -599,7 +599,7 @@ class Dropbox
     public function checkJobStatus($asyncJobId)
     {
         //Async Job ID cannot be null
-        if(is_null($asyncJobId)) {
+        if (is_null($asyncJobId)) {
             throw new DropboxClientException("Async Job ID cannot be null.");
         }
 
@@ -611,7 +611,7 @@ class Dropbox
         $status = isset($body['.tag']) ? $body['.tag'] : '';
 
         //If status is complete
-        if($status === 'complete') {
+        if ($status === 'complete') {
             return new FileMetadata($body);
         }
 
@@ -674,7 +674,7 @@ class Dropbox
         $body = $file->getDecodedBody();
 
         //Cannot retrieve Session ID
-        if(!isset($body['session_id'])) {
+        if (!isset($body['session_id'])) {
             throw new DropboxClientException("Could not retrieve Session ID.");
         }
 
@@ -702,7 +702,7 @@ class Dropbox
         $dropboxFile = $this->makeDropboxFile($dropboxFile, $remaining, $offset);
 
         //Session ID, offset, remaining and path cannot be null
-        if(is_null($sessionId) || is_null($path) || is_null($offset) || is_null($remaining)) {
+        if (is_null($sessionId) || is_null($path) || is_null($offset) || is_null($remaining)) {
             throw new DropboxClientException("Session ID, offset, remaining and path cannot be null");
         }
 
@@ -746,7 +746,7 @@ class Dropbox
         $dropboxFile = $this->makeDropboxFile($dropboxFile, $chunkSize, $offset);
 
         //Session ID, offset, chunkSize and path cannot be null
-        if(is_null($sessionId) || is_null($offset) || is_null($chunkSize)) {
+        if (is_null($sessionId) || is_null($offset) || is_null($chunkSize)) {
             throw new DropboxClientException("Session ID, offset and chunk size cannot be null");
         }
 
@@ -767,5 +767,4 @@ class Dropbox
         //Make and Return the Model
         return $sessionId;
     }
-
 }

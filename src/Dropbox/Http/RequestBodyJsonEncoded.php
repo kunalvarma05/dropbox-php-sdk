@@ -33,5 +33,4 @@ class RequestBodyJsonEncoded implements RequestBodyInterface
     {
         return json_encode($this->params);
     }
-
 }
