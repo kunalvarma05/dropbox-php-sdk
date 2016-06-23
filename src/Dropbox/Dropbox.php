@@ -33,6 +33,25 @@ class Dropbox
     protected $client;
 
     /**
+     * Uploading a file with the 'uploadFile' method, with the file's
+     * size less than this value (~8 MB), the simple `upload` method will be
+     * used, if the file size exceed this value (~8 MB), the `startUploadSession`,
+     * `appendUploadSession` & `finishUploadSession` methods will be used
+     * to upload the file in chunks.
+     *
+     * @const int
+     */
+    const AUTO_CHUNKED_UPLOAD_THRESHOLD = 8000000;
+
+    /**
+     * The Chunk Size the file will be
+     * split into and uploaded (~4 MB)
+     *
+     * @const int
+     */
+    const DEFAULT_CHUNK_SIZE = 4000000;
+
+    /**
      * Create a new Dropbox instance
      *
      * @param string $access_token Access Token
@@ -766,5 +785,67 @@ class Dropbox
 
         //Make and Return the Model
         return $sessionId;
+    }
+
+    /**
+     * Upload file in sessions/chunks
+     *
+     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     * @param  string             $path        Path to save the file to, on Dropbox
+     * @param  int                $fileSize    The size of the file
+     * @param  int                $chunkSize   The amount of data to upload in each chunk
+     * @param  array              $params      Additional Params
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-start
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-finish
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-append_v2
+     *
+     * @return string Unique identifier for the upload session
+     */
+    public function uploadChunked($dropboxFile, $path, $fileSize = null, $chunkSize = null, array $params = array()) {
+        //Make Dropbox File
+        $dropboxFile = $this->makeDropboxFile($dropboxFile);
+
+        //No file size specified explicitly
+        if (is_null($fileSize))
+            $fileSize = $dropboxFile->getSize();
+
+        //No chunk size specified, use default size
+        if(is_null($chunkSize))
+            $chunkSize = static::DEFAULT_CHUNK_SIZE;
+
+        //If the filesize is smaller
+        //than the chunk size, we'll
+        //make the chunk size relatively
+        //smaller than the file size
+        if ($fileSize <= $chunkSize)
+            $chunkSize = $fileSize / 2;
+
+        //Start the Upload Session with the file path
+        //since the DropboxFile object will be created
+        //again using the new chunk size.
+        $sessionId = $this->startUploadSession($dropboxFile->getFilePath(), $chunkSize);
+
+        //Uploaded
+        $uploaded = $chunkSize;
+
+        //Remaining
+        $remaining = $fileSize - $chunkSize;
+
+        //While the remaining bytes
+        //are more than or equal to the
+        //chunk size, we'll append the
+        //chunk to the upload session.
+        while ($remaining > $chunkSize) {
+            //Append the next chunk to the Upload session
+            $sessionId = $this->appendUploadSession($dropboxFile, $sessionId, $uploaded, $chunkSize);
+
+            //Update remaining and uploaded
+            $uploaded += $chunkSize;
+            $remaining -= $chunkSize;
+        }
+
+        //Finish the Upload Session and return the Uploaded File Metadata
+        return $this->finishUploadSession($dropboxFile, $sessionId, $uploaded, $remaining, $path);
     }
 }
