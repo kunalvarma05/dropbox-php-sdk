@@ -654,6 +654,32 @@ class Dropbox
         //Make Dropbox File
         $dropboxFile = $this->makeDropboxFile($dropboxFile);
 
+        //If the file is larger than the Chunked Upload Threshold
+        if ($dropboxFile->getSize() > static::AUTO_CHUNKED_UPLOAD_THRESHOLD) {
+            //Upload the file in sessions/chunks
+            return $this->uploadChunked($dropboxFile, $path, null, null, $params);
+        }
+
+        //Simple file upload
+        return $this->simpleUpload($dropboxFile, $path, $params);
+    }
+
+    /**
+     * Upload a File to Dropbox in a single request
+     *
+     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     * @param  string             $path        Path to upload the file to
+     * @param  array              $params      Additional Params
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload
+     *
+     * @return \Kunnu\Dropbox\Models\FileMetadata
+     */
+    public function simpleUpload($dropboxFile, $path, array $params = [])
+    {
+        //Make Dropbox File
+        $dropboxFile = $this->makeDropboxFile($dropboxFile);
+
         //Set the path and file
         $params['path'] = $path;
         $params['file'] = $dropboxFile;
