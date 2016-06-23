@@ -20,7 +20,7 @@ class DropboxFile
      *
      * @var int
      */
-    private $maxLength;
+    protected $maxLength;
 
     /**
      * Seek to the specified offset before reading.
@@ -29,7 +29,7 @@ class DropboxFile
      *
      * @var int
      */
-    private $offset;
+    protected $offset;
 
     /**
      * File Stream
