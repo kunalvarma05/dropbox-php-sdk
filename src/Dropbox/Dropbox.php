@@ -54,6 +54,13 @@ class Dropbox
     const DEFAULT_CHUNK_SIZE = 4000000;
 
     /**
+     * Response header containing file metadata
+     *
+     * @const string
+     */
+    const METADATA_HEADER = 'dropbox-api-result';
+
+    /**
      * Create a new Dropbox instance
      *
      * @param string $accessToken Access Token
@@ -927,31 +934,14 @@ class Dropbox
         //Get Thumbnail
         $response = $this->postToContent('/files/get_thumbnail', ['path' => $path, 'format' => $format, 'size' => $size]);
 
-        //Response Headers
-        $headers = $response->getHeaders();
+        //Get file metadata from response headers
+        $metadata = $this->getMetadataFromResponseHeaders($response);
 
-        //Empty metadata for when
-        //metadata isn't returned
-        $metadata = [];
-
-        //If metadata is avaialble
-        if (isset($headers['dropbox-api-result'])) {
-            //File Metadata
-            $data = $headers['dropbox-api-result'];
-
-            //The metadata is present in the first index
-            //of the dropbox-api-result header array
-            if (is_array($data) && isset($data[0])) {
-                $data = $data[0];
-            }
-
-            //Since the metadata is returned as a json string
-            //it needs to be decoded into an associative array
-            $metadata = json_decode((string) $data, true);
-        }
+        //File Contents
+        $contents = $response->getBody();
 
         //Make and return a Thumbnail model
-        return new Thumbnail($metadata, $response->getBody());
+        return new Thumbnail($metadata, $contents);
     }
 
     /**
@@ -973,6 +963,25 @@ class Dropbox
         //Download File
         $response = $this->postToContent('/files/download', ['path' => $path]);
 
+        //Get file metadata from response headers
+        $metadata = $this->getMetadataFromResponseHeaders($response);
+
+        //File Contents
+        $contents = $response->getBody();
+
+        //Make and return a File model
+        return new File($metadata, $contents);
+    }
+
+    /**
+     * Get metadata from response headers
+     *
+     * @param  DropboxResponse $response
+     *
+     * @return array
+     */
+    protected function getMetadataFromResponseHeaders(DropboxResponse $response)
+    {
         //Response Headers
         $headers = $response->getHeaders();
 
@@ -981,12 +990,12 @@ class Dropbox
         $metadata = [];
 
         //If metadata is avaialble
-        if (isset($headers['dropbox-api-result'])) {
+        if (isset($headers[static::METADATA_HEADER])) {
             //File Metadata
-            $data = $headers['dropbox-api-result'];
+            $data = $headers[static::METADATA_HEADER];
 
             //The metadata is present in the first index
-            //of the dropbox-api-result header array
+            //of the metadata response header array
             if (is_array($data) && isset($data[0])) {
                 $data = $data[0];
             }
@@ -994,9 +1003,11 @@ class Dropbox
             //Since the metadata is returned as a json string
             //it needs to be decoded into an associative array
             $metadata = json_decode((string) $data, true);
+
         }
 
-        //Make and return a Thumbnail model
-        return new File($metadata, $response->getBody());
+        //Return the metadata
+        return $metadata;
     }
+
 }
