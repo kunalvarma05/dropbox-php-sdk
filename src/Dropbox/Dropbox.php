@@ -880,6 +880,7 @@ class Dropbox
      * Get thumbnail size
      *
      * @param  string $size Thumbnail Size
+     *
      * @return string
      */
     protected function getThumbnailSize($size)
@@ -903,7 +904,7 @@ class Dropbox
      * @param  string $size   Size for the thumbnail image ['thumb','small','medium','large','huge']
      * @param  string $format Format for the thumbnail image ['jpeg'|'png']
      *
-     * https://www.dropbox.com/developers/documentation/http/documentation#files-get_thumbnail
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-get_thumbnail
      *
      * @return \Kunnu\Dropbox\Models\Thumbnail
      */
@@ -923,20 +924,30 @@ class Dropbox
         $size = $this->getThumbnailSize($size);
 
         //Get Thumbnail
-        $response = $this->postToContent('/files/get_thumbnail', ['path' => '/kensville.jpg', 'format' => $format, 'size' => $size]);
+        $response = $this->postToContent('/files/get_thumbnail', ['path' => $path, 'format' => $format, 'size' => $size]);
 
-        //File Metadata
-        $data = $response->getHeaders()['dropbox-api-result'];
+        //Response Headers
+        $headers = $response->getHeaders();
 
-        //The metadata is present in the first index
-        //of the dropbox-api-result header array
-        if (is_array($data) && isset($data[0])) {
-            $data = $data[0];
+        //Empty metadata for when
+        //metadata isn't returned
+        $metadata = [];
+
+        //If metadata is avaialble
+        if (isset($headers['dropbox-api-result'])) {
+            //File Metadata
+            $data = $headers['dropbox-api-result'];
+
+            //The metadata is present in the first index
+            //of the dropbox-api-result header array
+            if (is_array($data) && isset($data[0])) {
+                $data = $data[0];
+            }
+
+            //Since the metadata is returned as a json string
+            //it needs to be decoded into an associative array
+            $metadata = json_decode((string) $data, true);
         }
-
-        //Since the metadata is returned as a json string
-        //it needs to be decoded into an associative array
-        $metadata = json_decode((string) $data, true);
 
         //Make and return a Thumbnail model
         return new Thumbnail($metadata, $response->getBody());
