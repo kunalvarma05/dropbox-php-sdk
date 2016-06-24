@@ -1028,4 +1028,23 @@ class Dropbox
         return new Account($body);
     }
 
+    /**
+     * Get Account
+     *
+     * @param string $account_id Account ID of the account to get details for
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#users-get_account
+     *
+     * @return \Kunnu\Dropbox\Models\Account
+     */
+    public function getAccount($account_id)
+    {
+        //Get account
+        $response = $this->postToAPI('/users/get_account', ['account_id' => $account_id]);
+        $body = $response->getDecodedBody();
+
+        //Make and return the model
+        return new Account($body);
+    }
+
 }
