@@ -6,6 +6,7 @@ use GuzzleHttp\Psr7\Request;
 use Kunnu\Dropbox\Models\File;
 use Kunnu\Dropbox\Models\Account;
 use Kunnu\Dropbox\Models\Thumbnail;
+use Kunnu\Dropbox\Models\AccountList;
 use Kunnu\Dropbox\Models\ModelFactory;
 use Kunnu\Dropbox\Models\FileMetadata;
 use Kunnu\Dropbox\Models\CopyReference;
@@ -1045,6 +1046,25 @@ class Dropbox
 
         //Make and return the model
         return new Account($body);
+    }
+
+    /**
+     * Get Multiple Accounts in one call
+     *
+     * @param string $account_id Account ID of the account to get details for
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#users-get_account_batch
+     *
+     * @return \Kunnu\Dropbox\Models\AccountList
+     */
+    public function getAccounts(array $account_ids = [])
+    {
+        //Get account
+        $response = $this->postToAPI('/users/get_account_batch', ['account_ids' => $account_ids]);
+        $body = $response->getDecodedBody();
+
+        //Make and return the model
+        return new AccountList($body);
     }
 
 }
