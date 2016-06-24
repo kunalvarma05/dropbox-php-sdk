@@ -15,7 +15,7 @@ class DropboxRequest
      *
      * @var string
      */
-    protected $access_token = null;
+    protected $accessToken = null;
 
     /**
      * The HTTP method for this request
@@ -72,16 +72,16 @@ class DropboxRequest
      *
      * @param string $method       HTTP Method of the Request
      * @param string $endpoint     API endpoint of the Request
-     * @param string $access_token Access Token for the Request
+     * @param string $accessToken Access Token for the Request
      * @param string $endpointType Endpoint type ['api'|'content']
      * @param mixed  $params       Request Params
      * @param array  $headers      Headers to send along with the Request
      */
-    public function __construct($method, $endpoint, $access_token, $endpointType = "api", array $params = [], array $headers = [], $contentType = null)
+    public function __construct($method, $endpoint, $accessToken, $endpointType = "api", array $params = [], array $headers = [], $contentType = null)
     {
         $this->setMethod($method);
         $this->setEndpoint($endpoint);
-        $this->setAccessToken($access_token);
+        $this->setAccessToken($accessToken);
         $this->setEndpointType($endpointType);
         $this->setParams($params);
         $this->setHeaders($headers);
@@ -118,7 +118,7 @@ class DropboxRequest
      */
     public function getAccessToken()
     {
-        return $this->access_token;
+        return $this->accessToken;
     }
 
     /**
@@ -210,9 +210,9 @@ class DropboxRequest
      *
      * @return \Kunnu\Dropbox\DropboxRequest
      */
-    public function setAccessToken($access_token)
+    public function setAccessToken($accessToken)
     {
-        $this->access_token = $access_token;
+        $this->accessToken = $accessToken;
 
         return $this;
     }

@@ -23,7 +23,7 @@ class Dropbox
      *
      * @var string
      */
-    protected $access_token;
+    protected $accessToken;
 
     /**
      * Dropbox Client
@@ -54,13 +54,13 @@ class Dropbox
     /**
      * Create a new Dropbox instance
      *
-     * @param string $access_token Access Token
+     * @param string $accessToken Access Token
      * @param null|\GuzzleHttp\Client|\Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface  $httpClientHandler HTTP Client Handler
      */
-    public function __construct($access_token, $httpClientHandler = null)
+    public function __construct($accessToken, $httpClientHandler = null)
     {
         //Set the access token
-        $this->setAccessToken($access_token);
+        $this->setAccessToken($accessToken);
 
         //Make the HTTP Client
         $httpClient = DropboxHttpClientFactory::make($httpClientHandler);
@@ -86,19 +86,19 @@ class Dropbox
      */
     public function getAccessToken()
     {
-        return $this->access_token;
+        return $this->accessToken;
     }
 
     /**
      * Set the Access Token.
      *
-     * @param string $access_token Access Token
+     * @param string $accessToken Access Token
      *
      * @return \Kunnu\Dropbox\Dropbox Dropbox Client
      */
-    public function setAccessToken($access_token)
+    public function setAccessToken($accessToken)
     {
-        $this->access_token = $access_token;
+        $this->accessToken = $accessToken;
 
         return $this;
     }
@@ -110,19 +110,19 @@ class Dropbox
      * @param  string $endpoint     API Endpoint to send Request to
      * @param  string $endpointType Endpoint type ['api'|'content']
      * @param  array  $params       Request Query Params
-     * @param  string $access_token Access Token to send with the Request
+     * @param  string $accessToken Access Token to send with the Request
      *
      * @return \Kunnu\Dropbox\DropboxResponse
      *
      * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
-    public function sendRequest($method, $endpoint, $endpointType = 'api', array $params = [], $access_token = null)
+    public function sendRequest($method, $endpoint, $endpointType = 'api', array $params = [], $accessToken = null)
     {
         //Access Token
-        $access_token = $this->getAccessToken() ? $this->getAccessToken() : $access_token;
+        $accessToken = $this->getAccessToken() ? $this->getAccessToken() : $accessToken;
 
         //Make a DropboxRequest object
-        $request = new DropboxRequest($method, $endpoint, $access_token, $endpointType, $params);
+        $request = new DropboxRequest($method, $endpoint, $accessToken, $endpointType, $params);
 
         //Send Request through the DropboxClient
         //Fetch and return the Response
@@ -134,13 +134,13 @@ class Dropbox
      *
      * @param  string $endpoint     API Endpoint to send Request to
      * @param  array  $params       Request Query Params
-     * @param  string $access_token Access Token to send with the Request
+     * @param  string $accessToken Access Token to send with the Request
      *
      * @return \Kunnu\Dropbox\DropboxResponse
      */
-    public function postToAPI($endpoint, array $params = [], $access_token = null)
+    public function postToAPI($endpoint, array $params = [], $accessToken = null)
     {
-        return $this->sendRequest("POST", $endpoint, 'api', $params, $access_token);
+        return $this->sendRequest("POST", $endpoint, 'api', $params, $accessToken);
     }
 
     /**
@@ -148,13 +148,13 @@ class Dropbox
      *
      * @param  string $endpoint     Content Endpoint to send Request to
      * @param  array  $params       Request Query Params
-     * @param  string $access_token Access Token to send with the Request
+     * @param  string $accessToken Access Token to send with the Request
      *
      * @return \Kunnu\Dropbox\DropboxResponse
      */
-    public function postToContent($endpoint, array $params = [], $access_token = null)
+    public function postToContent($endpoint, array $params = [], $accessToken = null)
     {
-        return $this->sendRequest("POST", $endpoint, 'content', $params, $access_token);
+        return $this->sendRequest("POST", $endpoint, 'content', $params, $accessToken);
     }
 
     /**
