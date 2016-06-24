@@ -192,16 +192,19 @@ class DropboxClient
                 //Request Body (File Contents)
                 $requestBody = $request->getStreamBody()->getBody();
             } else {
-                //Content Type needs to be kept empty
-                $request->setContentType("");
-
-                //Request Body (Parameters)
-                $requestBody = "";
+                //Empty Body
+                $requestBody = null;
             }
         } else {
             //The endpoint is 'api'
             //Request Body (Parameters)
             $requestBody = $request->getJsonBody()->getBody();
+        }
+
+        //Empty body
+        if (is_null($requestBody)) {
+            //Content Type needs to be kept empty
+            $request->setContentType("");
         }
 
         //Build headers

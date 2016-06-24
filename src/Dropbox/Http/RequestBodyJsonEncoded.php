@@ -31,6 +31,10 @@ class RequestBodyJsonEncoded implements RequestBodyInterface
      */
     public function getBody()
     {
+        //Empty body
+        if(empty($this->params))
+            return null;
+
         return json_encode($this->params);
     }
 }
