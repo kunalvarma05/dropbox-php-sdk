@@ -3,6 +3,7 @@ namespace Kunnu\Dropbox;
 
 use GuzzleHttp\Psr7\Stream;
 use GuzzleHttp\Psr7\Request;
+use Kunnu\Dropbox\Models\Thumbnail;
 use Kunnu\Dropbox\Models\ModelFactory;
 use Kunnu\Dropbox\Models\FileMetadata;
 use Kunnu\Dropbox\Models\CopyReference;
@@ -873,5 +874,71 @@ class Dropbox
 
         //Finish the Upload Session and return the Uploaded File Metadata
         return $this->finishUploadSession($dropboxFile, $sessionId, $uploaded, $remaining, $path);
+    }
+
+    /**
+     * Get thumbnail size
+     *
+     * @param  string $size Thumbnail Size
+     * @return string
+     */
+    protected function getThumbnailSize($size)
+    {
+        $thumbnailSizes = [
+        'thumb'  => 'w32h32',
+        'small'  => 'w64h64',
+        'medium' => 'w128h128',
+        'medium' => 'w128h128',
+        'large'  => 'w640h480',
+        'huge'   => 'w1024h768'
+        ];
+
+        return isset($thumbnailSizes[$size]) ? $thumbnailSizes[$size] : $thumbnailSizes['small'];
+    }
+
+    /**
+     * Get a thumbnail for an image
+     *
+     * @param  string $path   Path to the file you want a thumbnail to
+     * @param  string $size   Size for the thumbnail image ['thumb','small','medium','large','huge']
+     * @param  string $format Format for the thumbnail image ['jpeg'|'png']
+     *
+     * https://www.dropbox.com/developers/documentation/http/documentation#files-get_thumbnail
+     *
+     * @return \Kunnu\Dropbox\Models\Thumbnail
+     */
+    public function getThumbnail($path, $size = 'small', $format = 'jpeg')
+    {
+        //Path cannot be null
+        if (is_null($path)) {
+            throw new DropboxClientException("Path cannot be null.");
+        }
+
+        //Invalid Format
+        if (!in_array($format, ['jpeg', 'png'])) {
+            throw new DropboxClientException("Invalid format. Must either be 'jpeg' or 'png'.");
+        }
+
+        //Thumbnail size
+        $size = $this->getThumbnailSize($size);
+
+        //Get Thumbnail
+        $response = $this->postToContent('/files/get_thumbnail', ['path' => '/kensville.jpg', 'format' => $format, 'size' => $size]);
+
+        //File Metadata
+        $data = $response->getHeaders()['dropbox-api-result'];
+
+        //The metadata is present in the first index
+        //of the dropbox-api-result header array
+        if (is_array($data) && isset($data[0])) {
+            $data = $data[0];
+        }
+
+        //Since the metadata is returned as a json string
+        //it needs to be decoded into an associative array
+        $metadata = json_decode((string) $data, true);
+
+        //Make and return a Thumbnail model
+        return new Thumbnail($metadata, $response->getBody());
     }
 }
