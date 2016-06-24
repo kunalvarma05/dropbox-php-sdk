@@ -23,6 +23,13 @@ use Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface;
 class Dropbox
 {
     /**
+     * The Dropbox App
+     *
+     * @var \Kunnu\Dropbox\DropboxApp
+     */
+    protected $app;
+
+    /**
      * OAuth2 Access Token
      *
      * @var string
@@ -65,13 +72,16 @@ class Dropbox
     /**
      * Create a new Dropbox instance
      *
-     * @param string $accessToken Access Token
+     * @param \Kunnu\Dropbox\DropboxApp
      * @param null|\GuzzleHttp\Client|\Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface  $httpClientHandler HTTP Client Handler
      */
-    public function __construct($accessToken, $httpClientHandler = null)
+    public function __construct(DropboxApp $app, $httpClientHandler = null)
     {
+        //Set the app
+        $this->app = $app;
+
         //Set the access token
-        $this->setAccessToken($accessToken);
+        $this->setAccessToken($app->getAccessToken());
 
         //Make the HTTP Client
         $httpClient = DropboxHttpClientFactory::make($httpClientHandler);
