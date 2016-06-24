@@ -3,6 +3,7 @@ namespace Kunnu\Dropbox;
 
 use GuzzleHttp\Psr7\Stream;
 use GuzzleHttp\Psr7\Request;
+use Kunnu\Dropbox\Models\File;
 use Kunnu\Dropbox\Models\Thumbnail;
 use Kunnu\Dropbox\Models\ModelFactory;
 use Kunnu\Dropbox\Models\FileMetadata;
@@ -951,5 +952,51 @@ class Dropbox
 
         //Make and return a Thumbnail model
         return new Thumbnail($metadata, $response->getBody());
+    }
+
+    /**
+     * Download a File
+     *
+     * @param  string $path   Path to the file you want to download
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-download
+     *
+     * @return \Kunnu\Dropbox\Models\File
+     */
+    public function download($path)
+    {
+        //Path cannot be null
+        if (is_null($path)) {
+            throw new DropboxClientException("Path cannot be null.");
+        }
+
+        //Download File
+        $response = $this->postToContent('/files/download', ['path' => $path]);
+
+        //Response Headers
+        $headers = $response->getHeaders();
+
+        //Empty metadata for when
+        //metadata isn't returned
+        $metadata = [];
+
+        //If metadata is avaialble
+        if (isset($headers['dropbox-api-result'])) {
+            //File Metadata
+            $data = $headers['dropbox-api-result'];
+
+            //The metadata is present in the first index
+            //of the dropbox-api-result header array
+            if (is_array($data) && isset($data[0])) {
+                $data = $data[0];
+            }
+
+            //Since the metadata is returned as a json string
+            //it needs to be decoded into an associative array
+            $metadata = json_decode((string) $data, true);
+        }
+
+        //Make and return a Thumbnail model
+        return new File($metadata, $response->getBody());
     }
 }
