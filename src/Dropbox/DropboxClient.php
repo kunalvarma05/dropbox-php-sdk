@@ -183,16 +183,23 @@ class DropboxClient
             //Dropbox requires the parameters to be passed
             //through the 'Dropbox-API-Arg' header
             $request->setHeaders(['Dropbox-API-Arg' => json_encode($request->getParams())]);
-        }
 
-        //If a File is being uploaded
-        if ($request->hasFile()) {
-            //Content Type
-            $request->setContentType("application/octet-stream");
+            //If a File is also being uploaded
+            if ($request->hasFile()) {
+                //Content Type
+                $request->setContentType("application/octet-stream");
 
-            //Request Body (File Stream/Contents)
-            $requestBody = $request->getStreamBody()->getBody();
+                //Request Body (File Contents)
+                $requestBody = $request->getStreamBody()->getBody();
+            } else {
+                //Content Type needs to be kept empty
+                $request->setContentType("");
+
+                //Request Body (Parameters)
+                $requestBody = "";
+            }
         } else {
+            //The endpoint is 'api'
             //Request Body (Parameters)
             $requestBody = $request->getJsonBody()->getBody();
         }
