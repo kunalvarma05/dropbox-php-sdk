@@ -40,7 +40,7 @@ class MediaMetadata extends BaseModel
         $this->dimensions = $this->getDataProperty('dimensions');
 
         $time_taken = $this->getDataProperty('time_taken');
-        if($time_taken) {
+        if ($time_taken) {
             $this->time_taken = new DateTime($time_taken);
         }
     }
@@ -74,5 +74,4 @@ class MediaMetadata extends BaseModel
     {
         return $this->time_taken;
     }
-
 }

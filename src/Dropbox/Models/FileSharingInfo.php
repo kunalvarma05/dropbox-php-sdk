@@ -68,6 +68,4 @@ class FileSharingInfo extends BaseModel
     {
         return $this->modified_by;
     }
-
-
 }

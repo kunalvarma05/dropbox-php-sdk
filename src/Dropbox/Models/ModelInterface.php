@@ -19,5 +19,4 @@ interface ModelInterface
      * @return mixed
      */
     public function getDataProperty($property);
-
 }

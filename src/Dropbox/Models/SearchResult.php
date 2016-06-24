@@ -41,7 +41,7 @@ class SearchResult extends BaseModel
     {
         $metadata = $this->getDataProperty('metadata');
 
-        if(is_array($metadata)) {
+        if (is_array($metadata)) {
             $this->metadata = ModelFactory::make($metadata);
         }
     }
@@ -65,6 +65,4 @@ class SearchResult extends BaseModel
     {
         return $this->metadata;
     }
-
-
 }

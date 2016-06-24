@@ -85,5 +85,4 @@ class DeletedMetadata extends BaseModel
     {
         return $this->sharing_info;
     }
-
 }

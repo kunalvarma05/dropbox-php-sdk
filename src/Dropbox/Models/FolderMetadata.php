@@ -57,7 +57,7 @@ class FolderMetadata extends BaseModel
 
         //Make SharingInfo
         $sharingInfo = $this->getDataProperty('sharing_info');
-        if(is_array($sharingInfo)) {
+        if (is_array($sharingInfo)) {
             $this->sharing_info = new FolderSharingInfo($sharingInfo);
         }
     }
@@ -111,5 +111,4 @@ class FolderMetadata extends BaseModel
     {
         return $this->path_display;
     }
-
 }

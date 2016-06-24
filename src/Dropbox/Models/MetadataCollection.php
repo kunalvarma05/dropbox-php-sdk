@@ -156,5 +156,4 @@ class MetadataCollection
 
         $this->items = new ModelCollection($processedItems);
     }
-
 }

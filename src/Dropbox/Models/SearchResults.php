@@ -37,8 +37,9 @@ class SearchResults extends MetadataCollection
         $processedItems = [];
 
         foreach ($items as $entry) {
-            if(isset($entry['metadata']) && is_array($entry['metadata']))
+            if (isset($entry['metadata']) && is_array($entry['metadata'])) {
                 $processedItems[] = new SearchResult($entry);
+            }
         }
 
         $this->items = new ModelCollection($processedItems);

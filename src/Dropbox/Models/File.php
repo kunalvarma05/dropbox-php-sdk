@@ -51,6 +51,4 @@ class File extends BaseModel
     {
         return $this->contents;
     }
-
-
 }

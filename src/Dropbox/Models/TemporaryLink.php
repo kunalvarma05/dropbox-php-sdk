@@ -63,6 +63,4 @@ class TemporaryLink extends BaseModel
     {
         return $this->link;
     }
-
-
 }

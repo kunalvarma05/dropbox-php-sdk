@@ -76,5 +76,4 @@ class BaseModel implements ModelInterface
     {
         $this->data[$property] = $value;
     }
-
 }

@@ -38,11 +38,11 @@ class MediaInfo extends BaseModel
     protected function setMediaMetadata()
     {
         $mediaMetadata = $this->getDataProperty('metadata');
-        if(is_array($mediaMetadata)) {
-            if($mediaMetadata['.tag'] === 'photo') {
+        if (is_array($mediaMetadata)) {
+            if ($mediaMetadata['.tag'] === 'photo') {
                 //Media is Photo
                 $this->mediaMetadata = new PhotoMetadata($mediaMetadata);
-            } elseif($mediaMetadata['.tag'] === 'video') {
+            } elseif ($mediaMetadata['.tag'] === 'video') {
                 //Media is Video
                 $this->mediaMetadata = new VideoMetadata($mediaMetadata);
             } else {
@@ -72,6 +72,4 @@ class MediaInfo extends BaseModel
     {
         return $this->mediaMetadata;
     }
-
-
 }

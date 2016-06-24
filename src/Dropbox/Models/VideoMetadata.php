@@ -31,5 +31,4 @@ class VideoMetadata extends MediaMetadata
     {
         return $this->duration;
     }
-
 }

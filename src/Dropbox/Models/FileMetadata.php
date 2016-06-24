@@ -111,13 +111,13 @@ class FileMetadata extends BaseModel
 
         //Make MediaInfo
         $mediaInfo = $this->getDataProperty('media_info');
-        if(is_array($mediaInfo)) {
+        if (is_array($mediaInfo)) {
             $this->media_info = new MediaInfo($mediaInfo);
         }
 
         //Make SharingInfo
         $sharingInfo = $this->getDataProperty('sharing_info');
-        if(is_array($sharingInfo)) {
+        if (is_array($sharingInfo)) {
             $this->sharing_info = new FileSharingInfo($sharingInfo);
         }
     }
@@ -231,5 +231,4 @@ class FileMetadata extends BaseModel
     {
         return $this->has_explicit_shared_members;
     }
-
 }

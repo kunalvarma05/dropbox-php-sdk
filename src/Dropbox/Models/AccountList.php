@@ -32,5 +32,4 @@ class AccountList extends ModelCollection
 
         return $processedItems;
     }
-
 }

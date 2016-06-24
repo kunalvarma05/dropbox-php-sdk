@@ -70,6 +70,4 @@ class FolderSharingInfo extends BaseModel
     {
         return $this->shared_folder_id;
     }
-
-
 }

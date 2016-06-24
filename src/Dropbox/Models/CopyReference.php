@@ -81,6 +81,4 @@ class CopyReference extends BaseModel
     {
         return $this->reference;
     }
-
-
 }

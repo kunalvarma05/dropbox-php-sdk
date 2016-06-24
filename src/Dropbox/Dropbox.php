@@ -839,24 +839,28 @@ class Dropbox
      *
      * @return string Unique identifier for the upload session
      */
-    public function uploadChunked($dropboxFile, $path, $fileSize = null, $chunkSize = null, array $params = array()) {
+    public function uploadChunked($dropboxFile, $path, $fileSize = null, $chunkSize = null, array $params = array())
+    {
         //Make Dropbox File
         $dropboxFile = $this->makeDropboxFile($dropboxFile);
 
         //No file size specified explicitly
-        if (is_null($fileSize))
+        if (is_null($fileSize)) {
             $fileSize = $dropboxFile->getSize();
+        }
 
         //No chunk size specified, use default size
-        if(is_null($chunkSize))
+        if (is_null($chunkSize)) {
             $chunkSize = static::DEFAULT_CHUNK_SIZE;
+        }
 
         //If the filesize is smaller
         //than the chunk size, we'll
         //make the chunk size relatively
         //smaller than the file size
-        if ($fileSize <= $chunkSize)
+        if ($fileSize <= $chunkSize) {
             $chunkSize = $fileSize / 2;
+        }
 
         //Start the Upload Session with the file path
         //since the DropboxFile object will be created
@@ -1005,7 +1009,6 @@ class Dropbox
             //Since the metadata is returned as a json string
             //it needs to be decoded into an associative array
             $metadata = json_decode((string) $data, true);
-
         }
 
         //Return the metadata
@@ -1083,5 +1086,4 @@ class Dropbox
         //Return the decoded body
         return $body;
     }
-
 }
