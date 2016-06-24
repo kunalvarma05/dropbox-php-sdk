@@ -4,6 +4,7 @@ namespace Kunnu\Dropbox;
 use GuzzleHttp\Psr7\Stream;
 use GuzzleHttp\Psr7\Request;
 use Kunnu\Dropbox\Models\File;
+use Kunnu\Dropbox\Models\Account;
 use Kunnu\Dropbox\Models\Thumbnail;
 use Kunnu\Dropbox\Models\ModelFactory;
 use Kunnu\Dropbox\Models\FileMetadata;
@@ -1008,6 +1009,23 @@ class Dropbox
 
         //Return the metadata
         return $metadata;
+    }
+
+    /**
+     * Get Current Account
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#users-get_current_account
+     *
+     * @return \Kunnu\Dropbox\Models\Account
+     */
+    public function getCurrentAccount()
+    {
+        //Get current account
+        $response = $this->postToAPI('/users/get_current_account', []);
+        $body = $response->getDecodedBody();
+
+        //Make and return the model
+        return new Account($body);
     }
 
 }
