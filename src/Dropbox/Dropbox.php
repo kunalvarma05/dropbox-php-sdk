@@ -1067,4 +1067,21 @@ class Dropbox
         return new AccountList($body);
     }
 
+    /**
+     * Get Space Usage for the current user's account
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#users-get_space_usage
+     *
+     * @return array
+     */
+    public function getSpaceUsage()
+    {
+        //Get space usage
+        $response = $this->postToAPI('/users/get_space_usage', []);
+        $body = $response->getDecodedBody();
+
+        //Return the decoded body
+        return $body;
+    }
+
 }
