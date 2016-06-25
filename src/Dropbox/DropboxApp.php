@@ -14,6 +14,15 @@ class DropboxApp
     protected $clientId;
 
     /**
+     * The Client Secret of the App
+     *
+     * @link https://www.dropbox.com/developers/apps
+     *
+     * @var string
+     */
+    protected $clientSecret;
+
+    /**
      * The Access Token
      *
      * @var string
@@ -23,12 +32,14 @@ class DropboxApp
     /**
      * Create a new Dropbox instance
      *
-     * @param string $clientId    Application Client ID
-     * @param string $accessToken Access Token
+     * @param string $clientId     Application Client ID
+     * @param string $clientSecret Application Client Secret
+     * @param string $accessToken  Access Token
      */
-    public function __construct($clientId, $accessToken = null)
+    public function __construct($clientId, $clientSecret, $accessToken = null)
     {
         $this->clientId = $clientId;
+        $this->clientSecret = $clientSecret;
         $this->accessToken = $accessToken;
     }
 
@@ -40,6 +51,16 @@ class DropboxApp
     public function getClientId()
     {
         return $this->clientId;
+    }
+
+    /**
+     * Get the App Client Secret
+     *
+     * @return string
+     */
+    public function getClientSecret()
+    {
+        return $this->clientSecret;
     }
 
     /**
