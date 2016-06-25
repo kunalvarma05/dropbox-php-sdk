@@ -13,7 +13,11 @@ use Kunnu\Dropbox\Models\CopyReference;
 use Psr\Http\Message\ResponseInterface;
 use Kunnu\Dropbox\Models\FolderMetadata;
 use Kunnu\Dropbox\Models\ModelCollection;
+use Kunnu\Dropbox\Authentication\OAuth2Client;
+use Kunnu\Dropbox\Store\PersistentDataStoreFactory;
+use Kunnu\Dropbox\Authentication\DropboxAuthHelper;
 use Kunnu\Dropbox\Exceptions\DropboxClientException;
+use Kunnu\Dropbox\Security\RandomStringGeneratorFactory;
 use Kunnu\Dropbox\Http\Clients\DropboxHttpClientFactory;
 use Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface;
 
@@ -42,6 +46,27 @@ class Dropbox
      * @var \Kunnu\Dropbox\DropboxClient
      */
     protected $client;
+
+    /**
+     * OAuth2 Client
+     *
+     * @var \Kunnu\Dropbox\Authentication\OAuth2Client
+     */
+    protected $oAuth2Client;
+
+    /**
+     * Random String Generator
+     *
+     * @var \Kunnu\Dropbox\Security\RandomStringGeneratorInterface
+     */
+    protected $randomStringGenerator;
+
+    /**
+     * Persistent Data Store
+     *
+     * @var \Kunnu\Dropbox\Store\PersistentDataStoreInterface
+     */
+    protected $persistentDataStore;
 
     /**
      * Uploading a file with the 'uploadFile' method, with the file's
@@ -73,10 +98,17 @@ class Dropbox
      * Create a new Dropbox instance
      *
      * @param \Kunnu\Dropbox\DropboxApp
-     * @param null|\GuzzleHttp\Client|\Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface  $httpClientHandler HTTP Client Handler
+     * @param array $config Configuration Array
      */
-    public function __construct(DropboxApp $app, $httpClientHandler = null)
+    public function __construct(DropboxApp $app, array $config = [])
     {
+        //Configuration
+        $config = array_merge([
+            'http_client_handler' => null,
+            'random_string_generator' => null,
+            'persistent_data_store' => null
+            ], $config);
+
         //Set the app
         $this->app = $app;
 
@@ -84,10 +116,16 @@ class Dropbox
         $this->setAccessToken($app->getAccessToken());
 
         //Make the HTTP Client
-        $httpClient = DropboxHttpClientFactory::make($httpClientHandler);
+        $httpClient = DropboxHttpClientFactory::make($config['http_client_handler']);
 
         //Make and Set the DropboxClient
         $this->client = new DropboxClient($httpClient);
+
+        //Make and Set the Random String Generator
+        $this->randomStringGenerator = RandomStringGeneratorFactory::makeRandomStringGenerator($config['random_string_generator']);
+
+        //Make and Set the Persistent Data Store
+        $this->persistentDataStore = PersistentDataStoreFactory::makePersistentDataStore($config['persistent_data_store']);
     }
 
     /**
@@ -108,6 +146,67 @@ class Dropbox
     public function getAccessToken()
     {
         return $this->accessToken;
+    }
+
+    /**
+     * Get the Dropbox App.
+     *
+     * @return \Kunnu\Dropbox\DropboxApp Dropbox App
+     */
+    public function getApp()
+    {
+        return $this->app;
+    }
+
+    /**
+     * Get OAuth2Client
+     *
+     * @return \Kunnu\Dropbox\Authentication\OAuth2Client
+     */
+    public function getOAuth2Client()
+    {
+        if (!$this->oAuth2Client instanceof OAuth2Client) {
+            return new OAuth2Client(
+                $this->getApp(),
+                $this->getRandomStringGenerator()
+                );
+        }
+
+        return $this->oAuth2Client;
+    }
+
+    /**
+     * Get the Random String Generator
+     *
+     * @return \Kunnu\Dropbox\Security\RandomStringGeneratorInterface
+     */
+    public function getRandomStringGenerator()
+    {
+        return $this->randomStringGenerator;
+    }
+
+    /**
+     * Get Persistent Data Store
+     *
+     * @return \Kunnu\Dropbox\Store\PersistentDataStoreInterface
+     */
+    public function getPersistentDataStore()
+    {
+        return $this->persistentDataStore;
+    }
+
+    /**
+     * Get Dropbox Auth Helper
+     *
+     * @return \Kunnu\Dropbox\Authentication\DropboxAuthHelper
+     */
+    public function getAuthHelper()
+    {
+        return new DropboxAuthHelper(
+            $this->getOAuth2Client(),
+            $this->getRandomStringGenerator(),
+            $this->getPersistentDataStore()
+            );
     }
 
     /**
