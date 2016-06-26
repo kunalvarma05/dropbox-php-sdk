@@ -168,6 +168,7 @@ class Dropbox
         if (!$this->oAuth2Client instanceof OAuth2Client) {
             return new OAuth2Client(
                 $this->getApp(),
+                $this->getClient(),
                 $this->getRandomStringGenerator()
                 );
         }
