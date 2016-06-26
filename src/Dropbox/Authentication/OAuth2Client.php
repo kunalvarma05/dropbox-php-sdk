@@ -151,4 +151,21 @@ class OAuth2Client
         return json_decode((string) $body, true);
     }
 
+    /**
+     * Disables the access token
+     *
+     * @return void
+     */
+    public function revokeAccessToken()
+    {
+        //Access Token
+        $accessToken = $this->getApp()->getAccessToken();
+
+        //Request
+        $request = new DropboxRequest("POST", "/auth/token/revoke", $accessToken);
+
+        //Revoke Access Token
+        $response = $this->getClient()->sendRequest($request);
+    }
+
 }

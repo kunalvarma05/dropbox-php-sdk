@@ -210,6 +210,16 @@ class DropboxAuthHelper
     }
 
     /**
+     * Revoke Access Token
+     *
+     * @return void
+     */
+    public function revokeAccessToken()
+    {
+        $this->getOAuth2Client()->revokeAccessToken();
+    }
+
+    /**
      * Get URL State
      *
      * @return string
