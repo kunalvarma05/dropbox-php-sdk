@@ -329,7 +329,7 @@ class Dropbox
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-get_metadata
      *
-     * @return \Kunnu\Dropbox\Models\FileMetadata or \Kunnu\Dropbox\Models\FolderMetadata
+     * @return \Kunnu\Dropbox\Models\FileMetadata|\Kunnu\Dropbox\Models\FolderMetadata
      */
     public function getMetadata($path, array $params = [])
     {
