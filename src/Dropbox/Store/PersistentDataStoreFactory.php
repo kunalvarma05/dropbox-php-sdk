@@ -5,7 +5,7 @@ use InvalidArgumentException;
 use Kunnu\Dropbox\Exceptions\DropboxClientException;
 
 /**
- * Thanks to
+ * Thanks to Facebook
  *
  * @link https://developers.facebook.com/docs/php/PersistentDataInterface
  */
