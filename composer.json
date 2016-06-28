@@ -17,5 +17,8 @@
         "psr-4": {
             "Kunnu\\Dropbox\\": "src/Dropbox"
         }
+    },
+    "require-dev": {
+        "sami/sami": "^3.2"
     }
 }
