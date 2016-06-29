@@ -356,7 +356,7 @@ class Dropbox
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-list_folder
      *
-     * @return \Kunnu\Dropbox\Models\ModelCollection
+     * @return \Kunnu\Dropbox\Models\MetadataCollection
      */
     public function listFolder($path = null, array $params = [])
     {
@@ -385,7 +385,7 @@ class Dropbox
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-list_folder-continue
      *
-     * @return \Kunnu\Dropbox\Models\ModelCollection
+     * @return \Kunnu\Dropbox\Models\MetadataCollection
      */
     public function listFolderContinue($cursor)
     {
