@@ -440,7 +440,7 @@ class Dropbox
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-list_revisions
      *
-     * @return Kunnu\Dropbox\Models\ModelCollection
+     * @return \Kunnu\Dropbox\Models\ModelCollection
      */
     public function listRevisions($path, array $params = [])
     {
