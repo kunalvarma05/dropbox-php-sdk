@@ -530,7 +530,7 @@ class Dropbox
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-delete
      *
-     * @return \Kunnu\Dropbox\Models\FileMetadata|FileMetadata|DeletedMetadata
+     * @return \Kunnu\Dropbox\Models\DeletedMetadata|FileMetadata|FolderMetadata
      */
     public function delete($path)
     {
