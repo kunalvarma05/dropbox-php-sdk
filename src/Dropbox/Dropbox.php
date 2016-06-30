@@ -601,7 +601,7 @@ class Dropbox
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-restore
      *
-     * @return \Kunnu\Dropbox\Models\FileMetadata|FileMetadata|DeletedMetadata
+     * @return \Kunnu\Dropbox\Models\DeletedMetadata|FileMetadata|FolderMetadata
      */
     public function restore($path, $rev)
     {
@@ -652,7 +652,7 @@ class Dropbox
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-copy_reference-save
      *
-     * @return \Kunnu\Dropbox\Models\CopyReference
+     * @return \Kunnu\Dropbox\Models\FileMetadata|\Kunnu\Dropbox\Models\FolderMetadata
      */
     public function saveCopyReference($path, $copyReference)
     {
