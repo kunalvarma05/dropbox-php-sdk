@@ -1,0 +1,23 @@
+{
+    "name": "Kunnu\\Dropbox\\Models\\Thumbnail",
+    "line": 4,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox\\Models",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Models\\Thumbnail.php",
+    "relative_file": "\\src\\Dropbox\\Models\\Thumbnail.php",
+    "hash": "b0a53aa6424bd6c38fbbfdf2bd6b2ec9368db645",
+    "parent": "Kunnu\\Dropbox\\Models\\File",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

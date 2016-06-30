@@ -1,0 +1,144 @@
+{
+    "name": "Kunnu\\Dropbox\\Models\\File",
+    "line": 4,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox\\Models",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Models\\File.php",
+    "relative_file": "\\src\\Dropbox\\Models\\File.php",
+    "hash": "53049eaedc2e7fc7bf5537d0c7196ffc17ad251b",
+    "parent": "Kunnu\\Dropbox\\Models\\BaseModel",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": {
+        "contents": {
+            "name": "contents",
+            "line": 12,
+            "short_desc": "The file contents",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "metadata": {
+            "name": "metadata",
+            "line": 19,
+            "short_desc": "File Metadata",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FileMetadata",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        }
+    },
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 28,
+            "short_desc": "Create a new File instance",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "data": {
+                    "name": "data",
+                    "line": 28,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "contents": {
+                    "name": "contents",
+                    "line": 28,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getMetadata": {
+            "name": "getMetadata",
+            "line": 40,
+            "short_desc": "The metadata for the file",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FileMetadata",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getContents": {
+            "name": "getContents",
+            "line": 50,
+            "short_desc": "Get the file contents",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

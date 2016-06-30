@@ -1,0 +1,81 @@
+{
+    "name": "Kunnu\\Dropbox\\Security\\RandomStringGeneratorTrait",
+    "line": 4,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox\\Security",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Security\\RandomStringGeneratorTrait.php",
+    "relative_file": "\\src\\Dropbox\\Security\\RandomStringGeneratorTrait.php",
+    "hash": "720e512ca7f3a6cefe62c70feb1e71985ed4324c",
+    "parent": null,
+    "modifiers": "Stmt_Trait",
+    "is_trait": true,
+    "is_interface": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "binToHex": {
+            "name": "binToHex",
+            "line": 16,
+            "short_desc": "Converts binary data to hexadecimal of given length",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [
+                [
+                    "\\RuntimeException",
+                    "Throws an exception when multibyte support is not enabled"
+                ]
+            ],
+            "errors": [],
+            "parameters": {
+                "binaryData": {
+                    "name": "binaryData",
+                    "line": 16,
+                    "short_desc": "The binary data to convert to hex.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "length": {
+                    "name": "length",
+                    "line": 16,
+                    "short_desc": "The length of the string to return.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

@@ -1,0 +1,392 @@
+{
+    "name": "Kunnu\\Dropbox\\DropboxClient",
+    "line": 9,
+    "short_desc": "DropboxClient",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\DropboxClient.php",
+    "relative_file": "\\src\\Dropbox\\DropboxClient.php",
+    "hash": "469daa1f319280bb8d28dd6b46c87e178c2f00c1",
+    "parent": null,
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "DropboxHttpClientInterface": "Kunnu\\Dropbox\\Http\\Clients\\DropboxHttpClientInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": {
+        "httpClient": {
+            "name": "httpClient",
+            "line": 30,
+            "short_desc": "DropboxHttpClientInterface Implementation",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Http\\Clients\\DropboxHttpClientInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        }
+    },
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 37,
+            "short_desc": "Create a new DropboxClient instance",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "httpClient": {
+                    "name": "httpClient",
+                    "line": 37,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Kunnu\\Dropbox\\Http\\Clients\\DropboxHttpClientInterface",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Kunnu\\Dropbox\\Http\\Clients\\DropboxHttpClientInterface",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getHttpClient": {
+            "name": "getHttpClient",
+            "line": 48,
+            "short_desc": "Get the HTTP Client",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Http\\Clients\\DropboxHttpClientInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "$httpClient",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "setHttpClient": {
+            "name": "setHttpClient",
+            "line": 60,
+            "short_desc": "Set the HTTP Client",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\DropboxClient",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "httpClient": {
+                    "name": "httpClient",
+                    "line": 60,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Kunnu\\Dropbox\\Http\\Clients\\DropboxHttpClientInterface",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Kunnu\\Dropbox\\Http\\Clients\\DropboxHttpClientInterface",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getBasePath": {
+            "name": "getBasePath",
+            "line": 72,
+            "short_desc": "Get the API Base Path.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "API Base Path",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getContentPath": {
+            "name": "getContentPath",
+            "line": 82,
+            "short_desc": "Get the API Content Path.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "API Content Path",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "buildAuthHeader": {
+            "name": "buildAuthHeader",
+            "line": 94,
+            "short_desc": "Get the Authorization Header with the Access Token.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "Authorization Header",
+            "tags": [],
+            "modifiers": "2",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "accessToken": {
+                    "name": "accessToken",
+                    "line": 94,
+                    "short_desc": "Access Token",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "''",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "buildContentTypeHeader": {
+            "name": "buildContentTypeHeader",
+            "line": 106,
+            "short_desc": "Get the Content Type Header.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "Content Type Header",
+            "tags": [],
+            "modifiers": "2",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "contentType": {
+                    "name": "contentType",
+                    "line": 106,
+                    "short_desc": "Request Content Type",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "''",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "buildUrl": {
+            "name": "buildUrl",
+            "line": 121,
+            "short_desc": "Build URL for the Request",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The Full URL to the API Endpoints",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#formats",
+                        "Request",
+                        "and",
+                        "response",
+                        "formats"
+                    ]
+                ]
+            },
+            "modifiers": "2",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "endpoint": {
+                    "name": "endpoint",
+                    "line": 121,
+                    "short_desc": "Relative API endpoint",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "''",
+                    "is_by_ref": false
+                },
+                "type": {
+                    "name": "type",
+                    "line": 121,
+                    "short_desc": "Endpoint Type",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "'api'",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "sendRequest": {
+            "name": "sendRequest",
+            "line": 145,
+            "short_desc": "Send the Request to the Server and return the Response",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\DropboxResponse",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [
+                [
+                    "\\Kunnu\\Dropbox\\Exceptions\\DropboxClientException",
+                    ""
+                ]
+            ],
+            "errors": [],
+            "parameters": {
+                "request": {
+                    "name": "request",
+                    "line": 145,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Kunnu\\Dropbox\\DropboxRequest",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Kunnu\\Dropbox\\DropboxRequest",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "prepareRequest": {
+            "name": "prepareRequest",
+            "line": 176,
+            "short_desc": "Prepare a Request before being sent to the HTTP Client",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "[Request URL, Request Headers, Request Body]",
+            "tags": [],
+            "modifiers": "2",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "request": {
+                    "name": "request",
+                    "line": 176,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Kunnu\\Dropbox\\DropboxRequest",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Kunnu\\Dropbox\\DropboxRequest",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": {
+        "BASE_PATH": {
+            "name": "BASE_PATH",
+            "line": 16,
+            "short_desc": "Dropbox API Root URL.",
+            "long_desc": ""
+        },
+        "CONTENT_PATH": {
+            "name": "CONTENT_PATH",
+            "line": 23,
+            "short_desc": "Dropbox API Content Root URL.",
+            "long_desc": ""
+        }
+    }
+}

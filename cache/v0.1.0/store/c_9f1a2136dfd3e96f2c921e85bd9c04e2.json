@@ -1,0 +1,137 @@
+{
+    "name": "Kunnu\\Dropbox\\Http\\Clients\\DropboxHttpClientInterface",
+    "line": 7,
+    "short_desc": "DropboxHttpClientInterface",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox\\Http\\Clients",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Http\\Clients\\DropboxHttpClientInterface.php",
+    "relative_file": "\\src\\Dropbox\\Http\\Clients\\DropboxHttpClientInterface.php",
+    "hash": "244574feda2478b5f523d2e5fee2804a1f2c1220",
+    "parent": null,
+    "modifiers": "Stmt_Interface",
+    "is_trait": false,
+    "is_interface": true,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "send": {
+            "name": "send",
+            "line": 22,
+            "short_desc": "Send request to the server and fetch the raw response",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Http\\DropboxRawResponse",
+                    false
+                ]
+            ],
+            "hint_desc": "Raw response from the server",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [
+                [
+                    "\\Kunnu\\Dropbox\\Exceptions\\DropboxClientException",
+                    ""
+                ]
+            ],
+            "errors": [],
+            "parameters": {
+                "url": {
+                    "name": "url",
+                    "line": 22,
+                    "short_desc": "URL\/Endpoint to send the request to",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "method": {
+                    "name": "method",
+                    "line": 22,
+                    "short_desc": "Request Method",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "body": {
+                    "name": "body",
+                    "line": 22,
+                    "short_desc": "Request Body",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ],
+                        [
+                            "resource",
+                            false
+                        ],
+                        [
+                            "\\Kunnu\\Dropbox\\Http\\Clients\\StreamInterface",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "headers": {
+                    "name": "headers",
+                    "line": 22,
+                    "short_desc": "Request Headers",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "array()",
+                    "is_by_ref": false
+                },
+                "options": {
+                    "name": "options",
+                    "line": 22,
+                    "short_desc": "Additional Options",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

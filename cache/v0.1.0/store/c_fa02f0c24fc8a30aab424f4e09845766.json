@@ -1,0 +1,507 @@
+{
+    "name": "Kunnu\\Dropbox\\Authentication\\DropboxAuthHelper",
+    "line": 9,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox\\Authentication",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Authentication\\DropboxAuthHelper.php",
+    "relative_file": "\\src\\Dropbox\\Authentication\\DropboxAuthHelper.php",
+    "hash": "2d7b7a689237a36c383b5415114a84aa61e1e6b0",
+    "parent": null,
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "AccessToken": "Kunnu\\Dropbox\\Models\\AccessToken",
+        "DropboxClientException": "Kunnu\\Dropbox\\Exceptions\\DropboxClientException",
+        "PersistentDataStoreInterface": "Kunnu\\Dropbox\\Store\\PersistentDataStoreInterface",
+        "RandomStringGeneratorInterface": "Kunnu\\Dropbox\\Security\\RandomStringGeneratorInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": {
+        "oAuth2Client": {
+            "name": "oAuth2Client",
+            "line": 23,
+            "short_desc": "OAuth2 Client",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Authentication\\OAuth2Client",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "randomStringGenerator": {
+            "name": "randomStringGenerator",
+            "line": 30,
+            "short_desc": "Random String Generator",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Security\\RandomStringGeneratorInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "persistentDataStore": {
+            "name": "persistentDataStore",
+            "line": 37,
+            "short_desc": "Persistent Data Store",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Store\\PersistentDataStoreInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "urlState": {
+            "name": "urlState",
+            "line": 44,
+            "short_desc": "Additional User Provided State",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": {
+                "name": {
+                    "parts": [
+                        "null"
+                    ]
+                }
+            },
+            "errors": []
+        }
+    },
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 53,
+            "short_desc": "Create a new DropboxAuthHelper instance",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "oAuth2Client": {
+                    "name": "oAuth2Client",
+                    "line": 54,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Kunnu\\Dropbox\\Authentication\\OAuth2Client",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Kunnu\\Dropbox\\Authentication\\OAuth2Client",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "randomStringGenerator": {
+                    "name": "randomStringGenerator",
+                    "line": 55,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Kunnu\\Dropbox\\Security\\RandomStringGeneratorInterface",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Kunnu\\Dropbox\\Security\\RandomStringGeneratorInterface",
+                    "default": "null",
+                    "is_by_ref": false
+                },
+                "persistentDataStore": {
+                    "name": "persistentDataStore",
+                    "line": 56,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Kunnu\\Dropbox\\Store\\PersistentDataStoreInterface",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Kunnu\\Dropbox\\Store\\PersistentDataStoreInterface",
+                    "default": "null",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getOAuth2Client": {
+            "name": "getOAuth2Client",
+            "line": 68,
+            "short_desc": "Get OAuth2Client",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Authentication\\OAuth2Client",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getRandomStringGenerator": {
+            "name": "getRandomStringGenerator",
+            "line": 78,
+            "short_desc": "Get the Random String Generator",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Security\\RandomStringGeneratorInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getPersistentDataStore": {
+            "name": "getPersistentDataStore",
+            "line": 88,
+            "short_desc": "Get the Persistent Data Store",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Store\\PersistentDataStoreInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getCsrfToken": {
+            "name": "getCsrfToken",
+            "line": 98,
+            "short_desc": "Get CSRF Token",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "2",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getAuthUrl": {
+            "name": "getAuthUrl",
+            "line": 116,
+            "short_desc": "Get Authorization URL",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#oauth2-authorize"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "redirectUri": {
+                    "name": "redirectUri",
+                    "line": 116,
+                    "short_desc": "Callback URL to redirect to after authorization",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 116,
+                    "short_desc": "Additional Params",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                },
+                "urlState": {
+                    "name": "urlState",
+                    "line": 116,
+                    "short_desc": "Additional User Provided State Data",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "null",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "decodeState": {
+            "name": "decodeState",
+            "line": 141,
+            "short_desc": "Decode State to get the CSRF Token and the URL State",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "2",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "state": {
+                    "name": "state",
+                    "line": 141,
+                    "short_desc": "State",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "validateCSRFToken": {
+            "name": "validateCSRFToken",
+            "line": 164,
+            "short_desc": "Validate CSRF Token",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "2",
+            "is_by_ref": "",
+            "exceptions": [
+                [
+                    "\\Kunnu\\Dropbox\\Exceptions\\DropboxClientException",
+                    ""
+                ]
+            ],
+            "errors": [],
+            "parameters": {
+                "csrfToken": {
+                    "name": "csrfToken",
+                    "line": 164,
+                    "short_desc": "CSRF Token",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getAccessToken": {
+            "name": "getAccessToken",
+            "line": 191,
+            "short_desc": "Get Access Token",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\AccessToken",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "code": {
+                    "name": "code",
+                    "line": 191,
+                    "short_desc": "Authorization Code",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "state": {
+                    "name": "state",
+                    "line": 191,
+                    "short_desc": "CSRF & URL State",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "redirectUri": {
+                    "name": "redirectUri",
+                    "line": 191,
+                    "short_desc": "Redirect URI used while getAuthUrl",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "revokeAccessToken": {
+            "name": "revokeAccessToken",
+            "line": 217,
+            "short_desc": "Revoke Access Token",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getUrlState": {
+            "name": "getUrlState",
+            "line": 227,
+            "short_desc": "Get URL State",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": {
+        "CSRF_LENGTH": {
+            "name": "CSRF_LENGTH",
+            "line": 16,
+            "short_desc": "The length of CSRF string",
+            "long_desc": ""
+        }
+    }
+}

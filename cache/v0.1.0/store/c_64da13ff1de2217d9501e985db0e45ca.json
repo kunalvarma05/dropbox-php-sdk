@@ -1,0 +1,23 @@
+{
+    "name": "Kunnu\\Dropbox\\Models\\PhotoMetadata",
+    "line": 4,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox\\Models",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Models\\PhotoMetadata.php",
+    "relative_file": "\\src\\Dropbox\\Models\\PhotoMetadata.php",
+    "hash": "74bebaf4e8652a68ddaffd7f21b402713e0cd8a2",
+    "parent": "Kunnu\\Dropbox\\Models\\MediaMetadata",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

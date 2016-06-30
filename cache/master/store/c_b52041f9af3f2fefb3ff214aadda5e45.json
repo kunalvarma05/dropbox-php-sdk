@@ -1,0 +1,148 @@
+{
+    "name": "Kunnu\\Dropbox\\Models\\MediaInfo",
+    "line": 4,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox\\Models",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Models\\MediaInfo.php",
+    "relative_file": "\\src\\Dropbox\\Models\\MediaInfo.php",
+    "hash": "4d6ccadef2bfa2d7d4765e8bf68b187760ea5713",
+    "parent": "Kunnu\\Dropbox\\Models\\BaseModel",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": {
+        "pending": {
+            "name": "pending",
+            "line": 13,
+            "short_desc": "Indicate the photo\/video is still under processing\nand metadata is not available yet.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": {
+                "name": {
+                    "parts": [
+                        "false"
+                    ]
+                }
+            },
+            "errors": []
+        },
+        "mediaMetadata": {
+            "name": "mediaMetadata",
+            "line": 20,
+            "short_desc": "MediaMetadata",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\MediaMetadata",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        }
+    },
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 28,
+            "short_desc": "Create a new MediaInfo instance",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "data": {
+                    "name": "data",
+                    "line": 28,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "setMediaMetadata": {
+            "name": "setMediaMetadata",
+            "line": 38,
+            "short_desc": "Set Media Metadata",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "2",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "isPending": {
+            "name": "isPending",
+            "line": 61,
+            "short_desc": "Indicates whether the photo\/video is still under\nprocessing and is the metadata available yet.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getMediaMetadata": {
+            "name": "getMediaMetadata",
+            "line": 71,
+            "short_desc": "The metadata for the photo\/video.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\MediaMetadata",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

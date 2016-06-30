@@ -1,0 +1,60 @@
+{
+    "name": "Kunnu\\Dropbox\\Models\\ModelFactory",
+    "line": 4,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox\\Models",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Models\\ModelFactory.php",
+    "relative_file": "\\src\\Dropbox\\Models\\ModelFactory.php",
+    "hash": "346d405820643b404977a9a84e6a7890bc17edbf",
+    "parent": null,
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "make": {
+            "name": "make",
+            "line": 14,
+            "short_desc": "Make a Model Factory",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\ModelInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "9",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "data": {
+                    "name": "data",
+                    "line": 14,
+                    "short_desc": "Model Data",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

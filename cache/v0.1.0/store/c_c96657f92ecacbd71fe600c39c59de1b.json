@@ -1,0 +1,71 @@
+{
+    "name": "Kunnu\\Dropbox\\Http\\Clients\\DropboxHttpClientFactory",
+    "line": 10,
+    "short_desc": "DropboxHttpClientFactory",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox\\Http\\Clients",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Http\\Clients\\DropboxHttpClientFactory.php",
+    "relative_file": "\\src\\Dropbox\\Http\\Clients\\DropboxHttpClientFactory.php",
+    "hash": "29dbb47dea4f850bb9e7eb6427a22a9be054b620",
+    "parent": null,
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "InvalidArgumentException": "InvalidArgumentException",
+        "Guzzle": "GuzzleHttp\\Client"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "make": {
+            "name": "make",
+            "line": 19,
+            "short_desc": "Make HTTP Client",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Http\\Clients\\DropboxHttpClientInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "9",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "handler": {
+                    "name": "handler",
+                    "line": 19,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Kunnu\\Dropbox\\Http\\Clients\\DropboxHttpClientInterface",
+                            false
+                        ],
+                        [
+                            "\\Kunnu\\Dropbox\\Http\\Clients\\GuzzleHttp\\Client",
+                            false
+                        ],
+                        [
+                            "null",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

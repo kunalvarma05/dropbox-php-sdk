@@ -1,0 +1,2524 @@
+{
+    "name": "Kunnu\\Dropbox\\Dropbox",
+    "line": 27,
+    "short_desc": "Dropbox",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Dropbox.php",
+    "relative_file": "\\src\\Dropbox\\Dropbox.php",
+    "hash": "fd61dd0f8d72b97687413489d690870c4cbdb25d",
+    "parent": null,
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Stream": "GuzzleHttp\\Psr7\\Stream",
+        "Request": "GuzzleHttp\\Psr7\\Request",
+        "File": "Kunnu\\Dropbox\\Models\\File",
+        "Account": "Kunnu\\Dropbox\\Models\\Account",
+        "Thumbnail": "Kunnu\\Dropbox\\Models\\Thumbnail",
+        "AccountList": "Kunnu\\Dropbox\\Models\\AccountList",
+        "ModelFactory": "Kunnu\\Dropbox\\Models\\ModelFactory",
+        "FileMetadata": "Kunnu\\Dropbox\\Models\\FileMetadata",
+        "CopyReference": "Kunnu\\Dropbox\\Models\\CopyReference",
+        "ResponseInterface": "Psr\\Http\\Message\\ResponseInterface",
+        "FolderMetadata": "Kunnu\\Dropbox\\Models\\FolderMetadata",
+        "ModelCollection": "Kunnu\\Dropbox\\Models\\ModelCollection",
+        "OAuth2Client": "Kunnu\\Dropbox\\Authentication\\OAuth2Client",
+        "PersistentDataStoreFactory": "Kunnu\\Dropbox\\Store\\PersistentDataStoreFactory",
+        "DropboxAuthHelper": "Kunnu\\Dropbox\\Authentication\\DropboxAuthHelper",
+        "DropboxClientException": "Kunnu\\Dropbox\\Exceptions\\DropboxClientException",
+        "RandomStringGeneratorFactory": "Kunnu\\Dropbox\\Security\\RandomStringGeneratorFactory",
+        "DropboxHttpClientFactory": "Kunnu\\Dropbox\\Http\\Clients\\DropboxHttpClientFactory",
+        "DropboxHttpClientInterface": "Kunnu\\Dropbox\\Http\\Clients\\DropboxHttpClientInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": {
+        "app": {
+            "name": "app",
+            "line": 34,
+            "short_desc": "The Dropbox App",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\DropboxApp",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "accessToken": {
+            "name": "accessToken",
+            "line": 41,
+            "short_desc": "OAuth2 Access Token",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "client": {
+            "name": "client",
+            "line": 48,
+            "short_desc": "Dropbox Client",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\DropboxClient",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "oAuth2Client": {
+            "name": "oAuth2Client",
+            "line": 55,
+            "short_desc": "OAuth2 Client",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Authentication\\OAuth2Client",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "randomStringGenerator": {
+            "name": "randomStringGenerator",
+            "line": 62,
+            "short_desc": "Random String Generator",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Security\\RandomStringGeneratorInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "persistentDataStore": {
+            "name": "persistentDataStore",
+            "line": 69,
+            "short_desc": "Persistent Data Store",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Store\\PersistentDataStoreInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        }
+    },
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 103,
+            "short_desc": "Create a new Dropbox instance",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "app": {
+                    "name": "app",
+                    "line": 103,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Kunnu\\Dropbox\\DropboxApp",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Kunnu\\Dropbox\\DropboxApp",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "config": {
+                    "name": "config",
+                    "line": 103,
+                    "short_desc": "Configuration Array",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getClient": {
+            "name": "getClient",
+            "line": 136,
+            "short_desc": "Get the Client",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\DropboxClient",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getAccessToken": {
+            "name": "getAccessToken",
+            "line": 146,
+            "short_desc": "Get the Access Token.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "Access Token",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getApp": {
+            "name": "getApp",
+            "line": 156,
+            "short_desc": "Get the Dropbox App.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\DropboxApp",
+                    false
+                ]
+            ],
+            "hint_desc": "Dropbox App",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getOAuth2Client": {
+            "name": "getOAuth2Client",
+            "line": 166,
+            "short_desc": "Get OAuth2Client",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Authentication\\OAuth2Client",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getRandomStringGenerator": {
+            "name": "getRandomStringGenerator",
+            "line": 184,
+            "short_desc": "Get the Random String Generator",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Security\\RandomStringGeneratorInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getPersistentDataStore": {
+            "name": "getPersistentDataStore",
+            "line": 194,
+            "short_desc": "Get Persistent Data Store",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Store\\PersistentDataStoreInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getAuthHelper": {
+            "name": "getAuthHelper",
+            "line": 204,
+            "short_desc": "Get Dropbox Auth Helper",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Authentication\\DropboxAuthHelper",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "setAccessToken": {
+            "name": "setAccessToken",
+            "line": 220,
+            "short_desc": "Set the Access Token.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Dropbox",
+                    false
+                ]
+            ],
+            "hint_desc": "Dropbox Client",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "accessToken": {
+                    "name": "accessToken",
+                    "line": 220,
+                    "short_desc": "Access Token",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "sendRequest": {
+            "name": "sendRequest",
+            "line": 240,
+            "short_desc": "Make Request to the API",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\DropboxResponse",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [
+                [
+                    "\\Kunnu\\Dropbox\\Exceptions\\DropboxClientException",
+                    ""
+                ]
+            ],
+            "errors": [],
+            "parameters": {
+                "method": {
+                    "name": "method",
+                    "line": 240,
+                    "short_desc": "HTTP Request Method",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "endpoint": {
+                    "name": "endpoint",
+                    "line": 240,
+                    "short_desc": "API Endpoint to send Request to",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "endpointType": {
+                    "name": "endpointType",
+                    "line": 240,
+                    "short_desc": "Endpoint type ['api'|'content']",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "'api'",
+                    "is_by_ref": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 240,
+                    "short_desc": "Request Query Params",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                },
+                "accessToken": {
+                    "name": "accessToken",
+                    "line": 240,
+                    "short_desc": "Access Token to send with the Request",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "null",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "postToAPI": {
+            "name": "postToAPI",
+            "line": 262,
+            "short_desc": "Make a HTTP POST Request to the API endpoint type",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\DropboxResponse",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "endpoint": {
+                    "name": "endpoint",
+                    "line": 262,
+                    "short_desc": "API Endpoint to send Request to",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 262,
+                    "short_desc": "Request Query Params",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                },
+                "accessToken": {
+                    "name": "accessToken",
+                    "line": 262,
+                    "short_desc": "Access Token to send with the Request",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "null",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "postToContent": {
+            "name": "postToContent",
+            "line": 276,
+            "short_desc": "Make a HTTP POST Request to the Content endpoint type",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\DropboxResponse",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "endpoint": {
+                    "name": "endpoint",
+                    "line": 276,
+                    "short_desc": "Content Endpoint to send Request to",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 276,
+                    "short_desc": "Request Query Params",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                },
+                "accessToken": {
+                    "name": "accessToken",
+                    "line": 276,
+                    "short_desc": "Access Token to send with the Request",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "null",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "makeModelFromResponse": {
+            "name": "makeModelFromResponse",
+            "line": 288,
+            "short_desc": "Make Model from DropboxResponse",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\ModelInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "response": {
+                    "name": "response",
+                    "line": 288,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Kunnu\\Dropbox\\DropboxResponse",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Kunnu\\Dropbox\\DropboxResponse",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "makeDropboxFile": {
+            "name": "makeDropboxFile",
+            "line": 306,
+            "short_desc": "Make DropboxFile Object",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\DropboxFile",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "dropboxFile": {
+                    "name": "dropboxFile",
+                    "line": 306,
+                    "short_desc": "DropboxFile object or Path to file",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ],
+                        [
+                            "\\Kunnu\\Dropbox\\DropboxFile",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "maxLength": {
+                    "name": "maxLength",
+                    "line": 306,
+                    "short_desc": "Max Bytes to read from the file",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "-1",
+                    "is_by_ref": false
+                },
+                "offset": {
+                    "name": "offset",
+                    "line": 306,
+                    "short_desc": "Seek to specified offset before reading",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "-1",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getMetadata": {
+            "name": "getMetadata",
+            "line": 334,
+            "short_desc": "Get the Metadata for a file or folder",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FileMetadata",
+                    false
+                ],
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FolderMetadata",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-get_metadata"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "path": {
+                    "name": "path",
+                    "line": 334,
+                    "short_desc": "Path of the file or folder",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 334,
+                    "short_desc": "Additional Params",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "listFolder": {
+            "name": "listFolder",
+            "line": 361,
+            "short_desc": "Get the contents of a Folder",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\MetadataCollection",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-list_folder"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "path": {
+                    "name": "path",
+                    "line": 361,
+                    "short_desc": "Path to the folder. Defaults to root.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "null",
+                    "is_by_ref": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 361,
+                    "short_desc": "Additional Params",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "listFolderContinue": {
+            "name": "listFolderContinue",
+            "line": 390,
+            "short_desc": "Paginate through all files and retrieve updates to the folder,\nusing the cursor retrieved from listFolder or listFolderContinue",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\MetadataCollection",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-list_folder-continue"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "cursor": {
+                    "name": "cursor",
+                    "line": 390,
+                    "short_desc": "The cursor returned by your\nlast call to listFolder or listFolderContinue",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "listFolderLatestCursor": {
+            "name": "listFolderLatestCursor",
+            "line": 408,
+            "short_desc": "Get a cursor for the folder's state.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "The Cursor for the folder's state",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-list_folder-get_latest_cursor"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "path": {
+                    "name": "path",
+                    "line": 408,
+                    "short_desc": "Path to the folder. Defaults to root.",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 408,
+                    "short_desc": "Additional Params",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "listRevisions": {
+            "name": "listRevisions",
+            "line": 445,
+            "short_desc": "Get Revisions of a File",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\ModelCollection",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-list_revisions"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "path": {
+                    "name": "path",
+                    "line": 445,
+                    "short_desc": "Path to the file",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 445,
+                    "short_desc": "Additional Params",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "search": {
+            "name": "search",
+            "line": 481,
+            "short_desc": "Search a folder for files\/folders",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\SearchResults",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-search"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "path": {
+                    "name": "path",
+                    "line": 481,
+                    "short_desc": "Path to search",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "query": {
+                    "name": "query",
+                    "line": 481,
+                    "short_desc": "Search Query",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 481,
+                    "short_desc": "Additional Params",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "createFolder": {
+            "name": "createFolder",
+            "line": 509,
+            "short_desc": "Create a folder at the given path",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FolderMetadata",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-create_folder"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "path": {
+                    "name": "path",
+                    "line": 509,
+                    "short_desc": "Path to create",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "delete": {
+            "name": "delete",
+            "line": 535,
+            "short_desc": "Delete a file or folder at the given path",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\DeletedMetadata",
+                    false
+                ],
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FileMetadata",
+                    false
+                ],
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FolderMetadata",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-delete"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "path": {
+                    "name": "path",
+                    "line": 535,
+                    "short_desc": "Path to file\/folder to delete",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "move": {
+            "name": "move",
+            "line": 558,
+            "short_desc": "Move a file or folder to a different location",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FileMetadata",
+                    false
+                ],
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FileMetadata",
+                    false
+                ],
+                [
+                    "\\Kunnu\\Dropbox\\DeletedMetadata",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-move"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "fromPath": {
+                    "name": "fromPath",
+                    "line": 558,
+                    "short_desc": "Path to be moved",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "toPath": {
+                    "name": "toPath",
+                    "line": 558,
+                    "short_desc": "Path to be moved to",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "copy": {
+            "name": "copy",
+            "line": 582,
+            "short_desc": "Copy a file or folder to a different location",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FileMetadata",
+                    false
+                ],
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FileMetadata",
+                    false
+                ],
+                [
+                    "\\Kunnu\\Dropbox\\DeletedMetadata",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-copy"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "fromPath": {
+                    "name": "fromPath",
+                    "line": 582,
+                    "short_desc": "Path to be copied",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "toPath": {
+                    "name": "toPath",
+                    "line": 582,
+                    "short_desc": "Path to be copied to",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "restore": {
+            "name": "restore",
+            "line": 606,
+            "short_desc": "Restore a file to the specific version",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\DeletedMetadata",
+                    false
+                ],
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FileMetadata",
+                    false
+                ],
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FolderMetadata",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-restore"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "path": {
+                    "name": "path",
+                    "line": 606,
+                    "short_desc": "Path to the file to restore",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "rev": {
+                    "name": "rev",
+                    "line": 606,
+                    "short_desc": "Revision to store for the file",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getCopyReference": {
+            "name": "getCopyReference",
+            "line": 632,
+            "short_desc": "Get Copy Reference",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\CopyReference",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-copy_reference-get"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "path": {
+                    "name": "path",
+                    "line": 632,
+                    "short_desc": "Path to the file or folder to get a copy reference to",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "saveCopyReference": {
+            "name": "saveCopyReference",
+            "line": 657,
+            "short_desc": "Save Copy Reference",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FileMetadata",
+                    false
+                ],
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FolderMetadata",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-copy_reference-save"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "path": {
+                    "name": "path",
+                    "line": 657,
+                    "short_desc": "Path to the file or folder to get a copy reference to",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "copyReference": {
+                    "name": "copyReference",
+                    "line": 657,
+                    "short_desc": "Copy reference returned by getCopyReference",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getTemporaryLink": {
+            "name": "getTemporaryLink",
+            "line": 686,
+            "short_desc": "Get a temporary link to stream contents of a file",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\TemporaryLink",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "path": {
+                    "name": "path",
+                    "line": 686,
+                    "short_desc": "Path to the file you want a temporary link to\n\nhttps:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-get_temporary_link",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "saveUrl": {
+            "name": "saveUrl",
+            "line": 710,
+            "short_desc": "Save a specified URL into a file in user's Dropbox",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "Async Job ID",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-save_url"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "path": {
+                    "name": "path",
+                    "line": 710,
+                    "short_desc": "Path where the URL will be saved",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "url": {
+                    "name": "url",
+                    "line": 710,
+                    "short_desc": "URL to be saved",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "checkJobStatus": {
+            "name": "checkJobStatus",
+            "line": 739,
+            "short_desc": "Save a specified URL into a file in user's Dropbox",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ],
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FileMetadata",
+                    false
+                ]
+            ],
+            "hint_desc": "Status (failed|in_progress) or FileMetadata (if complete)",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-save_url-check_job_status"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [
+                "\"1\" @param tags are expected but only \"2\" found"
+            ],
+            "parameters": {
+                "asyncJobId": {
+                    "name": "asyncJobId",
+                    "line": 739,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "upload": {
+            "name": "upload",
+            "line": 773,
+            "short_desc": "Upload a File to Dropbox",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FileMetadata",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-upload"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "dropboxFile": {
+                    "name": "dropboxFile",
+                    "line": 773,
+                    "short_desc": "DropboxFile object or Path to file",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ],
+                        [
+                            "\\Kunnu\\Dropbox\\DropboxFile",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "path": {
+                    "name": "path",
+                    "line": 773,
+                    "short_desc": "Path to upload the file to",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 773,
+                    "short_desc": "Additional Params",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "simpleUpload": {
+            "name": "simpleUpload",
+            "line": 799,
+            "short_desc": "Upload a File to Dropbox in a single request",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FileMetadata",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-upload"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "dropboxFile": {
+                    "name": "dropboxFile",
+                    "line": 799,
+                    "short_desc": "DropboxFile object or Path to file",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ],
+                        [
+                            "\\Kunnu\\Dropbox\\DropboxFile",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "path": {
+                    "name": "path",
+                    "line": 799,
+                    "short_desc": "Path to upload the file to",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 799,
+                    "short_desc": "Additional Params",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "startUploadSession": {
+            "name": "startUploadSession",
+            "line": 827,
+            "short_desc": "Start an Upload Session",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "Unique identifier for the upload session",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-upload_session-start"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "dropboxFile": {
+                    "name": "dropboxFile",
+                    "line": 827,
+                    "short_desc": "DropboxFile object or Path to file",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ],
+                        [
+                            "\\Kunnu\\Dropbox\\DropboxFile",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "chunkSize": {
+                    "name": "chunkSize",
+                    "line": 827,
+                    "short_desc": "Size of file chunk to upload",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "-1",
+                    "is_by_ref": false
+                },
+                "close": {
+                    "name": "close",
+                    "line": 827,
+                    "short_desc": "Closes the session for \"appendUploadSession\"",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "boolean",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "false",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "finishUploadSession": {
+            "name": "finishUploadSession",
+            "line": 865,
+            "short_desc": "Finish an upload session and save the uploaded data to the given file path",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FileMetadata",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-upload_session-finish"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "dropboxFile": {
+                    "name": "dropboxFile",
+                    "line": 865,
+                    "short_desc": "DropboxFile object or Path to file",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ],
+                        [
+                            "\\Kunnu\\Dropbox\\DropboxFile",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "sessionId": {
+                    "name": "sessionId",
+                    "line": 865,
+                    "short_desc": "Session ID returned by `startUploadSession`",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "offset": {
+                    "name": "offset",
+                    "line": 865,
+                    "short_desc": "The amount of data that has been uploaded so far",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "remaining": {
+                    "name": "remaining",
+                    "line": 865,
+                    "short_desc": "The amount of data that is remaining",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "path": {
+                    "name": "path",
+                    "line": 865,
+                    "short_desc": "Path to save the file to, on Dropbox",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 865,
+                    "short_desc": "Additional Params",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "appendUploadSession": {
+            "name": "appendUploadSession",
+            "line": 909,
+            "short_desc": "Append more data to an Upload Session",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "Unique identifier for the upload session",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-upload_session-append_v2"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "dropboxFile": {
+                    "name": "dropboxFile",
+                    "line": 909,
+                    "short_desc": "DropboxFile object or Path to file",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ],
+                        [
+                            "\\Kunnu\\Dropbox\\DropboxFile",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "sessionId": {
+                    "name": "sessionId",
+                    "line": 909,
+                    "short_desc": "Session ID returned by `startUploadSession`",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "offset": {
+                    "name": "offset",
+                    "line": 909,
+                    "short_desc": "The amount of data that has been uploaded so far",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "chunkSize": {
+                    "name": "chunkSize",
+                    "line": 909,
+                    "short_desc": "The amount of data to upload",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "close": {
+                    "name": "close",
+                    "line": 909,
+                    "short_desc": "Closes the session for futher \"appendUploadSession\" calls",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "boolean",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "false",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "uploadChunked": {
+            "name": "uploadChunked",
+            "line": 952,
+            "short_desc": "Upload file in sessions\/chunks",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "Unique identifier for the upload session",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-upload_session-start"
+                    ],
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-upload_session-finish"
+                    ],
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-upload_session-append_v2"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "dropboxFile": {
+                    "name": "dropboxFile",
+                    "line": 952,
+                    "short_desc": "DropboxFile object or Path to file",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ],
+                        [
+                            "\\Kunnu\\Dropbox\\DropboxFile",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "path": {
+                    "name": "path",
+                    "line": 952,
+                    "short_desc": "Path to save the file to, on Dropbox",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "fileSize": {
+                    "name": "fileSize",
+                    "line": 952,
+                    "short_desc": "The size of the file",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "null",
+                    "is_by_ref": false
+                },
+                "chunkSize": {
+                    "name": "chunkSize",
+                    "line": 952,
+                    "short_desc": "The amount of data to upload in each chunk",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "null",
+                    "is_by_ref": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 952,
+                    "short_desc": "Additional Params",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getThumbnailSize": {
+            "name": "getThumbnailSize",
+            "line": 1010,
+            "short_desc": "Get thumbnail size",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "2",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "size": {
+                    "name": "size",
+                    "line": 1010,
+                    "short_desc": "Thumbnail Size",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getThumbnail": {
+            "name": "getThumbnail",
+            "line": 1035,
+            "short_desc": "Get a thumbnail for an image",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\Thumbnail",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-get_thumbnail"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "path": {
+                    "name": "path",
+                    "line": 1035,
+                    "short_desc": "Path to the file you want a thumbnail to",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "size": {
+                    "name": "size",
+                    "line": 1035,
+                    "short_desc": "Size for the thumbnail image ['thumb','small','medium','large','huge']",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "'small'",
+                    "is_by_ref": false
+                },
+                "format": {
+                    "name": "format",
+                    "line": 1035,
+                    "short_desc": "Format for the thumbnail image ['jpeg'|'png']",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "'jpeg'",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "download": {
+            "name": "download",
+            "line": 1072,
+            "short_desc": "Download a File",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\File",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#files-download"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "path": {
+                    "name": "path",
+                    "line": 1072,
+                    "short_desc": "Path to the file you want to download",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getMetadataFromResponseHeaders": {
+            "name": "getMetadataFromResponseHeaders",
+            "line": 1099,
+            "short_desc": "Get metadata from response headers",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "2",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "response": {
+                    "name": "response",
+                    "line": 1099,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Kunnu\\Dropbox\\DropboxResponse",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Kunnu\\Dropbox\\DropboxResponse",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getCurrentAccount": {
+            "name": "getCurrentAccount",
+            "line": 1135,
+            "short_desc": "Get Current Account",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\Account",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#users-get_current_account"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getAccount": {
+            "name": "getAccount",
+            "line": 1154,
+            "short_desc": "Get Account",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\Account",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#users-get_account"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "account_id": {
+                    "name": "account_id",
+                    "line": 1154,
+                    "short_desc": "Account ID of the account to get details for",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getAccounts": {
+            "name": "getAccounts",
+            "line": 1173,
+            "short_desc": "Get Multiple Accounts in one call",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\AccountList",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#users-get_account_batch"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [
+                "The \"account_id\" @param tag variable name is wrong (should be \"account_ids\")"
+            ],
+            "parameters": {
+                "account_ids": {
+                    "name": "account_ids",
+                    "line": 1173,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getSpaceUsage": {
+            "name": "getSpaceUsage",
+            "line": 1190,
+            "short_desc": "Get Space Usage for the current user's account",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#users-get_space_usage"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": {
+        "AUTO_CHUNKED_UPLOAD_THRESHOLD": {
+            "name": "AUTO_CHUNKED_UPLOAD_THRESHOLD",
+            "line": 80,
+            "short_desc": "Uploading a file with the 'uploadFile' method, with the file's\nsize less than this value (~8 MB), the simple `upload` method will be\nused, if the file size exceed this value (~8 MB), the `startUploadSession`,\n`appendUploadSession` & `finishUploadSession` methods will be used\nto upload the file in chunks.",
+            "long_desc": ""
+        },
+        "DEFAULT_CHUNK_SIZE": {
+            "name": "DEFAULT_CHUNK_SIZE",
+            "line": 88,
+            "short_desc": "The Chunk Size the file will be\nsplit into and uploaded (~4 MB)",
+            "long_desc": ""
+        },
+        "METADATA_HEADER": {
+            "name": "METADATA_HEADER",
+            "line": 95,
+            "short_desc": "Response header containing file metadata",
+            "long_desc": ""
+        }
+    }
+}

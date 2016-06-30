@@ -1,0 +1,25 @@
+{
+    "name": "Kunnu\\Dropbox\\Exceptions\\DropboxClientException",
+    "line": 9,
+    "short_desc": "DropboxClientException",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox\\Exceptions",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Exceptions\\DropboxClientException.php",
+    "relative_file": "\\src\\Dropbox\\Exceptions\\DropboxClientException.php",
+    "hash": "cd92b65540aeb930d83953bacceaa8589dfe3abc",
+    "parent": "Exception",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Exception": "Exception"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

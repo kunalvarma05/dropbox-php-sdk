@@ -1,0 +1,183 @@
+{
+    "name": "Kunnu\\Dropbox\\Models\\CopyReference",
+    "line": 6,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox\\Models",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Models\\CopyReference.php",
+    "relative_file": "\\src\\Dropbox\\Models\\CopyReference.php",
+    "hash": "dbb3ed7312399a607ff2e81e3515be825c38899a",
+    "parent": "Kunnu\\Dropbox\\Models\\BaseModel",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "DateTime": "DateTime"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": {
+        "expires": {
+            "name": "expires",
+            "line": 14,
+            "short_desc": "The expiration date of the copy reference",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\DateTime",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "reference": {
+            "name": "reference",
+            "line": 21,
+            "short_desc": "The copy reference",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "metadata": {
+            "name": "metadata",
+            "line": 28,
+            "short_desc": "File or Folder Metadata",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FileMetadata",
+                    false
+                ],
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FolderMetadata",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        }
+    },
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 36,
+            "short_desc": "Create a new CopyReference instance",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "data": {
+                    "name": "data",
+                    "line": 36,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "setMetadata": {
+            "name": "setMetadata",
+            "line": 47,
+            "short_desc": "Set Metadata",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "2",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getExpirationDate": {
+            "name": "getExpirationDate",
+            "line": 60,
+            "short_desc": "Get the expiration date of the copy reference",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getMetadata": {
+            "name": "getMetadata",
+            "line": 70,
+            "short_desc": "The metadata for the file\/folder",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FileMetadata",
+                    false
+                ],
+                [
+                    "\\Kunnu\\Dropbox\\Models\\FolderMetadata",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getReference": {
+            "name": "getReference",
+            "line": 80,
+            "short_desc": "Get the copy reference",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

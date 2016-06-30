@@ -1,0 +1,51 @@
+{
+    "name": "Kunnu\\Dropbox\\Http\\RequestBodyInterface",
+    "line": 7,
+    "short_desc": "RequestBodyInterface",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox\\Http",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Http\\RequestBodyInterface.php",
+    "relative_file": "\\src\\Dropbox\\Http\\RequestBodyInterface.php",
+    "hash": "c1327016a3eeb1d69d5ba181de720f552e8aba39",
+    "parent": null,
+    "modifiers": "Stmt_Interface",
+    "is_trait": false,
+    "is_interface": true,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "getBody": {
+            "name": "getBody",
+            "line": 14,
+            "short_desc": "Get the Body of the Request",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ],
+                [
+                    "resource",
+                    false
+                ],
+                [
+                    "\\Kunnu\\Dropbox\\Http\\Psr\\Http\\Message\\StreamInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

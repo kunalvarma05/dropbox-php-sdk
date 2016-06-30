@@ -1,0 +1,66 @@
+{
+    "name": "Kunnu\\Dropbox\\Security\\RandomStringGeneratorInterface",
+    "line": 9,
+    "short_desc": "Thanks to Facebook",
+    "long_desc": "",
+    "hint": null,
+    "tags": {
+        "link": [
+            [
+                "https:\/\/developers.facebook.com\/docs\/php\/PseudoRandomStringGeneratorInterface"
+            ]
+        ]
+    },
+    "namespace": "Kunnu\\Dropbox\\Security",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Security\\RandomStringGeneratorInterface.php",
+    "relative_file": "\\src\\Dropbox\\Security\\RandomStringGeneratorInterface.php",
+    "hash": "f857746f88c042c4481d0db64a0000ae93022373",
+    "parent": null,
+    "modifiers": "Stmt_Interface",
+    "is_trait": false,
+    "is_interface": true,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "generateString": {
+            "name": "generateString",
+            "line": 18,
+            "short_desc": "Get a randomly generated secure token",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "length": {
+                    "name": "length",
+                    "line": 18,
+                    "short_desc": "Length of the string to return",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

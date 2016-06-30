@@ -1,0 +1,106 @@
+{
+    "name": "Kunnu\\Dropbox\\Security\\RandomStringGeneratorFactory",
+    "line": 12,
+    "short_desc": "Thanks to Facebook",
+    "long_desc": "",
+    "hint": null,
+    "tags": {
+        "link": [
+            [
+                "https:\/\/developers.facebook.com\/docs\/php\/RandomStringGeneratorInterface"
+            ]
+        ]
+    },
+    "namespace": "Kunnu\\Dropbox\\Security",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Security\\RandomStringGeneratorFactory.php",
+    "relative_file": "\\src\\Dropbox\\Security\\RandomStringGeneratorFactory.php",
+    "hash": "8332042afdf1c679bc3fdc8627575f38f8d1a874",
+    "parent": null,
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "InvalidArgumentException": "InvalidArgumentException",
+        "DropboxClientException": "Kunnu\\Dropbox\\Exceptions\\DropboxClientException"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "makeRandomStringGenerator": {
+            "name": "makeRandomStringGenerator",
+            "line": 23,
+            "short_desc": "Make a Random String Generator",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Security\\RandomStringGeneratorInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "9",
+            "is_by_ref": "",
+            "exceptions": [
+                [
+                    "\\Kunnu\\Dropbox\\Exceptions\\DropboxClientException",
+                    ""
+                ]
+            ],
+            "errors": [],
+            "parameters": {
+                "generator": {
+                    "name": "generator",
+                    "line": 23,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "null",
+                            false
+                        ],
+                        [
+                            "string",
+                            false
+                        ],
+                        [
+                            "\\Kunnu\\Dropbox\\Security\\RandomStringGeneratorInterface",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "null",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "defaultRandomStringGenerator": {
+            "name": "defaultRandomStringGenerator",
+            "line": 57,
+            "short_desc": "Get Default Random String Generator",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Security\\RandomStringGeneratorInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "10",
+            "is_by_ref": "",
+            "exceptions": [
+                [
+                    "\\Kunnu\\Dropbox\\Exceptions\\DropboxClientException",
+                    ""
+                ]
+            ],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

@@ -1,0 +1,79 @@
+{
+    "name": "Kunnu\\Dropbox\\Models\\SearchResults",
+    "line": 4,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox\\Models",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Models\\SearchResults.php",
+    "relative_file": "\\src\\Dropbox\\Models\\SearchResults.php",
+    "hash": "54d5c00461978ec4e0345b2f3ea2e27733df235c",
+    "parent": "Kunnu\\Dropbox\\Models\\MetadataCollection",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "processItems": {
+            "name": "processItems",
+            "line": 35,
+            "short_desc": "Process items and cast them\nto their respective Models",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "2",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "items": {
+                    "name": "items",
+                    "line": 35,
+                    "short_desc": "Unprocessed Items",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": {
+        "COLLECTION_ITEMS_KEY": {
+            "name": "COLLECTION_ITEMS_KEY",
+            "line": 11,
+            "short_desc": "Collection Items Key",
+            "long_desc": ""
+        },
+        "COLLECTION_CURSOR_KEY": {
+            "name": "COLLECTION_CURSOR_KEY",
+            "line": 18,
+            "short_desc": "Collection Cursor Key",
+            "long_desc": ""
+        },
+        "COLLECTION_HAS_MORE_ITEMS_KEY": {
+            "name": "COLLECTION_HAS_MORE_ITEMS_KEY",
+            "line": 25,
+            "short_desc": "Collection has-more-items Key",
+            "long_desc": ""
+        }
+    }
+}

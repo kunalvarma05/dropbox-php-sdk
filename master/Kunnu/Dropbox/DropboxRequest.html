@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Kunnu\Dropbox\DropboxRequest | Dropbox PHP SDK (API v2)</title>
+
+                <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/sami.css">
+        <script src="../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/typeahead.min.js"></script>
+        <script src="../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../css/flat.css">
+
+    
+    </head>
+
+    <body id="class" data-name="class:Kunnu_Dropbox_DropboxRequest" data-root-path="../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                    <form action="#" method="GET">
+                <select id="version-switcher" name="version">
+                                            <option value="../../../v0.1.0/index.html" selected>v0.1.0</option>
+                                            <option value="../../../master/index.html">Master</option>
+                                    </select>
+            </form>
+                <form id="search-form" action="../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">Dropbox PHP SDK (API v2)</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../classes.html">Classes</a></li>
+                                            <li><a href="../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../traits.html">Traits</a></li>
+                    <li><a href="../../doc-index.html">Index</a></li>
+                    <li><a href="../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                                                            <li><a href="../../Kunnu.html">Kunnu</a></li>
+                                        <li><a href="../../Kunnu/Dropbox.html">Dropbox</a></li>
+    
+                <li>DropboxRequest</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            DropboxRequest
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>DropboxRequest</strong>        (<a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php">View source</a>)
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>DropboxRequest</p>                    </div>
+    
+    
+    
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_accessToken">
+                                        protected                                        string
+                </td>
+                <td>$accessToken</td>
+                <td class="last">Access Token to use for this request</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_method">
+                                        protected                                        string
+                </td>
+                <td>$method</td>
+                <td class="last">The HTTP method for this request</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_params">
+                                        protected                                        array
+                </td>
+                <td>$params</td>
+                <td class="last">The params for this request</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_endpoint">
+                                        protected                                        string
+                </td>
+                <td>$endpoint</td>
+                <td class="last">The Endpoint for this request</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_endpointType">
+                                        protected                                        string
+                </td>
+                <td>$endpointType</td>
+                <td class="last">The Endpoint Type for this request</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_headers">
+                                        protected                                        array
+                </td>
+                <td>$headers</td>
+                <td class="last">The headers to send with this request</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_file">
+                                        protected                                        <a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a>
+                </td>
+                <td>$file</td>
+                <td class="last">File to upload</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_contentType">
+                                        protected                                        string
+                </td>
+                <td>$contentType</td>
+                <td class="last">Content Type for the Request</td>
+                <td></td>
+            </tr>
+            </table>
+
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>($method, $endpoint, $accessToken, $endpointType = &#039;api&#039;, array $params = array(), array $headers = array(), $contentType = null)
+        
+                                            <p>Create a new DropboxRequest instance</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getMethod">getMethod</a>()
+        
+                                            <p>Get the Request Method</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getParams">getParams</a>()
+        
+                                            <p>Get the Request Params</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getAccessToken">getAccessToken</a>()
+        
+                                            <p>Get Access Token for the Request</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getEndpoint">getEndpoint</a>()
+        
+                                            <p>Get the Endpoint of the Request</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getEndpointType">getEndpointType</a>()
+        
+                                            <p>Get the Endpoint Type of the Request</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getContentType">getContentType</a>()
+        
+                                            <p>Get the Content Type of the Request</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getHeaders">getHeaders</a>()
+        
+                                            <p>Get Request Headers</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getFile">getFile</a>()
+        
+                                            <p>Get the File to be sent with the Request</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setMethod">setMethod</a>(string $method)
+        
+                                            <p>Set the Request Method</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setParams">setParams</a>(array $params = array())
+        
+                                            <p>Set the Request Params</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setAccessToken">setAccessToken</a>(string $accessToken)
+        
+                                            <p>Set Access Token for the Request</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setEndpoint">setEndpoint</a>(string $endpoint)
+        
+                                            <p>Set the Endpoint of the Request</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setEndpointType">setEndpointType</a>(string $endpointType)
+        
+                                            <p>Set the Endpoint Type of the Request</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setHeaders">setHeaders</a>(array $headers)
+        
+                                            <p>Set Request Headers</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setContentType">setContentType</a>(string $contentType)
+        
+                                            <p>Set the Content Type of the Request</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setFile">setFile</a>(<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a> $file)
+        
+                                            <p>Set the File to be sent with the Request</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Http/RequestBodyJsonEncoded.html"><abbr title="Kunnu\Dropbox\Http\RequestBodyJsonEncoded">RequestBodyJsonEncoded</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getJsonBody">getJsonBody</a>()
+        
+                                            <p>Get JSON Encoded Request Body</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Http/RequestBodyStream.html"><abbr title="Kunnu\Dropbox\Http\RequestBodyStream">RequestBodyStream</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getStreamBody">getStreamBody</a>()
+        
+                                            <p>Get Stream Request Body</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    boolean
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_hasFile">hasFile</a>()
+        
+                                            <p>Returns true if Request has file to be uploaded</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_processParams">processParams</a>(array $params)
+        
+                                            <p>Process Params for the File parameter</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L80">line 80</a></div>
+        <code>                    
+    <strong>__construct</strong>($method, $endpoint, $accessToken, $endpointType = &#039;api&#039;, array $params = array(), array $headers = array(), $contentType = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Create a new DropboxRequest instance</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$method</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td></td>
+                <td>$endpoint</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td></td>
+                <td>$accessToken</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td></td>
+                <td>$endpointType</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$headers</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td></td>
+                <td>$contentType</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getMethod">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L99">line 99</a></div>
+        <code>                    string
+    <strong>getMethod</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the Request Method</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getParams">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L109">line 109</a></div>
+        <code>                    array
+    <strong>getParams</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the Request Params</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAccessToken">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L119">line 119</a></div>
+        <code>                    string
+    <strong>getAccessToken</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get Access Token for the Request</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getEndpoint">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L129">line 129</a></div>
+        <code>                    string
+    <strong>getEndpoint</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the Endpoint of the Request</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getEndpointType">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L139">line 139</a></div>
+        <code>                    string
+    <strong>getEndpointType</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the Endpoint Type of the Request</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getContentType">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L149">line 149</a></div>
+        <code>                    string
+    <strong>getContentType</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the Content Type of the Request</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getHeaders">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L159">line 159</a></div>
+        <code>                    array
+    <strong>getHeaders</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get Request Headers</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getFile">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L169">line 169</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a>
+    <strong>getFile</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the File to be sent with the Request</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setMethod">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L181">line 181</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a>
+    <strong>setMethod</strong>(string $method)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set the Request Method</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$method</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setParams">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L195">line 195</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a>
+    <strong>setParams</strong>(array $params = array())
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set the Request Params</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setAccessToken">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L213">line 213</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a>
+    <strong>setAccessToken</strong>(string $accessToken)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set Access Token for the Request</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$accessToken</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setEndpoint">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L227">line 227</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a>
+    <strong>setEndpoint</strong>(string $endpoint)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set the Endpoint of the Request</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$endpoint</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setEndpointType">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L241">line 241</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a>
+    <strong>setEndpointType</strong>(string $endpointType)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set the Endpoint Type of the Request</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$endpointType</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setHeaders">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L256">line 256</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a>
+    <strong>setHeaders</strong>(array $headers)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set Request Headers</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$headers</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setContentType">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L270">line 270</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a>
+    <strong>setContentType</strong>(string $contentType)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set the Content Type of the Request</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$contentType</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setFile">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L284">line 284</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a>
+    <strong>setFile</strong>(<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a> $file)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set the File to be sent with the Request</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a></td>
+                <td>$file</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getJsonBody">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L296">line 296</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Http/RequestBodyJsonEncoded.html"><abbr title="Kunnu\Dropbox\Http\RequestBodyJsonEncoded">RequestBodyJsonEncoded</abbr></a>
+    <strong>getJsonBody</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get JSON Encoded Request Body</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Http/RequestBodyJsonEncoded.html"><abbr title="Kunnu\Dropbox\Http\RequestBodyJsonEncoded">RequestBodyJsonEncoded</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getStreamBody">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L306">line 306</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Http/RequestBodyStream.html"><abbr title="Kunnu\Dropbox\Http\RequestBodyStream">RequestBodyStream</abbr></a>
+    <strong>getStreamBody</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get Stream Request Body</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Http/RequestBodyStream.html"><abbr title="Kunnu\Dropbox\Http\RequestBodyStream">RequestBodyStream</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_hasFile">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L316">line 316</a></div>
+        <code>                    boolean
+    <strong>hasFile</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns true if Request has file to be uploaded</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>boolean</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_processParams">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxRequest.php#L328">line 328</a></div>
+        <code>            protected        array
+    <strong>processParams</strong>(array $params)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Process Params for the File parameter</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td>Request Params</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>

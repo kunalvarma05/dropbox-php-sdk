@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Kunnu\Dropbox\DropboxClient | Dropbox PHP SDK (API v2)</title>
+
+                <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/sami.css">
+        <script src="../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/typeahead.min.js"></script>
+        <script src="../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../css/flat.css">
+
+    
+    </head>
+
+    <body id="class" data-name="class:Kunnu_Dropbox_DropboxClient" data-root-path="../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                    <form action="#" method="GET">
+                <select id="version-switcher" name="version">
+                                            <option value="../../../v0.1.0/index.html" selected>v0.1.0</option>
+                                            <option value="../../../master/index.html">Master</option>
+                                    </select>
+            </form>
+                <form id="search-form" action="../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">Dropbox PHP SDK (API v2)</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../classes.html">Classes</a></li>
+                                            <li><a href="../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../traits.html">Traits</a></li>
+                    <li><a href="../../doc-index.html">Index</a></li>
+                    <li><a href="../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                                                            <li><a href="../../Kunnu.html">Kunnu</a></li>
+                                        <li><a href="../../Kunnu/Dropbox.html">Dropbox</a></li>
+    
+                <li>DropboxClient</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            DropboxClient
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>DropboxClient</strong>        (<a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxClient.php">View source</a>)
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>DropboxClient</p>                    </div>
+    
+    
+            <h2>Constants</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td>BASE_PATH</td>
+                <td class="last">
+                    <p><em>Dropbox API Root URL.</em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>CONTENT_PATH</td>
+                <td class="last">
+                    <p><em>Dropbox API Content Root URL.</em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
+    
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_httpClient">
+                                        protected                                        <a href="../../Kunnu/Dropbox/Http/Clients/DropboxHttpClientInterface.html"><abbr title="Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface">DropboxHttpClientInterface</abbr></a>
+                </td>
+                <td>$httpClient</td>
+                <td class="last">DropboxHttpClientInterface Implementation</td>
+                <td></td>
+            </tr>
+            </table>
+
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>(<a href="../../Kunnu/Dropbox/Http/Clients/DropboxHttpClientInterface.html"><abbr title="Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface">DropboxHttpClientInterface</abbr></a> $httpClient)
+        
+                                            <p>Create a new DropboxClient instance</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Http/Clients/DropboxHttpClientInterface.html"><abbr title="Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface">DropboxHttpClientInterface</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getHttpClient">getHttpClient</a>()
+        
+                                            <p>Get the HTTP Client</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/DropboxClient.html"><abbr title="Kunnu\Dropbox\DropboxClient">DropboxClient</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setHttpClient">setHttpClient</a>(<a href="../../Kunnu/Dropbox/Http/Clients/DropboxHttpClientInterface.html"><abbr title="Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface">DropboxHttpClientInterface</abbr></a> $httpClient)
+        
+                                            <p>Set the HTTP Client</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getBasePath">getBasePath</a>()
+        
+                                            <p>Get the API Base Path.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getContentPath">getContentPath</a>()
+        
+                                            <p>Get the API Content Path.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_buildAuthHeader">buildAuthHeader</a>(string $accessToken = &#039;&#039;)
+        
+                                            <p>Get the Authorization Header with the Access Token.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_buildContentTypeHeader">buildContentTypeHeader</a>(string $contentType = &#039;&#039;)
+        
+                                            <p>Get the Content Type Header.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_buildUrl">buildUrl</a>(string $endpoint = &#039;&#039;, string $type = &#039;api&#039;)
+        
+                                            <p>Build URL for the Request</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/DropboxResponse.html"><abbr title="Kunnu\Dropbox\DropboxResponse">DropboxResponse</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_sendRequest">sendRequest</a>(<a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a> $request)
+        
+                                            <p>Send the Request to the Server and return the Response</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_prepareRequest">prepareRequest</a>(<a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a> $request)
+        
+                                            <p>Prepare a Request before being sent to the HTTP Client</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxClient.php#L37">line 37</a></div>
+        <code>                    
+    <strong>__construct</strong>(<a href="../../Kunnu/Dropbox/Http/Clients/DropboxHttpClientInterface.html"><abbr title="Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface">DropboxHttpClientInterface</abbr></a> $httpClient)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Create a new DropboxClient instance</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Kunnu/Dropbox/Http/Clients/DropboxHttpClientInterface.html"><abbr title="Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface">DropboxHttpClientInterface</abbr></a></td>
+                <td>$httpClient</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getHttpClient">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxClient.php#L48">line 48</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Http/Clients/DropboxHttpClientInterface.html"><abbr title="Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface">DropboxHttpClientInterface</abbr></a>
+    <strong>getHttpClient</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the HTTP Client</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Http/Clients/DropboxHttpClientInterface.html"><abbr title="Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface">DropboxHttpClientInterface</abbr></a></td>
+            <td>$httpClient</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setHttpClient">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxClient.php#L60">line 60</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/DropboxClient.html"><abbr title="Kunnu\Dropbox\DropboxClient">DropboxClient</abbr></a>
+    <strong>setHttpClient</strong>(<a href="../../Kunnu/Dropbox/Http/Clients/DropboxHttpClientInterface.html"><abbr title="Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface">DropboxHttpClientInterface</abbr></a> $httpClient)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set the HTTP Client</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Kunnu/Dropbox/Http/Clients/DropboxHttpClientInterface.html"><abbr title="Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface">DropboxHttpClientInterface</abbr></a></td>
+                <td>$httpClient</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/DropboxClient.html"><abbr title="Kunnu\Dropbox\DropboxClient">DropboxClient</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getBasePath">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxClient.php#L72">line 72</a></div>
+        <code>                    string
+    <strong>getBasePath</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the API Base Path.</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>API Base Path</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getContentPath">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxClient.php#L82">line 82</a></div>
+        <code>                    string
+    <strong>getContentPath</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the API Content Path.</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>API Content Path</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_buildAuthHeader">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxClient.php#L94">line 94</a></div>
+        <code>            protected        array
+    <strong>buildAuthHeader</strong>(string $accessToken = &#039;&#039;)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the Authorization Header with the Access Token.</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$accessToken</td>
+                <td>Access Token</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td>Authorization Header</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_buildContentTypeHeader">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxClient.php#L106">line 106</a></div>
+        <code>            protected        array
+    <strong>buildContentTypeHeader</strong>(string $contentType = &#039;&#039;)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the Content Type Header.</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$contentType</td>
+                <td>Request Content Type</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td>Content Type Header</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_buildUrl">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxClient.php#L121">line 121</a></div>
+        <code>            protected        string
+    <strong>buildUrl</strong>(string $endpoint = &#039;&#039;, string $type = &#039;api&#039;)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Build URL for the Request</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$endpoint</td>
+                <td>Relative API endpoint</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$type</td>
+                <td>Endpoint Type</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>The Full URL to the API Endpoints</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_sendRequest">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxClient.php#L145">line 145</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/DropboxResponse.html"><abbr title="Kunnu\Dropbox\DropboxResponse">DropboxResponse</abbr></a>
+    <strong>sendRequest</strong>(<a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a> $request)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Send the Request to the Server and return the Response</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a></td>
+                <td>$request</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/DropboxResponse.html"><abbr title="Kunnu\Dropbox\DropboxResponse">DropboxResponse</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Kunnu/Dropbox/Exceptions/DropboxClientException.html"><abbr title="Kunnu\Dropbox\Exceptions\DropboxClientException">DropboxClientException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_prepareRequest">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/DropboxClient.php#L176">line 176</a></div>
+        <code>            protected        array
+    <strong>prepareRequest</strong>(<a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a> $request)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Prepare a Request before being sent to the HTTP Client</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Kunnu/Dropbox/DropboxRequest.html"><abbr title="Kunnu\Dropbox\DropboxRequest">DropboxRequest</abbr></a></td>
+                <td>$request</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td>[Request URL, Request Headers, Request Body]</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>

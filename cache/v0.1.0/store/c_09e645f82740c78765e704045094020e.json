@@ -1,0 +1,391 @@
+{
+    "name": "Kunnu\\Dropbox\\Authentication\\OAuth2Client",
+    "line": 9,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox\\Authentication",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Authentication\\OAuth2Client.php",
+    "relative_file": "\\src\\Dropbox\\Authentication\\OAuth2Client.php",
+    "hash": "77c3a48784203d6d5b166150e62848fd611a4a46",
+    "parent": null,
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "DropboxApp": "Kunnu\\Dropbox\\DropboxApp",
+        "DropboxClient": "Kunnu\\Dropbox\\DropboxClient",
+        "DropboxRequest": "Kunnu\\Dropbox\\DropboxRequest",
+        "RandomStringGeneratorInterface": "Kunnu\\Dropbox\\Security\\RandomStringGeneratorInterface"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": {
+        "app": {
+            "name": "app",
+            "line": 31,
+            "short_desc": "The Dropbox App",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\DropboxApp",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "client": {
+            "name": "client",
+            "line": 38,
+            "short_desc": "The Dropbox Client",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\DropboxClient",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        }
+    },
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 47,
+            "short_desc": "Create a new DropboxApp instance",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "app": {
+                    "name": "app",
+                    "line": 47,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Kunnu\\Dropbox\\DropboxApp",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Kunnu\\Dropbox\\DropboxApp",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "client": {
+                    "name": "client",
+                    "line": 47,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Kunnu\\Dropbox\\DropboxClient",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Kunnu\\Dropbox\\DropboxClient",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "randStrGenerator": {
+                    "name": "randStrGenerator",
+                    "line": 47,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Kunnu\\Dropbox\\Security\\RandomStringGeneratorInterface",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Kunnu\\Dropbox\\Security\\RandomStringGeneratorInterface",
+                    "default": "null",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "buildUrl": {
+            "name": "buildUrl",
+            "line": 62,
+            "short_desc": "Build URL",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "2",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "endpoint": {
+                    "name": "endpoint",
+                    "line": 62,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "''",
+                    "is_by_ref": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 62,
+                    "short_desc": "Query Params",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getApp": {
+            "name": "getApp",
+            "line": 73,
+            "short_desc": "Get the Dropbox App",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\DropboxApp",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getClient": {
+            "name": "getClient",
+            "line": 83,
+            "short_desc": "Get the Dropbox Client",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\DropboxClient",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getAuthorizationUrl": {
+            "name": "getAuthorizationUrl",
+            "line": 99,
+            "short_desc": "Get the OAuth2 Authorization URL",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/documentation\/http\/documentation#oauth2-authorize"
+                    ]
+                ]
+            },
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "redirectUri": {
+                    "name": "redirectUri",
+                    "line": 99,
+                    "short_desc": "Callback URL to redirect user after authorization",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "state": {
+                    "name": "state",
+                    "line": 99,
+                    "short_desc": "CSRF Token",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "null",
+                    "is_by_ref": false
+                },
+                "params": {
+                    "name": "params",
+                    "line": 99,
+                    "short_desc": "Additional Params",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getAccessToken": {
+            "name": "getAccessToken",
+            "line": 121,
+            "short_desc": "Get Access Token",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "code": {
+                    "name": "code",
+                    "line": 121,
+                    "short_desc": "Authorization Code",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "redirectUri": {
+                    "name": "redirectUri",
+                    "line": 121,
+                    "short_desc": "Redirect URI used while getAuthorizationUrl",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "null",
+                    "is_by_ref": false
+                },
+                "grant_type": {
+                    "name": "grant_type",
+                    "line": 121,
+                    "short_desc": "Grant Type ['authorization_code']",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "'authorization_code'",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "revokeAccessToken": {
+            "name": "revokeAccessToken",
+            "line": 159,
+            "short_desc": "Disables the access token",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": {
+        "BASE_URL": {
+            "name": "BASE_URL",
+            "line": 17,
+            "short_desc": "The Base URL",
+            "long_desc": ""
+        },
+        "AUTH_TOKEN_URL": {
+            "name": "AUTH_TOKEN_URL",
+            "line": 24,
+            "short_desc": "Auth Token URL",
+            "long_desc": ""
+        }
+    }
+}

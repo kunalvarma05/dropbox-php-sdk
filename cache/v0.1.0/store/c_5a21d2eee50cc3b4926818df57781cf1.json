@@ -1,0 +1,31 @@
+{
+    "name": "Kunnu\\Dropbox\\Models\\ModelCollection",
+    "line": 9,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": {
+        "link": [
+            [
+                "https:\/\/laravel.com\/docs\/5.2\/collections"
+            ]
+        ]
+    },
+    "namespace": "Kunnu\\Dropbox\\Models",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Models\\ModelCollection.php",
+    "relative_file": "\\src\\Dropbox\\Models\\ModelCollection.php",
+    "hash": "79b0bb60dd236d95174b6f1436a8b1b5c06d19e6",
+    "parent": "Illuminate\\Support\\Collection",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Collection": "Illuminate\\Support\\Collection"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

@@ -1,0 +1,103 @@
+{
+    "name": "Kunnu\\Dropbox\\Security\\McryptRandomStringGenerator",
+    "line": 9,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": {
+        "inheritdoc": [
+            [
+                ""
+            ]
+        ]
+    },
+    "namespace": "Kunnu\\Dropbox\\Security",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Security\\McryptRandomStringGenerator.php",
+    "relative_file": "\\src\\Dropbox\\Security\\McryptRandomStringGenerator.php",
+    "hash": "09b855f7997223746d37c366b3b2d195fc983e1f",
+    "parent": null,
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "DropboxClientException": "Kunnu\\Dropbox\\Exceptions\\DropboxClientException"
+    },
+    "errors": [],
+    "interfaces": {
+        "Kunnu\\Dropbox\\Security\\RandomStringGeneratorInterface": "Kunnu\\Dropbox\\Security\\RandomStringGeneratorInterface"
+    },
+    "traits": {
+        "Kunnu\\Dropbox\\Security\\RandomStringGeneratorTrait": "Kunnu\\Dropbox\\Security\\RandomStringGeneratorTrait"
+    },
+    "properties": [],
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 25,
+            "short_desc": "Create a new McryptRandomStringGenerator instance",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [
+                [
+                    "\\Kunnu\\Dropbox\\Exceptions\\DropboxClientException",
+                    ""
+                ]
+            ],
+            "errors": [],
+            "parameters": []
+        },
+        "generateString": {
+            "name": "generateString",
+            "line": 44,
+            "short_desc": "Get a randomly generated secure token",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [
+                [
+                    "\\Kunnu\\Dropbox\\Exceptions\\DropboxClientException",
+                    ""
+                ]
+            ],
+            "errors": [],
+            "parameters": {
+                "length": {
+                    "name": "length",
+                    "line": 44,
+                    "short_desc": "Length of the string to return",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": {
+        "ERROR_MESSAGE": {
+            "name": "ERROR_MESSAGE",
+            "line": 18,
+            "short_desc": "The error message when generating the string fails.",
+            "long_desc": ""
+        }
+    }
+}

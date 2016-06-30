@@ -1,0 +1,365 @@
+{
+    "name": "Kunnu\\Dropbox\\DropboxFile",
+    "line": 9,
+    "short_desc": "DropboxFile",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\DropboxFile.php",
+    "relative_file": "\\src\\Dropbox\\DropboxFile.php",
+    "hash": "342ddf895e73b1118ccc2900212f61a3fc8d188b",
+    "parent": null,
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "DropboxClientException": "Kunnu\\Dropbox\\Exceptions\\DropboxClientException"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": {
+        "path": {
+            "name": "path",
+            "line": 16,
+            "short_desc": "Path of the file to upload",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "maxLength": {
+            "name": "maxLength",
+            "line": 23,
+            "short_desc": "The maximum bytes to read. Defaults to -1 (read all the remaining buffer).",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "offset": {
+            "name": "offset",
+            "line": 32,
+            "short_desc": "Seek to the specified offset before reading.",
+            "long_desc": "If this number is negative, no seeking will\noccur and reading will start from the current.",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "stream": {
+            "name": "stream",
+            "line": 39,
+            "short_desc": "File Stream",
+            "long_desc": "",
+            "hint": [
+                [
+                    "resource",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        }
+    },
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 50,
+            "short_desc": "Create a new DropboxFile instance",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [
+                [
+                    "\\Kunnu\\Dropbox\\Exceptions\\DropboxClientException",
+                    ""
+                ]
+            ],
+            "errors": [],
+            "parameters": {
+                "filePath": {
+                    "name": "filePath",
+                    "line": 50,
+                    "short_desc": "Path of the file to upload",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "maxLength": {
+                    "name": "maxLength",
+                    "line": 50,
+                    "short_desc": "Max Bytes to read from the file",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "-1",
+                    "is_by_ref": false
+                },
+                "offset": {
+                    "name": "offset",
+                    "line": 50,
+                    "short_desc": "Seek to specified offset before reading",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "int",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "-1",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "__destruct": {
+            "name": "__destruct",
+            "line": 62,
+            "short_desc": "Closes the stream when destructed.",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "open": {
+            "name": "open",
+            "line": 74,
+            "short_desc": "Opens the File Stream",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [
+                [
+                    "\\Kunnu\\Dropbox\\Exceptions\\DropboxClientException",
+                    ""
+                ]
+            ],
+            "errors": [],
+            "parameters": []
+        },
+        "getStream": {
+            "name": "getStream",
+            "line": 92,
+            "short_desc": "Get the Open File Stream",
+            "long_desc": "",
+            "hint": [
+                [
+                    "resource",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "close": {
+            "name": "close",
+            "line": 100,
+            "short_desc": "Close the file stream",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getContents": {
+            "name": "getContents",
+            "line": 112,
+            "short_desc": "Return the contents of the file",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getFileName": {
+            "name": "getFileName",
+            "line": 122,
+            "short_desc": "Get the name of the file",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getFilePath": {
+            "name": "getFilePath",
+            "line": 132,
+            "short_desc": "Get the path of the file",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getSize": {
+            "name": "getSize",
+            "line": 142,
+            "short_desc": "Get the size of the file",
+            "long_desc": "",
+            "hint": [
+                [
+                    "int",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getMimetype": {
+            "name": "getMimetype",
+            "line": 152,
+            "short_desc": "Get mimetype of the file",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "isRemoteFile": {
+            "name": "isRemoteFile",
+            "line": 164,
+            "short_desc": "Returns true if the path to the file is remote",
+            "long_desc": "",
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "2",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "pathToFile": {
+                    "name": "pathToFile",
+                    "line": 164,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

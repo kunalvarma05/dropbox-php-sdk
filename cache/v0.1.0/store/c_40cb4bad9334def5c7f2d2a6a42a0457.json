@@ -1,0 +1,82 @@
+{
+    "name": "Kunnu\\Dropbox\\Store\\PersistentDataStoreFactory",
+    "line": 12,
+    "short_desc": "Thanks to Facebook",
+    "long_desc": "",
+    "hint": null,
+    "tags": {
+        "link": [
+            [
+                "https:\/\/developers.facebook.com\/docs\/php\/PersistentDataInterface"
+            ]
+        ]
+    },
+    "namespace": "Kunnu\\Dropbox\\Store",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Store\\PersistentDataStoreFactory.php",
+    "relative_file": "\\src\\Dropbox\\Store\\PersistentDataStoreFactory.php",
+    "hash": "22747615bddf53f681302162378cb105a9025eb5",
+    "parent": null,
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "InvalidArgumentException": "InvalidArgumentException",
+        "DropboxClientException": "Kunnu\\Dropbox\\Exceptions\\DropboxClientException"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "makePersistentDataStore": {
+            "name": "makePersistentDataStore",
+            "line": 23,
+            "short_desc": "Make Persistent Data Store",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Store\\PersistentDataStoreInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "9",
+            "is_by_ref": "",
+            "exceptions": [
+                [
+                    "\\InvalidArgumentException",
+                    ""
+                ]
+            ],
+            "errors": [],
+            "parameters": {
+                "store": {
+                    "name": "store",
+                    "line": 23,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "null",
+                            false
+                        ],
+                        [
+                            "string",
+                            false
+                        ],
+                        [
+                            "\\Kunnu\\Dropbox\\Store\\PersistentDataStoreInterface",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "null",
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

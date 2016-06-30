@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Kunnu\Dropbox\Authentication\DropboxAuthHelper | Dropbox PHP SDK (API v2)</title>
+
+                <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../css/sami.css">
+        <script src="../../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../../js/bootstrap.min.js"></script>
+        <script src="../../../js/typeahead.min.js"></script>
+        <script src="../../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../../css/flat.css">
+
+    
+    </head>
+
+    <body id="class" data-name="class:Kunnu_Dropbox_Authentication_DropboxAuthHelper" data-root-path="../../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                    <form action="#" method="GET">
+                <select id="version-switcher" name="version">
+                                            <option value="../../../../v0.1.0/index.html" selected>v0.1.0</option>
+                                            <option value="../../../../master/index.html">Master</option>
+                                    </select>
+            </form>
+                <form id="search-form" action="../../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../index.html">Dropbox PHP SDK (API v2)</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../classes.html">Classes</a></li>
+                                            <li><a href="../../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../traits.html">Traits</a></li>
+                    <li><a href="../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                                                            <li><a href="../../../Kunnu.html">Kunnu</a></li>
+                                        <li><a href="../../../Kunnu/Dropbox.html">Dropbox</a></li>
+                                        <li><a href="../../../Kunnu/Dropbox/Authentication.html">Authentication</a></li>
+    
+                <li>DropboxAuthHelper</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            DropboxAuthHelper
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>DropboxAuthHelper</strong>        (<a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Authentication/DropboxAuthHelper.php">View source</a>)
+</p>
+
+        
+    
+
+    
+    
+            <h2>Constants</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td>CSRF_LENGTH</td>
+                <td class="last">
+                    <p><em>The length of CSRF string</em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
+    
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_oAuth2Client">
+                                        protected                                        <a href="../../../Kunnu/Dropbox/Authentication/OAuth2Client.html"><abbr title="Kunnu\Dropbox\Authentication\OAuth2Client">OAuth2Client</abbr></a>
+                </td>
+                <td>$oAuth2Client</td>
+                <td class="last">OAuth2 Client</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_randomStringGenerator">
+                                        protected                                        <a href="../../../Kunnu/Dropbox/Security/RandomStringGeneratorInterface.html"><abbr title="Kunnu\Dropbox\Security\RandomStringGeneratorInterface">RandomStringGeneratorInterface</abbr></a>
+                </td>
+                <td>$randomStringGenerator</td>
+                <td class="last">Random String Generator</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_persistentDataStore">
+                                        protected                                        <a href="../../../Kunnu/Dropbox/Store/PersistentDataStoreInterface.html"><abbr title="Kunnu\Dropbox\Store\PersistentDataStoreInterface">PersistentDataStoreInterface</abbr></a>
+                </td>
+                <td>$persistentDataStore</td>
+                <td class="last">Persistent Data Store</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_urlState">
+                                        protected                                        string
+                </td>
+                <td>$urlState</td>
+                <td class="last">Additional User Provided State</td>
+                <td></td>
+            </tr>
+            </table>
+
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>(<a href="../../../Kunnu/Dropbox/Authentication/OAuth2Client.html"><abbr title="Kunnu\Dropbox\Authentication\OAuth2Client">OAuth2Client</abbr></a> $oAuth2Client, <a href="../../../Kunnu/Dropbox/Security/RandomStringGeneratorInterface.html"><abbr title="Kunnu\Dropbox\Security\RandomStringGeneratorInterface">RandomStringGeneratorInterface</abbr></a> $randomStringGenerator = null, <a href="../../../Kunnu/Dropbox/Store/PersistentDataStoreInterface.html"><abbr title="Kunnu\Dropbox\Store\PersistentDataStoreInterface">PersistentDataStoreInterface</abbr></a> $persistentDataStore = null)
+        
+                                            <p>Create a new DropboxAuthHelper instance</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Kunnu/Dropbox/Authentication/OAuth2Client.html"><abbr title="Kunnu\Dropbox\Authentication\OAuth2Client">OAuth2Client</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getOAuth2Client">getOAuth2Client</a>()
+        
+                                            <p>Get OAuth2Client</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Kunnu/Dropbox/Security/RandomStringGeneratorInterface.html"><abbr title="Kunnu\Dropbox\Security\RandomStringGeneratorInterface">RandomStringGeneratorInterface</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getRandomStringGenerator">getRandomStringGenerator</a>()
+        
+                                            <p>Get the Random String Generator</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Kunnu/Dropbox/Store/PersistentDataStoreInterface.html"><abbr title="Kunnu\Dropbox\Store\PersistentDataStoreInterface">PersistentDataStoreInterface</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPersistentDataStore">getPersistentDataStore</a>()
+        
+                                            <p>Get the Persistent Data Store</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getCsrfToken">getCsrfToken</a>()
+        
+                                            <p>Get CSRF Token</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getAuthUrl">getAuthUrl</a>(string $redirectUri, array $params = array(), string $urlState = null)
+        
+                                            <p>Get Authorization URL</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_decodeState">decodeState</a>(string $state)
+        
+                                            <p>Decode State to get the CSRF Token and the URL State</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_validateCSRFToken">validateCSRFToken</a>(string $csrfToken)
+        
+                                            <p>Validate CSRF Token</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../../Kunnu/Dropbox/Models/AccessToken.html"><abbr title="Kunnu\Dropbox\Models\AccessToken">AccessToken</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getAccessToken">getAccessToken</a>(string $code, string $state, string $redirectUri)
+        
+                                            <p>Get Access Token</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_revokeAccessToken">revokeAccessToken</a>()
+        
+                                            <p>Revoke Access Token</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getUrlState">getUrlState</a>()
+        
+                                            <p>Get URL State</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Authentication/DropboxAuthHelper.php#L53">line 53</a></div>
+        <code>                    
+    <strong>__construct</strong>(<a href="../../../Kunnu/Dropbox/Authentication/OAuth2Client.html"><abbr title="Kunnu\Dropbox\Authentication\OAuth2Client">OAuth2Client</abbr></a> $oAuth2Client, <a href="../../../Kunnu/Dropbox/Security/RandomStringGeneratorInterface.html"><abbr title="Kunnu\Dropbox\Security\RandomStringGeneratorInterface">RandomStringGeneratorInterface</abbr></a> $randomStringGenerator = null, <a href="../../../Kunnu/Dropbox/Store/PersistentDataStoreInterface.html"><abbr title="Kunnu\Dropbox\Store\PersistentDataStoreInterface">PersistentDataStoreInterface</abbr></a> $persistentDataStore = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Create a new DropboxAuthHelper instance</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Kunnu/Dropbox/Authentication/OAuth2Client.html"><abbr title="Kunnu\Dropbox\Authentication\OAuth2Client">OAuth2Client</abbr></a></td>
+                <td>$oAuth2Client</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../../Kunnu/Dropbox/Security/RandomStringGeneratorInterface.html"><abbr title="Kunnu\Dropbox\Security\RandomStringGeneratorInterface">RandomStringGeneratorInterface</abbr></a></td>
+                <td>$randomStringGenerator</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td><a href="../../../Kunnu/Dropbox/Store/PersistentDataStoreInterface.html"><abbr title="Kunnu\Dropbox\Store\PersistentDataStoreInterface">PersistentDataStoreInterface</abbr></a></td>
+                <td>$persistentDataStore</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getOAuth2Client">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Authentication/DropboxAuthHelper.php#L68">line 68</a></div>
+        <code>                    <a href="../../../Kunnu/Dropbox/Authentication/OAuth2Client.html"><abbr title="Kunnu\Dropbox\Authentication\OAuth2Client">OAuth2Client</abbr></a>
+    <strong>getOAuth2Client</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get OAuth2Client</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Kunnu/Dropbox/Authentication/OAuth2Client.html"><abbr title="Kunnu\Dropbox\Authentication\OAuth2Client">OAuth2Client</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getRandomStringGenerator">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Authentication/DropboxAuthHelper.php#L78">line 78</a></div>
+        <code>                    <a href="../../../Kunnu/Dropbox/Security/RandomStringGeneratorInterface.html"><abbr title="Kunnu\Dropbox\Security\RandomStringGeneratorInterface">RandomStringGeneratorInterface</abbr></a>
+    <strong>getRandomStringGenerator</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the Random String Generator</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Kunnu/Dropbox/Security/RandomStringGeneratorInterface.html"><abbr title="Kunnu\Dropbox\Security\RandomStringGeneratorInterface">RandomStringGeneratorInterface</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPersistentDataStore">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Authentication/DropboxAuthHelper.php#L88">line 88</a></div>
+        <code>                    <a href="../../../Kunnu/Dropbox/Store/PersistentDataStoreInterface.html"><abbr title="Kunnu\Dropbox\Store\PersistentDataStoreInterface">PersistentDataStoreInterface</abbr></a>
+    <strong>getPersistentDataStore</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the Persistent Data Store</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Kunnu/Dropbox/Store/PersistentDataStoreInterface.html"><abbr title="Kunnu\Dropbox\Store\PersistentDataStoreInterface">PersistentDataStoreInterface</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getCsrfToken">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Authentication/DropboxAuthHelper.php#L98">line 98</a></div>
+        <code>            protected        string
+    <strong>getCsrfToken</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get CSRF Token</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAuthUrl">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Authentication/DropboxAuthHelper.php#L116">line 116</a></div>
+        <code>                    string
+    <strong>getAuthUrl</strong>(string $redirectUri, array $params = array(), string $urlState = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get Authorization URL</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$redirectUri</td>
+                <td>Callback URL to redirect to after authorization</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td>Additional Params</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$urlState</td>
+                <td>Additional User Provided State Data</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_decodeState">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Authentication/DropboxAuthHelper.php#L141">line 141</a></div>
+        <code>            protected        array
+    <strong>decodeState</strong>(string $state)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Decode State to get the CSRF Token and the URL State</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$state</td>
+                <td>State</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_validateCSRFToken">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Authentication/DropboxAuthHelper.php#L164">line 164</a></div>
+        <code>            protected        void
+    <strong>validateCSRFToken</strong>(string $csrfToken)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Validate CSRF Token</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$csrfToken</td>
+                <td>CSRF Token</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../Kunnu/Dropbox/Exceptions/DropboxClientException.html"><abbr title="Kunnu\Dropbox\Exceptions\DropboxClientException">DropboxClientException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAccessToken">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Authentication/DropboxAuthHelper.php#L191">line 191</a></div>
+        <code>                    <a href="../../../Kunnu/Dropbox/Models/AccessToken.html"><abbr title="Kunnu\Dropbox\Models\AccessToken">AccessToken</abbr></a>
+    <strong>getAccessToken</strong>(string $code, string $state, string $redirectUri)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get Access Token</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$code</td>
+                <td>Authorization Code</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$state</td>
+                <td>CSRF &amp; URL State</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$redirectUri</td>
+                <td>Redirect URI used while getAuthUrl</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../../Kunnu/Dropbox/Models/AccessToken.html"><abbr title="Kunnu\Dropbox\Models\AccessToken">AccessToken</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_revokeAccessToken">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Authentication/DropboxAuthHelper.php#L217">line 217</a></div>
+        <code>                    void
+    <strong>revokeAccessToken</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Revoke Access Token</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getUrlState">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Authentication/DropboxAuthHelper.php#L227">line 227</a></div>
+        <code>                    string
+    <strong>getUrlState</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get URL State</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>

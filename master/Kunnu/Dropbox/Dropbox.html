@@ -1,0 +1,2538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Kunnu\Dropbox\Dropbox | Dropbox PHP SDK (API v2)</title>
+
+                <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/sami.css">
+        <script src="../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/typeahead.min.js"></script>
+        <script src="../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../css/flat.css">
+
+    
+    </head>
+
+    <body id="class" data-name="class:Kunnu_Dropbox_Dropbox" data-root-path="../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                    <form action="#" method="GET">
+                <select id="version-switcher" name="version">
+                                            <option value="../../../v0.1.0/index.html" selected>v0.1.0</option>
+                                            <option value="../../../master/index.html">Master</option>
+                                    </select>
+            </form>
+                <form id="search-form" action="../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">Dropbox PHP SDK (API v2)</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../classes.html">Classes</a></li>
+                                            <li><a href="../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../traits.html">Traits</a></li>
+                    <li><a href="../../doc-index.html">Index</a></li>
+                    <li><a href="../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                                                            <li><a href="../../Kunnu.html">Kunnu</a></li>
+                                        <li><a href="../../Kunnu/Dropbox.html">Dropbox</a></li>
+    
+                <li>Dropbox</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            Dropbox
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>Dropbox</strong>        (<a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php">View source</a>)
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>Dropbox</p>                    </div>
+    
+    
+            <h2>Constants</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td>AUTO_CHUNKED_UPLOAD_THRESHOLD</td>
+                <td class="last">
+                    <p><em>Uploading a file with the 'uploadFile' method, with the file's
+size less than this value (~8 MB), the simple <code>upload</code> method will be
+used, if the file size exceed this value (~8 MB), the <code>startUploadSession</code>,
+<code>appendUploadSession</code> &amp; <code>finishUploadSession</code> methods will be used
+to upload the file in chunks.</em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>DEFAULT_CHUNK_SIZE</td>
+                <td class="last">
+                    <p><em>The Chunk Size the file will be
+split into and uploaded (~4 MB)</em></p>
+                    <p></p>
+                </td>
+            </tr>
+                    <tr>
+                <td>METADATA_HEADER</td>
+                <td class="last">
+                    <p><em>Response header containing file metadata</em></p>
+                    <p></p>
+                </td>
+            </tr>
+            </table>
+
+    
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_app">
+                                        protected                                        <a href="../../Kunnu/Dropbox/DropboxApp.html"><abbr title="Kunnu\Dropbox\DropboxApp">DropboxApp</abbr></a>
+                </td>
+                <td>$app</td>
+                <td class="last">The Dropbox App</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_accessToken">
+                                        protected                                        string
+                </td>
+                <td>$accessToken</td>
+                <td class="last">OAuth2 Access Token</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_client">
+                                        protected                                        <a href="../../Kunnu/Dropbox/DropboxClient.html"><abbr title="Kunnu\Dropbox\DropboxClient">DropboxClient</abbr></a>
+                </td>
+                <td>$client</td>
+                <td class="last">Dropbox Client</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_oAuth2Client">
+                                        protected                                        <a href="../../Kunnu/Dropbox/Authentication/OAuth2Client.html"><abbr title="Kunnu\Dropbox\Authentication\OAuth2Client">OAuth2Client</abbr></a>
+                </td>
+                <td>$oAuth2Client</td>
+                <td class="last">OAuth2 Client</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_randomStringGenerator">
+                                        protected                                        <a href="../../Kunnu/Dropbox/Security/RandomStringGeneratorInterface.html"><abbr title="Kunnu\Dropbox\Security\RandomStringGeneratorInterface">RandomStringGeneratorInterface</abbr></a>
+                </td>
+                <td>$randomStringGenerator</td>
+                <td class="last">Random String Generator</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_persistentDataStore">
+                                        protected                                        <a href="../../Kunnu/Dropbox/Store/PersistentDataStoreInterface.html"><abbr title="Kunnu\Dropbox\Store\PersistentDataStoreInterface">PersistentDataStoreInterface</abbr></a>
+                </td>
+                <td>$persistentDataStore</td>
+                <td class="last">Persistent Data Store</td>
+                <td></td>
+            </tr>
+            </table>
+
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>(<a href="../../Kunnu/Dropbox/DropboxApp.html"><abbr title="Kunnu\Dropbox\DropboxApp">DropboxApp</abbr></a> $app, array $config = array())
+        
+                                            <p>Create a new Dropbox instance</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/DropboxClient.html"><abbr title="Kunnu\Dropbox\DropboxClient">DropboxClient</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getClient">getClient</a>()
+        
+                                            <p>Get the Client</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getAccessToken">getAccessToken</a>()
+        
+                                            <p>Get the Access Token.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/DropboxApp.html"><abbr title="Kunnu\Dropbox\DropboxApp">DropboxApp</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getApp">getApp</a>()
+        
+                                            <p>Get the Dropbox App.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Authentication/OAuth2Client.html"><abbr title="Kunnu\Dropbox\Authentication\OAuth2Client">OAuth2Client</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getOAuth2Client">getOAuth2Client</a>()
+        
+                                            <p>Get OAuth2Client</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Security/RandomStringGeneratorInterface.html"><abbr title="Kunnu\Dropbox\Security\RandomStringGeneratorInterface">RandomStringGeneratorInterface</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getRandomStringGenerator">getRandomStringGenerator</a>()
+        
+                                            <p>Get the Random String Generator</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Store/PersistentDataStoreInterface.html"><abbr title="Kunnu\Dropbox\Store\PersistentDataStoreInterface">PersistentDataStoreInterface</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPersistentDataStore">getPersistentDataStore</a>()
+        
+                                            <p>Get Persistent Data Store</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Authentication/DropboxAuthHelper.html"><abbr title="Kunnu\Dropbox\Authentication\DropboxAuthHelper">DropboxAuthHelper</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getAuthHelper">getAuthHelper</a>()
+        
+                                            <p>Get Dropbox Auth Helper</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Dropbox.html"><abbr title="Kunnu\Dropbox\Dropbox">Dropbox</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_setAccessToken">setAccessToken</a>(string $accessToken)
+        
+                                            <p>Set the Access Token.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/DropboxResponse.html"><abbr title="Kunnu\Dropbox\DropboxResponse">DropboxResponse</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_sendRequest">sendRequest</a>(string $method, string $endpoint, string $endpointType = &#039;api&#039;, array $params = array(), string $accessToken = null)
+        
+                                            <p>Make Request to the API</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/DropboxResponse.html"><abbr title="Kunnu\Dropbox\DropboxResponse">DropboxResponse</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_postToAPI">postToAPI</a>(string $endpoint, array $params = array(), string $accessToken = null)
+        
+                                            <p>Make a HTTP POST Request to the API endpoint type</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/DropboxResponse.html"><abbr title="Kunnu\Dropbox\DropboxResponse">DropboxResponse</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_postToContent">postToContent</a>(string $endpoint, array $params = array(), string $accessToken = null)
+        
+                                            <p>Make a HTTP POST Request to the Content endpoint type</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/ModelInterface.html"><abbr title="Kunnu\Dropbox\Models\ModelInterface">ModelInterface</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_makeModelFromResponse">makeModelFromResponse</a>(<a href="../../Kunnu/Dropbox/DropboxResponse.html"><abbr title="Kunnu\Dropbox\DropboxResponse">DropboxResponse</abbr></a> $response)
+        
+                                            <p>Make Model from DropboxResponse</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_makeDropboxFile">makeDropboxFile</a>(string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a> $dropboxFile, int $maxLength = -1, int $offset = -1)
+        
+                                            <p>Make DropboxFile Object</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FolderMetadata.html"><abbr title="Kunnu\Dropbox\Models\FolderMetadata">FolderMetadata</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getMetadata">getMetadata</a>(string $path, array $params = array())
+        
+                                            <p>Get the Metadata for a file or folder</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/MetadataCollection.html"><abbr title="Kunnu\Dropbox\Models\MetadataCollection">MetadataCollection</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_listFolder">listFolder</a>(string $path = null, array $params = array())
+        
+                                            <p>Get the contents of a Folder</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/MetadataCollection.html"><abbr title="Kunnu\Dropbox\Models\MetadataCollection">MetadataCollection</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_listFolderContinue">listFolderContinue</a>(string $cursor)
+        
+                                            <p>Paginate through all files and retrieve updates to the folder,
+using the cursor retrieved from listFolder or listFolderContinue</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_listFolderLatestCursor">listFolderLatestCursor</a>(string $path, array $params = array())
+        
+                                            <p>Get a cursor for the folder's state.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/ModelCollection.html"><abbr title="Kunnu\Dropbox\Models\ModelCollection">ModelCollection</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_listRevisions">listRevisions</a>(string $path, array $params = array())
+        
+                                            <p>Get Revisions of a File</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/SearchResults.html"><abbr title="Kunnu\Dropbox\Models\SearchResults">SearchResults</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_search">search</a>(string $path, string $query, array $params = array())
+        
+                                            <p>Search a folder for files/folders</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/FolderMetadata.html"><abbr title="Kunnu\Dropbox\Models\FolderMetadata">FolderMetadata</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_createFolder">createFolder</a>(string $path)
+        
+                                            <p>Create a folder at the given path</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/DeletedMetadata.html"><abbr title="Kunnu\Dropbox\Models\DeletedMetadata">DeletedMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FolderMetadata.html"><abbr title="Kunnu\Dropbox\Models\FolderMetadata">FolderMetadata</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_delete">delete</a>(string $path)
+        
+                                            <p>Delete a file or folder at the given path</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<abbr title="Kunnu\Dropbox\DeletedMetadata">DeletedMetadata</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_move">move</a>(string $fromPath, string $toPath)
+        
+                                            <p>Move a file or folder to a different location</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<abbr title="Kunnu\Dropbox\DeletedMetadata">DeletedMetadata</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_copy">copy</a>(string $fromPath, string $toPath)
+        
+                                            <p>Copy a file or folder to a different location</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/DeletedMetadata.html"><abbr title="Kunnu\Dropbox\Models\DeletedMetadata">DeletedMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FolderMetadata.html"><abbr title="Kunnu\Dropbox\Models\FolderMetadata">FolderMetadata</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_restore">restore</a>(string $path, string $rev)
+        
+                                            <p>Restore a file to the specific version</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/CopyReference.html"><abbr title="Kunnu\Dropbox\Models\CopyReference">CopyReference</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getCopyReference">getCopyReference</a>(string $path)
+        
+                                            <p>Get Copy Reference</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FolderMetadata.html"><abbr title="Kunnu\Dropbox\Models\FolderMetadata">FolderMetadata</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_saveCopyReference">saveCopyReference</a>(string $path, string $copyReference)
+        
+                                            <p>Save Copy Reference</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/TemporaryLink.html"><abbr title="Kunnu\Dropbox\Models\TemporaryLink">TemporaryLink</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getTemporaryLink">getTemporaryLink</a>(string $path)
+        
+                                            <p>Get a temporary link to stream contents of a file</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_saveUrl">saveUrl</a>(string $path, string $url)
+        
+                                            <p>Save a specified URL into a file in user's Dropbox</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string|<a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_checkJobStatus">checkJobStatus</a>($asyncJobId)
+        
+                                            <p>Save a specified URL into a file in user's Dropbox</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_upload">upload</a>(string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a> $dropboxFile, string $path, array $params = array())
+        
+                                            <p>Upload a File to Dropbox</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_simpleUpload">simpleUpload</a>(string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a> $dropboxFile, string $path, array $params = array())
+        
+                                            <p>Upload a File to Dropbox in a single request</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_startUploadSession">startUploadSession</a>(string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a> $dropboxFile, int $chunkSize = -1, boolean $close = false)
+        
+                                            <p>Start an Upload Session</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_finishUploadSession">finishUploadSession</a>(string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a> $dropboxFile, string $sessionId, int $offset, int $remaining, string $path, array $params = array())
+        
+                                            <p>Finish an upload session and save the uploaded data to the given file path</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_appendUploadSession">appendUploadSession</a>(string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a> $dropboxFile, string $sessionId, int $offset, int $chunkSize, boolean $close = false)
+        
+                                            <p>Append more data to an Upload Session</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_uploadChunked">uploadChunked</a>(string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a> $dropboxFile, string $path, int $fileSize = null, int $chunkSize = null, array $params = array())
+        
+                                            <p>Upload file in sessions/chunks</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getThumbnailSize">getThumbnailSize</a>(string $size)
+        
+                                            <p>Get thumbnail size</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/Thumbnail.html"><abbr title="Kunnu\Dropbox\Models\Thumbnail">Thumbnail</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getThumbnail">getThumbnail</a>(string $path, string $size = &#039;small&#039;, string $format = &#039;jpeg&#039;)
+        
+                                            <p>Get a thumbnail for an image</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/File.html"><abbr title="Kunnu\Dropbox\Models\File">File</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_download">download</a>(string $path)
+        
+                                            <p>Download a File</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getMetadataFromResponseHeaders">getMetadataFromResponseHeaders</a>(<a href="../../Kunnu/Dropbox/DropboxResponse.html"><abbr title="Kunnu\Dropbox\DropboxResponse">DropboxResponse</abbr></a> $response)
+        
+                                            <p>Get metadata from response headers</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/Account.html"><abbr title="Kunnu\Dropbox\Models\Account">Account</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getCurrentAccount">getCurrentAccount</a>()
+        
+                                            <p>Get Current Account</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/Account.html"><abbr title="Kunnu\Dropbox\Models\Account">Account</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getAccount">getAccount</a>(string $account_id)
+        
+                                            <p>Get Account</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Kunnu/Dropbox/Models/AccountList.html"><abbr title="Kunnu\Dropbox\Models\AccountList">AccountList</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getAccounts">getAccounts</a>(array $account_ids = array())
+        
+                                            <p>Get Multiple Accounts in one call</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getSpaceUsage">getSpaceUsage</a>()
+        
+                                            <p>Get Space Usage for the current user's account</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L103">line 103</a></div>
+        <code>                    
+    <strong>__construct</strong>(<a href="../../Kunnu/Dropbox/DropboxApp.html"><abbr title="Kunnu\Dropbox\DropboxApp">DropboxApp</abbr></a> $app, array $config = array())
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Create a new Dropbox instance</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Kunnu/Dropbox/DropboxApp.html"><abbr title="Kunnu\Dropbox\DropboxApp">DropboxApp</abbr></a></td>
+                <td>$app</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$config</td>
+                <td>Configuration Array</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getClient">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L136">line 136</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/DropboxClient.html"><abbr title="Kunnu\Dropbox\DropboxClient">DropboxClient</abbr></a>
+    <strong>getClient</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the Client</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/DropboxClient.html"><abbr title="Kunnu\Dropbox\DropboxClient">DropboxClient</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAccessToken">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L146">line 146</a></div>
+        <code>                    string
+    <strong>getAccessToken</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the Access Token.</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>Access Token</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getApp">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L156">line 156</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/DropboxApp.html"><abbr title="Kunnu\Dropbox\DropboxApp">DropboxApp</abbr></a>
+    <strong>getApp</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the Dropbox App.</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/DropboxApp.html"><abbr title="Kunnu\Dropbox\DropboxApp">DropboxApp</abbr></a></td>
+            <td>Dropbox App</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getOAuth2Client">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L166">line 166</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Authentication/OAuth2Client.html"><abbr title="Kunnu\Dropbox\Authentication\OAuth2Client">OAuth2Client</abbr></a>
+    <strong>getOAuth2Client</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get OAuth2Client</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Authentication/OAuth2Client.html"><abbr title="Kunnu\Dropbox\Authentication\OAuth2Client">OAuth2Client</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getRandomStringGenerator">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L184">line 184</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Security/RandomStringGeneratorInterface.html"><abbr title="Kunnu\Dropbox\Security\RandomStringGeneratorInterface">RandomStringGeneratorInterface</abbr></a>
+    <strong>getRandomStringGenerator</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the Random String Generator</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Security/RandomStringGeneratorInterface.html"><abbr title="Kunnu\Dropbox\Security\RandomStringGeneratorInterface">RandomStringGeneratorInterface</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPersistentDataStore">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L194">line 194</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Store/PersistentDataStoreInterface.html"><abbr title="Kunnu\Dropbox\Store\PersistentDataStoreInterface">PersistentDataStoreInterface</abbr></a>
+    <strong>getPersistentDataStore</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get Persistent Data Store</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Store/PersistentDataStoreInterface.html"><abbr title="Kunnu\Dropbox\Store\PersistentDataStoreInterface">PersistentDataStoreInterface</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAuthHelper">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L204">line 204</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Authentication/DropboxAuthHelper.html"><abbr title="Kunnu\Dropbox\Authentication\DropboxAuthHelper">DropboxAuthHelper</abbr></a>
+    <strong>getAuthHelper</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get Dropbox Auth Helper</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Authentication/DropboxAuthHelper.html"><abbr title="Kunnu\Dropbox\Authentication\DropboxAuthHelper">DropboxAuthHelper</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_setAccessToken">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L220">line 220</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Dropbox.html"><abbr title="Kunnu\Dropbox\Dropbox">Dropbox</abbr></a>
+    <strong>setAccessToken</strong>(string $accessToken)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set the Access Token.</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$accessToken</td>
+                <td>Access Token</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Dropbox.html"><abbr title="Kunnu\Dropbox\Dropbox">Dropbox</abbr></a></td>
+            <td>Dropbox Client</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_sendRequest">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L240">line 240</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/DropboxResponse.html"><abbr title="Kunnu\Dropbox\DropboxResponse">DropboxResponse</abbr></a>
+    <strong>sendRequest</strong>(string $method, string $endpoint, string $endpointType = &#039;api&#039;, array $params = array(), string $accessToken = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Make Request to the API</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$method</td>
+                <td>HTTP Request Method</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$endpoint</td>
+                <td>API Endpoint to send Request to</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$endpointType</td>
+                <td>Endpoint type ['api'|'content']</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td>Request Query Params</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$accessToken</td>
+                <td>Access Token to send with the Request</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/DropboxResponse.html"><abbr title="Kunnu\Dropbox\DropboxResponse">DropboxResponse</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Kunnu/Dropbox/Exceptions/DropboxClientException.html"><abbr title="Kunnu\Dropbox\Exceptions\DropboxClientException">DropboxClientException</abbr></a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_postToAPI">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L262">line 262</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/DropboxResponse.html"><abbr title="Kunnu\Dropbox\DropboxResponse">DropboxResponse</abbr></a>
+    <strong>postToAPI</strong>(string $endpoint, array $params = array(), string $accessToken = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Make a HTTP POST Request to the API endpoint type</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$endpoint</td>
+                <td>API Endpoint to send Request to</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td>Request Query Params</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$accessToken</td>
+                <td>Access Token to send with the Request</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/DropboxResponse.html"><abbr title="Kunnu\Dropbox\DropboxResponse">DropboxResponse</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_postToContent">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L276">line 276</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/DropboxResponse.html"><abbr title="Kunnu\Dropbox\DropboxResponse">DropboxResponse</abbr></a>
+    <strong>postToContent</strong>(string $endpoint, array $params = array(), string $accessToken = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Make a HTTP POST Request to the Content endpoint type</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$endpoint</td>
+                <td>Content Endpoint to send Request to</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td>Request Query Params</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$accessToken</td>
+                <td>Access Token to send with the Request</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/DropboxResponse.html"><abbr title="Kunnu\Dropbox\DropboxResponse">DropboxResponse</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_makeModelFromResponse">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L288">line 288</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/ModelInterface.html"><abbr title="Kunnu\Dropbox\Models\ModelInterface">ModelInterface</abbr></a>
+    <strong>makeModelFromResponse</strong>(<a href="../../Kunnu/Dropbox/DropboxResponse.html"><abbr title="Kunnu\Dropbox\DropboxResponse">DropboxResponse</abbr></a> $response)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Make Model from DropboxResponse</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Kunnu/Dropbox/DropboxResponse.html"><abbr title="Kunnu\Dropbox\DropboxResponse">DropboxResponse</abbr></a></td>
+                <td>$response</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/ModelInterface.html"><abbr title="Kunnu\Dropbox\Models\ModelInterface">ModelInterface</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_makeDropboxFile">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L306">line 306</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a>
+    <strong>makeDropboxFile</strong>(string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a> $dropboxFile, int $maxLength = -1, int $offset = -1)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Make DropboxFile Object</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a></td>
+                <td>$dropboxFile</td>
+                <td>DropboxFile object or Path to file</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$maxLength</td>
+                <td>Max Bytes to read from the file</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$offset</td>
+                <td>Seek to specified offset before reading</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getMetadata">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L334">line 334</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FolderMetadata.html"><abbr title="Kunnu\Dropbox\Models\FolderMetadata">FolderMetadata</abbr></a>
+    <strong>getMetadata</strong>(string $path, array $params = array())
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the Metadata for a file or folder</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Path of the file or folder</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td>Additional Params</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FolderMetadata.html"><abbr title="Kunnu\Dropbox\Models\FolderMetadata">FolderMetadata</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_listFolder">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L361">line 361</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/MetadataCollection.html"><abbr title="Kunnu\Dropbox\Models\MetadataCollection">MetadataCollection</abbr></a>
+    <strong>listFolder</strong>(string $path = null, array $params = array())
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the contents of a Folder</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Path to the folder. Defaults to root.</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td>Additional Params</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/MetadataCollection.html"><abbr title="Kunnu\Dropbox\Models\MetadataCollection">MetadataCollection</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_listFolderContinue">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L390">line 390</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/MetadataCollection.html"><abbr title="Kunnu\Dropbox\Models\MetadataCollection">MetadataCollection</abbr></a>
+    <strong>listFolderContinue</strong>(string $cursor)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Paginate through all files and retrieve updates to the folder,
+using the cursor retrieved from listFolder or listFolderContinue</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$cursor</td>
+                <td>The cursor returned by your
+last call to listFolder or listFolderContinue</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/MetadataCollection.html"><abbr title="Kunnu\Dropbox\Models\MetadataCollection">MetadataCollection</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_listFolderLatestCursor">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L408">line 408</a></div>
+        <code>                    string
+    <strong>listFolderLatestCursor</strong>(string $path, array $params = array())
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get a cursor for the folder's state.</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Path to the folder. Defaults to root.</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td>Additional Params</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>The Cursor for the folder's state</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_listRevisions">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L445">line 445</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/ModelCollection.html"><abbr title="Kunnu\Dropbox\Models\ModelCollection">ModelCollection</abbr></a>
+    <strong>listRevisions</strong>(string $path, array $params = array())
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get Revisions of a File</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Path to the file</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td>Additional Params</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/ModelCollection.html"><abbr title="Kunnu\Dropbox\Models\ModelCollection">ModelCollection</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_search">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L481">line 481</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/SearchResults.html"><abbr title="Kunnu\Dropbox\Models\SearchResults">SearchResults</abbr></a>
+    <strong>search</strong>(string $path, string $query, array $params = array())
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Search a folder for files/folders</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Path to search</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$query</td>
+                <td>Search Query</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td>Additional Params</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/SearchResults.html"><abbr title="Kunnu\Dropbox\Models\SearchResults">SearchResults</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_createFolder">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L509">line 509</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/FolderMetadata.html"><abbr title="Kunnu\Dropbox\Models\FolderMetadata">FolderMetadata</abbr></a>
+    <strong>createFolder</strong>(string $path)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Create a folder at the given path</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Path to create</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/FolderMetadata.html"><abbr title="Kunnu\Dropbox\Models\FolderMetadata">FolderMetadata</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_delete">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L535">line 535</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/DeletedMetadata.html"><abbr title="Kunnu\Dropbox\Models\DeletedMetadata">DeletedMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FolderMetadata.html"><abbr title="Kunnu\Dropbox\Models\FolderMetadata">FolderMetadata</abbr></a>
+    <strong>delete</strong>(string $path)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Delete a file or folder at the given path</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Path to file/folder to delete</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/DeletedMetadata.html"><abbr title="Kunnu\Dropbox\Models\DeletedMetadata">DeletedMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FolderMetadata.html"><abbr title="Kunnu\Dropbox\Models\FolderMetadata">FolderMetadata</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_move">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L558">line 558</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<abbr title="Kunnu\Dropbox\DeletedMetadata">DeletedMetadata</abbr>
+    <strong>move</strong>(string $fromPath, string $toPath)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Move a file or folder to a different location</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$fromPath</td>
+                <td>Path to be moved</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$toPath</td>
+                <td>Path to be moved to</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<abbr title="Kunnu\Dropbox\DeletedMetadata">DeletedMetadata</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_copy">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L582">line 582</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<abbr title="Kunnu\Dropbox\DeletedMetadata">DeletedMetadata</abbr>
+    <strong>copy</strong>(string $fromPath, string $toPath)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Copy a file or folder to a different location</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$fromPath</td>
+                <td>Path to be copied</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$toPath</td>
+                <td>Path to be copied to</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<abbr title="Kunnu\Dropbox\DeletedMetadata">DeletedMetadata</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_restore">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L606">line 606</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/DeletedMetadata.html"><abbr title="Kunnu\Dropbox\Models\DeletedMetadata">DeletedMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FolderMetadata.html"><abbr title="Kunnu\Dropbox\Models\FolderMetadata">FolderMetadata</abbr></a>
+    <strong>restore</strong>(string $path, string $rev)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Restore a file to the specific version</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Path to the file to restore</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$rev</td>
+                <td>Revision to store for the file</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/DeletedMetadata.html"><abbr title="Kunnu\Dropbox\Models\DeletedMetadata">DeletedMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FolderMetadata.html"><abbr title="Kunnu\Dropbox\Models\FolderMetadata">FolderMetadata</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getCopyReference">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L632">line 632</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/CopyReference.html"><abbr title="Kunnu\Dropbox\Models\CopyReference">CopyReference</abbr></a>
+    <strong>getCopyReference</strong>(string $path)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get Copy Reference</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Path to the file or folder to get a copy reference to</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/CopyReference.html"><abbr title="Kunnu\Dropbox\Models\CopyReference">CopyReference</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_saveCopyReference">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L657">line 657</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FolderMetadata.html"><abbr title="Kunnu\Dropbox\Models\FolderMetadata">FolderMetadata</abbr></a>
+    <strong>saveCopyReference</strong>(string $path, string $copyReference)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Save Copy Reference</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Path to the file or folder to get a copy reference to</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$copyReference</td>
+                <td>Copy reference returned by getCopyReference</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>|<a href="../../Kunnu/Dropbox/Models/FolderMetadata.html"><abbr title="Kunnu\Dropbox\Models\FolderMetadata">FolderMetadata</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getTemporaryLink">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L686">line 686</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/TemporaryLink.html"><abbr title="Kunnu\Dropbox\Models\TemporaryLink">TemporaryLink</abbr></a>
+    <strong>getTemporaryLink</strong>(string $path)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get a temporary link to stream contents of a file</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Path to the file you want a temporary link to</p>
+
+<p>https://www.dropbox.com/developers/documentation/http/documentation#files-get<em>temporary</em>link</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/TemporaryLink.html"><abbr title="Kunnu\Dropbox\Models\TemporaryLink">TemporaryLink</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_saveUrl">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L710">line 710</a></div>
+        <code>                    string
+    <strong>saveUrl</strong>(string $path, string $url)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Save a specified URL into a file in user's Dropbox</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Path where the URL will be saved</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$url</td>
+                <td>URL to be saved</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>Async Job ID</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_checkJobStatus">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L739">line 739</a></div>
+        <code>                    string|<a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>
+    <strong>checkJobStatus</strong>($asyncJobId)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Save a specified URL into a file in user's Dropbox</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$asyncJobId</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string|<a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a></td>
+            <td>Status (failed|in_progress) or FileMetadata (if complete)</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_upload">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L773">line 773</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>
+    <strong>upload</strong>(string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a> $dropboxFile, string $path, array $params = array())
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Upload a File to Dropbox</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a></td>
+                <td>$dropboxFile</td>
+                <td>DropboxFile object or Path to file</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Path to upload the file to</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td>Additional Params</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_simpleUpload">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L799">line 799</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>
+    <strong>simpleUpload</strong>(string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a> $dropboxFile, string $path, array $params = array())
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Upload a File to Dropbox in a single request</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a></td>
+                <td>$dropboxFile</td>
+                <td>DropboxFile object or Path to file</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Path to upload the file to</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td>Additional Params</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_startUploadSession">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L827">line 827</a></div>
+        <code>                    string
+    <strong>startUploadSession</strong>(string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a> $dropboxFile, int $chunkSize = -1, boolean $close = false)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Start an Upload Session</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a></td>
+                <td>$dropboxFile</td>
+                <td>DropboxFile object or Path to file</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$chunkSize</td>
+                <td>Size of file chunk to upload</td>
+            </tr>
+                    <tr>
+                <td>boolean</td>
+                <td>$close</td>
+                <td>Closes the session for "appendUploadSession"</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>Unique identifier for the upload session</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_finishUploadSession">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L865">line 865</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a>
+    <strong>finishUploadSession</strong>(string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a> $dropboxFile, string $sessionId, int $offset, int $remaining, string $path, array $params = array())
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Finish an upload session and save the uploaded data to the given file path</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a></td>
+                <td>$dropboxFile</td>
+                <td>DropboxFile object or Path to file</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$sessionId</td>
+                <td>Session ID returned by <code>startUploadSession</code></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$offset</td>
+                <td>The amount of data that has been uploaded so far</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$remaining</td>
+                <td>The amount of data that is remaining</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Path to save the file to, on Dropbox</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td>Additional Params</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/FileMetadata.html"><abbr title="Kunnu\Dropbox\Models\FileMetadata">FileMetadata</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_appendUploadSession">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L909">line 909</a></div>
+        <code>                    string
+    <strong>appendUploadSession</strong>(string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a> $dropboxFile, string $sessionId, int $offset, int $chunkSize, boolean $close = false)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Append more data to an Upload Session</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a></td>
+                <td>$dropboxFile</td>
+                <td>DropboxFile object or Path to file</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$sessionId</td>
+                <td>Session ID returned by <code>startUploadSession</code></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$offset</td>
+                <td>The amount of data that has been uploaded so far</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$chunkSize</td>
+                <td>The amount of data to upload</td>
+            </tr>
+                    <tr>
+                <td>boolean</td>
+                <td>$close</td>
+                <td>Closes the session for futher "appendUploadSession" calls</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>Unique identifier for the upload session</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_uploadChunked">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L952">line 952</a></div>
+        <code>                    string
+    <strong>uploadChunked</strong>(string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a> $dropboxFile, string $path, int $fileSize = null, int $chunkSize = null, array $params = array())
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Upload file in sessions/chunks</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string|<a href="../../Kunnu/Dropbox/DropboxFile.html"><abbr title="Kunnu\Dropbox\DropboxFile">DropboxFile</abbr></a></td>
+                <td>$dropboxFile</td>
+                <td>DropboxFile object or Path to file</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Path to save the file to, on Dropbox</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$fileSize</td>
+                <td>The size of the file</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$chunkSize</td>
+                <td>The amount of data to upload in each chunk</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td>Additional Params</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td>Unique identifier for the upload session</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getThumbnailSize">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L1010">line 1010</a></div>
+        <code>            protected        string
+    <strong>getThumbnailSize</strong>(string $size)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get thumbnail size</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$size</td>
+                <td>Thumbnail Size</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getThumbnail">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L1035">line 1035</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/Thumbnail.html"><abbr title="Kunnu\Dropbox\Models\Thumbnail">Thumbnail</abbr></a>
+    <strong>getThumbnail</strong>(string $path, string $size = &#039;small&#039;, string $format = &#039;jpeg&#039;)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get a thumbnail for an image</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Path to the file you want a thumbnail to</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$size</td>
+                <td>Size for the thumbnail image ['thumb','small','medium','large','huge']</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$format</td>
+                <td>Format for the thumbnail image ['jpeg'|'png']</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/Thumbnail.html"><abbr title="Kunnu\Dropbox\Models\Thumbnail">Thumbnail</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_download">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L1072">line 1072</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/File.html"><abbr title="Kunnu\Dropbox\Models\File">File</abbr></a>
+    <strong>download</strong>(string $path)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Download a File</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>Path to the file you want to download</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/File.html"><abbr title="Kunnu\Dropbox\Models\File">File</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getMetadataFromResponseHeaders">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L1099">line 1099</a></div>
+        <code>            protected        array
+    <strong>getMetadataFromResponseHeaders</strong>(<a href="../../Kunnu/Dropbox/DropboxResponse.html"><abbr title="Kunnu\Dropbox\DropboxResponse">DropboxResponse</abbr></a> $response)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get metadata from response headers</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../Kunnu/Dropbox/DropboxResponse.html"><abbr title="Kunnu\Dropbox\DropboxResponse">DropboxResponse</abbr></a></td>
+                <td>$response</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getCurrentAccount">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L1135">line 1135</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/Account.html"><abbr title="Kunnu\Dropbox\Models\Account">Account</abbr></a>
+    <strong>getCurrentAccount</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get Current Account</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/Account.html"><abbr title="Kunnu\Dropbox\Models\Account">Account</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAccount">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L1154">line 1154</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/Account.html"><abbr title="Kunnu\Dropbox\Models\Account">Account</abbr></a>
+    <strong>getAccount</strong>(string $account_id)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get Account</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$account_id</td>
+                <td>Account ID of the account to get details for</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/Account.html"><abbr title="Kunnu\Dropbox\Models\Account">Account</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getAccounts">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L1173">line 1173</a></div>
+        <code>                    <a href="../../Kunnu/Dropbox/Models/AccountList.html"><abbr title="Kunnu\Dropbox\Models\AccountList">AccountList</abbr></a>
+    <strong>getAccounts</strong>(array $account_ids = array())
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get Multiple Accounts in one call</p>                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$account_ids</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Kunnu/Dropbox/Models/AccountList.html"><abbr title="Kunnu\Dropbox\Models\AccountList">AccountList</abbr></a></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getSpaceUsage">
+        <div class="location">at line         <a href="https://github.com/kunalvarma05/dropbox-php-sdk/blob/v0.1.0/src/Dropbox/Dropbox.php#L1190">line 1190</a></div>
+        <code>                    array
+    <strong>getSpaceUsage</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get Space Usage for the current user's account</p>                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>

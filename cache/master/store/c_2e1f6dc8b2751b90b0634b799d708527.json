@@ -1,0 +1,164 @@
+{
+    "name": "Kunnu\\Dropbox\\Models\\FolderSharingInfo",
+    "line": 4,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox\\Models",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Models\\FolderSharingInfo.php",
+    "relative_file": "\\src\\Dropbox\\Models\\FolderSharingInfo.php",
+    "hash": "1254ef0d785f7593b0e52bfc500b44703810b728",
+    "parent": "Kunnu\\Dropbox\\Models\\BaseModel",
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": {
+        "read_only": {
+            "name": "read_only",
+            "line": 12,
+            "short_desc": "True if the file or folder is inside a read-only shared folder.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "parent_shared_folder_id": {
+            "name": "parent_shared_folder_id",
+            "line": 20,
+            "short_desc": "ID of shared folder that holds this folder.",
+            "long_desc": "Set if the folder is contained by a shared folder.",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "shared_folder_id": {
+            "name": "shared_folder_id",
+            "line": 28,
+            "short_desc": "If this folder is a shared folder mount point,\nthe ID of the shared folder mounted at this location.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        }
+    },
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 36,
+            "short_desc": "Create a new Folder Sharing Info instance",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "data": {
+                    "name": "data",
+                    "line": 36,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "isReadOnly": {
+            "name": "isReadOnly",
+            "line": 49,
+            "short_desc": "True if the folder or folder is inside a read-only shared folder.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getParentSharedFolderId": {
+            "name": "getParentSharedFolderId",
+            "line": 59,
+            "short_desc": "ID of shared folder that holds this folder.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getSharedFolderId": {
+            "name": "getSharedFolderId",
+            "line": 69,
+            "short_desc": "ID of shared folder.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

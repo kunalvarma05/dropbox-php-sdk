@@ -1,0 +1,318 @@
+{
+    "name": "Kunnu\\Dropbox\\Models\\MetadataCollection",
+    "line": 4,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox\\Models",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Models\\MetadataCollection.php",
+    "relative_file": "\\src\\Dropbox\\Models\\MetadataCollection.php",
+    "hash": "d5d9b12c6659624dfefb6620df6e9ea1f32cd156",
+    "parent": null,
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": {
+        "data": {
+            "name": "data",
+            "line": 33,
+            "short_desc": "Collection Data",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "items": {
+            "name": "items",
+            "line": 40,
+            "short_desc": "List of Files\/Folder Metadata",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\ModelCollection",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": {
+                "name": {
+                    "parts": [
+                        "null"
+                    ]
+                }
+            },
+            "errors": []
+        },
+        "cursor": {
+            "name": "cursor",
+            "line": 47,
+            "short_desc": "Cursor for pagination and updates",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "hasMoreItems": {
+            "name": "hasMoreItems",
+            "line": 54,
+            "short_desc": "If more items are available",
+            "long_desc": "",
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        }
+    },
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 61,
+            "short_desc": "Create a new Metadata Collection",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "data": {
+                    "name": "data",
+                    "line": 61,
+                    "short_desc": "Collection Data",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getCollectionItemsKey": {
+            "name": "getCollectionItemsKey",
+            "line": 76,
+            "short_desc": "Get the Collection Items Key",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getCollectionHasMoreItemsKey": {
+            "name": "getCollectionHasMoreItemsKey",
+            "line": 86,
+            "short_desc": "Get the Collection has-more-items Key",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getCollectionCursorKey": {
+            "name": "getCollectionCursorKey",
+            "line": 96,
+            "short_desc": "Get the Collection Cursor Key",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getData": {
+            "name": "getData",
+            "line": 106,
+            "short_desc": "Get the Collection data",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getItems": {
+            "name": "getItems",
+            "line": 116,
+            "short_desc": "Get the Items",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\Models\\ModelCollection",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getCursor": {
+            "name": "getCursor",
+            "line": 126,
+            "short_desc": "Get the cursor",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "hasMoreItems": {
+            "name": "hasMoreItems",
+            "line": 136,
+            "short_desc": "More items are available",
+            "long_desc": "",
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "processItems": {
+            "name": "processItems",
+            "line": 149,
+            "short_desc": "Process items and cast them\nto their respective Models",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "2",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "items": {
+                    "name": "items",
+                    "line": 149,
+                    "short_desc": "Unprocessed Items",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": {
+        "COLLECTION_ITEMS_KEY": {
+            "name": "COLLECTION_ITEMS_KEY",
+            "line": 12,
+            "short_desc": "Collection Items Key",
+            "long_desc": ""
+        },
+        "COLLECTION_CURSOR_KEY": {
+            "name": "COLLECTION_CURSOR_KEY",
+            "line": 19,
+            "short_desc": "Collection Cursor Key",
+            "long_desc": ""
+        },
+        "COLLECTION_HAS_MORE_ITEMS_KEY": {
+            "name": "COLLECTION_HAS_MORE_ITEMS_KEY",
+            "line": 26,
+            "short_desc": "Collection has-more-items Key",
+            "long_desc": ""
+        }
+    }
+}

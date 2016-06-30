@@ -1,0 +1,102 @@
+{
+    "name": "Kunnu\\Dropbox\\Http\\RequestBodyJsonEncoded",
+    "line": 7,
+    "short_desc": "RequestBodyJsonEncoded",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox\\Http",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Http\\RequestBodyJsonEncoded.php",
+    "relative_file": "\\src\\Dropbox\\Http\\RequestBodyJsonEncoded.php",
+    "hash": "bde08ee88a1216561efea4773f1fc75a7ca613b9",
+    "parent": null,
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": {
+        "Kunnu\\Dropbox\\Http\\RequestBodyInterface": "Kunnu\\Dropbox\\Http\\RequestBodyInterface"
+    },
+    "traits": [],
+    "properties": {
+        "params": {
+            "name": "params",
+            "line": 15,
+            "short_desc": "Request Params",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        }
+    },
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 22,
+            "short_desc": "Create a new RequestBodyJsonEncoded instance",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "params": {
+                    "name": "params",
+                    "line": 22,
+                    "short_desc": "Request Params",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getBody": {
+            "name": "getBody",
+            "line": 32,
+            "short_desc": "Get the Body of the Request",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ],
+                [
+                    "resource",
+                    false
+                ],
+                [
+                    "\\Kunnu\\Dropbox\\Http\\Psr\\Http\\Message\\StreamInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

@@ -1,0 +1,104 @@
+{
+    "name": "Kunnu\\Dropbox\\Http\\RequestBodyStream",
+    "line": 9,
+    "short_desc": "RequestBodyStream",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox\\Http",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\Http\\RequestBodyStream.php",
+    "relative_file": "\\src\\Dropbox\\Http\\RequestBodyStream.php",
+    "hash": "d41f11a420b76a8aa2429fd5ce0081dc1b0211f2",
+    "parent": null,
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "DropboxFile": "Kunnu\\Dropbox\\DropboxFile"
+    },
+    "errors": [],
+    "interfaces": {
+        "Kunnu\\Dropbox\\Http\\RequestBodyInterface": "Kunnu\\Dropbox\\Http\\RequestBodyInterface"
+    },
+    "traits": [],
+    "properties": {
+        "file": {
+            "name": "file",
+            "line": 17,
+            "short_desc": "File to be sent with the Request",
+            "long_desc": "",
+            "hint": [
+                [
+                    "\\Kunnu\\Dropbox\\DropboxFile",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        }
+    },
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 24,
+            "short_desc": "Create a new RequestBodyStream instance",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "file": {
+                    "name": "file",
+                    "line": 24,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Kunnu\\Dropbox\\DropboxFile",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Kunnu\\Dropbox\\DropboxFile",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getBody": {
+            "name": "getBody",
+            "line": 34,
+            "short_desc": "Get the Body of the Request",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ],
+                [
+                    "resource",
+                    false
+                ],
+                [
+                    "\\Kunnu\\Dropbox\\Http\\Psr\\Http\\Message\\StreamInterface",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

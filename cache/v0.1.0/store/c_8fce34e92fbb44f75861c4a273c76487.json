@@ -1,0 +1,208 @@
+{
+    "name": "Kunnu\\Dropbox\\DropboxApp",
+    "line": 4,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Kunnu\\Dropbox",
+    "file": "X:\\www\\api\/..\/dropbox\\src\\Dropbox\\DropboxApp.php",
+    "relative_file": "\\src\\Dropbox\\DropboxApp.php",
+    "hash": "e7a3072d2d8a7946aca1fe5d06f95d6595372a55",
+    "parent": null,
+    "modifiers": "Stmt_Class",
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": {
+        "clientId": {
+            "name": "clientId",
+            "line": 14,
+            "short_desc": "The Client ID of the App",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/apps"
+                    ]
+                ]
+            },
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "clientSecret": {
+            "name": "clientSecret",
+            "line": 23,
+            "short_desc": "The Client Secret of the App",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": {
+                "link": [
+                    [
+                        "https:\/\/www.dropbox.com\/developers\/apps"
+                    ]
+                ]
+            },
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "accessToken": {
+            "name": "accessToken",
+            "line": 30,
+            "short_desc": "The Access Token",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        }
+    },
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 39,
+            "short_desc": "Create a new Dropbox instance",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "clientId": {
+                    "name": "clientId",
+                    "line": 39,
+                    "short_desc": "Application Client ID",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "clientSecret": {
+                    "name": "clientSecret",
+                    "line": 39,
+                    "short_desc": "Application Client Secret",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "accessToken": {
+                    "name": "accessToken",
+                    "line": 39,
+                    "short_desc": "Access Token",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "null",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getClientId": {
+            "name": "getClientId",
+            "line": 51,
+            "short_desc": "Get the App Client ID",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getClientSecret": {
+            "name": "getClientSecret",
+            "line": 61,
+            "short_desc": "Get the App Client Secret",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getAccessToken": {
+            "name": "getAccessToken",
+            "line": 71,
+            "short_desc": "Get the Access Token",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}
