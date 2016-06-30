@@ -6,7 +6,11 @@ An unofficial PHP SDK to work with the [Dropbox API v2](https://www.dropbox.com/
 
 
 ## Get Started
-Head over to the **[Getting Started](https://github.com/kunalvarma05/dropbox-php-sdk/wiki/Getting-Started)** Wiki section to Install and Get started.
+Head over to the [**Getting Started**](https://github.com/kunalvarma05/dropbox-php-sdk/wiki/Getting-Started) Wiki section to Install and Get started.
+
+
+## API Docs
+[**View API Docs**](https://kunalvarma05.github.io/dropbox-php-sdk/)
 
 
 ## License
