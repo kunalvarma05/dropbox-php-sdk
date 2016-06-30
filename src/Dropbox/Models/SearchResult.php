@@ -59,7 +59,7 @@ class SearchResult extends BaseModel
     /**
      * Get the Search Result Metadata
      *
-     * @return \Kunnu\Dropbox\Models\FileMetadata|\Kunnu\Dropbox\Models\FileMetadata
+     * @return \Kunnu\Dropbox\Models\FileMetadata|\Kunnu\Dropbox\Models\FolderMetadata
      */
     public function getMetadata()
     {
