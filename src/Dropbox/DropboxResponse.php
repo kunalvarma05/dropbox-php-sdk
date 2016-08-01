@@ -1,6 +1,8 @@
 <?php
 namespace Kunnu\Dropbox;
 
+use Kunnu\Dropbox\Exceptions\DropboxClientException;
+
 class DropboxResponse
 {
     /**
@@ -127,5 +129,8 @@ class DropboxResponse
         $body = $this->getBody();
 
         $this->decodedBody = json_decode((string) $body, true);
+        if (is_null($this->decodedBody) || $this->decodedBody === false) {
+            throw new DropboxClientException("Invalid Response.");
+        }
     }
 }
