@@ -1,6 +1,8 @@
 <?php
 namespace Kunnu\Dropbox;
 
+use Kunnu\Dropbox\Exceptions\DropboxClientException;
+
 class DropboxResponse
 {
     /**
@@ -45,6 +47,8 @@ class DropboxResponse
      * @param string|null $body
      * @param int|null    $httpStatusCode
      * @param array       $headers
+     * 
+     * @throws DropboxClientException
      */
     public function __construct(DropboxRequest $request, $body = null, $httpStatusCode = null, array $headers = [])
     {
@@ -120,6 +124,8 @@ class DropboxResponse
     /**
      * Decode the Body
      *
+     * @throws DropboxClientException
+     * 
      * @return void
      */
     protected function decodeBody()
@@ -127,5 +133,9 @@ class DropboxResponse
         $body = $this->getBody();
 
         $this->decodedBody = json_decode((string) $body, true);
+        // if json cannot be decoded or if the encoded data is deeper than the recursion limit
+        if ($this->decodedBody === null) {
+            throw new DropboxClientException("Invalid Response.");
+        }
     }
 }
