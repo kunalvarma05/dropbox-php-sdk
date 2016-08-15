@@ -65,6 +65,28 @@ class DropboxFile
     }
 
     /**
+     * Set the offset to start reading
+     * the data from the stream
+     *
+     * @param int $offset
+     */
+    public function setOffset($offset)
+    {
+        $this->offset = $offset;
+    }
+
+    /**
+     * Set the Max Length till where to read
+     * the data from the stream.
+     *
+     * @param int $maxLength
+     */
+    public function setMaxLength($maxLength)
+    {
+        $this->maxLength = $maxLength;
+    }
+
+    /**
      * Opens the File Stream
      *
      * @throws DropboxClientException
