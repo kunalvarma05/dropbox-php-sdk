@@ -317,6 +317,9 @@ class Dropbox
             }
         }
 
+        $dropboxFile->setOffset($offset);
+        $dropboxFile->setMaxLength($maxLength);
+
         //Return the DropboxFile Object
         return $dropboxFile;
     }
