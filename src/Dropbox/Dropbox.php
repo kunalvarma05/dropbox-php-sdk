@@ -986,17 +986,16 @@ class Dropbox
         //Remaining
         $remaining = $fileSize - $chunkSize;
 
-        //While the remaining bytes
-        //are more than or equal to the
-        //chunk size, we'll append the
-        //chunk to the upload session.
+        //While the remaining bytes are
+        //more than the chunk size, append
+        //the chunk to the upload session.
         while ($remaining > $chunkSize) {
             //Append the next chunk to the Upload session
             $sessionId = $this->appendUploadSession($dropboxFile, $sessionId, $uploaded, $chunkSize);
 
             //Update remaining and uploaded
-            $uploaded += $chunkSize;
-            $remaining -= $chunkSize;
+            $uploaded = $uploaded + $chunkSize;
+            $remaining = $remaining - $chunkSize;
         }
 
         //Finish the Upload Session and return the Uploaded File Metadata
