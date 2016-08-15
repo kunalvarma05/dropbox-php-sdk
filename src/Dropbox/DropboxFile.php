@@ -34,7 +34,7 @@ class DropboxFile
     /**
      * File Stream
      *
-     * @var resource
+     * @var \GuzzleHttp\Psr7\Stream
      */
     protected $stream;
 
@@ -77,7 +77,7 @@ class DropboxFile
             throw new DropboxClientException('Failed to create DropboxFile instance. Unable to read resource: ' . $this->path . '.');
         }
 
-        $this->stream = fopen($this->path, 'r');
+        $this->stream = \GuzzleHttp\Psr7\stream_for(fopen($this->path, 'r'));
 
         if (!$this->stream) {
             throw new DropboxClientException('Failed to create DropboxFile instance. Unable to open resource: ' . $this->path . '.');
@@ -87,7 +87,7 @@ class DropboxFile
     /**
      * Get the Open File Stream
      *
-     * @return resource
+     * @return GuzzleHttp\Psr7\Stream
      */
     public function getStream()
     {
@@ -99,9 +99,7 @@ class DropboxFile
      */
     public function close()
     {
-        if (is_resource($this->stream)) {
-            fclose($this->stream);
-        }
+        $this->stream->close();
     }
 
     /**
@@ -111,7 +109,20 @@ class DropboxFile
      */
     public function getContents()
     {
-        return stream_get_contents($this->stream, $this->maxLength, $this->offset);
+        // If an offset is provided
+        if ($this->offset !== -1)
+        {
+            // Seek to the offset
+            $this->stream->seek($this->offset);
+        }
+
+        // If a max length is provided
+        if ($this->maxLength !== -1) {
+            // Read from the offset till the maxLength
+            return $this->stream->read($this->maxLength);
+        }
+
+        return $this->stream->getContents();
     }
 
     /**
@@ -141,7 +152,7 @@ class DropboxFile
      */
     public function getSize()
     {
-        return filesize($this->path);
+        return $this->stream->getSize();
     }
 
     /**
