@@ -66,6 +66,16 @@ class DropboxRequest
      */
     protected $contentType = 'application/json';
 
+    /**
+     * If the Response needs to be validated
+     * against being a valid JSON response.
+     * Set this to false when an endpoint or
+     * request has no return values.
+     *
+     * @var boolean
+     */
+    protected $validateResponse = true;
+
 
     /**
      * Create a new DropboxRequest instance
@@ -106,10 +116,10 @@ class DropboxRequest
      *
      * @return array
      */
-     public function getParams()
-     {
-         return $this->params;
-     }
+    public function getParams()
+    {
+        return $this->params;
+    }
 
     /**
      * Get Access Token for the Request
@@ -200,7 +210,7 @@ class DropboxRequest
         //Set the params
         $this->params = $params;
 
-         return $this;
+        return $this;
      }
 
     /**
@@ -319,6 +329,16 @@ class DropboxRequest
     }
 
     /**
+     * Whether to validate response or not
+     *
+     * @return boolean
+     */
+    public function validateResponse()
+    {
+        return $this->validateResponse;
+    }
+
+    /**
      * Process Params for the File parameter
      *
      * @param  array  $params Request Params
@@ -333,6 +353,15 @@ class DropboxRequest
             $this->setFile($params['file']);
             //Remove the file item from the params array
             unset($params['file']);
+        }
+
+        //Whether the response needs to be validated
+        //against being a valid JSON response
+        if (isset($params['validateResponse'])) {
+            //Set the validateResponse
+            $this->validateResponse = $params['validateResponse'];
+            //Remove the validateResponse from the params array
+            unset($params['validateResponse']);
         }
 
         return $params;

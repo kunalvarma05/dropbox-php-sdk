@@ -86,10 +86,10 @@ class DropboxResponse
      *
      * @return string
      */
-     public function getDecodedBody()
-     {
-         return $this->decodedBody;
-     }
+    public function getDecodedBody()
+    {
+        return $this->decodedBody;
+    }
 
     /**
      * Get Access Token for the Request
@@ -133,9 +133,24 @@ class DropboxResponse
         $body = $this->getBody();
 
         $this->decodedBody = json_decode((string) $body, true);
-        // if json cannot be decoded or if the encoded data is deeper than the recursion limit
+
+        // If the response needs to be validated
+        if ($this->getRequest()->validateResponse()) {
+            //Validate Response
+            $this->validateResponse();
+        }
+    }
+
+    /**
+     * Validate Response
+     *
+     * @return void
+     */
+    protected function validateResponse()
+    {
+        // If JSON cannot be decoded
         if ($this->decodedBody === null) {
-            throw new DropboxClientException("Invalid Response.");
+            throw new DropboxClientException("Invalid Response");
         }
     }
 }

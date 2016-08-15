@@ -919,19 +919,24 @@ class Dropbox
             throw new DropboxClientException("Session ID, offset and chunk size cannot be null");
         }
 
-        $queryParams = [];
+        $params = [];
 
         //Set the File
-        $queryParams['file'] = $dropboxFile;
+        $params['file'] = $dropboxFile;
 
         //Set the Cursor: Session ID and Offset
-        $queryParams['cursor'] = ['session_id' => $sessionId, 'offset' => $offset];
+        $params['cursor'] = ['session_id' => $sessionId, 'offset' => $offset];
 
         //Set the close param
         $params['close'] = $close ? true : false;
 
+        //Since this endpoint doesn't have
+        //any return values, we'll disable the
+        //response validation for this request.
+        $params['validateResponse'] = false;
+
         //Upload File
-        $file = $this->postToContent('/files/upload_session/append_v2', $queryParams);
+        $file = $this->postToContent('/files/upload_session/append_v2', $params);
 
         //Make and Return the Model
         return $sessionId;
