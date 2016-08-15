@@ -167,5 +167,4 @@ class OAuth2Client
         //Revoke Access Token
         $response = $this->getClient()->sendRequest($request);
     }
-
 }

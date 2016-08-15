@@ -210,7 +210,7 @@ class DropboxRequest
         //Set the params
         $this->params = $params;
 
-        return $this;
+         return $this;
      }
 
     /**

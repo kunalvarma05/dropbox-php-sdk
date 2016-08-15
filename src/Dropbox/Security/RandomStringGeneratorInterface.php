@@ -16,5 +16,4 @@ interface RandomStringGeneratorInterface
      * @return string
      */
     public function generateString($length);
-
 }

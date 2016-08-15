@@ -72,5 +72,4 @@ class DropboxApp
     {
         return $this->accessToken;
     }
-
 }

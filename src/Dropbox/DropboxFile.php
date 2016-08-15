@@ -132,8 +132,7 @@ class DropboxFile
     public function getContents()
     {
         // If an offset is provided
-        if ($this->offset !== -1)
-        {
+        if ($this->offset !== -1) {
             // Seek to the offset
             $this->stream->seek($this->offset);
         }

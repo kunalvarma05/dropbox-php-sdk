@@ -121,5 +121,4 @@ class AccessToken extends BaseModel
     {
         return $this->teamId;
     }
-
 }

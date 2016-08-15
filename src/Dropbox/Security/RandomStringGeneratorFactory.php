@@ -69,5 +69,4 @@ class RandomStringGeneratorFactory
         //Unable to create a random string generator
         throw new DropboxClientException('Unable to detect a cryptographically secure pseudo-random string generator.');
     }
-
 }

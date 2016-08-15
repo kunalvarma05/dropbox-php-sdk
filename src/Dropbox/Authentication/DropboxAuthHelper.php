@@ -228,5 +228,4 @@ class DropboxAuthHelper
     {
         return $this->urlState;
     }
-
 }
