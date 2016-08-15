@@ -47,7 +47,7 @@ class DropboxResponse
      * @param string|null $body
      * @param int|null    $httpStatusCode
      * @param array       $headers
-     * 
+     *
      * @throws DropboxClientException
      */
     public function __construct(DropboxRequest $request, $body = null, $httpStatusCode = null, array $headers = [])
@@ -125,7 +125,7 @@ class DropboxResponse
      * Decode the Body
      *
      * @throws DropboxClientException
-     * 
+     *
      * @return void
      */
     protected function decodeBody()
