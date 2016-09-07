@@ -88,7 +88,10 @@ class OAuth2Client
     /**
      * Get the OAuth2 Authorization URL
      *
-     * @param string $redirectUri Callback URL to redirect user after authorization
+     * @param string $redirectUri Callback URL to redirect user after authorization.
+     *                            If null is passed, redirect_uri will be omitted
+     *                            from the url and the code will be presented directly
+     *                            to the user.
      * @param string $state       CSRF Token
      * @param array  $params      Additional Params
      *
@@ -96,15 +99,18 @@ class OAuth2Client
      *
      * @return string
      */
-    public function getAuthorizationUrl($redirectUri, $state = null, array $params = [])
+    public function getAuthorizationUrl($redirectUri = null, $state = null, array $params = [])
     {
         //Request Parameters
         $params = array_merge([
             'client_id' => $this->getApp()->getClientId(),
             'response_type' => 'code',
-            'redirect_uri' => $redirectUri,
             'state' => $state,
             ], $params);
+
+        if(!is_null($redirectUri)) {
+            $params['redirect_uri'] = $redirectUri;
+        }
 
         return $this->buildUrl('/oauth2/authorize', $params);
     }

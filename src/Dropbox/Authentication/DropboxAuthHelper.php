@@ -113,7 +113,7 @@ class DropboxAuthHelper
      *
      * @return string
      */
-    public function getAuthUrl($redirectUri, array $params = [], $urlState = null)
+    public function getAuthUrl($redirectUri = null, array $params = [], $urlState = null)
     {
         //Get CSRF State Token
         $state = $this->getCsrfToken();
@@ -188,7 +188,7 @@ class DropboxAuthHelper
      *
      * @return \Kunnu\Dropbox\Models\AccessToken
      */
-    public function getAccessToken($code, $state, $redirectUri)
+    public function getAccessToken($code, $state, $redirectUri = null)
     {
         //Decode the State
         $state = $this->decodeState($state);
