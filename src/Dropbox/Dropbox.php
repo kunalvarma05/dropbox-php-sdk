@@ -1004,7 +1004,7 @@ class Dropbox
         }
 
         //Finish the Upload Session and return the Uploaded File Metadata
-        return $this->finishUploadSession($dropboxFile, $sessionId, $uploaded, $remaining, $path);
+        return $this->finishUploadSession($dropboxFile, $sessionId, $uploaded, $remaining, $path, $params);
     }
 
     /**
