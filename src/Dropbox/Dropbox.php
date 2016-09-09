@@ -1020,7 +1020,6 @@ class Dropbox
         'thumb'  => 'w32h32',
         'small'  => 'w64h64',
         'medium' => 'w128h128',
-        'medium' => 'w128h128',
         'large'  => 'w640h480',
         'huge'   => 'w1024h768'
         ];
