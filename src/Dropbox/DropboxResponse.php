@@ -132,7 +132,11 @@ class DropboxResponse
     {
         $body = $this->getBody();
 
-        $this->decodedBody = json_decode((string) $body, true);
+        if (isset($this->headers['Content-Type']) && in_array('application/json', $this->headers['Content-Type'])) {
+            $this->decodedBody = json_decode((string)$body, true);
+        } else {
+            $this->decodedBody = $this->body;
+        }
 
         // If the response needs to be validated
         if ($this->getRequest()->validateResponse()) {
