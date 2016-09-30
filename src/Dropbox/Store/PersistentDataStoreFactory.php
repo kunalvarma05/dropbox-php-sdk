@@ -3,7 +3,6 @@ namespace Kunnu\Dropbox\Store;
 
 use InvalidArgumentException;
 use Kunnu\Dropbox\Exceptions\DropboxClientException;
-use Kunnu\Dropbox\Store\PersistentDataStoreInterface;
 
 /**
  * Thanks to Facebook
@@ -27,7 +26,7 @@ class PersistentDataStoreFactory
             return new SessionPersistentDataStore();
         }
 
-        if ($store instanceof PersistentDataStoreInterface) {
+        if ($store instanceof PersistentDataInterface) {
             return $store;
         }
 
