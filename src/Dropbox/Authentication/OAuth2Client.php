@@ -169,6 +169,11 @@ class OAuth2Client
 
         //Request
         $request = new DropboxRequest("POST", "/auth/token/revoke", $accessToken);
+        // Do not validate the response
+        // since the /token/revoke endpoint
+        // doesn't return anything in the response.
+        // See: https://www.dropbox.com/developers/documentation/http/documentation#auth-token-revoke
+        $request->setParams(['validateResponse' => false]);
 
         //Revoke Access Token
         $response = $this->getClient()->sendRequest($request);
