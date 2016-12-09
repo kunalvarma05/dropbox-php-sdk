@@ -503,13 +503,14 @@ class Dropbox
     /**
      * Create a folder at the given path
      *
-     * @param  string $path Path to create
+     * @param  string   $path       Path to create
+     * @param  boolean  $autorename Auto Rename File
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-create_folder
      *
      * @return \Kunnu\Dropbox\Models\FolderMetadata
      */
-    public function createFolder($path)
+    public function createFolder($path, $autorename = false)
     {
         //Path cannot be null
         if (is_null($path)) {
@@ -517,7 +518,7 @@ class Dropbox
         }
 
         //Create Folder
-        $response = $this->postToAPI('/files/create_folder', ['path' => $path]);
+        $response = $this->postToAPI('/files/create_folder', ['path' => $path, 'autorename' => $autorename]);
 
         //Fetch the Metadata
         $body = $response->getDecodedBody();
