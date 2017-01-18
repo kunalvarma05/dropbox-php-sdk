@@ -1,13 +1,15 @@
 <?php
 namespace Kunnu\Dropbox\Models;
 
+use Kunnu\Dropbox\DropboxFile;
+
 class File extends BaseModel
 {
 
     /**
      * The file contents
      *
-     * @var string
+     * @var string|DropboxFile
      */
     protected $contents;
 
@@ -23,7 +25,7 @@ class File extends BaseModel
      * Create a new File instance
      *
      * @param array  $data
-     * @param string $contents
+     * @param string|DropboxFile $contents
      */
     public function __construct(array $data, $contents)
     {
@@ -49,6 +51,9 @@ class File extends BaseModel
      */
     public function getContents()
     {
+        if ($this->contents instanceof DropboxFile) {
+            return $this->contents->getContents();
+        }
         return $this->contents;
     }
 }

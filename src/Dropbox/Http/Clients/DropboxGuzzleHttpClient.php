@@ -67,8 +67,13 @@ class DropboxGuzzleHttpClient implements DropboxHttpClientInterface
             throw new DropboxClientException($rawResponse->getBody());
         }
 
-        //Get the Response Body
-        $body = $this->getResponseBody($rawResponse);
+        if (array_key_exists('sink', $options)) {
+            //Response Body is saved to a file
+            $body = '';
+        } else {
+            //Get the Response Body
+            $body = $this->getResponseBody($rawResponse);
+        }
 
         $rawHeaders = $rawResponse->getHeaders();
         $httpStatusCode = $rawResponse->getStatusCode();
