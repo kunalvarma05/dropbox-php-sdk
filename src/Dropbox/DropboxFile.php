@@ -63,7 +63,7 @@ class DropboxFile {
 	public static function createByStream($filename, $resource, $maxLength = -1, $offset = -1) {
 		$obj    = new self($maxLength, $offset);
 		$obj->setPath($filename);
-		$stream = \GuzzleHttp\Psr7\stream_for(fopen($resource, 'r'));
+		$stream = \GuzzleHttp\Psr7\stream_for($resource);
 		if(!$stream) {
 			throw new DropboxClientException('Failed to create DropboxFile instance. Unable to open resource.');
 		}
