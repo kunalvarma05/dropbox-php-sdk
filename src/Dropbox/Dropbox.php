@@ -310,7 +310,7 @@ class Dropbox
             //File is valid
             if (is_file($dropboxFile)) {
                 //Create a DropboxFile Object
-                $dropboxFile = new DropboxFile($dropboxFile, $maxLength, $offset);
+                $dropboxFile = DropboxFile::createByPath($dropboxFile, $maxLength, $offset);
             } else {
                 //File invalid/doesn't exist
                 throw new DropboxClientException("File '{$dropboxFile}' is invalid.");
