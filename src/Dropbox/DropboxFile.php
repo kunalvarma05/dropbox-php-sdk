@@ -6,7 +6,8 @@ use Kunnu\Dropbox\Exceptions\DropboxClientException;
 /**
  * DropboxFile
  */
-class DropboxFile {
+class DropboxFile
+{
 	/**
 	 * Path of the file to upload
 	 *
@@ -44,7 +45,8 @@ class DropboxFile {
 	 *
 	 * @return \Kunnu\Dropbox\DropboxFile
 	 */
-	public static function createByPath($filePath, $maxLength = -1, $offset = -1) {
+	public static function createByPath($filePath, $maxLength = -1, $offset = -1)
+	{
 		$obj = new self($maxLength, $offset);
 		$obj->setPath($filePath);
 		$obj->open();
@@ -60,7 +62,8 @@ class DropboxFile {
 	 * @return \Kunnu\Dropbox\DropboxFile
 	 * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
 	 */
-	public static function createByStream($filename, $resource, $maxLength = -1, $offset = -1) {
+	public static function createByStream($filename, $resource, $maxLength = -1, $offset = -1)
+	{
 		$obj    = new self($maxLength, $offset);
 		$obj->setPath($filename);
 		$stream = \GuzzleHttp\Psr7\stream_for($resource);
@@ -79,7 +82,8 @@ class DropboxFile {
 	 *
 	 * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
 	 */
-	private function __construct($maxLength = -1, $offset = -1) {
+	private function __construct($maxLength = -1, $offset = -1)
+	{
 		$this->maxLength = $maxLength;
 		$this->offset    = $offset;
 	}
@@ -87,21 +91,24 @@ class DropboxFile {
 	/**
 	 * @param string $path
 	 */
-	public function setPath($path) {
+	public function setPath($path)
+	{
 		$this->path = $path;
 	}
 
 	/**
 	 * @param \GuzzleHttp\Psr7\Stream $stream
 	 */
-	public function setStream($stream) {
+	public function setStream($stream)
+	{
 		$this->stream = $stream;
 	}
 
 	/**
 	 * Closes the stream when destructed.
 	 */
-	public function __destruct() {
+	public function __destruct()
+	{
 		$this->close();
 	}
 
@@ -111,7 +118,8 @@ class DropboxFile {
 	 *
 	 * @param int $offset
 	 */
-	public function setOffset($offset) {
+	public function setOffset($offset)
+	{
 		$this->offset = $offset;
 	}
 
@@ -121,7 +129,8 @@ class DropboxFile {
 	 *
 	 * @param int $maxLength
 	 */
-	public function setMaxLength($maxLength) {
+	public function setMaxLength($maxLength)
+	{
 		$this->maxLength = $maxLength;
 	}
 
@@ -132,7 +141,8 @@ class DropboxFile {
 	 *
 	 * @return void
 	 */
-	public function open() {
+	public function open()
+	{
 		if(!$this->isRemoteFile($this->path) && !is_readable($this->path)) {
 			throw new DropboxClientException('Failed to create DropboxFile instance. Unable to read resource: ' . $this->path . '.');
 		}
@@ -149,14 +159,16 @@ class DropboxFile {
 	 *
 	 * @return GuzzleHttp\Psr7\Stream
 	 */
-	public function getStream() {
+	public function getStream()
+	{
 		return $this->stream;
 	}
 
 	/**
 	 * Close the file stream
 	 */
-	public function close() {
+	public function close()
+	{
 		$this->stream->close();
 	}
 
@@ -165,7 +177,8 @@ class DropboxFile {
 	 *
 	 * @return string
 	 */
-	public function getContents() {
+	public function getContents()
+	{
 		// If an offset is provided
 		if($this->offset !== -1) {
 			// Seek to the offset
@@ -186,7 +199,8 @@ class DropboxFile {
 	 *
 	 * @return string
 	 */
-	public function getFileName() {
+	public function getFileName()
+	{
 		return basename($this->path);
 	}
 
@@ -195,7 +209,8 @@ class DropboxFile {
 	 *
 	 * @return string
 	 */
-	public function getFilePath() {
+	public function getFilePath()
+	{
 		return $this->path;
 	}
 
@@ -204,7 +219,8 @@ class DropboxFile {
 	 *
 	 * @return int
 	 */
-	public function getSize() {
+	public function getSize()
+	{
 		return $this->stream->getSize();
 	}
 
@@ -213,7 +229,8 @@ class DropboxFile {
 	 *
 	 * @return string
 	 */
-	public function getMimetype() {
+	public function getMimetype()
+	{
 		return \GuzzleHttp\Psr7\mimetype_from_filename($this->path) ?: 'text/plain';
 	}
 
@@ -224,7 +241,8 @@ class DropboxFile {
 	 *
 	 * @return boolean
 	 */
-	protected function isRemoteFile($pathToFile) {
+	protected function isRemoteFile($pathToFile)
+	{
 		return preg_match('/^(https?|ftp):\/\/.*/', $pathToFile) === 1;
 	}
 }
