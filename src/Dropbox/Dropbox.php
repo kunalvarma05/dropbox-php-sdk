@@ -978,7 +978,7 @@ class Dropbox
         //make the chunk size relatively
         //smaller than the file size
         if ($fileSize <= $chunkSize) {
-            $chunkSize = $fileSize / 2;
+            $chunkSize = intval($fileSize / 2);
         }
 
         //Start the Upload Session with the file path
