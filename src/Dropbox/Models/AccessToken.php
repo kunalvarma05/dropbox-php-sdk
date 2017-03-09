@@ -55,11 +55,11 @@ class AccessToken extends BaseModel
         parent::__construct($data);
 
         $this->token = $this->getDataProperty('access_token');
-        $this->tokenType = $this->getDataProperty('tokenType');
+        $this->tokenType = $this->getDataProperty('token_type');
         $this->bearer = $this->getDataProperty('bearer');
         $this->uid = $this->getDataProperty('uid');
-        $this->accountId = $this->getDataProperty('accountId');
-        $this->teamId = $this->getDataProperty('teamId');
+        $this->accountId = $this->getDataProperty('account_id');
+        $this->teamId = $this->getDataProperty('team_id');
     }
 
     /**
