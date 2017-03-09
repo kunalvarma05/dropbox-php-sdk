@@ -137,12 +137,13 @@ class DropboxClient
      * Send the Request to the Server and return the Response
      *
      * @param  DropboxRequest $request
+     * @param  DropboxResponse $response
      *
      * @return \Kunnu\Dropbox\DropboxResponse
      *
      * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
-    public function sendRequest(DropboxRequest $request)
+    public function sendRequest(DropboxRequest $request, DropboxResponse $response = null)
     {
         //Method
         $method = $request->getMethod();
@@ -150,20 +151,25 @@ class DropboxClient
         //Prepare Request
         list($url, $headers, $requestBody) = $this->prepareRequest($request);
 
+        $options = [];
+        if ($response instanceof DropboxResponseToFile) {
+            $options['sink'] = $response->getFilePath();
+        }
+
         //Send the Request to the Server through the HTTP Client
         //and fetch the raw response as DropboxRawResponse
-        $rawResponse = $this->getHttpClient()->send($url, $method, $requestBody, $headers);
+        $rawResponse = $this->getHttpClient()->send($url, $method, $requestBody, $headers, $options);
 
         //Create DropboxResponse from DropboxRawResponse
-        $dropboxResponse = new DropboxResponse(
-            $request,
-            $rawResponse->getBody(),
-            $rawResponse->getHttpResponseCode(),
-            $rawResponse->getHeaders()
-            );
+        $response = $response ?: new DropboxResponse($request);
+        $response->setHttpStatusCode($rawResponse->getHttpResponseCode());
+        $response->setHeaders($rawResponse->getHeaders());
+        if (!$response instanceof DropboxResponseToFile) {
+            $response->setBody($rawResponse->getBody());
+        }
 
         //Return the DropboxResponse
-        return $dropboxResponse;
+        return $response;
     }
 
     /**
