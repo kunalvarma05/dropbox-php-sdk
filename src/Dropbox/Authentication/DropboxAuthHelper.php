@@ -115,16 +115,28 @@ class DropboxAuthHelper
      */
     public function getAuthUrl($redirectUri = null, array $params = [], $urlState = null)
     {
-        //Get CSRF State Token
-        $state = $this->getCsrfToken();
+        // If no redirect URI
+        // is provided, the
+        // CSRF validation
+        // is being handled
+        // explicitly.
+        $state = null;
 
-        //Set the CSRF State Token in the Persistent Data Store
-        $this->getPersistentDataStore()->set('state', $state);
+        // Redirect URI is provided
+        // thus, CSRF validation
+        // needs to be handled.
+        if (!is_null($redirectUri)) {
+            //Get CSRF State Token
+            $state = $this->getCsrfToken();
 
-        //Additional User Provided State Data
-        if (!is_null($urlState)) {
-            $state .= "|";
-            $state .= $urlState;
+            //Set the CSRF State Token in the Persistent Data Store
+            $this->getPersistentDataStore()->set('state', $state);
+
+            //Additional User Provided State Data
+            if (!is_null($urlState)) {
+                $state .= "|";
+                $state .= $urlState;
+            }
         }
 
         //Get OAuth2 Authorization URL
@@ -188,19 +200,24 @@ class DropboxAuthHelper
      *
      * @return \Kunnu\Dropbox\Models\AccessToken
      */
-    public function getAccessToken($code, $state, $redirectUri = null)
+    public function getAccessToken($code, $state = null, $redirectUri = null)
     {
-        //Decode the State
-        $state = $this->decodeState($state);
+        // No state provided
+        // Should probably be
+        // handled explicitly
+        if (!is_null($state)) {
+            //Decode the State
+            $state = $this->decodeState($state);
 
-        //CSRF Token
-        $csrfToken = $state['csrfToken'];
+            //CSRF Token
+            $csrfToken = $state['csrfToken'];
 
-        //Set the URL State
-        $this->urlState = $state['urlState'];
+            //Set the URL State
+            $this->urlState = $state['urlState'];
 
-        //Validate CSRF Token
-        $this->validateCSRFToken($csrfToken);
+            //Validate CSRF Token
+            $this->validateCSRFToken($csrfToken);
+        }
 
         //Fetch Access Token
         $accessToken = $this->getOAuth2Client()->getAccessToken($code, $redirectUri);
