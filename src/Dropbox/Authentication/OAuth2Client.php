@@ -38,6 +38,13 @@ class OAuth2Client
     protected $client;
 
     /**
+     * Random String Generator
+     *
+     * @var \Kunnu\Dropbox\Security\RandomStringGeneratorInterface
+     */
+    protected $randStrGenerator;
+
+    /**
      * Create a new DropboxApp instance
      *
      * @param \Kunnu\Dropbox\DropboxApp $app

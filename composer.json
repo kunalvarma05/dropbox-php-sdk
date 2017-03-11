@@ -17,5 +17,12 @@
         "psr-4": {
             "Kunnu\\Dropbox\\": "src/Dropbox"
         }
+    },
+    "require-dev": {
+        "etsy/phan": "^0.8.3"
+    },
+    "scripts": {
+        "phan": "phan",
+        "phanToFile": "phan -o phan.txt"
     }
 }

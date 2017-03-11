@@ -1,8 +1,6 @@
 <?php
 namespace Kunnu\Dropbox;
 
-use GuzzleHttp\Psr7\Stream;
-use GuzzleHttp\Psr7\Request;
 use Kunnu\Dropbox\Models\File;
 use Kunnu\Dropbox\Models\Account;
 use Kunnu\Dropbox\Models\Thumbnail;
@@ -10,7 +8,6 @@ use Kunnu\Dropbox\Models\AccountList;
 use Kunnu\Dropbox\Models\ModelFactory;
 use Kunnu\Dropbox\Models\FileMetadata;
 use Kunnu\Dropbox\Models\CopyReference;
-use Psr\Http\Message\ResponseInterface;
 use Kunnu\Dropbox\Models\FolderMetadata;
 use Kunnu\Dropbox\Models\ModelCollection;
 use Kunnu\Dropbox\Authentication\OAuth2Client;
@@ -19,7 +16,6 @@ use Kunnu\Dropbox\Authentication\DropboxAuthHelper;
 use Kunnu\Dropbox\Exceptions\DropboxClientException;
 use Kunnu\Dropbox\Security\RandomStringGeneratorFactory;
 use Kunnu\Dropbox\Http\Clients\DropboxHttpClientFactory;
-use Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface;
 
 /**
  * Dropbox
@@ -338,9 +334,11 @@ class Dropbox
      * @param  string $path   Path of the file or folder
      * @param  array  $params Additional Params
      *
+     * @return \Kunnu\Dropbox\Models\FileMetadata | \Kunnu\Dropbox\Models\FolderMetadata
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-get_metadata
      *
-     * @return \Kunnu\Dropbox\Models\FileMetadata|\Kunnu\Dropbox\Models\FolderMetadata
      */
     public function getMetadata($path, array $params = [])
     {
@@ -412,9 +410,12 @@ class Dropbox
      * @param  string $path   Path to the folder. Defaults to root.
      * @param  array  $params Additional Params
      *
+     * @return string The Cursor for the folder's state
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-list_folder-get_latest_cursor
      *
-     * @return string The Cursor for the folder's state
      */
     public function listFolderLatestCursor($path, array $params = [])
     {
@@ -511,12 +512,15 @@ class Dropbox
     /**
      * Create a folder at the given path
      *
-     * @param  string   $path       Path to create
-     * @param  boolean  $autorename Auto Rename File
+     * @param  string  $path       Path to create
+     * @param  boolean $autorename Auto Rename File
+     *
+     * @return \Kunnu\Dropbox\Models\FolderMetadata
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-create_folder
      *
-     * @return \Kunnu\Dropbox\Models\FolderMetadata
      */
     public function createFolder($path, $autorename = false)
     {
@@ -540,9 +544,12 @@ class Dropbox
      *
      * @param  string $path Path to file/folder to delete
      *
+     * @return \Kunnu\Dropbox\Models\DeletedMetadata|\Kunnu\Dropbox\Models\FileMetadata|\Kunnu\Dropbox\Models\FolderMetadata
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-delete
      *
-     * @return \Kunnu\Dropbox\Models\DeletedMetadata|FileMetadata|FolderMetadata
      */
     public function delete($path)
     {
@@ -563,9 +570,12 @@ class Dropbox
      * @param  string $fromPath Path to be moved
      * @param  string $toPath   Path to be moved to
      *
+     * @return \Kunnu\Dropbox\Models\DeletedMetadata|\Kunnu\Dropbox\Models\FileMetadata
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-move
      *
-     * @return \Kunnu\Dropbox\Models\FileMetadata|FileMetadata|DeletedMetadata
      */
     public function move($fromPath, $toPath)
     {
@@ -587,9 +597,12 @@ class Dropbox
      * @param  string $fromPath Path to be copied
      * @param  string $toPath   Path to be copied to
      *
+     * @return \Kunnu\Dropbox\Models\DeletedMetadata|\Kunnu\Dropbox\Models\FileMetadata
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-copy
      *
-     * @return \Kunnu\Dropbox\Models\FileMetadata|FileMetadata|DeletedMetadata
      */
     public function copy($fromPath, $toPath)
     {
@@ -611,9 +624,12 @@ class Dropbox
      * @param  string $path Path to the file to restore
      * @param  string $rev  Revision to store for the file
      *
+     * @return \Kunnu\Dropbox\Models\DeletedMetadata|\Kunnu\Dropbox\Models\FileMetadata|\Kunnu\Dropbox\Models\FolderMetadata
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-restore
      *
-     * @return \Kunnu\Dropbox\Models\DeletedMetadata|FileMetadata|FolderMetadata
      */
     public function restore($path, $rev)
     {
@@ -637,9 +653,12 @@ class Dropbox
      *
      * @param  string $path Path to the file or folder to get a copy reference to
      *
+     * @return \Kunnu\Dropbox\Models\CopyReference
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-copy_reference-get
      *
-     * @return \Kunnu\Dropbox\Models\CopyReference
      */
     public function getCopyReference($path)
     {
@@ -662,9 +681,12 @@ class Dropbox
      * @param  string $path          Path to the file or folder to get a copy reference to
      * @param  string $copyReference Copy reference returned by getCopyReference
      *
+     * @return \Kunnu\Dropbox\Models\FileMetadata|\Kunnu\Dropbox\Models\FolderMetadata
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-copy_reference-save
      *
-     * @return \Kunnu\Dropbox\Models\FileMetadata|\Kunnu\Dropbox\Models\FolderMetadata
      */
     public function saveCopyReference($path, $copyReference)
     {
@@ -694,6 +716,8 @@ class Dropbox
      * https://www.dropbox.com/developers/documentation/http/documentation#files-get_temporary_link
      *
      * @return \Kunnu\Dropbox\Models\TemporaryLink
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
     public function getTemporaryLink($path)
     {
@@ -715,9 +739,12 @@ class Dropbox
      * @param  string $path Path where the URL will be saved
      * @param  string $url  URL to be saved
      *
+     * @return string Async Job ID
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-save_url
      *
-     * @return string Async Job ID
      */
     public function saveUrl($path, $url)
     {
@@ -734,19 +761,21 @@ class Dropbox
             throw new DropboxClientException("Could not retrieve Async Job ID.");
         }
 
-        //Return the Asunc Job ID
+        //Return the Async Job ID
         return $body['async_job_id'];
     }
 
     /**
      * Save a specified URL into a file in user's Dropbox
      *
-     * @param  string $path Path where the URL will be saved
-     * @param  string $url  URL to be saved
+     * @param $asyncJobId
      *
-     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-save_url-check_job_status
+     * @return \Kunnu\Dropbox\Models\FileMetadata|string Status (failed|in_progress) or FileMetadata (if complete)
      *
-     * @return string|FileMetadata Status (failed|in_progress) or FileMetadata (if complete)
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     *
+     * @link     https://www.dropbox.com/developers/documentation/http/documentation#files-save_url-check_job_status
+     *
      */
     public function checkJobStatus($asyncJobId)
     {
@@ -832,9 +861,12 @@ class Dropbox
      * @param  int                $chunkSize   Size of file chunk to upload
      * @param  boolean            $close       Closes the session for "appendUploadSession"
      *
+     * @return string Unique identifier for the upload session
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-start
      *
-     * @return string Unique identifier for the upload session
      */
     public function startUploadSession($dropboxFile, $chunkSize = -1, $close = false)
     {
@@ -864,15 +896,18 @@ class Dropbox
      * Finish an upload session and save the uploaded data to the given file path
      *
      * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
-     * @param  string $sessionId   Session ID returned by `startUploadSession`
-     * @param  int    $offset      The amount of data that has been uploaded so far
-     * @param  int    $remaining   The amount of data that is remaining
-     * @param  string $path        Path to save the file to, on Dropbox
-     * @param  array  $params      Additional Params
+     * @param  string             $sessionId   Session ID returned by `startUploadSession`
+     * @param  int                $offset      The amount of data that has been uploaded so far
+     * @param  int                $remaining   The amount of data that is remaining
+     * @param  string             $path        Path to save the file to, on Dropbox
+     * @param  array              $params      Additional Params
+     *
+     * @return \Kunnu\Dropbox\Models\FileMetadata
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-finish
      *
-     * @return \Kunnu\Dropbox\Models\FileMetadata
      */
     public function finishUploadSession($dropboxFile, $sessionId, $offset, $remaining, $path, array $params = [])
     {
@@ -914,9 +949,12 @@ class Dropbox
      * @param  int                $chunkSize   The amount of data to upload
      * @param  boolean            $close       Closes the session for futher "appendUploadSession" calls
      *
+     * @return string Unique identifier for the upload session
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-append_v2
      *
-     * @return string Unique identifier for the upload session
      */
     public function appendUploadSession($dropboxFile, $sessionId, $offset, $chunkSize, $close = false)
     {
@@ -964,7 +1002,7 @@ class Dropbox
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-finish
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-append_v2
      *
-     * @return string Unique identifier for the upload session
+     * @return \Kunnu\Dropbox\Models\FileMetadata
      */
     public function uploadChunked($dropboxFile, $path, $fileSize = null, $chunkSize = null, array $params = array())
     {
@@ -981,7 +1019,7 @@ class Dropbox
             $chunkSize = static::DEFAULT_CHUNK_SIZE;
         }
 
-        //If the filesize is smaller
+        //If the fileSize is smaller
         //than the chunk size, we'll
         //make the chunk size relatively
         //smaller than the file size
@@ -1043,9 +1081,12 @@ class Dropbox
      * @param  string $size   Size for the thumbnail image ['thumb','small','medium','large','huge']
      * @param  string $format Format for the thumbnail image ['jpeg'|'png']
      *
+     * @return \Kunnu\Dropbox\Models\Thumbnail
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-get_thumbnail
      *
-     * @return \Kunnu\Dropbox\Models\Thumbnail
      */
     public function getThumbnail($path, $size = 'small', $format = 'jpeg')
     {
@@ -1078,12 +1119,15 @@ class Dropbox
     /**
      * Download a File
      *
-     * @param  string $path   Path to the file you want to download
+     * @param  string                  $path        Path to the file you want to download
      * @param  null|string|DropboxFile $dropboxFile DropboxFile object or Path to target file
+     *
+     * @return \Kunnu\Dropbox\Models\File
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-download
      *
-     * @return \Kunnu\Dropbox\Models\File
      */
     public function download($path, $dropboxFile = null)
     {
@@ -1124,7 +1168,7 @@ class Dropbox
         //metadata isn't returned
         $metadata = [];
 
-        //If metadata is avaialble
+        //If metadata is available
         if (isset($headers[static::METADATA_HEADER])) {
             //File Metadata
             $data = $headers[static::METADATA_HEADER];
@@ -1183,7 +1227,7 @@ class Dropbox
     /**
      * Get Multiple Accounts in one call
      *
-     * @param string $account_id Account ID of the account to get details for
+     * @param array $account_ids IDs of the accounts to get details for
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#users-get_account_batch
      *

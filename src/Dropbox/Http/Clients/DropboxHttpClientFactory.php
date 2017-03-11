@@ -12,7 +12,7 @@ class DropboxHttpClientFactory
     /**
      * Make HTTP Client
      *
-     * @param  DropboxHttpClientInterface|GuzzleHttp\Client|null $handler
+     * @param  \Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface|\GuzzleHttp\Client|null $handler
      *
      * @return \Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface
      */
@@ -23,7 +23,7 @@ class DropboxHttpClientFactory
             return new DropboxGuzzleHttpClient();
         }
 
-        //Custom Implemenation, maybe.
+        //Custom Implementation, maybe.
         if ($handler instanceof DropboxHttpClientInterface) {
             return $handler;
         }

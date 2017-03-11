@@ -11,7 +11,7 @@ interface DropboxHttpClientInterface
      *
      * @param  string $url     URL/Endpoint to send the request to
      * @param  string $method  Request Method
-     * @param  string|resource|StreamInterface $body Request Body
+     * @param  string|resource|\Psr\Http\Message\StreamInterface|null $body Request Body
      * @param  array  $headers Request Headers
      * @param  array  $options Additional Options
      *

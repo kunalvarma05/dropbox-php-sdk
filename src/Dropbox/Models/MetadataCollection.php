@@ -1,7 +1,7 @@
 <?php
 namespace Kunnu\Dropbox\Models;
 
-class MetadataCollection
+class MetadataCollection extends BaseModel
 {
 
     /**
@@ -60,7 +60,8 @@ class MetadataCollection
      */
     public function __construct(array $data)
     {
-        $this->data = $data;
+        parent::__construct($data);
+
         $this->cursor = isset($data[$this->getCollectionCursorKey()]) ? $data[$this->getCollectionCursorKey()] : '';
         $this->hasMoreItems = isset($data[$this->getCollectionHasMoreItemsKey()]) && $data[$this->getCollectionHasMoreItemsKey()] ? true : false;
 
@@ -96,16 +97,6 @@ class MetadataCollection
     public function getCollectionCursorKey()
     {
         return static::COLLECTION_CURSOR_KEY;
-    }
-
-    /**
-     * Get the Collection data
-     *
-     * @return array
-     */
-    public function getData()
-    {
-        return $this->data;
     }
 
     /**

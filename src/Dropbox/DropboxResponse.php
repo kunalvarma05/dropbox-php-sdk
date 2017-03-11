@@ -29,7 +29,7 @@ class DropboxResponse
     /**
      *  The decoded body of the response
      *
-     * @var array
+     * @var array|null
      */
     protected $decodedBody;
 
@@ -103,7 +103,7 @@ class DropboxResponse
     /**
      * Get the Decoded Body
      *
-     * @return string
+     * @return array
      */
     public function getDecodedBody()
     {
@@ -111,6 +111,7 @@ class DropboxResponse
             //Decode the Response Body
             $this->decodeBody();
         }
+
         return $this->decodedBody;
     }
 

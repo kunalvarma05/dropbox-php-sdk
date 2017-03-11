@@ -9,6 +9,7 @@ use Kunnu\Dropbox\Exceptions\DropboxClientException;
 class DropboxFile
 {
     const MODE_READ = 'r';
+
     const MODE_WRITE = 'w';
 
     /**
@@ -69,6 +70,16 @@ class DropboxFile
     }
 
     /**
+     * Close the file stream
+     */
+    public function close()
+    {
+        if ($this->stream) {
+            $this->stream->close();
+        }
+    }
+
+    /**
      * Set the offset to start reading
      * the data from the stream
      *
@@ -88,6 +99,42 @@ class DropboxFile
     public function setMaxLength($maxLength)
     {
         $this->maxLength = $maxLength;
+    }
+
+    /**
+     * Return the contents of the file
+     *
+     * @return string
+     */
+    public function getContents()
+    {
+        $stream = $this->getStream();
+        // If an offset is provided
+        if ($this->offset !== -1) {
+            // Seek to the offset
+            $stream->seek($this->offset);
+        }
+
+        // If a max length is provided
+        if ($this->maxLength !== -1) {
+            // Read from the offset till the maxLength
+            return $stream->read($this->maxLength);
+        }
+
+        return $stream->getContents();
+    }
+
+    /**
+     * Get the Open File Stream
+     *
+     * @return \GuzzleHttp\Psr7\Stream
+     */
+    public function getStream()
+    {
+        if (!$this->stream) {
+            $this->open();
+        }
+        return $this->stream;
     }
 
     /**
@@ -116,49 +163,15 @@ class DropboxFile
     }
 
     /**
-     * Get the Open File Stream
+     * Returns true if the path to the file is remote
      *
-     * @return \GuzzleHttp\Psr7\Stream
-     */
-    public function getStream()
-    {
-        if (!$this->stream) {
-            $this->open();
-        }
-        return $this->stream;
-    }
-
-    /**
-     * Close the file stream
-     */
-    public function close()
-    {
-        if ($this->stream) {
-            $this->stream->close();
-        }
-    }
-
-    /**
-     * Return the contents of the file
+     * @param string $pathToFile
      *
-     * @return string
+     * @return boolean
      */
-    public function getContents()
+    protected function isRemoteFile($pathToFile)
     {
-        $stream = $this->getStream();
-        // If an offset is provided
-        if ($this->offset !== -1) {
-            // Seek to the offset
-            $stream->seek($this->offset);
-        }
-
-        // If a max length is provided
-        if ($this->maxLength !== -1) {
-            // Read from the offset till the maxLength
-            return $stream->read($this->maxLength);
-        }
-
-        return $stream->getContents();
+        return preg_match('/^(https?|ftp):\/\/.*/', $pathToFile) === 1;
     }
 
     /**
@@ -209,17 +222,5 @@ class DropboxFile
     public function getMimetype()
     {
         return \GuzzleHttp\Psr7\mimetype_from_filename($this->path) ?: 'text/plain';
-    }
-
-    /**
-     * Returns true if the path to the file is remote
-     *
-     * @param string $pathToFile
-     *
-     * @return boolean
-     */
-    protected function isRemoteFile($pathToFile)
-    {
-        return preg_match('/^(https?|ftp):\/\/.*/', $pathToFile) === 1;
     }
 }
