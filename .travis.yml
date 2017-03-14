@@ -17,7 +17,12 @@ install:
   - composer --prefer-source install
 
 before_script:
- - chmod +x ./tests/setup.sh
+  - chmod +x ./tests/setup.sh
+  - travis_retry composer self-update
+  - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
 
 script:
-  - ./vendor/bin/phpunit --colors
+  - ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+
+after_script:
+  - php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover
