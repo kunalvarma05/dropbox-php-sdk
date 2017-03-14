@@ -103,7 +103,7 @@ class DropboxResponse
     /**
      * Get the Decoded Body
      *
-     * @return array
+     * @return array|null
      */
     public function getDecodedBody()
     {
@@ -173,6 +173,8 @@ class DropboxResponse
      * Validate Response
      *
      * @return void
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
     protected function validateResponse()
     {

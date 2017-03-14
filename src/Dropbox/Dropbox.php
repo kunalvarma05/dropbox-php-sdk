@@ -23,6 +23,32 @@ use Kunnu\Dropbox\Http\Clients\DropboxHttpClientFactory;
 class Dropbox
 {
     /**
+     * Uploading a file with the 'uploadFile' method, with the file's
+     * size less than this value (~8 MB), the simple `upload` method will be
+     * used, if the file size exceed this value (~8 MB), the `startUploadSession`,
+     * `appendUploadSession` & `finishUploadSession` methods will be used
+     * to upload the file in chunks.
+     *
+     * @const int
+     */
+    const AUTO_CHUNKED_UPLOAD_THRESHOLD = 8000000;
+
+    /**
+     * The Chunk Size the file will be
+     * split into and uploaded (~4 MB)
+     *
+     * @const int
+     */
+    const DEFAULT_CHUNK_SIZE = 4000000;
+
+    /**
+     * Response header containing file metadata
+     *
+     * @const string
+     */
+    const METADATA_HEADER = 'dropbox-api-result';
+
+    /**
      * The Dropbox App
      *
      * @var \Kunnu\Dropbox\DropboxApp
@@ -65,32 +91,6 @@ class Dropbox
     protected $persistentDataStore;
 
     /**
-     * Uploading a file with the 'uploadFile' method, with the file's
-     * size less than this value (~8 MB), the simple `upload` method will be
-     * used, if the file size exceed this value (~8 MB), the `startUploadSession`,
-     * `appendUploadSession` & `finishUploadSession` methods will be used
-     * to upload the file in chunks.
-     *
-     * @const int
-     */
-    const AUTO_CHUNKED_UPLOAD_THRESHOLD = 8000000;
-
-    /**
-     * The Chunk Size the file will be
-     * split into and uploaded (~4 MB)
-     *
-     * @const int
-     */
-    const DEFAULT_CHUNK_SIZE = 4000000;
-
-    /**
-     * Response header containing file metadata
-     *
-     * @const string
-     */
-    const METADATA_HEADER = 'dropbox-api-result';
-
-    /**
      * Create a new Dropbox instance
      *
      * @param \Kunnu\Dropbox\DropboxApp
@@ -103,7 +103,7 @@ class Dropbox
             'http_client_handler' => null,
             'random_string_generator' => null,
             'persistent_data_store' => null
-            ], $config);
+        ], $config);
 
         //Set the app
         $this->app = $app;
@@ -125,33 +125,17 @@ class Dropbox
     }
 
     /**
-     * Get the Client
+     * Get Dropbox Auth Helper
      *
-     * @return \Kunnu\Dropbox\DropboxClient
+     * @return \Kunnu\Dropbox\Authentication\DropboxAuthHelper
      */
-    public function getClient()
+    public function getAuthHelper()
     {
-        return $this->client;
-    }
-
-    /**
-     * Get the Access Token.
-     *
-     * @return string Access Token
-     */
-    public function getAccessToken()
-    {
-        return $this->accessToken;
-    }
-
-    /**
-     * Get the Dropbox App.
-     *
-     * @return \Kunnu\Dropbox\DropboxApp Dropbox App
-     */
-    public function getApp()
-    {
-        return $this->app;
+        return new DropboxAuthHelper(
+            $this->getOAuth2Client(),
+            $this->getRandomStringGenerator(),
+            $this->getPersistentDataStore()
+        );
     }
 
     /**
@@ -166,10 +150,30 @@ class Dropbox
                 $this->getApp(),
                 $this->getClient(),
                 $this->getRandomStringGenerator()
-                );
+            );
         }
 
         return $this->oAuth2Client;
+    }
+
+    /**
+     * Get the Dropbox App.
+     *
+     * @return \Kunnu\Dropbox\DropboxApp Dropbox App
+     */
+    public function getApp()
+    {
+        return $this->app;
+    }
+
+    /**
+     * Get the Client
+     *
+     * @return \Kunnu\Dropbox\DropboxClient
+     */
+    public function getClient()
+    {
+        return $this->client;
     }
 
     /**
@@ -190,142 +194,6 @@ class Dropbox
     public function getPersistentDataStore()
     {
         return $this->persistentDataStore;
-    }
-
-    /**
-     * Get Dropbox Auth Helper
-     *
-     * @return \Kunnu\Dropbox\Authentication\DropboxAuthHelper
-     */
-    public function getAuthHelper()
-    {
-        return new DropboxAuthHelper(
-            $this->getOAuth2Client(),
-            $this->getRandomStringGenerator(),
-            $this->getPersistentDataStore()
-            );
-    }
-
-    /**
-     * Set the Access Token.
-     *
-     * @param string $accessToken Access Token
-     *
-     * @return \Kunnu\Dropbox\Dropbox Dropbox Client
-     */
-    public function setAccessToken($accessToken)
-    {
-        $this->accessToken = $accessToken;
-
-        return $this;
-    }
-
-    /**
-     * Make Request to the API
-     *
-     * @param  string $method             HTTP Request Method
-     * @param  string $endpoint           API Endpoint to send Request to
-     * @param  string $endpointType       Endpoint type ['api'|'content']
-     * @param  array  $params             Request Query Params
-     * @param  string $accessToken        Access Token to send with the Request
-     * @param  DropboxFile $responseFile  Save response to the file
-     *
-     * @return \Kunnu\Dropbox\DropboxResponse
-     *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
-     */
-    public function sendRequest($method, $endpoint, $endpointType = 'api', array $params = [], $accessToken = null, DropboxFile $responseFile = null)
-    {
-        //Access Token
-        $accessToken = $this->getAccessToken() ? $this->getAccessToken() : $accessToken;
-
-        //Make a DropboxRequest object
-        $request = new DropboxRequest($method, $endpoint, $accessToken, $endpointType, $params);
-
-        //Make a DropboxResponse object if a response should be saved to the file
-        $response = $responseFile ? new DropboxResponseToFile($request, $responseFile) : null;
-
-        //Send Request through the DropboxClient
-        //Fetch and return the Response
-        return $this->getClient()->sendRequest($request, $response);
-    }
-
-    /**
-     * Make a HTTP POST Request to the API endpoint type
-     *
-     * @param  string $endpoint     API Endpoint to send Request to
-     * @param  array  $params       Request Query Params
-     * @param  string $accessToken Access Token to send with the Request
-     *
-     * @return \Kunnu\Dropbox\DropboxResponse
-     */
-    public function postToAPI($endpoint, array $params = [], $accessToken = null)
-    {
-        return $this->sendRequest("POST", $endpoint, 'api', $params, $accessToken);
-    }
-
-    /**
-     * Make a HTTP POST Request to the Content endpoint type
-     *
-     * @param  string $endpoint           Content Endpoint to send Request to
-     * @param  array  $params             Request Query Params
-     * @param  string $accessToken        Access Token to send with the Request
-     * @param  DropboxFile $responseFile  Save response to the file
-     *
-     * @return \Kunnu\Dropbox\DropboxResponse
-     */
-    public function postToContent($endpoint, array $params = [], $accessToken = null, DropboxFile $responseFile = null)
-    {
-        return $this->sendRequest("POST", $endpoint, 'content', $params, $accessToken, $responseFile);
-    }
-
-    /**
-     * Make Model from DropboxResponse
-     *
-     * @param  DropboxResponse $response
-     *
-     * @return \Kunnu\Dropbox\Models\ModelInterface
-     */
-    public function makeModelFromResponse(DropboxResponse $response)
-    {
-        //Get the Decoded Body
-        $body = $response->getDecodedBody();
-
-        //Make and Return the Model
-        return ModelFactory::make($body);
-    }
-
-    /**
-     * Make DropboxFile Object
-     *
-     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
-     * @param  int $maxLength                  Max Bytes to read from the file
-     * @param  int $offset                     Seek to specified offset before reading
-     * @param  string $mode                    The type of access
-     *
-     * @return \Kunnu\Dropbox\DropboxFile
-     */
-    public function makeDropboxFile($dropboxFile, $maxLength = null, $offset = null, $mode = DropboxFile::MODE_READ)
-    {
-        //Uploading file by file path
-        if (!$dropboxFile instanceof DropboxFile) {
-            //Create a DropboxFile Object
-            $dropboxFile = new DropboxFile($dropboxFile, $mode);
-        } elseif ($mode !== $dropboxFile->getMode()) {
-            //Reopen the file with expected mode
-            $dropboxFile->close();
-            $dropboxFile = new DropboxFile($dropboxFile->getFilePath(), $mode);
-        }
-
-        if ($offset) {
-            $dropboxFile->setOffset($offset);
-        }
-        if ($maxLength) {
-            $dropboxFile->setMaxLength($maxLength);
-        }
-
-        //Return the DropboxFile Object
-        return $dropboxFile;
     }
 
     /**
@@ -355,6 +223,92 @@ class Dropbox
 
         //Make and Return the Model
         return $this->makeModelFromResponse($response);
+    }
+
+    /**
+     * Make a HTTP POST Request to the API endpoint type
+     *
+     * @param  string $endpoint    API Endpoint to send Request to
+     * @param  array  $params      Request Query Params
+     * @param  string $accessToken Access Token to send with the Request
+     *
+     * @return \Kunnu\Dropbox\DropboxResponse
+     */
+    public function postToAPI($endpoint, array $params = [], $accessToken = null)
+    {
+        return $this->sendRequest("POST", $endpoint, 'api', $params, $accessToken);
+    }
+
+    /**
+     * Make Request to the API
+     *
+     * @param  string      $method       HTTP Request Method
+     * @param  string      $endpoint     API Endpoint to send Request to
+     * @param  string      $endpointType Endpoint type ['api'|'content']
+     * @param  array       $params       Request Query Params
+     * @param  string      $accessToken  Access Token to send with the Request
+     * @param  DropboxFile $responseFile Save response to the file
+     *
+     * @return \Kunnu\Dropbox\DropboxResponse
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     */
+    public function sendRequest($method, $endpoint, $endpointType = 'api', array $params = [], $accessToken = null, DropboxFile $responseFile = null)
+    {
+        //Access Token
+        $accessToken = $this->getAccessToken() ? $this->getAccessToken() : $accessToken;
+
+        //Make a DropboxRequest object
+        $request = new DropboxRequest($method, $endpoint, $accessToken, $endpointType, $params);
+
+        //Make a DropboxResponse object if a response should be saved to the file
+        $response = $responseFile ? new DropboxResponseToFile($request, $responseFile) : null;
+
+        //Send Request through the DropboxClient
+        //Fetch and return the Response
+        return $this->getClient()->sendRequest($request, $response);
+    }
+
+    /**
+     * Get the Access Token.
+     *
+     * @return string Access Token
+     */
+    public function getAccessToken()
+    {
+        return $this->accessToken;
+    }
+
+    /**
+     * Set the Access Token.
+     *
+     * @param string $accessToken Access Token
+     *
+     * @return \Kunnu\Dropbox\Dropbox Dropbox Client
+     */
+    public function setAccessToken($accessToken)
+    {
+        $this->accessToken = $accessToken;
+
+        return $this;
+    }
+
+    /**
+     * Make Model from DropboxResponse
+     *
+     * @param  DropboxResponse $response
+     *
+     * @return \Kunnu\Dropbox\Models\ModelInterface
+     */
+    public function makeModelFromResponse(DropboxResponse $response)
+    {
+        //Get the Decoded Body
+        $body = $response->getDecodedBody();
+
+        if (!is_null($body)) {
+            //Make and Return the Model
+            return ModelFactory::make($body);
+        }
     }
 
     /**
@@ -390,7 +344,7 @@ class Dropbox
      * using the cursor retrieved from listFolder or listFolderContinue
      *
      * @param  string $cursor The cursor returned by your
-     * last call to listFolder or listFolderContinue
+     *                        last call to listFolder or listFolderContinue
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-list_folder-continue
      *
@@ -827,166 +781,36 @@ class Dropbox
     }
 
     /**
-     * Upload a File to Dropbox in a single request
+     * Make DropboxFile Object
      *
      * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
-     * @param  string             $path        Path to upload the file to
-     * @param  array              $params      Additional Params
+     * @param  int                $maxLength   Max Bytes to read from the file
+     * @param  int                $offset      Seek to specified offset before reading
+     * @param  string             $mode        The type of access
      *
-     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload
-     *
-     * @return \Kunnu\Dropbox\Models\FileMetadata
+     * @return \Kunnu\Dropbox\DropboxFile
      */
-    public function simpleUpload($dropboxFile, $path, array $params = [])
+    public function makeDropboxFile($dropboxFile, $maxLength = null, $offset = null, $mode = DropboxFile::MODE_READ)
     {
-        //Make Dropbox File
-        $dropboxFile = $this->makeDropboxFile($dropboxFile);
-
-        //Set the path and file
-        $params['path'] = $path;
-        $params['file'] = $dropboxFile;
-
-        //Upload File
-        $file = $this->postToContent('/files/upload', $params);
-        $body = $file->getDecodedBody();
-
-        //Make and Return the Model
-        return new FileMetadata($body);
-    }
-
-    /**
-     * Start an Upload Session
-     *
-     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
-     * @param  int                $chunkSize   Size of file chunk to upload
-     * @param  boolean            $close       Closes the session for "appendUploadSession"
-     *
-     * @return string Unique identifier for the upload session
-     *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
-     *
-     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-start
-     *
-     */
-    public function startUploadSession($dropboxFile, $chunkSize = -1, $close = false)
-    {
-        //Make Dropbox File with the given chunk size
-        $dropboxFile = $this->makeDropboxFile($dropboxFile, $chunkSize);
-
-        //Set the close param
-        $params['close'] = $close ? true : false;
-
-        //Set the file param
-        $params['file'] = $dropboxFile;
-
-        //Upload File
-        $file = $this->postToContent('/files/upload_session/start', $params);
-        $body = $file->getDecodedBody();
-
-        //Cannot retrieve Session ID
-        if (!isset($body['session_id'])) {
-            throw new DropboxClientException("Could not retrieve Session ID.");
+        //Uploading file by file path
+        if (!$dropboxFile instanceof DropboxFile) {
+            //Create a DropboxFile Object
+            $dropboxFile = new DropboxFile($dropboxFile, $mode);
+        } elseif ($mode !== $dropboxFile->getMode()) {
+            //Reopen the file with expected mode
+            $dropboxFile->close();
+            $dropboxFile = new DropboxFile($dropboxFile->getFilePath(), $mode);
         }
 
-        //Return the Session ID
-        return $body['session_id'];
-    }
-
-    /**
-     * Finish an upload session and save the uploaded data to the given file path
-     *
-     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
-     * @param  string             $sessionId   Session ID returned by `startUploadSession`
-     * @param  int                $offset      The amount of data that has been uploaded so far
-     * @param  int                $remaining   The amount of data that is remaining
-     * @param  string             $path        Path to save the file to, on Dropbox
-     * @param  array              $params      Additional Params
-     *
-     * @return \Kunnu\Dropbox\Models\FileMetadata
-     *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
-     *
-     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-finish
-     *
-     */
-    public function finishUploadSession($dropboxFile, $sessionId, $offset, $remaining, $path, array $params = [])
-    {
-        //Make Dropbox File
-        $dropboxFile = $this->makeDropboxFile($dropboxFile, $remaining, $offset);
-
-        //Session ID, offset, remaining and path cannot be null
-        if (is_null($sessionId) || is_null($path) || is_null($offset) || is_null($remaining)) {
-            throw new DropboxClientException("Session ID, offset, remaining and path cannot be null");
+        if ($offset) {
+            $dropboxFile->setOffset($offset);
+        }
+        if ($maxLength) {
+            $dropboxFile->setMaxLength($maxLength);
         }
 
-        $queryParams = [];
-
-        //Set the File
-        $queryParams['file'] = $dropboxFile;
-
-        //Set the Cursor: Session ID and Offset
-        $queryParams['cursor'] = ['session_id' => $sessionId, 'offset' => $offset];
-
-        //Set the path
-        $params['path'] = $path;
-        //Set the Commit
-        $queryParams['commit'] = $params;
-
-        //Upload File
-        $file = $this->postToContent('/files/upload_session/finish', $queryParams);
-        $body = $file->getDecodedBody();
-
-        //Make and Return the Model
-        return new FileMetadata($body);
-    }
-
-    /**
-     * Append more data to an Upload Session
-     *
-     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
-     * @param  string             $sessionId   Session ID returned by `startUploadSession`
-     * @param  int                $offset      The amount of data that has been uploaded so far
-     * @param  int                $chunkSize   The amount of data to upload
-     * @param  boolean            $close       Closes the session for futher "appendUploadSession" calls
-     *
-     * @return string Unique identifier for the upload session
-     *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
-     *
-     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-append_v2
-     *
-     */
-    public function appendUploadSession($dropboxFile, $sessionId, $offset, $chunkSize, $close = false)
-    {
-        //Make Dropbox File
-        $dropboxFile = $this->makeDropboxFile($dropboxFile, $chunkSize, $offset);
-
-        //Session ID, offset, chunkSize and path cannot be null
-        if (is_null($sessionId) || is_null($offset) || is_null($chunkSize)) {
-            throw new DropboxClientException("Session ID, offset and chunk size cannot be null");
-        }
-
-        $params = [];
-
-        //Set the File
-        $params['file'] = $dropboxFile;
-
-        //Set the Cursor: Session ID and Offset
-        $params['cursor'] = ['session_id' => $sessionId, 'offset' => $offset];
-
-        //Set the close param
-        $params['close'] = $close ? true : false;
-
-        //Since this endpoint doesn't have
-        //any return values, we'll disable the
-        //response validation for this request.
-        $params['validateResponse'] = false;
-
-        //Upload File
-        $file = $this->postToContent('/files/upload_session/append_v2', $params);
-
-        //Make and Return the Model
-        return $sessionId;
+        //Return the DropboxFile Object
+        return $dropboxFile;
     }
 
     /**
@@ -1055,23 +879,181 @@ class Dropbox
     }
 
     /**
-     * Get thumbnail size
+     * Start an Upload Session
      *
-     * @param  string $size Thumbnail Size
+     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     * @param  int                $chunkSize   Size of file chunk to upload
+     * @param  boolean            $close       Closes the session for "appendUploadSession"
      *
-     * @return string
+     * @return string Unique identifier for the upload session
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-start
+     *
      */
-    protected function getThumbnailSize($size)
+    public function startUploadSession($dropboxFile, $chunkSize = -1, $close = false)
     {
-        $thumbnailSizes = [
-        'thumb'  => 'w32h32',
-        'small'  => 'w64h64',
-        'medium' => 'w128h128',
-        'large'  => 'w640h480',
-        'huge'   => 'w1024h768'
-        ];
+        //Make Dropbox File with the given chunk size
+        $dropboxFile = $this->makeDropboxFile($dropboxFile, $chunkSize);
 
-        return isset($thumbnailSizes[$size]) ? $thumbnailSizes[$size] : $thumbnailSizes['small'];
+        //Set the close param
+        $params['close'] = $close ? true : false;
+
+        //Set the file param
+        $params['file'] = $dropboxFile;
+
+        //Upload File
+        $file = $this->postToContent('/files/upload_session/start', $params);
+        $body = $file->getDecodedBody();
+
+        //Cannot retrieve Session ID
+        if (!isset($body['session_id'])) {
+            throw new DropboxClientException("Could not retrieve Session ID.");
+        }
+
+        //Return the Session ID
+        return $body['session_id'];
+    }
+
+    /**
+     * Make a HTTP POST Request to the Content endpoint type
+     *
+     * @param  string      $endpoint     Content Endpoint to send Request to
+     * @param  array       $params       Request Query Params
+     * @param  string      $accessToken  Access Token to send with the Request
+     * @param  DropboxFile $responseFile Save response to the file
+     *
+     * @return \Kunnu\Dropbox\DropboxResponse
+     */
+    public function postToContent($endpoint, array $params = [], $accessToken = null, DropboxFile $responseFile = null)
+    {
+        return $this->sendRequest("POST", $endpoint, 'content', $params, $accessToken, $responseFile);
+    }
+
+    /**
+     * Append more data to an Upload Session
+     *
+     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     * @param  string             $sessionId   Session ID returned by `startUploadSession`
+     * @param  int                $offset      The amount of data that has been uploaded so far
+     * @param  int                $chunkSize   The amount of data to upload
+     * @param  boolean            $close       Closes the session for futher "appendUploadSession" calls
+     *
+     * @return string Unique identifier for the upload session
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-append_v2
+     *
+     */
+    public function appendUploadSession($dropboxFile, $sessionId, $offset, $chunkSize, $close = false)
+    {
+        //Make Dropbox File
+        $dropboxFile = $this->makeDropboxFile($dropboxFile, $chunkSize, $offset);
+
+        //Session ID, offset, chunkSize and path cannot be null
+        if (is_null($sessionId) || is_null($offset) || is_null($chunkSize)) {
+            throw new DropboxClientException("Session ID, offset and chunk size cannot be null");
+        }
+
+        $params = [];
+
+        //Set the File
+        $params['file'] = $dropboxFile;
+
+        //Set the Cursor: Session ID and Offset
+        $params['cursor'] = ['session_id' => $sessionId, 'offset' => $offset];
+
+        //Set the close param
+        $params['close'] = $close ? true : false;
+
+        //Since this endpoint doesn't have
+        //any return values, we'll disable the
+        //response validation for this request.
+        $params['validateResponse'] = false;
+
+        //Upload File
+        $file = $this->postToContent('/files/upload_session/append_v2', $params);
+
+        //Make and Return the Model
+        return $sessionId;
+    }
+
+    /**
+     * Finish an upload session and save the uploaded data to the given file path
+     *
+     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     * @param  string             $sessionId   Session ID returned by `startUploadSession`
+     * @param  int                $offset      The amount of data that has been uploaded so far
+     * @param  int                $remaining   The amount of data that is remaining
+     * @param  string             $path        Path to save the file to, on Dropbox
+     * @param  array              $params      Additional Params
+     *
+     * @return \Kunnu\Dropbox\Models\FileMetadata
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-finish
+     *
+     */
+    public function finishUploadSession($dropboxFile, $sessionId, $offset, $remaining, $path, array $params = [])
+    {
+        //Make Dropbox File
+        $dropboxFile = $this->makeDropboxFile($dropboxFile, $remaining, $offset);
+
+        //Session ID, offset, remaining and path cannot be null
+        if (is_null($sessionId) || is_null($path) || is_null($offset) || is_null($remaining)) {
+            throw new DropboxClientException("Session ID, offset, remaining and path cannot be null");
+        }
+
+        $queryParams = [];
+
+        //Set the File
+        $queryParams['file'] = $dropboxFile;
+
+        //Set the Cursor: Session ID and Offset
+        $queryParams['cursor'] = ['session_id' => $sessionId, 'offset' => $offset];
+
+        //Set the path
+        $params['path'] = $path;
+        //Set the Commit
+        $queryParams['commit'] = $params;
+
+        //Upload File
+        $file = $this->postToContent('/files/upload_session/finish', $queryParams);
+        $body = $file->getDecodedBody();
+
+        //Make and Return the Model
+        return new FileMetadata($body);
+    }
+
+    /**
+     * Upload a File to Dropbox in a single request
+     *
+     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     * @param  string             $path        Path to upload the file to
+     * @param  array              $params      Additional Params
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload
+     *
+     * @return \Kunnu\Dropbox\Models\FileMetadata
+     */
+    public function simpleUpload($dropboxFile, $path, array $params = [])
+    {
+        //Make Dropbox File
+        $dropboxFile = $this->makeDropboxFile($dropboxFile);
+
+        //Set the path and file
+        $params['path'] = $path;
+        $params['file'] = $dropboxFile;
+
+        //Upload File
+        $file = $this->postToContent('/files/upload', $params);
+        $body = $file->getDecodedBody();
+
+        //Make and Return the Model
+        return new FileMetadata($body);
     }
 
     /**
@@ -1117,6 +1099,62 @@ class Dropbox
     }
 
     /**
+     * Get thumbnail size
+     *
+     * @param  string $size Thumbnail Size
+     *
+     * @return string
+     */
+    protected function getThumbnailSize($size)
+    {
+        $thumbnailSizes = [
+            'thumb' => 'w32h32',
+            'small' => 'w64h64',
+            'medium' => 'w128h128',
+            'large' => 'w640h480',
+            'huge' => 'w1024h768'
+        ];
+
+        return isset($thumbnailSizes[$size]) ? $thumbnailSizes[$size] : $thumbnailSizes['small'];
+    }
+
+    /**
+     * Get metadata from response headers
+     *
+     * @param  DropboxResponse $response
+     *
+     * @return array
+     */
+    protected function getMetadataFromResponseHeaders(DropboxResponse $response)
+    {
+        //Response Headers
+        $headers = $response->getHeaders();
+
+        //Empty metadata for when
+        //metadata isn't returned
+        $metadata = [];
+
+        //If metadata is available
+        if (isset($headers[static::METADATA_HEADER])) {
+            //File Metadata
+            $data = $headers[static::METADATA_HEADER];
+
+            //The metadata is present in the first index
+            //of the metadata response header array
+            if (is_array($data) && isset($data[0])) {
+                $data = $data[0];
+            }
+
+            //Since the metadata is returned as a json string
+            //it needs to be decoded into an associative array
+            $metadata = json_decode((string)$data, true);
+        }
+
+        //Return the metadata
+        return $metadata;
+    }
+
+    /**
      * Download a File
      *
      * @param  string                  $path        Path to the file you want to download
@@ -1150,42 +1188,6 @@ class Dropbox
 
         //Make and return a File model
         return new File($metadata, $contents);
-    }
-
-    /**
-     * Get metadata from response headers
-     *
-     * @param  DropboxResponse $response
-     *
-     * @return array
-     */
-    protected function getMetadataFromResponseHeaders(DropboxResponse $response)
-    {
-        //Response Headers
-        $headers = $response->getHeaders();
-
-        //Empty metadata for when
-        //metadata isn't returned
-        $metadata = [];
-
-        //If metadata is available
-        if (isset($headers[static::METADATA_HEADER])) {
-            //File Metadata
-            $data = $headers[static::METADATA_HEADER];
-
-            //The metadata is present in the first index
-            //of the metadata response header array
-            if (is_array($data) && isset($data[0])) {
-                $data = $data[0];
-            }
-
-            //Since the metadata is returned as a json string
-            //it needs to be decoded into an associative array
-            $metadata = json_decode((string) $data, true);
-        }
-
-        //Return the metadata
-        return $metadata;
     }
 
     /**
