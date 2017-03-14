@@ -3,11 +3,6 @@ language: php
 php:
   - 7
 
-env:
-  - TEST_SUITE="DropboxTest"
-
-sudo: false
-
 cache:
   directories:
     - $HOME/.composer/cache
@@ -20,4 +15,4 @@ install:
   - composer --prefer-source install
 
 script:
-  - ./vendor/bin/phpunit --colors --testsuite "$TEST_SUITE"
+  - ./vendor/bin/phpunit --colors
