@@ -299,16 +299,20 @@ class Dropbox
      * @param  DropboxResponse $response
      *
      * @return \Kunnu\Dropbox\Models\ModelInterface
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
     public function makeModelFromResponse(DropboxResponse $response)
     {
         //Get the Decoded Body
         $body = $response->getDecodedBody();
 
-        if (!is_null($body)) {
-            //Make and Return the Model
-            return ModelFactory::make($body);
+        if (is_null($body)) {
+            throw new DropboxClientException('The decoded response body returned null.');
         }
+
+        //Make and Return the Model
+        return ModelFactory::make($body);
     }
 
     /**
