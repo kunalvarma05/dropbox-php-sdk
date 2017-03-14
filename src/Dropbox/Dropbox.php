@@ -308,7 +308,7 @@ class Dropbox
         $body = $response->getDecodedBody();
 
         if (is_null($body)) {
-            throw new DropboxClientException('The decoded response body returned null.');
+            $body = [];
         }
 
         //Make and Return the Model
@@ -806,10 +806,11 @@ class Dropbox
             $dropboxFile = new DropboxFile($dropboxFile->getFilePath(), $mode);
         }
 
-        if ($offset) {
+        if (!is_null($offset)) {
             $dropboxFile->setOffset($offset);
         }
-        if ($maxLength) {
+
+        if (!is_null($maxLength)) {
             $dropboxFile->setMaxLength($maxLength);
         }
 
