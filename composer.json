@@ -19,7 +19,8 @@
         }
     },
     "require-dev": {
-        "etsy/phan": "^0.8.3"
+        "etsy/phan": "^0.8.3",
+        "phpunit/phpunit": "^6.0"
     },
     "scripts": {
         "phan": "phan",
