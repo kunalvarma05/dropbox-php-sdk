@@ -36,8 +36,8 @@ class MediaMetadata extends BaseModel
     public function __construct(array $data)
     {
         parent::__construct($data);
-        $this->location = $this->getDataProperty('location');
-        $this->dimensions = $this->getDataProperty('dimensions');
+        $this->location = (array) $this->getDataProperty('location');
+        $this->dimensions = (array) $this->getDataProperty('dimensions');
 
         $time_taken = $this->getDataProperty('time_taken');
         if ($time_taken) {
