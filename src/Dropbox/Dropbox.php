@@ -979,7 +979,7 @@ class Dropbox
         $params['validateResponse'] = false;
 
         //Upload File
-        $file = $this->postToContent('/files/upload_session/append_v2', $params);
+        $this->postToContent('/files/upload_session/append_v2', $params);
 
         //Make and Return the Model
         return $sessionId;
