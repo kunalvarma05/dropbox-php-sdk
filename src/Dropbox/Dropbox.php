@@ -903,10 +903,10 @@ class Dropbox
         $dropboxFile = $this->makeDropboxFile($dropboxFile, $chunkSize);
 
         //Set the close param
-        $params['close'] = $close ? true : false;
-
-        //Set the file param
-        $params['file'] = $dropboxFile;
+        $params = [
+            'close' => $close ? true : false,
+            'file' => $dropboxFile
+        ];
 
         //Upload File
         $file = $this->postToContent('/files/upload_session/start', $params);
