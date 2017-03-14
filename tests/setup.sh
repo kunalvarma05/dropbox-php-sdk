@@ -61,7 +61,3 @@ popd
 
 # Note the PHP version for later builds.
 php -r "echo PHP_VERSION_ID;" > build/phpversion.txt
-
-# Disable xdebug, since we aren't currently gathering code coverage data and
-# having xdebug slows down Composer a bit.
-phpenv config-rm xdebug.ini
