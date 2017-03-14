@@ -1,8 +1,6 @@
 <?php
 namespace Kunnu\Dropbox\Models;
 
-use DateTime;
-
 class TemporaryLink extends BaseModel
 {
 
