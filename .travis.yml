@@ -1,0 +1,23 @@
+language: php
+
+php:
+  - 7
+
+env:
+  - TEST_SUITE="DropboxTest"
+
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_install:
+  - ./tests/setup.sh
+  - composer validate
+
+install:
+  - composer --prefer-source install
+
+script:
+  - ./vendor/bin/phpunit --colors --testsuite "$TEST_SUITE"
