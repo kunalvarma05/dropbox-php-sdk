@@ -20,6 +20,7 @@ before_script:
   - chmod +x ./tests/setup.sh
   - travis_retry composer self-update
   - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
+  - phpenv config-add xdebug.ini
 
 script:
   - ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
