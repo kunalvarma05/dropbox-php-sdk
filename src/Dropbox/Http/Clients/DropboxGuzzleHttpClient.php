@@ -102,6 +102,6 @@ class DropboxGuzzleHttpClient implements DropboxHttpClientInterface
             $body = $body->getContents();
         }
 
-        return $body;
+        return (string) $body;
     }
 }

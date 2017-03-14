@@ -90,7 +90,7 @@ class Account extends BaseModel
         parent::__construct($data);
 
         $this->account_id = $this->getDataProperty('account_id');
-        $this->name = $this->getDataProperty('name');
+        $this->name = (array) $this->getDataProperty('name');
         $this->email = $this->getDataProperty('email');
         $this->email_verified = $this->getDataProperty('email_verified');
         $this->disabled = $this->getDataProperty('disabled');

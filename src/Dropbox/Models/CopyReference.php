@@ -55,7 +55,7 @@ class CopyReference extends BaseModel
     /**
      * Get the expiration date of the copy reference
      *
-     * @var DateTime
+     * @return DateTime
      */
     public function getExpirationDate()
     {
