@@ -29,9 +29,9 @@ class DropboxResponse
     /**
      *  The decoded body of the response
      *
-     * @var array|null
+     * @var array
      */
-    protected $decodedBody;
+    protected $decodedBody = [];
 
     /**
      * The original request that returned this response
@@ -103,11 +103,11 @@ class DropboxResponse
     /**
      * Get the Decoded Body
      *
-     * @return array|null
+     * @return array
      */
     public function getDecodedBody()
     {
-        if ($this->decodedBody === null) {
+        if (empty($this->decodedBody) || $this->decodedBody === null) {
             //Decode the Response Body
             $this->decodeBody();
         }
@@ -159,7 +159,7 @@ class DropboxResponse
         if (isset($this->headers['Content-Type']) && in_array('application/json', $this->headers['Content-Type'])) {
             $this->decodedBody = json_decode((string)$body, true);
         } else {
-            $this->decodedBody = $this->body;
+            $this->decodedBody = $body;
         }
 
         // If the response needs to be validated
