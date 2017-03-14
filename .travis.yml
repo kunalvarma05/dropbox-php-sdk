@@ -3,6 +3,8 @@ language: php
 php:
   - 7
 
+sudo: required
+
 cache:
   directories:
     - $HOME/.composer/cache
