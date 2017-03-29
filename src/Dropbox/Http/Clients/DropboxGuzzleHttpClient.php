@@ -2,6 +2,7 @@
 namespace Kunnu\Dropbox\Http\Clients;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -53,6 +54,8 @@ class DropboxGuzzleHttpClient implements DropboxHttpClientInterface
         try {
             //Send the Request
             $rawResponse = $this->client->send($request, $options);
+        } catch (BadResponseException $e) {
+            throw new DropboxClientException($e->getResponse()->getBody(), $e->getCode(), $e);
         } catch (RequestException $e) {
             $rawResponse = $e->getResponse();
 
