@@ -50,6 +50,13 @@ class DropboxFile
     protected $mode;
 
     /**
+     * Flag to see if we created an instance using a stream
+     *
+     * @var bool
+     */
+    private $isStream = false;
+    
+    /**
      * Create a new DropboxFile instance
      *
      * @param string $filePath Path of the file to upload
@@ -67,6 +74,48 @@ class DropboxFile
     public function __destruct()
     {
         $this->close();
+    }
+    
+    
+    /**
+     * Create a new DropboxFile instance using a file stream
+     *
+     * @param $fileName
+     * @param $resource
+     * @param string $mode
+     * @return DropboxFile
+     * @throws DropboxClientException
+     */
+    public static function createByStream($fileName, $resource, $mode = self::MODE_READ)
+    {
+        // initialize a new intance
+        $dropboxFile = new self($fileName, $mode);
+
+        // create a new stream and set it to the dropbox file
+        $stream = \GuzzleHttp\Psr7\stream_for($resource);
+        if (!$stream) {
+            throw new DropboxClientException('Failed to create DropboxFile instance. Unable to open the given resource.');
+        }
+        $dropboxFile->setStream($stream);
+
+        return $dropboxFile;
+    }
+
+    /**
+     * Create a new DropboxFile instance using a file path
+     *
+     * This behaves the same as the constructor but was added in order to
+     * match the syntax of the static createByStream function
+     *
+     * @see DropboxFile::createByStream()
+     *
+     * @param $filePath
+     * @param $mode
+     * @return DropboxFile
+     */
+    public static function createByPath($filePath, $mode)
+    {
+        return new self($filePath, $mode);
     }
 
     /**
@@ -99,6 +148,17 @@ class DropboxFile
     public function setMaxLength($maxLength)
     {
         $this->maxLength = $maxLength;
+    }
+    
+    /**
+     * Manually set the stream for this DropboxFile instance
+     *
+     * @param $stream
+     */
+    public function setStream($stream)
+    {
+        $this->isStream = true;
+        $this->stream = $stream;
     }
 
     /**
@@ -146,6 +206,11 @@ class DropboxFile
      */
     public function open()
     {
+        // File was created from a stream so don't open it again
+        if ($this->stream && $this->isStream === true) {
+            return;
+        }
+        
         if (!$this->isRemoteFile($this->path)) {
             if (self::MODE_READ === $this->mode && !is_readable($this->path)) {
                 throw new DropboxClientException('Failed to create DropboxFile instance. Unable to read resource: ' . $this->path . '.');
