@@ -88,14 +88,19 @@ class DropboxFile
      */
     public static function createByStream($fileName, $resource, $mode = self::MODE_READ)
     {
-        // initialize a new intance
-        $dropboxFile = new self($fileName, $mode);
-
         // create a new stream and set it to the dropbox file
         $stream = \GuzzleHttp\Psr7\stream_for($resource);
         if (!$stream) {
             throw new DropboxClientException('Failed to create DropboxFile instance. Unable to open the given resource.');
         }
+
+        // Try to get the file path from the stream (we'll need this for uploading bigger files)
+        $filePath = $stream->getMetadata('uri');
+        if (!is_null($filePath)) {
+            $fileName = $filePath;
+        }
+
+        $dropboxFile = new self($fileName, $mode);
         $dropboxFile->setStream($stream);
 
         return $dropboxFile;
