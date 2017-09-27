@@ -115,7 +115,7 @@ class OAuth2Client
             'state' => $state,
             ], $params);
 
-        if(!is_null($redirectUri)) {
+        if (!is_null($redirectUri)) {
             $params['redirect_uri'] = $redirectUri;
         }
 
