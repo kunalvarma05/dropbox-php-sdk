@@ -141,7 +141,7 @@ class FileMetadata extends BaseModel
     }
 
     /**
-     * Get the '.tag' property of the folder model.
+     * Get the '.tag' property of the file model.
      *
      * @return string
      */
