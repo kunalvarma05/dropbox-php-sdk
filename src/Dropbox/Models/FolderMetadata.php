@@ -87,7 +87,7 @@ class FolderMetadata extends BaseModel
      */
     public function getTag()
     {
-        	return $this->tag;
+        return $this->tag;
     }
 
     /**
