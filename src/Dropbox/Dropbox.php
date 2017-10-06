@@ -1,6 +1,8 @@
 <?php
+
 namespace Kunnu\Dropbox;
 
+use Kunnu\Dropbox\Models\DeletedMetadata;
 use Kunnu\Dropbox\Models\File;
 use Kunnu\Dropbox\Models\Account;
 use Kunnu\Dropbox\Models\Thumbnail;
@@ -502,7 +504,7 @@ class Dropbox
      *
      * @param  string $path Path to file/folder to delete
      *
-     * @return \Kunnu\Dropbox\Models\DeletedMetadata|\Kunnu\Dropbox\Models\FileMetadata|\Kunnu\Dropbox\Models\FolderMetadata
+     * @return \Kunnu\Dropbox\Models\DeletedMetadata
      *
      * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      *
@@ -518,8 +520,14 @@ class Dropbox
 
         //Delete
         $response = $this->postToAPI('/files/delete_v2', ['path' => $path]);
+        $body = $response->getDecodedBody();
 
-        return $this->makeModelFromResponse($response);
+        //Response doesn't have Metadata
+        if (!isset($body['metadata']) || !is_array($body['metadata'])) {
+            throw new DropboxClientException("Invalid Response.");
+        }
+
+        return new DeletedMetadata($body['metadata']);
     }
 
     /**
