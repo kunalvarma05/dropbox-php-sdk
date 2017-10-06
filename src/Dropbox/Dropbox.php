@@ -517,7 +517,7 @@ class Dropbox
         }
 
         //Delete
-        $response = $this->postToAPI('/files/delete', ['path' => $path]);
+        $response = $this->postToAPI('/files/delete_v2', ['path' => $path]);
 
         return $this->makeModelFromResponse($response);
     }
