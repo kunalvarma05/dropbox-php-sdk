@@ -257,6 +257,9 @@ class Dropbox
      */
     public function sendRequest($method, $endpoint, $endpointType = 'api', array $params = [], $accessToken = null, DropboxFile $responseFile = null)
     {
+        if($accessToken==null){
+            $accessToken=$_SESSION['dropbox_token'];
+        }
         //Access Token
         $accessToken = $this->getAccessToken() ? $this->getAccessToken() : $accessToken;
 
