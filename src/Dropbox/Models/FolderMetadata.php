@@ -1,5 +1,5 @@
 <?php
-namespace Kunnu\Dropbox\Models;
+namespace Grapelime\Dropbox\Models;
 
 class FolderMetadata extends BaseModel
 {
@@ -37,7 +37,7 @@ class FolderMetadata extends BaseModel
     /**
      * Set if this folder is contained in a shared folder.
      *
-     * @var \Kunnu\Dropbox\Models\FolderSharingInfo
+     * @var \Grapelime\Dropbox\Models\FolderSharingInfo
      */
     protected $sharing_info;
 
@@ -113,7 +113,7 @@ class FolderMetadata extends BaseModel
     /**
      * Get the 'sharing_info' property of the folder model.
      *
-     * @return \Kunnu\Dropbox\Models\FolderSharingInfo
+     * @return \Grapelime\Dropbox\Models\FolderSharingInfo
      */
     public function getSharingInfo()
     {

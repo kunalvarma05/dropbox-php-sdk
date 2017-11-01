@@ -1,5 +1,5 @@
 <?php
-namespace Kunnu\Dropbox\Models;
+namespace Grapelime\Dropbox\Models;
 
 class MediaInfo extends BaseModel
 {
@@ -15,7 +15,7 @@ class MediaInfo extends BaseModel
     /**
      * MediaMetadata
      *
-     * @var \Kunnu\Dropbox\Models\MediaMetadata
+     * @var \Grapelime\Dropbox\Models\MediaMetadata
      */
     protected $mediaMetadata;
 
@@ -66,7 +66,7 @@ class MediaInfo extends BaseModel
     /**
      * The metadata for the photo/video.
      *
-     * @return \Kunnu\Dropbox\Models\MediaMetadata
+     * @return \Grapelime\Dropbox\Models\MediaMetadata
      */
     public function getMediaMetadata()
     {

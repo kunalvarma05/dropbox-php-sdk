@@ -1,5 +1,5 @@
 <?php
-namespace Kunnu\Dropbox\Models;
+namespace Grapelime\Dropbox\Models;
 
 use DateTime;
 

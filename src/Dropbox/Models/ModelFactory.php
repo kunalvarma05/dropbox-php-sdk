@@ -1,6 +1,6 @@
 <?php
 
-namespace Kunnu\Dropbox\Models;
+namespace Grapelime\Dropbox\Models;
 
 class ModelFactory
 {
@@ -10,7 +10,7 @@ class ModelFactory
      *
      * @param  array $data Model Data
      *
-     * @return \Kunnu\Dropbox\Models\ModelInterface
+     * @return \Grapelime\Dropbox\Models\ModelInterface
      */
     public static function make(array $data = array())
     {

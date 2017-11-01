@@ -1,15 +1,15 @@
 <?php
 
-namespace Kunnu\Dropbox\Http\Clients;
+namespace Grapelime\Dropbox\Http\Clients;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
-use Kunnu\Dropbox\Http\DropboxRawResponse;
+use Grapelime\Dropbox\Http\DropboxRawResponse;
 use GuzzleHttp\Exception\BadResponseException;
-use Kunnu\Dropbox\Exceptions\DropboxClientException;
+use Grapelime\Dropbox\Exceptions\DropboxClientException;
 
 /**
  * DropboxGuzzleHttpClient.
@@ -43,9 +43,9 @@ class DropboxGuzzleHttpClient implements DropboxHttpClientInterface
      * @param  array  $headers Request Headers
      * @param  array  $options Additional Options
      *
-     * @return \Kunnu\Dropbox\Http\DropboxRawResponse Raw response from the server
+     * @return \Grapelime\Dropbox\Http\DropboxRawResponse Raw response from the server
      *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     * @throws \Grapelime\Dropbox\Exceptions\DropboxClientException
      */
     public function send($url, $method, $body, $headers = [], $options = [])
     {

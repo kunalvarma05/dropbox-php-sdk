@@ -1,5 +1,5 @@
 <?php
-namespace Kunnu\Dropbox\Models;
+namespace Grapelime\Dropbox\Models;
 
 class DeletedMetadata extends BaseModel
 {
@@ -21,7 +21,7 @@ class DeletedMetadata extends BaseModel
     /**
      * Set if this file is contained in a shared folder
      *
-     * @var \Kunnu\Dropbox\Models\FileSharingInfo
+     * @var \Grapelime\Dropbox\Models\FileSharingInfo
      */
     protected $sharing_info;
 
@@ -79,7 +79,7 @@ class DeletedMetadata extends BaseModel
     /**
      * Get the 'sharing_info' property of the file model.
      *
-     * @return \Kunnu\Dropbox\Models\FileSharingInfo
+     * @return \Grapelime\Dropbox\Models\FileSharingInfo
      */
     public function getSharingInfo()
     {

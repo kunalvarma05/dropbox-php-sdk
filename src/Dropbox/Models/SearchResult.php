@@ -1,5 +1,5 @@
 <?php
-namespace Kunnu\Dropbox\Models;
+namespace Grapelime\Dropbox\Models;
 
 class SearchResult extends BaseModel
 {
@@ -14,7 +14,7 @@ class SearchResult extends BaseModel
     /**
      * File\Folder Metadata
      *
-     * @var \Kunnu\Dropbox\Models\FileMetadata|\Kunnu\Dropbox\Models\FolderMetadata
+     * @var \Grapelime\Dropbox\Models\FileMetadata|\Grapelime\Dropbox\Models\FolderMetadata
      */
     protected $metadata;
 
@@ -59,7 +59,7 @@ class SearchResult extends BaseModel
     /**
      * Get the Search Result Metadata
      *
-     * @return \Kunnu\Dropbox\Models\FileMetadata|\Kunnu\Dropbox\Models\FolderMetadata
+     * @return \Grapelime\Dropbox\Models\FileMetadata|\Grapelime\Dropbox\Models\FolderMetadata
      */
     public function getMetadata()
     {

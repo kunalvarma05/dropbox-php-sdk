@@ -1,5 +1,5 @@
 <?php
-namespace Kunnu\Dropbox\Http\Clients;
+namespace Grapelime\Dropbox\Http\Clients;
 
 use InvalidArgumentException;
 use GuzzleHttp\Client as Guzzle;
@@ -12,9 +12,9 @@ class DropboxHttpClientFactory
     /**
      * Make HTTP Client
      *
-     * @param  \Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface|\GuzzleHttp\Client|null $handler
+     * @param  \Grapelime\Dropbox\Http\Clients\DropboxHttpClientInterface|\GuzzleHttp\Client|null $handler
      *
-     * @return \Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface
+     * @return \Grapelime\Dropbox\Http\Clients\DropboxHttpClientInterface
      */
     public static function make($handler)
     {
@@ -34,6 +34,6 @@ class DropboxHttpClientFactory
         }
 
         //Invalid handler
-        throw new InvalidArgumentException('The http client handler must be an instance of GuzzleHttp\Client or an instance of Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface.');
+        throw new InvalidArgumentException('The http client handler must be an instance of GuzzleHttp\Client or an instance of Grapelime\Dropbox\Http\Clients\DropboxHttpClientInterface.');
     }
 }

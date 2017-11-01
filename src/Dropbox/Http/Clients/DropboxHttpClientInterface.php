@@ -1,5 +1,5 @@
 <?php
-namespace Kunnu\Dropbox\Http\Clients;
+namespace Grapelime\Dropbox\Http\Clients;
 
 /**
  * DropboxHttpClientInterface
@@ -15,9 +15,9 @@ interface DropboxHttpClientInterface
      * @param  array  $headers Request Headers
      * @param  array  $options Additional Options
      *
-     * @return \Kunnu\Dropbox\Http\DropboxRawResponse Raw response from the server
+     * @return \Grapelime\Dropbox\Http\DropboxRawResponse Raw response from the server
      *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     * @throws \Grapelime\Dropbox\Exceptions\DropboxClientException
      */
     public function send($url, $method, $body, $headers = [], $options = []);
 }

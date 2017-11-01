@@ -1,5 +1,5 @@
 <?php
-namespace Kunnu\Dropbox\Models;
+namespace Grapelime\Dropbox\Models;
 
 class AccessToken extends BaseModel
 {
@@ -120,5 +120,24 @@ class AccessToken extends BaseModel
     public function getTeamId()
     {
         return $this->teamId;
+    }
+    
+    /**
+     * Returns the authorization data as a JSON formatted string.
+     *
+     * @return string   The data in JSON format
+     */
+    public function to_json() {
+        $this->token = $this->getDataProperty('access_token');
+
+        $data = array(
+            'token' => $this->token,
+            'tokenType' => $this->tokenType,
+            'bearer' => $this->bearer,
+            'uid' => $this->uid,
+            'accountId' => $this->accountId,
+            'teamId' => $this->teamId
+        );
+        return json_encode($data);
     }
 }

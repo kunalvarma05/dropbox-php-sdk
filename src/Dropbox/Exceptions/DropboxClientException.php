@@ -1,5 +1,5 @@
 <?php
-namespace Kunnu\Dropbox\Exceptions;
+namespace Grapelime\Dropbox\Exceptions;
 
 use Exception;
 

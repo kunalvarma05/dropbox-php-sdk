@@ -1,8 +1,8 @@
 <?php
-namespace Kunnu\Dropbox\Security;
+namespace Grapelime\Dropbox\Security;
 
 use InvalidArgumentException;
-use Kunnu\Dropbox\Exceptions\DropboxClientException;
+use Grapelime\Dropbox\Exceptions\DropboxClientException;
 
 /**
  * Thanks to Facebook
@@ -14,11 +14,11 @@ class RandomStringGeneratorFactory
     /**
      * Make a Random String Generator
      *
-     * @param  null|string|\Kunnu\Dropbox\Security\RandomStringGeneratorInterface $generator
+     * @param  null|string|\Grapelime\Dropbox\Security\RandomStringGeneratorInterface $generator
      *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     * @throws \Grapelime\Dropbox\Exceptions\DropboxClientException
      *
-     * @return \Kunnu\Dropbox\Security\RandomStringGeneratorInterface
+     * @return \Grapelime\Dropbox\Security\RandomStringGeneratorInterface
      */
     public static function makeRandomStringGenerator($generator = null)
     {
@@ -44,13 +44,13 @@ class RandomStringGeneratorFactory
         }
 
         //Invalid Argument
-        throw new InvalidArgumentException('The random string generator must be set to "mcrypt", "openssl" or be an instance of Kunnu\Dropbox\Security\RandomStringGeneratorInterface');
+        throw new InvalidArgumentException('The random string generator must be set to "mcrypt", "openssl" or be an instance of Grapelime\Dropbox\Security\RandomStringGeneratorInterface');
     }
 
     /**
      * Get Default Random String Generator
      *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     * @throws \Grapelime\Dropbox\Exceptions\DropboxClientException
      *
      * @return RandomStringGeneratorInterface
      */
