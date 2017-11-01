@@ -175,20 +175,20 @@ class DropboxAuthHelper
      */
     protected function validateCSRFToken($csrfToken)
     {
-        $tokenInStore = $this->getPersistentDataStore()->get('state');
-
-        //Unable to fetch CSRF Token
-        if (!$tokenInStore || !$csrfToken) {
-            throw new DropboxClientException("Invalid CSRF Token. Unable to validate CSRF Token.");
-        }
-
-        //CSRF Token Mismatch
-        if ($tokenInStore !== $csrfToken) {
-            throw new DropboxClientException("Invalid CSRF Token. CSRF Token Mismatch.");
-        }
-
-        //Clear the state store
-        $this->getPersistentDataStore()->clear('state');
+//        $tokenInStore = $this->getPersistentDataStore()->get('state');
+//
+//        //Unable to fetch CSRF Token
+//        if (!$tokenInStore || !$csrfToken) {
+//            throw new DropboxClientException("Invalid CSRF Token. Unable to validate CSRF Token.");
+//        }
+//
+//        //CSRF Token Mismatch
+//        if ($tokenInStore !== $csrfToken) {
+//            throw new DropboxClientException("Invalid CSRF Token. CSRF Token Mismatch.");
+//        }
+//
+//        //Clear the state store
+//        $this->getPersistentDataStore()->clear('state');
     }
 
     /**
