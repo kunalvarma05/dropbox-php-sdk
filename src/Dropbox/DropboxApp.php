@@ -1,5 +1,5 @@
 <?php
-namespace Grapelime\Dropbox;
+namespace Grapelime\DropboxApp;
 
 class DropboxApp
 {
