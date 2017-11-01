@@ -1,5 +1,5 @@
 <?php
-namespace Kunnu\Dropbox\Models;
+namespace Grapelime\Dropbox\Models;
 
 class FileMetadata extends BaseModel
 {
@@ -51,14 +51,14 @@ class FileMetadata extends BaseModel
     /**
      * Additional information if the file is a photo or video.
      *
-     * @var \Kunnu\Dropbox\Models\MediaInfo
+     * @var \Grapelime\Dropbox\Models\MediaInfo
      */
     protected $media_info;
 
     /**
      * Set if this file is contained in a shared folder.
      *
-     * @var \Kunnu\Dropbox\Models\FileSharingInfo
+     * @var \Grapelime\Dropbox\Models\FileSharingInfo
      */
     protected $sharing_info;
 
@@ -193,7 +193,7 @@ class FileMetadata extends BaseModel
     /**
      * Get the 'media_info' property of the file model.
      *
-     * @return \Kunnu\Dropbox\Models\MediaInfo
+     * @return \Grapelime\Dropbox\Models\MediaInfo
      */
     public function getMediaInfo()
     {
@@ -203,7 +203,7 @@ class FileMetadata extends BaseModel
     /**
      * Get the 'sharing_info' property of the file model.
      *
-     * @return \Kunnu\Dropbox\Models\FileSharingInfo
+     * @return \Grapelime\Dropbox\Models\FileSharingInfo
      */
     public function getSharingInfo()
     {

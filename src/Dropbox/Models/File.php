@@ -1,7 +1,7 @@
 <?php
-namespace Kunnu\Dropbox\Models;
+namespace Grapelime\Dropbox\Models;
 
-use Kunnu\Dropbox\DropboxFile;
+use Grapelime\Dropbox\DropboxFile;
 
 class File extends BaseModel
 {
@@ -16,7 +16,7 @@ class File extends BaseModel
     /**
      * File Metadata
      *
-     * @var \Kunnu\Dropbox\Models\FileMetadata
+     * @var \Grapelime\Dropbox\Models\FileMetadata
      */
     protected $metadata;
 
@@ -37,7 +37,7 @@ class File extends BaseModel
     /**
      * The metadata for the file
      *
-     * @return \Kunnu\Dropbox\Models\FileMetadata
+     * @return \Grapelime\Dropbox\Models\FileMetadata
      */
     public function getMetadata()
     {

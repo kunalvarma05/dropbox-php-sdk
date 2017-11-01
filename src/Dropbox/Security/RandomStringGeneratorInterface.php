@@ -1,5 +1,5 @@
 <?php
-namespace Kunnu\Dropbox\Security;
+namespace Grapelime\Dropbox\Security;
 
 /**
  * Thanks to Facebook

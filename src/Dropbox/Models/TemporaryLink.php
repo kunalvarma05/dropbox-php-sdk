@@ -1,5 +1,5 @@
 <?php
-namespace Kunnu\Dropbox\Models;
+namespace Grapelime\Dropbox\Models;
 
 class TemporaryLink extends BaseModel
 {
@@ -14,7 +14,7 @@ class TemporaryLink extends BaseModel
     /**
      * File Metadata
      *
-     * @var \Kunnu\Dropbox\Models\FileMetadata
+     * @var \Grapelime\Dropbox\Models\FileMetadata
      */
     protected $metadata;
 
@@ -45,7 +45,7 @@ class TemporaryLink extends BaseModel
     /**
      * The metadata for the file
      *
-     * @return \Kunnu\Dropbox\Models\FileMetadata
+     * @return \Grapelime\Dropbox\Models\FileMetadata
      */
     public function getMetadata()
     {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Kunnu\Dropbox;
+namespace Grapelime\Dropbox;
 
-use Kunnu\Dropbox\Exceptions\DropboxClientException;
+use Grapelime\Dropbox\Exceptions\DropboxClientException;
 
 /**
  * DropboxFile
