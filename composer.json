@@ -10,12 +10,18 @@
         }
     ],
     "require": {
+        "php": ">=7.0",
         "guzzlehttp/guzzle": "~6.0",
         "tightenco/collect": "^5.2"
     },
     "autoload": {
         "psr-4": {
             "Kunnu\\Dropbox\\": "src/Dropbox"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Kunnu\\Dropbox\\Tests\\": "tests/"
         }
     },
     "require-dev": {
