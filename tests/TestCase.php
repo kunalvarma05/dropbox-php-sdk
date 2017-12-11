@@ -9,8 +9,8 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Kunnu\Dropbox\DropboxApp;
-use GuzzleHttp\Handler\MockHandler;
 use Kunnu\Dropbox\DropboxClient;
+use GuzzleHttp\Handler\MockHandler;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use Kunnu\Dropbox\Http\Clients\DropboxHttpClientFactory;
 use Kunnu\Dropbox\Http\Clients\DropboxHttpClientInterface;
@@ -108,7 +108,7 @@ class TestCase extends BaseTestCase
      * 4) correct headers
      * 5) correct request body.
      *
-     * @param string $endpoint Endpoint url
+     * @param string $endpoint Url of the endpoint
      * @param array  $body     The body of the request
      * @param bool   $rpc      If it's an RPC endpoint
      */
@@ -121,9 +121,25 @@ class TestCase extends BaseTestCase
         /** @var Request $request */
         $request = $this->getHistory()[0]['request'];
         $this->assertEquals('POST', $request->getMethod(), 'Submit Dropbox call via POST method');
-        $this->assertEquals($path . $endpoint, $request->getUri(), 'Correct uri');
-        $this->assertEquals(['application/json'], $request->getHeader('Content-Type'), 'Json content type');
         $this->assertEquals(['Bearer fake_token'], $request->getHeader('Authorization'), 'Authorization with token');
-        $this->assertEquals(json_encode($body), $request->getBody()->getContents(), 'Correct request body');
+        $uri = $request->getUri();
+        $this->assertEquals($path . $endpoint, "https://{$uri->getHost()}{$uri->getPath()}", 'Correct uri');
+
+        if ($rpc) {
+            if ('' === $bodyContents = $request->getBody()->getContents()) {
+                $this->assertEquals('', $request->getHeader('Content-Type')[0], 'Null content type when the body is empty');
+            } else {
+                $this->assertEquals(['application/json'], $request->getHeader('Content-Type'), 'Json content type');
+                $this->assertEquals(json_encode($body), $bodyContents, 'Correct request body');
+            }
+        } else {
+            $expectedContent = ['application/octet-stream'];
+            if (in_array($uri->getPath(), ['/2/files/get_thumbnail', '/2/files/download'], true)) {
+                $expectedContent = [''];
+            }
+
+            $this->assertEquals($expectedContent, $request->getHeader('Content-Type'), 'Stream content type');
+            $this->assertEquals([json_encode($body)], $request->getHeader('Dropbox-API-Arg'), 'Correct Dropbox-API-Arg header');
+        }
     }
 }
