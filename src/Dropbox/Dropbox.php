@@ -2,7 +2,6 @@
 
 namespace Kunnu\Dropbox;
 
-use Kunnu\Dropbox\Models\DeletedMetadata;
 use Kunnu\Dropbox\Models\File;
 use Kunnu\Dropbox\Models\Account;
 use Kunnu\Dropbox\Models\Thumbnail;
@@ -204,16 +203,16 @@ class Dropbox
      * @param  string $path   Path of the file or folder
      * @param  array  $params Additional Params
      *
-     * @return \Kunnu\Dropbox\Models\FileMetadata | \Kunnu\Dropbox\Models\FolderMetadata
+     * @return \Kunnu\Dropbox\Models\FileMetadata | \Kunnu\Dropbox\Models\FolderMetadata | \Kunnu\Dropbox\Models\DeletedMetadata
      * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-get_metadata
      *
      */
-    public function getMetadata($path, array $params = [])
+    public function getMetadata(string $path = '', array $params = [])
     {
         //Root folder is unsupported
-        if ($path === '/') {
+        if ('/' === $path || '' === $path) {
             throw new DropboxClientException("Metadata for the root folder is unsupported.");
         }
 
@@ -301,8 +300,6 @@ class Dropbox
      * @param  DropboxResponse $response
      *
      * @return \Kunnu\Dropbox\Models\ModelInterface
-     *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
     public function makeModelFromResponse(DropboxResponse $response)
     {
@@ -327,7 +324,7 @@ class Dropbox
      *
      * @return \Kunnu\Dropbox\Models\MetadataCollection
      */
-    public function listFolder($path = null, array $params = [])
+    public function listFolder(string $path = '', array $params = [])
     {
         //Specify the root folder as an
         //empty string rather than as "/"
@@ -356,7 +353,7 @@ class Dropbox
      *
      * @return \Kunnu\Dropbox\Models\MetadataCollection
      */
-    public function listFolderContinue($cursor)
+    public function listFolderContinue(string $cursor)
     {
         $response = $this->postToAPI('/files/list_folder/continue', ['cursor' => $cursor]);
 
@@ -377,7 +374,7 @@ class Dropbox
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-list_folder-get_latest_cursor
      *
      */
-    public function listFolderLatestCursor($path, array $params = [])
+    public function listFolderLatestCursor(string $path = '', array $params = [])
     {
         //Specify the root folder as an
         //empty string rather than as "/"
@@ -414,7 +411,7 @@ class Dropbox
      *
      * @return \Kunnu\Dropbox\Models\ModelCollection
      */
-    public function listRevisions($path, array $params = [])
+    public function listRevisions(string $path, array $params = [])
     {
         //Set the Path
         $params['path'] = $path;
@@ -450,7 +447,7 @@ class Dropbox
      *
      * @return \Kunnu\Dropbox\Models\SearchResults
      */
-    public function search($path, $query, array $params = [])
+    public function search(string $path = '', $query, array $params = [])
     {
         //Specify the root folder as an
         //empty string rather than as "/"
@@ -477,18 +474,11 @@ class Dropbox
      *
      * @return \Kunnu\Dropbox\Models\FolderMetadata
      *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
-     *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-create_folder
      *
      */
-    public function createFolder($path, $autorename = false)
+    public function createFolder(string $path, $autorename = false)
     {
-        //Path cannot be null
-        if (is_null($path)) {
-            throw new DropboxClientException("Path cannot be null.");
-        }
-
         //Create Folder
         $response = $this->postToAPI('/files/create_folder', ['path' => $path, 'autorename' => $autorename]);
 
@@ -496,7 +486,7 @@ class Dropbox
         $body = $response->getDecodedBody();
 
         //Make and Return the Model
-        return new FolderMetadata($body);
+        return new FolderMetadata($body['metadata']);
     }
 
     /**
@@ -504,30 +494,18 @@ class Dropbox
      *
      * @param  string $path Path to file/folder to delete
      *
-     * @return \Kunnu\Dropbox\Models\DeletedMetadata
+     * @return \Kunnu\Dropbox\Models\FileMetadata | \Kunnu\Dropbox\Models\FolderMetadata
      *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
-     *
-     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-delete
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-delete_v2
      *
      */
-    public function delete($path)
+    public function delete(string $path)
     {
-        //Path cannot be null
-        if (is_null($path)) {
-            throw new DropboxClientException("Path cannot be null.");
-        }
-
         //Delete
         $response = $this->postToAPI('/files/delete_v2', ['path' => $path]);
-        $body = $response->getDecodedBody();
 
-        //Response doesn't have Metadata
-        if (!isset($body['metadata']) || !is_array($body['metadata'])) {
-            throw new DropboxClientException("Invalid Response.");
-        }
-
-        return new DeletedMetadata($body['metadata']);
+        //Make and Return the Model
+        return $this->makeModelFromResponse($response);
     }
 
     /**
@@ -536,20 +514,13 @@ class Dropbox
      * @param  string $fromPath Path to be moved
      * @param  string $toPath   Path to be moved to
      *
-     * @return \Kunnu\Dropbox\Models\DeletedMetadata|\Kunnu\Dropbox\Models\FileMetadata
-     *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     * @return \Kunnu\Dropbox\Models\FileMetadata | \Kunnu\Dropbox\Models\FolderMetadata
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-move
      *
      */
-    public function move($fromPath, $toPath)
+    public function move(string $fromPath, string $toPath)
     {
-        //From and To paths cannot be null
-        if (is_null($fromPath) || is_null($toPath)) {
-            throw new DropboxClientException("From and To paths cannot be null.");
-        }
-
         //Response
         $response = $this->postToAPI('/files/move', ['from_path' => $fromPath, 'to_path' => $toPath]);
 
@@ -563,20 +534,13 @@ class Dropbox
      * @param  string $fromPath Path to be copied
      * @param  string $toPath   Path to be copied to
      *
-     * @return \Kunnu\Dropbox\Models\DeletedMetadata|\Kunnu\Dropbox\Models\FileMetadata
-     *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     * @return \Kunnu\Dropbox\Models\FileMetadata | \Kunnu\Dropbox\Models\FolderMetadata
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-copy
      *
      */
-    public function copy($fromPath, $toPath)
+    public function copy(string $fromPath, string $toPath)
     {
-        //From and To paths cannot be null
-        if (is_null($fromPath) || is_null($toPath)) {
-            throw new DropboxClientException("From and To paths cannot be null.");
-        }
-
         //Response
         $response = $this->postToAPI('/files/copy', ['from_path' => $fromPath, 'to_path' => $toPath]);
 
@@ -590,20 +554,13 @@ class Dropbox
      * @param  string $path Path to the file to restore
      * @param  string $rev  Revision to store for the file
      *
-     * @return \Kunnu\Dropbox\Models\DeletedMetadata|\Kunnu\Dropbox\Models\FileMetadata|\Kunnu\Dropbox\Models\FolderMetadata
-     *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     * @return \Kunnu\Dropbox\Models\FileMetadata
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-restore
      *
      */
-    public function restore($path, $rev)
+    public function restore(string $path, string $rev)
     {
-        //Path and Revision cannot be null
-        if (is_null($path) || is_null($rev)) {
-            throw new DropboxClientException("Path and Revision cannot be null.");
-        }
-
         //Response
         $response = $this->postToAPI('/files/restore', ['path' => $path, 'rev' => $rev]);
 
@@ -621,18 +578,11 @@ class Dropbox
      *
      * @return \Kunnu\Dropbox\Models\CopyReference
      *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
-     *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-copy_reference-get
      *
      */
-    public function getCopyReference($path)
+    public function getCopyReference(string $path)
     {
-        //Path cannot be null
-        if (is_null($path)) {
-            throw new DropboxClientException("Path cannot be null.");
-        }
-
         //Get Copy Reference
         $response = $this->postToAPI('/files/copy_reference/get', ['path' => $path]);
         $body = $response->getDecodedBody();
@@ -654,13 +604,8 @@ class Dropbox
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-copy_reference-save
      *
      */
-    public function saveCopyReference($path, $copyReference)
+    public function saveCopyReference(string $path, string $copyReference)
     {
-        //Path and Copy Reference cannot be null
-        if (is_null($path) || is_null($copyReference)) {
-            throw new DropboxClientException("Path and Copy Reference cannot be null.");
-        }
-
         //Save Copy Reference
         $response = $this->postToAPI('/files/copy_reference/save', ['path' => $path, 'copy_reference' => $copyReference]);
         $body = $response->getDecodedBody();
@@ -682,16 +627,9 @@ class Dropbox
      * https://www.dropbox.com/developers/documentation/http/documentation#files-get_temporary_link
      *
      * @return \Kunnu\Dropbox\Models\TemporaryLink
-     *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
-    public function getTemporaryLink($path)
+    public function getTemporaryLink(string $path)
     {
-        //Path cannot be null
-        if (is_null($path)) {
-            throw new DropboxClientException("Path cannot be null.");
-        }
-
         //Get Temporary Link
         $response = $this->postToAPI('/files/get_temporary_link', ['path' => $path]);
 
@@ -712,13 +650,8 @@ class Dropbox
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-save_url
      *
      */
-    public function saveUrl($path, $url)
+    public function saveUrl(string $path, string $url)
     {
-        //Path and URL cannot be null
-        if (is_null($path) || is_null($url)) {
-            throw new DropboxClientException("Path and URL cannot be null.");
-        }
-
         //Save URL
         $response = $this->postToAPI('/files/save_url', ['path' => $path, 'url' => $url]);
         $body = $response->getDecodedBody();
@@ -738,24 +671,17 @@ class Dropbox
      *
      * @return \Kunnu\Dropbox\Models\FileMetadata|string Status (failed|in_progress) or FileMetadata (if complete)
      *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
-     *
      * @link     https://www.dropbox.com/developers/documentation/http/documentation#files-save_url-check_job_status
      *
      */
-    public function checkJobStatus($asyncJobId)
+    public function checkJobStatus(string $asyncJobId)
     {
-        //Async Job ID cannot be null
-        if (is_null($asyncJobId)) {
-            throw new DropboxClientException("Async Job ID cannot be null.");
-        }
-
         //Get Job Status
         $response = $this->postToAPI('/files/save_url/check_job_status', ['async_job_id' => $asyncJobId]);
         $body = $response->getDecodedBody();
 
         //Status
-        $status = isset($body['.tag']) ? $body['.tag'] : '';
+        $status = $body['.tag'] ?? '';
 
         //If status is complete
         if ($status === 'complete') {
@@ -777,7 +703,7 @@ class Dropbox
      *
      * @return \Kunnu\Dropbox\Models\FileMetadata
      */
-    public function upload($dropboxFile, $path, array $params = [])
+    public function upload($dropboxFile, string $path, array $params = [])
     {
         //Make Dropbox File
         $dropboxFile = $this->makeDropboxFile($dropboxFile);
@@ -918,6 +844,7 @@ class Dropbox
 
         //Upload File
         $file = $this->postToContent('/files/upload_session/start', $params);
+
         $body = $file->getDecodedBody();
 
         //Cannot retrieve Session ID
@@ -955,20 +882,13 @@ class Dropbox
      *
      * @return string Unique identifier for the upload session
      *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
-     *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-append_v2
      *
      */
-    public function appendUploadSession($dropboxFile, $sessionId, $offset, $chunkSize, $close = false)
+    public function appendUploadSession($dropboxFile, string $sessionId, int $offset, int $chunkSize, bool $close = false)
     {
         //Make Dropbox File
         $dropboxFile = $this->makeDropboxFile($dropboxFile, $chunkSize, $offset);
-
-        //Session ID, offset, chunkSize and path cannot be null
-        if (is_null($sessionId) || is_null($offset) || is_null($chunkSize)) {
-            throw new DropboxClientException("Session ID, offset and chunk size cannot be null");
-        }
 
         $params = [];
 
@@ -1005,20 +925,13 @@ class Dropbox
      *
      * @return \Kunnu\Dropbox\Models\FileMetadata
      *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
-     *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-finish
      *
      */
-    public function finishUploadSession($dropboxFile, $sessionId, $offset, $remaining, $path, array $params = [])
+    public function finishUploadSession($dropboxFile, string $sessionId, int $offset, int $remaining, string $path, array $params = [])
     {
         //Make Dropbox File
         $dropboxFile = $this->makeDropboxFile($dropboxFile, $remaining, $offset);
-
-        //Session ID, offset, remaining and path cannot be null
-        if (is_null($sessionId) || is_null($path) || is_null($offset) || is_null($remaining)) {
-            throw new DropboxClientException("Session ID, offset, remaining and path cannot be null");
-        }
 
         $queryParams = [];
 
@@ -1083,13 +996,8 @@ class Dropbox
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-get_thumbnail
      *
      */
-    public function getThumbnail($path, $size = 'small', $format = 'jpeg')
+    public function getThumbnail(string $path, $size = 'small', $format = 'jpeg')
     {
-        //Path cannot be null
-        if (is_null($path)) {
-            throw new DropboxClientException("Path cannot be null.");
-        }
-
         //Invalid Format
         if (!in_array($format, ['jpeg', 'png'])) {
             throw new DropboxClientException("Invalid format. Must either be 'jpeg' or 'png'.");
@@ -1175,18 +1083,11 @@ class Dropbox
      *
      * @return \Kunnu\Dropbox\Models\File
      *
-     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
-     *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-download
      *
      */
-    public function download($path, $dropboxFile = null)
+    public function download(string $path, $dropboxFile = null)
     {
-        //Path cannot be null
-        if (is_null($path)) {
-            throw new DropboxClientException("Path cannot be null.");
-        }
-
         //Make Dropbox File if target is specified
         $dropboxFile = $dropboxFile ? $this->makeDropboxFile($dropboxFile, null, null, DropboxFile::MODE_WRITE) : null;
 
