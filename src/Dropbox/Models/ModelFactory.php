@@ -43,6 +43,16 @@ class ModelFactory
             return new SearchResults($data);
         }
 
+        //File Requests List
+        if (static::isFileRequestList($data)) {
+            return new FileRequestCollection($data);
+        }
+
+        //File Request
+        if (static::isFileRequest($data['id'])) {
+            return new FileRequest($data);
+        }
+
         //Deleted File/Folder
         if (static::isDeletedFileOrFolder($data)) {
             return new DeletedMetadata($data);
@@ -110,6 +120,26 @@ class ModelFactory
     protected static function isSearchResult(array $data)
     {
         return isset($data['matches']);
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return bool
+     */
+    protected static function isFileRequestList(array $data)
+    {
+        return isset($data['file_requests']);
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return bool
+     */
+    protected static function isFileRequest(array $data)
+    {
+        return isset($data['id']) && isset($data['is_open']);
     }
 
     /**
