@@ -194,11 +194,12 @@ class DropboxAuthHelper
     /**
      * Get Access Token
      *
-     * @param  string $code        Authorization Code
-     * @param  string $state       CSRF & URL State
+     * @param  string $code Authorization Code
+     * @param  string $state CSRF & URL State
      * @param  string $redirectUri Redirect URI used while getAuthUrl
      *
      * @return \Kunnu\Dropbox\Models\AccessToken
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
     public function getAccessToken($code, $state = null, $redirectUri = null)
     {
@@ -230,6 +231,7 @@ class DropboxAuthHelper
      * Revoke Access Token
      *
      * @return void
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
     public function revokeAccessToken()
     {

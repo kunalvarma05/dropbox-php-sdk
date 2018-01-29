@@ -161,6 +161,7 @@ class DropboxFile
      * Return the contents of the file
      *
      * @return string
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
     public function getContents()
     {
@@ -184,6 +185,7 @@ class DropboxFile
      * Get the Open File Stream
      *
      * @return \GuzzleHttp\Psr7\Stream
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
     public function getStream()
     {
@@ -310,6 +312,7 @@ class DropboxFile
      * Get the size of the file
      *
      * @return int
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
     public function getSize()
     {
