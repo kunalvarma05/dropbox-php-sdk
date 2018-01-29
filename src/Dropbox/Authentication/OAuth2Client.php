@@ -125,11 +125,12 @@ class OAuth2Client
     /**
      * Get Access Token
      *
-     * @param  string $code        Authorization Code
+     * @param  string $code Authorization Code
      * @param  string $redirectUri Redirect URI used while getAuthorizationUrl
-     * @param  string $grant_type  Grant Type ['authorization_code']
+     * @param  string $grant_type Grant Type ['authorization_code']
      *
      * @return array
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
     public function getAccessToken($code, $redirectUri = null, $grant_type = 'authorization_code')
     {
@@ -165,6 +166,7 @@ class OAuth2Client
      * Disables the access token
      *
      * @return void
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
     public function revokeAccessToken()
     {
