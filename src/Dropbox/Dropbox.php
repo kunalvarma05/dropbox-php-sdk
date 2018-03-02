@@ -233,18 +233,19 @@ class Dropbox
      * @param  array  $params             Request Query Params
      * @param  string $accessToken        Access Token to send with the Request
      * @param  DropboxFile $responseFile  Save response to the file
+     * @param  array  $headers            Headers to send along with the Request
      *
      * @return \Kunnu\Dropbox\DropboxResponse
      *
      * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
-    public function sendRequest($method, $endpoint, $endpointType = 'api', array $params = [], $accessToken = null, DropboxFile $responseFile = null)
+    public function sendRequest($method, $endpoint, $endpointType = 'api', array $params = [], $accessToken = null, DropboxFile $responseFile = null, $headers = [])
     {
         //Access Token
         $accessToken = $this->getAccessToken() ? $this->getAccessToken() : $accessToken;
 
         //Make a DropboxRequest object
-        $request = new DropboxRequest($method, $endpoint, $accessToken, $endpointType, $params);
+        $request = new DropboxRequest($method, $endpoint, $accessToken, $endpointType, $params, $headers);
 
         //Make a DropboxResponse object if a response should be saved to the file
         $response = $responseFile ? new DropboxResponseToFile($request, $responseFile) : null;
@@ -275,12 +276,13 @@ class Dropbox
      * @param  array  $params             Request Query Params
      * @param  string $accessToken        Access Token to send with the Request
      * @param  DropboxFile $responseFile  Save response to the file
+     * @param  array  $headers            Headers to send along with the Request
      *
      * @return \Kunnu\Dropbox\DropboxResponse
      */
-    public function postToContent($endpoint, array $params = [], $accessToken = null, DropboxFile $responseFile = null)
+    public function postToContent($endpoint, array $params = [], $accessToken = null, DropboxFile $responseFile = null, $headers = [])
     {
-        return $this->sendRequest("POST", $endpoint, 'content', $params, $accessToken, $responseFile);
+        return $this->sendRequest("POST", $endpoint, 'content', $params, $accessToken, $responseFile, $headers);
     }
 
     /**
@@ -1080,12 +1082,14 @@ class Dropbox
      *
      * @param  string $path   Path to the file you want to download
      * @param  null|string|DropboxFile $dropboxFile DropboxFile object or Path to target file
+     * @param int $offset The offset from which the download begins
+     * @param int $length Up to length number of bytes downloaded.
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-download
      *
      * @return \Kunnu\Dropbox\Models\File
      */
-    public function download($path, $dropboxFile = null)
+    public function download($path, $dropboxFile = null, $offset = 0, $length = -1)
     {
         //Path cannot be null
         if (is_null($path)) {
@@ -1096,7 +1100,14 @@ class Dropbox
         $dropboxFile = $dropboxFile ? $this->makeDropboxFile($dropboxFile, null, null, DropboxFile::MODE_WRITE) : null;
 
         //Download File
-        $response = $this->postToContent('/files/download', ['path' => $path], null, $dropboxFile);
+        $headers = [];
+        if ($length > 0) {
+            $headers['Range'] = sprintf('bytes=%s-%s', $offset, $offset + $length);
+        } elseif ($offset != 0) {
+            $headers['Range'] = sprintf('bytes=%s-', $offset);
+        }
+
+        $response = $this->postToContent('/files/download', ['path' => $path], null, $dropboxFile, $headers);
 
         //Get file metadata from response headers
         $metadata = $this->getMetadataFromResponseHeaders($response);
