@@ -915,15 +915,16 @@ class Dropbox
      * @param  int                $offset      The amount of data that has been uploaded so far
      * @param  int                $chunkSize   The amount of data to upload
      * @param  boolean            $close       Closes the session for futher "appendUploadSession" calls
+     * @param  int                $localOffset The offset in the local file passed by $drobpoxFile. If $localOffset is null, $offset is used instead.
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-append_v2
      *
      * @return string Unique identifier for the upload session
      */
-    public function appendUploadSession($dropboxFile, $sessionId, $offset, $chunkSize, $close = false)
+    public function appendUploadSession($dropboxFile, $sessionId, $offset, $chunkSize, $close = false, $localOffset = null)
     {
         //Make Dropbox File
-        $dropboxFile = $this->makeDropboxFile($dropboxFile, $chunkSize, $offset);
+        $dropboxFile = $this->makeDropboxFile($dropboxFile, $chunkSize, $localOffset !== null ? $localOffset : $offset);
 
         //Session ID, offset, chunkSize and path cannot be null
         if (is_null($sessionId) || is_null($offset) || is_null($chunkSize)) {
