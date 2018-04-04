@@ -296,6 +296,11 @@ class DropboxFile
         return $this->path;
     }
 
+    public function getStreamOrFilePath()
+    {
+        return $this->isCreatedFromStream() ? $this->getStream() : $this->getFilePath();
+    }
+
     /**
      * Get the mode of the file stream
      *

@@ -31,4 +31,9 @@ class DropboxResponseToFile extends DropboxResponse
     {
         return $this->file->getFilePath();
     }
+
+    public function getSteamOrFilePath()
+    {
+        return $this->file->getStreamOrFilePath();
+    }
 }
