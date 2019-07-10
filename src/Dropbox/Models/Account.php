@@ -109,6 +109,16 @@ class Account extends BaseModel
     }
 
     /**
+     * Return full contents of API response as JSON
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return json_encode($this->getData());
+    }
+
+    /**
      * Get Account ID
      *
      * @return string
