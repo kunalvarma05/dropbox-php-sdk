@@ -50,25 +50,31 @@ class DropboxGuzzleHttpClient implements DropboxHttpClientInterface
     {
         //Create a new Request Object
         $request = new Request($method, $url, $headers, $body);
-
+        $requestHasSink = array_key_exists('sink', $options);
         try {
             //Send the Request
             $rawResponse = $this->client->send($request, $options);
         } catch (RequestException $e) {
             $rawResponse = $e->getResponse();
-
             if ($e->getPrevious() instanceof RingException || !$rawResponse instanceof ResponseInterface) {
+                if ($requestHasSink && $rawResponse instanceof ResponseInterface) {
+                    $this->closeSinkStream($rawResponse);
+                }
                 throw new DropboxClientException($e->getMessage(), $e->getCode());
             }
         }
 
         //Something went wrong
         if ($rawResponse->getStatusCode() >= 400) {
-            throw new DropboxClientException($rawResponse->getBody());
+            $body = (string) $rawResponse->getBody();
+            if ($requestHasSink) {
+                $this->closeSinkStream($rawResponse);
+            }
+            throw new DropboxClientException($body);
         }
 
-        if (array_key_exists('sink', $options)) {
-            //Response Body is saved to a file
+        if ($requestHasSink) {
+            $this->closeSinkStream($rawResponse);
             $body = '';
         } else {
             //Get the Response Body
@@ -80,6 +86,14 @@ class DropboxGuzzleHttpClient implements DropboxHttpClientInterface
 
         //Create and return a DropboxRawResponse object
         return new DropboxRawResponse($rawHeaders, $body, $httpStatusCode);
+    }
+
+    private function closeSinkStream($rawResponse)
+    {
+        $body = $rawResponse->getBody();
+        if (property_exists($body, 'stream')) {
+            $body->stream->close();
+        }
     }
 
     /**
