@@ -2,6 +2,7 @@
 
 namespace Kunnu\Dropbox;
 
+use Kunnu\Dropbox\Exceptions\DropboxClientUnableToWriteToTempException;
 use Kunnu\Dropbox\Models\DeletedMetadata;
 use Kunnu\Dropbox\Models\File;
 use Kunnu\Dropbox\Models\Account;
@@ -49,6 +50,13 @@ class Dropbox
      * @const string
      */
     const METADATA_HEADER = 'dropbox-api-result';
+
+    /**
+     * Prefix for writable temporary file
+     *
+     * @const string
+     */
+    const TMP_PREFIX = 'dropbox-temp-file';
 
     /**
      * The Dropbox App
@@ -790,6 +798,36 @@ class Dropbox
 
         //Simple file upload
         return $this->simpleUpload($dropboxFile, $path, $params);
+    }
+
+
+    /**
+     * Make DropboxFile Object using the given $data string as the file contents.
+     * @param $path
+     * @param $data
+     * @return DropboxFile
+     * @throws DropboxClientException
+     * @throws DropboxClientUnableToWriteToTempException
+     */
+    public function makeDropboxFileFromString($path, $data) {
+        //create a temp file with a prefix
+        $tmpfname = tempnam(sys_get_temp_dir(), static::TMP_PREFIX);
+
+        if (!is_writable($tmpfname)) { // Test if the file is writable
+            throw new DropboxClientUnableToWriteToTempException("Cannot write to {$tmpfname}");
+        }
+
+        $handle = fopen( $tmpfname, DropboxFile::MODE_WRITE);
+
+        if (!is_resource($handle))
+        { // Test if PHP could open the file
+            throw new DropboxClientUnableToWriteToTempException("Could not open {$tmpfname} on writing mode.");
+
+        }
+
+        fwrite($handle, $data);
+
+        return DropboxFile::createByStream($path, $handle, DropboxFile::MODE_WRITE);
     }
 
     /**
