@@ -814,7 +814,8 @@ class Dropbox
         //create a temp file with a prefix
         $tmpfname = tempnam(sys_get_temp_dir(), static::TMP_PREFIX);
 
-        if (!is_writable($tmpfname)) { // Test if the file is writable
+        if (!is_writable($tmpfname))
+        { // Test if the file is writable
             throw new DropboxClientUnableToWriteToTempException("Cannot write to {$tmpfname}");
         }
 
@@ -823,7 +824,6 @@ class Dropbox
         if (!is_resource($handle))
         { // Test if PHP could open the file
             throw new DropboxClientUnableToOpenTempFileException("Could not open {$tmpfname} on writing mode.");
-
         }
 
         fwrite($handle, $data);
