@@ -2,6 +2,7 @@
 
 namespace Kunnu\Dropbox;
 
+use Kunnu\Dropbox\Exceptions\DropboxClientUnableToOpenTempFileException;
 use Kunnu\Dropbox\Exceptions\DropboxClientUnableToWriteToTempException;
 use Kunnu\Dropbox\Models\DeletedMetadata;
 use Kunnu\Dropbox\Models\File;
@@ -821,7 +822,7 @@ class Dropbox
 
         if (!is_resource($handle))
         { // Test if PHP could open the file
-            throw new DropboxClientUnableToWriteToTempException("Could not open {$tmpfname} on writing mode.");
+            throw new DropboxClientUnableToOpenTempFileException("Could not open {$tmpfname} on writing mode.");
 
         }
 
