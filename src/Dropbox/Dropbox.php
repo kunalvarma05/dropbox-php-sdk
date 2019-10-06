@@ -210,8 +210,8 @@ class Dropbox
     /**
      * Get the Metadata for a file or folder
      *
-     * @param  string $path   Path of the file or folder
-     * @param  array  $params Additional Params
+     * @param string $path Path of the file or folder
+     * @param array $params Additional Params
      *
      * @return \Kunnu\Dropbox\Models\FileMetadata | \Kunnu\Dropbox\Models\FolderMetadata
      * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
@@ -239,9 +239,9 @@ class Dropbox
     /**
      * Make a HTTP POST Request to the API endpoint type
      *
-     * @param  string $endpoint    API Endpoint to send Request to
-     * @param  array  $params      Request Query Params
-     * @param  string $accessToken Access Token to send with the Request
+     * @param string $endpoint API Endpoint to send Request to
+     * @param array $params Request Query Params
+     * @param string $accessToken Access Token to send with the Request
      *
      * @return \Kunnu\Dropbox\DropboxResponse
      */
@@ -253,19 +253,25 @@ class Dropbox
     /**
      * Make Request to the API
      *
-     * @param  string      $method       HTTP Request Method
-     * @param  string      $endpoint     API Endpoint to send Request to
-     * @param  string      $endpointType Endpoint type ['api'|'content']
-     * @param  array       $params       Request Query Params
-     * @param  string      $accessToken  Access Token to send with the Request
-     * @param  DropboxFile $responseFile Save response to the file
+     * @param string $method HTTP Request Method
+     * @param string $endpoint API Endpoint to send Request to
+     * @param string $endpointType Endpoint type ['api'|'content']
+     * @param array $params Request Query Params
+     * @param string $accessToken Access Token to send with the Request
+     * @param DropboxFile $responseFile Save response to the file
      *
      * @return \Kunnu\Dropbox\DropboxResponse
      *
      * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
-    public function sendRequest($method, $endpoint, $endpointType = 'api', array $params = [], $accessToken = null, DropboxFile $responseFile = null)
-    {
+    public function sendRequest(
+        $method,
+        $endpoint,
+        $endpointType = 'api',
+        array $params = [],
+        $accessToken = null,
+        DropboxFile $responseFile = null
+    ) {
         //Access Token
         $accessToken = $this->getAccessToken() ? $this->getAccessToken() : $accessToken;
 
@@ -307,7 +313,7 @@ class Dropbox
     /**
      * Make Model from DropboxResponse
      *
-     * @param  DropboxResponse $response
+     * @param DropboxResponse $response
      *
      * @return \Kunnu\Dropbox\Models\ModelInterface
      *
@@ -329,12 +335,12 @@ class Dropbox
     /**
      * Get the contents of a Folder
      *
-     * @param  string $path   Path to the folder. Defaults to root.
-     * @param  array  $params Additional Params
-     *
-     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-list_folder
+     * @param string $path Path to the folder. Defaults to root.
+     * @param array $params Additional Params
      *
      * @return \Kunnu\Dropbox\Models\MetadataCollection
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-list_folder
+     *
      */
     public function listFolder($path = null, array $params = [])
     {
@@ -358,12 +364,12 @@ class Dropbox
      * Paginate through all files and retrieve updates to the folder,
      * using the cursor retrieved from listFolder or listFolderContinue
      *
-     * @param  string $cursor The cursor returned by your
+     * @param string $cursor The cursor returned by your
      *                        last call to listFolder or listFolderContinue
      *
+     * @return \Kunnu\Dropbox\Models\MetadataCollection
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-list_folder-continue
      *
-     * @return \Kunnu\Dropbox\Models\MetadataCollection
      */
     public function listFolderContinue($cursor)
     {
@@ -376,8 +382,8 @@ class Dropbox
     /**
      * Get a cursor for the folder's state.
      *
-     * @param  string $path   Path to the folder. Defaults to root.
-     * @param  array  $params Additional Params
+     * @param string $path Path to the folder. Defaults to root.
+     * @param array $params Additional Params
      *
      * @return string The Cursor for the folder's state
      *
@@ -416,12 +422,12 @@ class Dropbox
     /**
      * Get Revisions of a File
      *
-     * @param  string $path   Path to the file
-     * @param  array  $params Additional Params
-     *
-     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-list_revisions
+     * @param string $path Path to the file
+     * @param array $params Additional Params
      *
      * @return \Kunnu\Dropbox\Models\ModelCollection
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-list_revisions
+     *
      */
     public function listRevisions($path, array $params = [])
     {
@@ -451,13 +457,13 @@ class Dropbox
     /**
      * Search a folder for files/folders
      *
-     * @param  string $path   Path to search
-     * @param  string $query  Search Query
-     * @param  array  $params Additional Params
-     *
-     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-search
+     * @param string $path Path to search
+     * @param string $query Search Query
+     * @param array $params Additional Params
      *
      * @return \Kunnu\Dropbox\Models\SearchResults
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-search
+     *
      */
     public function search($path, $query, array $params = [])
     {
@@ -481,8 +487,8 @@ class Dropbox
     /**
      * Create a folder at the given path
      *
-     * @param  string  $path       Path to create
-     * @param  boolean $autorename Auto Rename File
+     * @param string $path Path to create
+     * @param boolean $autorename Auto Rename File
      *
      * @return \Kunnu\Dropbox\Models\FolderMetadata
      *
@@ -511,7 +517,7 @@ class Dropbox
     /**
      * Delete a file or folder at the given path
      *
-     * @param  string $path Path to file/folder to delete
+     * @param string $path Path to file/folder to delete
      *
      * @return \Kunnu\Dropbox\Models\DeletedMetadata
      *
@@ -542,8 +548,8 @@ class Dropbox
     /**
      * Move a file or folder to a different location
      *
-     * @param  string $fromPath Path to be moved
-     * @param  string $toPath   Path to be moved to
+     * @param string $fromPath Path to be moved
+     * @param string $toPath Path to be moved to
      *
      * @return \Kunnu\Dropbox\Models\DeletedMetadata|\Kunnu\Dropbox\Models\FileMetadata
      *
@@ -569,8 +575,8 @@ class Dropbox
     /**
      * Copy a file or folder to a different location
      *
-     * @param  string $fromPath Path to be copied
-     * @param  string $toPath   Path to be copied to
+     * @param string $fromPath Path to be copied
+     * @param string $toPath Path to be copied to
      *
      * @return \Kunnu\Dropbox\Models\DeletedMetadata|\Kunnu\Dropbox\Models\FileMetadata
      *
@@ -596,8 +602,8 @@ class Dropbox
     /**
      * Restore a file to the specific version
      *
-     * @param  string $path Path to the file to restore
-     * @param  string $rev  Revision to store for the file
+     * @param string $path Path to the file to restore
+     * @param string $rev Revision to store for the file
      *
      * @return \Kunnu\Dropbox\Models\DeletedMetadata|\Kunnu\Dropbox\Models\FileMetadata|\Kunnu\Dropbox\Models\FolderMetadata
      *
@@ -626,7 +632,7 @@ class Dropbox
     /**
      * Get Copy Reference
      *
-     * @param  string $path Path to the file or folder to get a copy reference to
+     * @param string $path Path to the file or folder to get a copy reference to
      *
      * @return \Kunnu\Dropbox\Models\CopyReference
      *
@@ -653,8 +659,8 @@ class Dropbox
     /**
      * Save Copy Reference
      *
-     * @param  string $path          Path to the file or folder to get a copy reference to
-     * @param  string $copyReference Copy reference returned by getCopyReference
+     * @param string $path Path to the file or folder to get a copy reference to
+     * @param string $copyReference Copy reference returned by getCopyReference
      *
      * @return \Kunnu\Dropbox\Models\FileMetadata|\Kunnu\Dropbox\Models\FolderMetadata
      *
@@ -671,7 +677,8 @@ class Dropbox
         }
 
         //Save Copy Reference
-        $response = $this->postToAPI('/files/copy_reference/save', ['path' => $path, 'copy_reference' => $copyReference]);
+        $response = $this->postToAPI('/files/copy_reference/save',
+            ['path' => $path, 'copy_reference' => $copyReference]);
         $body = $response->getDecodedBody();
 
         //Response doesn't have Metadata
@@ -686,7 +693,7 @@ class Dropbox
     /**
      * Get a temporary link to stream contents of a file
      *
-     * @param  string $path Path to the file you want a temporary link to
+     * @param string $path Path to the file you want a temporary link to
      *
      * https://www.dropbox.com/developers/documentation/http/documentation#files-get_temporary_link
      *
@@ -711,8 +718,8 @@ class Dropbox
     /**
      * Save a specified URL into a file in user's Dropbox
      *
-     * @param  string $path Path where the URL will be saved
-     * @param  string $url  URL to be saved
+     * @param string $path Path where the URL will be saved
+     * @param string $url URL to be saved
      *
      * @return string Async Job ID
      *
@@ -778,13 +785,13 @@ class Dropbox
     /**
      * Upload a File to Dropbox
      *
-     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
-     * @param  string             $path        Path to upload the file to
-     * @param  array              $params      Additional Params
-     *
-     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload
+     * @param string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     * @param string $path Path to upload the file to
+     * @param array $params Additional Params
      *
      * @return \Kunnu\Dropbox\Models\FileMetadata
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload
+     *
      */
     public function upload($dropboxFile, $path, array $params = [])
     {
@@ -810,19 +817,18 @@ class Dropbox
      * @throws DropboxClientException
      * @throws DropboxClientUnableToWriteToTempException
      */
-    public function makeDropboxFileFromString($path, $data) {
+    public function makeDropboxFileFromString($path, $data)
+    {
         //create a temp file with a prefix
         $tmpfname = tempnam(sys_get_temp_dir(), static::TMP_PREFIX);
 
-        if (!is_writable($tmpfname))
-        { // Test if the file is writable
+        if (!is_writable($tmpfname)) { // Test if the file is writable
             throw new DropboxClientUnableToWriteToTempException("Cannot write to {$tmpfname}");
         }
 
-        $handle = fopen( $tmpfname, DropboxFile::MODE_WRITE);
+        $handle = fopen($tmpfname, DropboxFile::MODE_WRITE);
 
-        if (!is_resource($handle))
-        { // Test if PHP could open the file
+        if (!is_resource($handle)) { // Test if PHP could open the file
             throw new DropboxClientUnableToOpenTempFileException("Could not open {$tmpfname} on writing mode.");
         }
 
@@ -834,10 +840,10 @@ class Dropbox
     /**
      * Make DropboxFile Object
      *
-     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
-     * @param  int                $maxLength   Max Bytes to read from the file
-     * @param  int                $offset      Seek to specified offset before reading
-     * @param  string             $mode        The type of access
+     * @param string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     * @param int $maxLength Max Bytes to read from the file
+     * @param int $offset Seek to specified offset before reading
+     * @param string $mode The type of access
      *
      * @return \Kunnu\Dropbox\DropboxFile
      */
@@ -868,17 +874,17 @@ class Dropbox
     /**
      * Upload file in sessions/chunks
      *
-     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
-     * @param  string             $path        Path to save the file to, on Dropbox
-     * @param  int                $fileSize    The size of the file
-     * @param  int                $chunkSize   The amount of data to upload in each chunk
-     * @param  array              $params      Additional Params
+     * @param string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     * @param string $path Path to save the file to, on Dropbox
+     * @param int $fileSize The size of the file
+     * @param int $chunkSize The amount of data to upload in each chunk
+     * @param array $params Additional Params
      *
-     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-start
+     * @return \Kunnu\Dropbox\Models\FileMetadata
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-finish
      * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-append_v2
      *
-     * @return \Kunnu\Dropbox\Models\FileMetadata
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload_session-start
      */
     public function uploadChunked($dropboxFile, $path, $fileSize = null, $chunkSize = null, array $params = array())
     {
@@ -933,9 +939,9 @@ class Dropbox
     /**
      * Start an Upload Session
      *
-     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
-     * @param  int                $chunkSize   Size of file chunk to upload
-     * @param  boolean            $close       Closes the session for "appendUploadSession"
+     * @param string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     * @param int $chunkSize Size of file chunk to upload
+     * @param boolean $close Closes the session for "appendUploadSession"
      *
      * @return string Unique identifier for the upload session
      *
@@ -971,10 +977,10 @@ class Dropbox
     /**
      * Make a HTTP POST Request to the Content endpoint type
      *
-     * @param  string      $endpoint     Content Endpoint to send Request to
-     * @param  array       $params       Request Query Params
-     * @param  string      $accessToken  Access Token to send with the Request
-     * @param  DropboxFile $responseFile Save response to the file
+     * @param string $endpoint Content Endpoint to send Request to
+     * @param array $params Request Query Params
+     * @param string $accessToken Access Token to send with the Request
+     * @param DropboxFile $responseFile Save response to the file
      *
      * @return \Kunnu\Dropbox\DropboxResponse
      */
@@ -986,11 +992,11 @@ class Dropbox
     /**
      * Append more data to an Upload Session
      *
-     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
-     * @param  string             $sessionId   Session ID returned by `startUploadSession`
-     * @param  int                $offset      The amount of data that has been uploaded so far
-     * @param  int                $chunkSize   The amount of data to upload
-     * @param  boolean            $close       Closes the session for futher "appendUploadSession" calls
+     * @param string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     * @param string $sessionId Session ID returned by `startUploadSession`
+     * @param int $offset The amount of data that has been uploaded so far
+     * @param int $chunkSize The amount of data to upload
+     * @param boolean $close Closes the session for futher "appendUploadSession" calls
      *
      * @return string Unique identifier for the upload session
      *
@@ -1035,12 +1041,12 @@ class Dropbox
     /**
      * Finish an upload session and save the uploaded data to the given file path
      *
-     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
-     * @param  string             $sessionId   Session ID returned by `startUploadSession`
-     * @param  int                $offset      The amount of data that has been uploaded so far
-     * @param  int                $remaining   The amount of data that is remaining
-     * @param  string             $path        Path to save the file to, on Dropbox
-     * @param  array              $params      Additional Params
+     * @param string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     * @param string $sessionId Session ID returned by `startUploadSession`
+     * @param int $offset The amount of data that has been uploaded so far
+     * @param int $remaining The amount of data that is remaining
+     * @param string $path Path to save the file to, on Dropbox
+     * @param array $params Additional Params
      *
      * @return \Kunnu\Dropbox\Models\FileMetadata
      *
@@ -1083,13 +1089,13 @@ class Dropbox
     /**
      * Upload a File to Dropbox in a single request
      *
-     * @param  string|DropboxFile $dropboxFile DropboxFile object or Path to file
-     * @param  string             $path        Path to upload the file to
-     * @param  array              $params      Additional Params
-     *
-     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload
+     * @param string|DropboxFile $dropboxFile DropboxFile object or Path to file
+     * @param string $path Path to upload the file to
+     * @param array $params Additional Params
      *
      * @return \Kunnu\Dropbox\Models\FileMetadata
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-upload
+     *
      */
     public function simpleUpload($dropboxFile, $path, array $params = [])
     {
@@ -1111,9 +1117,9 @@ class Dropbox
     /**
      * Get a thumbnail for an image
      *
-     * @param  string $path   Path to the file you want a thumbnail to
-     * @param  string $size   Size for the thumbnail image ['thumb','small','medium','large','huge']
-     * @param  string $format Format for the thumbnail image ['jpeg'|'png']
+     * @param string $path Path to the file you want a thumbnail to
+     * @param string $size Size for the thumbnail image ['thumb','small','medium','large','huge']
+     * @param string $format Format for the thumbnail image ['jpeg'|'png']
      *
      * @return \Kunnu\Dropbox\Models\Thumbnail
      *
@@ -1138,7 +1144,8 @@ class Dropbox
         $size = $this->getThumbnailSize($size);
 
         //Get Thumbnail
-        $response = $this->postToContent('/files/get_thumbnail', ['path' => $path, 'format' => $format, 'size' => $size]);
+        $response = $this->postToContent('/files/get_thumbnail',
+            ['path' => $path, 'format' => $format, 'size' => $size]);
 
         //Get file metadata from response headers
         $metadata = $this->getMetadataFromResponseHeaders($response);
@@ -1153,7 +1160,7 @@ class Dropbox
     /**
      * Get thumbnail size
      *
-     * @param  string $size Thumbnail Size
+     * @param string $size Thumbnail Size
      *
      * @return string
      */
@@ -1173,7 +1180,7 @@ class Dropbox
     /**
      * Get metadata from response headers
      *
-     * @param  DropboxResponse $response
+     * @param DropboxResponse $response
      *
      * @return array
      */
@@ -1209,8 +1216,8 @@ class Dropbox
     /**
      * Download a File
      *
-     * @param  string                  $path        Path to the file you want to download
-     * @param  null|string|DropboxFile $dropboxFile DropboxFile object or Path to target file
+     * @param string $path Path to the file you want to download
+     * @param null|string|DropboxFile $dropboxFile DropboxFile object or Path to target file
      *
      * @return \Kunnu\Dropbox\Models\File
      *
@@ -1264,9 +1271,9 @@ class Dropbox
      *
      * @param string $account_id Account ID of the account to get details for
      *
+     * @return \Kunnu\Dropbox\Models\Account
      * @link https://www.dropbox.com/developers/documentation/http/documentation#users-get_account
      *
-     * @return \Kunnu\Dropbox\Models\Account
      */
     public function getAccount($account_id)
     {
@@ -1283,9 +1290,9 @@ class Dropbox
      *
      * @param array $account_ids IDs of the accounts to get details for
      *
+     * @return \Kunnu\Dropbox\Models\AccountList
      * @link https://www.dropbox.com/developers/documentation/http/documentation#users-get_account_batch
      *
-     * @return \Kunnu\Dropbox\Models\AccountList
      */
     public function getAccounts(array $account_ids = [])
     {
