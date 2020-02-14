@@ -16,9 +16,20 @@ class SessionPersistentDataStore implements PersistentDataStoreInterface
      *
      * @param string $prefix Session Variable Prefix
      */
-    public function __construct($prefix = "DBAPI_")
+    public function __construct($prefix = 'DBAPI_')
     {
         $this->prefix = $prefix;
+        $this->start();
+    }
+
+    /**
+     * Start session if not started previously
+     */
+    protected function start()
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
     }
 
     /**
