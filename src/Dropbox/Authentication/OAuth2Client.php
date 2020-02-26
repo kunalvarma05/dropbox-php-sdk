@@ -14,14 +14,14 @@ class OAuth2Client
      *
      * @const string
      */
-    const BASE_URL = "https://dropbox.com";
+    const BASE_URL = 'https://dropbox.com';
 
     /**
      * Auth Token URL
      *
      * @const string
      */
-    const AUTH_TOKEN_URL = "https://api.dropboxapi.com/oauth2/token";
+    const AUTH_TOKEN_URL = 'https://api.dropboxapi.com/oauth2/token';
 
     /**
      * The Dropbox App
@@ -107,12 +107,12 @@ class OAuth2Client
      */
     public function getAuthorizationUrl($redirectUri = null, $state = null, array $params = [])
     {
-        //Request Parameters
+        // Request Parameters
         $params = array_merge([
             'client_id' => $this->getApp()->getClientId(),
             'response_type' => 'code',
             'state' => $state,
-            ], $params);
+        ], $params);
 
         if (!is_null($redirectUri)) {
             $params['redirect_uri'] = $redirectUri;
@@ -132,31 +132,23 @@ class OAuth2Client
      */
     public function getAccessToken($code, $redirectUri = null, $grant_type = 'authorization_code')
     {
-        //Request Params
+        // Request Params
         $params = [
-        'code' => $code,
-        'grant_type' => $grant_type,
-        'client_id' => $this->getApp()->getClientId(),
-        'client_secret' => $this->getApp()->getClientSecret(),
-        'redirect_uri' => $redirectUri
+            'code' => $code,
+            'grant_type' => $grant_type,
+            'client_id' => $this->getApp()->getClientId(),
+            'client_secret' => $this->getApp()->getClientSecret(),
+            'redirect_uri' => $redirectUri
         ];
 
-        $params = http_build_query($params, '', '&');
+        $uri = static::AUTH_TOKEN_URL . '?' . http_build_query($params, '', '&');
 
-        $apiUrl = static::AUTH_TOKEN_URL;
-        $uri = $apiUrl . "?" . $params;
+        // Send Request through the DropboxClient
+        // Fetch the Response (DropboxRawResponse)
+        $body = $this->getClient()->getHttpClient()->send($uri, 'POST', null)->getBody();
 
-        //Send Request through the DropboxClient
-        //Fetch the Response (DropboxRawResponse)
-        $response = $this->getClient()
-        ->getHttpClient()
-        ->send($uri, "POST", null);
-
-        //Fetch Response Body
-        $body = $response->getBody();
-
-        //Decode the Response body to associative array
-        //and return
+        // Decode the Response body to associative array
+        // and return
         return json_decode((string) $body, true);
     }
 
@@ -167,18 +159,16 @@ class OAuth2Client
      */
     public function revokeAccessToken()
     {
-        //Access Token
-        $accessToken = $this->getApp()->getAccessToken();
+        // Request
+        $request = new DropboxRequest('POST', '/auth/token/revoke', $this->getApp()->getAccessToken());
 
-        //Request
-        $request = new DropboxRequest("POST", "/auth/token/revoke", $accessToken);
         // Do not validate the response
         // since the /token/revoke endpoint
         // doesn't return anything in the response.
         // See: https://www.dropbox.com/developers/documentation/http/documentation#auth-token-revoke
         $request->setParams(['validateResponse' => false]);
 
-        //Revoke Access Token
+        // Revoke Access Token
         $this->getClient()->sendRequest($request);
     }
 }
