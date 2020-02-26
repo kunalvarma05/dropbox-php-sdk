@@ -68,7 +68,7 @@ class OAuth2Client
      */
     protected function buildUrl($endpoint = '', array $params = [])
     {
-        $queryParams = http_build_query($params);
+        $queryParams = http_build_query($params,'','&');
         return static::BASE_URL . $endpoint . '?' . $queryParams;
     }
 
@@ -142,7 +142,7 @@ class OAuth2Client
         'redirect_uri' => $redirectUri
         ];
 
-        $params = http_build_query($params);
+        $params = http_build_query($params, '', '&');
 
         $apiUrl = static::AUTH_TOKEN_URL;
         $uri = $apiUrl . "?" . $params;
