@@ -6,6 +6,7 @@ use Kunnu\Dropbox\Models\DeletedMetadata;
 use Kunnu\Dropbox\Models\File;
 use Kunnu\Dropbox\Models\Account;
 use Kunnu\Dropbox\Models\Thumbnail;
+use Kunnu\Dropbox\Models\ThumbnailList;
 use Kunnu\Dropbox\Models\AccountList;
 use Kunnu\Dropbox\Models\ModelFactory;
 use Kunnu\Dropbox\Models\FileMetadata;
@@ -238,30 +239,31 @@ class Dropbox
      */
     public function postToAPI($endpoint, array $params = [], $accessToken = null)
     {
-        return $this->sendRequest("POST", $endpoint, 'api', $params, $accessToken);
+        return $this->sendRequest("POST", $endpoint, 'api', 'rpc', $params, $accessToken);
     }
 
     /**
      * Make Request to the API
      *
-     * @param  string      $method       HTTP Request Method
-     * @param  string      $endpoint     API Endpoint to send Request to
-     * @param  string      $endpointType Endpoint type ['api'|'content']
-     * @param  array       $params       Request Query Params
-     * @param  string      $accessToken  Access Token to send with the Request
-     * @param  DropboxFile $responseFile Save response to the file
+     * @param  string      $method         HTTP Request Method
+     * @param  string      $endpoint       API Endpoint to send Request to
+     * @param  string      $endpointType   Endpoint type ['api'|'content']
+     * @param  string      $endpointFormat Endpoint format ['rpc'|'content']
+     * @param  array       $params         Request Query Params
+     * @param  string      $accessToken    Access Token to send with the Request
+     * @param  DropboxFile $responseFile   Save response to the file
      *
      * @return \Kunnu\Dropbox\DropboxResponse
      *
      * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
-    public function sendRequest($method, $endpoint, $endpointType = 'api', array $params = [], $accessToken = null, DropboxFile $responseFile = null)
+    public function sendRequest($method, $endpoint, $endpointType = 'api', $endpointFormat = 'rpc', array $params = [], $accessToken = null, DropboxFile $responseFile = null)
     {
         //Access Token
         $accessToken = $this->getAccessToken() ? $this->getAccessToken() : $accessToken;
 
         //Make a DropboxRequest object
-        $request = new DropboxRequest($method, $endpoint, $accessToken, $endpointType, $params);
+        $request = new DropboxRequest($method, $endpoint, $accessToken, $endpointType, $endpointFormat, $params);
 
         //Make a DropboxResponse object if a response should be saved to the file
         $response = $responseFile ? new DropboxResponseToFile($request, $responseFile) : null;
@@ -941,7 +943,22 @@ class Dropbox
      */
     public function postToContent($endpoint, array $params = [], $accessToken = null, DropboxFile $responseFile = null)
     {
-        return $this->sendRequest("POST", $endpoint, 'content', $params, $accessToken, $responseFile);
+        return $this->sendRequest("POST", $endpoint, 'content', 'content', $params, $accessToken, $responseFile);
+    }
+
+    /**
+     * Make a HTTP POST Request to the Content endpoint type with format as RPC
+     *
+     * @param  string      $endpoint     Content Endpoint to send Request to
+     * @param  array       $params       Request Query Params
+     * @param  string      $accessToken  Access Token to send with the Request
+     * @param  DropboxFile $responseFile Save response to the file
+     *
+     * @return \Kunnu\Dropbox\DropboxResponse
+     */
+    public function postToContentAsRpc($endpoint, array $params = [], $accessToken = null, DropboxFile $responseFile = null)
+    {
+        return $this->sendRequest("POST", $endpoint, 'content', 'rpc', $params, $accessToken, $responseFile);
     }
 
     /**
@@ -1109,6 +1126,46 @@ class Dropbox
 
         //Make and return a Thumbnail model
         return new Thumbnail($metadata, $contents);
+    }
+
+    /**
+     * Get multiple thumbnails in one call.
+     * Limited to 25 per batch.
+     *
+     * @param string[] $entries Paths of the images to get thumbnails for
+     * @param string   $size    Size for the thumbnail image ['thumb','small','medium','large','huge']
+     * @param string   $format  Format for the thumbnail image ['jpeg'|'png']
+     * @param string   $mode    How to resize and crop the image to achieve the desired size. ['strict','bestfit','fitone_bestfit']
+     *
+     * @return \Kunnu\Dropbox\Models\ThumbnailList
+     *
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-get_thumbnail_batch
+     *
+     */
+    public function getThumbnailBatch($entries, $size = 'small', $format = 'jpeg', $mode = 'strict')
+    {
+        //Invalid Format
+        if (!in_array($format, ['jpeg', 'png'])) {
+            throw new DropboxClientException("Invalid format. Must either be 'jpeg' or 'png'.");
+        }
+
+        $params = [
+            'size' => $this->getThumbnailSize($size),
+            'format' => $format,
+            'mode' => $mode
+        ];
+        $entries = array_map(function ($entry) use ($params) {
+            return array_merge(['path' => $entry], $params);
+        }, $entries);
+
+        //Get Thumbnails
+        $response = $this->postToContentAsRpc('/files/get_thumbnail_batch', ['entries' => $entries]);
+        $body = $response->getDecodedBody();
+
+        //Make and return the model
+        return new ThumbnailList($body);
     }
 
     /**

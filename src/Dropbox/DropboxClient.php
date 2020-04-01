@@ -185,7 +185,7 @@ class DropboxClient
         $url = $this->buildUrl($request->getEndpoint(), $request->getEndpointType());
 
         //The Endpoint is content
-        if ($request->getEndpointType() === 'content') {
+        if ($request->getEndpointFormat() === 'content') {
             //Dropbox requires the parameters to be passed
             //through the 'Dropbox-API-Arg' header
             $request->setHeaders(['Dropbox-API-Arg' => json_encode($request->getParams())]);
@@ -218,7 +218,7 @@ class DropboxClient
             $this->buildAuthHeader($request->getAccessToken()),
             $this->buildContentTypeHeader($request->getContentType()),
             $request->getHeaders()
-            );
+        );
 
         //Return the URL, Headers and Request Body
         return [$url, $headers, $requestBody];

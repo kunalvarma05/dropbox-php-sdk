@@ -47,6 +47,13 @@ class DropboxRequest
     protected $endpointType = null;
 
     /**
+     * The Endpoint Format for this request
+     *
+     * @var string
+     */
+    protected $endpointFormat = null;
+
+    /**
      * The headers to send with this request
      *
      * @var array
@@ -81,19 +88,29 @@ class DropboxRequest
     /**
      * Create a new DropboxRequest instance
      *
-     * @param string $method       HTTP Method of the Request
-     * @param string $endpoint     API endpoint of the Request
-     * @param string $accessToken  Access Token for the Request
-     * @param string $endpointType Endpoint type ['api'|'content']
-     * @param mixed  $params       Request Params
-     * @param array  $headers      Headers to send along with the Request
+     * @param string $method         HTTP Method of the Request
+     * @param string $endpoint       API endpoint of the Request
+     * @param string $accessToken    Access Token for the Request
+     * @param string $endpointType   Endpoint type ['api'|'content']
+     * @param string $endpointFormat Endpoint format ['rpc'|'content']
+     * @param mixed  $params         Request Params
+     * @param array  $headers        Headers to send along with the Request
      */
-    public function __construct($method, $endpoint, $accessToken, $endpointType = "api", array $params = [], array $headers = [], $contentType = null)
-    {
+    public function __construct(
+        $method,
+        $endpoint,
+        $accessToken,
+        $endpointType = "api",
+        $endpointFormat = "rpc",
+        array $params = [],
+        array $headers = [],
+        $contentType = null
+    ) {
         $this->setMethod($method);
         $this->setEndpoint($endpoint);
         $this->setAccessToken($accessToken);
         $this->setEndpointType($endpointType);
+        $this->setEndpointFormat($endpointFormat);
         $this->setParams($params);
         $this->setHeaders($headers);
 
@@ -112,7 +129,7 @@ class DropboxRequest
         return $this->method;
     }
 
-    /**
+     /**
      * Set the Request Method
      *
      * @param string
@@ -194,6 +211,30 @@ class DropboxRequest
     public function setEndpointType($endpointType)
     {
         $this->endpointType = $endpointType;
+
+        return $this;
+    }
+
+    /**
+     * Get the Endpoint Format of the Request
+     *
+     * @return string
+     */
+    public function getEndpointFormat()
+    {
+        return $this->endpointFormat;
+    }
+
+    /**
+     * Set the Endpoint Format of the Request
+     *
+     * @param string
+     *
+     * @return \Kunnu\Dropbox\DropboxRequest
+     */
+    public function setEndpointFormat($endpointFormat)
+    {
+        $this->endpointFormat = $endpointFormat;
 
         return $this;
     }
