@@ -27,7 +27,7 @@ class SessionPersistentDataStore implements PersistentDataStoreInterface
      */
     protected function start()
     {
-        if (!isset($_SESSION)) {
+        if (!isset($_SESSION) && !headers_sent()) {
             session_start();
         }
     }
