@@ -469,6 +469,39 @@ class Dropbox
         return $this->makeModelFromResponse($response);
     }
 
+	/**
+     * Search a folder for files/folders
+     *
+     * @param  string $path   Path to search
+     * @param  string $query  Search Query
+     * @param  array  $params Additional Params
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-search
+     *
+     * @return \Kunnu\Dropbox\Models\SearchResults
+     */
+    public function searchV2($query, array $params = [])
+    {
+        //Specify the root folder as an
+        //empty string rather than as "/"
+        if ($path === '/') {
+            $path = "";
+        }
+
+        //Set the path and query
+        $params['query'] = $query;
+
+		if( !array_key_exists( 'include_highlights', $params ) ){
+			$params['include_highlights'] = false;
+		}
+
+        //Fetch Search Results
+        $response = $this->postToAPI('/files/search_v2', $params);
+
+        //Make and Return the Model
+        return $this->makeModelFromResponse($response);
+    }
+
     /**
      * Create a folder at the given path
      *
