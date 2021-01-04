@@ -48,7 +48,7 @@ class Dropbox
      *
      * @const string
      */
-    const METADATA_HEADER = 'dropbox-api-result';
+    const METADATA_HEADER = 'Dropbox-Api-Result';
 
     /**
      * The Dropbox App
