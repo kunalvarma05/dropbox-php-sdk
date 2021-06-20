@@ -9,6 +9,31 @@ use Kunnu\Dropbox\Security\RandomStringGeneratorInterface;
 class DropboxAuthHelper
 {
     /**
+     * Access token type online param will returns a short lived access token that
+     * require the user to reauthenticate once expired.
+     *
+     * @var string
+     */
+    CONST TOKEN_ACCESS_TYPE_ONLINE = 'online';
+
+    /**
+     * Access token type offline returns short lived access token and a refresh token that can be used
+     * to generate a new access token once the original is expired
+     *
+     */
+    CONST TOKEN_ACCESS_TYPE_OFFLINE = 'offline';
+
+    /**
+     * Grant type used for fetching new access token
+     */
+    CONST GRANT_TYPE_AUTHORIZATION_CODE = 'authorization_code';
+
+    /**
+     * Grant type for fetching a new token based on an existing refresh token
+     */
+    CONST GRANT_TYPE_REFRESH_TOKEN = 'refresh_token';
+
+    /**
      * The length of CSRF string
      *
      * @const int
@@ -42,6 +67,17 @@ class DropboxAuthHelper
      * @var string
      */
     protected $urlState = null;
+
+    /**
+     * The selected access token type to be used when authenticating.
+     *
+     * If omitted (null), Dropbox  response will default to returning a long-lived access_token
+     * if they are allowed in the app console.
+     * If long-lived access tokens are disabled in the app console, this parameter defaults to online.
+     *
+     * @var string $accessTokeenType
+     */
+    protected $accessTokenType = null;
 
     /**
      * Create a new DropboxAuthHelper instance
@@ -139,6 +175,10 @@ class DropboxAuthHelper
             }
         }
 
+        // Adding the token access type
+        if ($this->accessTokenType != null && !array_key_exists('token_access_type', $params))
+            $params['token_access_type'] = $this->accessTokenType;
+
         //Get OAuth2 Authorization URL
         return $this->getOAuth2Client()->getAuthorizationUrl($redirectUri, $state, $params);
     }
@@ -194,13 +234,15 @@ class DropboxAuthHelper
     /**
      * Get Access Token
      *
-     * @param  string $code        Authorization Code
+     * @param  string $code        Authorization Code or refresh token (when grantType is DropboxAuthHelper::GRANT_TYPE_REFRESH_TOKEN
      * @param  string $state       CSRF & URL State
      * @param  string $redirectUri Redirect URI used while getAuthUrl
+     * @param  string $grantType   Use either DropboxAuthHelper::GRANT_TYPE_AUTHORIZATION_CODE for new token
+     *                             or DropboxAuthHelper::GRANT_TYPE_REFRESH_TOKEN for refreshing offline token.
      *
      * @return \Kunnu\Dropbox\Models\AccessToken
      */
-    public function getAccessToken($code, $state = null, $redirectUri = null)
+    public function getAccessToken($code, $state = null, $redirectUri = null, $grantType = DropboxAuthHelper::GRANT_TYPE_AUTHORIZATION_CODE)
     {
         // No state provided
         // Should probably be
@@ -220,7 +262,7 @@ class DropboxAuthHelper
         }
 
         //Fetch Access Token
-        $accessToken = $this->getOAuth2Client()->getAccessToken($code, $redirectUri);
+        $accessToken = $this->getOAuth2Client()->getAccessToken($code, $redirectUri, $grantType);
 
         //Make and return the model
         return new AccessToken($accessToken);
@@ -244,5 +286,18 @@ class DropboxAuthHelper
     public function getUrlState()
     {
         return $this->urlState;
+    }
+
+    /**
+     * Set the access token type to be either
+     * DropboxAuthHelper::TOKEN_ACCESS_TYPE_ONLINE (default) or DropboxAuthHelper::TOKEN_ACCESS_TYPE_OFFLINE
+     *
+     * @param $tokenType string
+     */
+    public function setAccessTokenType($tokenType = self::TOKEN_ACCESS_TYPE_ONLINE) {
+        if ($tokenType != self::TOKEN_ACCESS_TYPE_ONLINE && $tokenType != self::TOKEN_ACCESS_TYPE_OFFLINE)
+            throw new \InvalidArgumentException("TokenType parameter must be either DropboxAuthHelper::TOKEN_ACCESS_TYPE_ONLINE or DropboxAuthHelper::TOKEN_ACCESS_TYPE_OFFLINE");
+
+        $this->accessTokenType = $tokenType;
     }
 }
