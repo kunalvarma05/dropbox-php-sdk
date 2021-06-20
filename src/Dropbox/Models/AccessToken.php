@@ -46,6 +46,20 @@ class AccessToken extends BaseModel
     protected $teamId;
 
     /**
+     * Refresh token, received when token_access_type = offline
+     *
+     * @var string|null
+     */
+    protected $refreshToken;
+
+    /**
+     * Indicate when the token is expired
+     *
+     * @var string|null
+     */
+    protected $tokenExpiresIn;
+
+    /**
      * Create a new AccessToken instance
      *
      * @param array $data
@@ -60,6 +74,8 @@ class AccessToken extends BaseModel
         $this->uid = $this->getDataProperty('uid');
         $this->accountId = $this->getDataProperty('account_id');
         $this->teamId = $this->getDataProperty('team_id');
+        $this->refreshToken = $this->getDataProperty("refresh_token");
+        $this->tokenExpiresIn = $this->getDataProperty("expires_in");
     }
 
     /**
@@ -121,4 +137,27 @@ class AccessToken extends BaseModel
     {
         return $this->teamId;
     }
+
+    /**
+     * if token_access_type was set to offline, then response will include a refresh token.
+     * This refresh token is long-lived and won't expire automatically.
+     * It can be stored and re-used multiple times.
+     *
+     * @return string|null
+     */
+    public function getRefreshToken()
+    {
+        return $this->refreshToken;
+    }
+
+    /**
+     * Get the length of time that the access token will be valid for
+     *
+     * @return string|null
+     */
+    public function getExpiresIn()
+    {
+        return $this->tokenExpiresIn;
+    }
+
 }

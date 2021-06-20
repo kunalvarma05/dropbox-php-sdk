@@ -133,14 +133,26 @@ class OAuth2Client
      */
     public function getAccessToken($code, $redirectUri = null, $grant_type = 'authorization_code')
     {
-        //Request Params
-        $params = [
-        'code' => $code,
-        'grant_type' => $grant_type,
-        'client_id' => $this->getApp()->getClientId(),
-        'client_secret' => $this->getApp()->getClientSecret(),
-        'redirect_uri' => $redirectUri
-        ];
+        if ($grant_type == 'refresh_token') {
+            //Request Params
+            $params = [
+                'grant_type' => $grant_type,
+                'refresh_token' => $code,
+                'client_id' => $this->getApp()->getClientId(),
+                'client_secret' => $this->getApp()->getClientSecret()
+            ];
+        }
+        else
+        {
+            //Request Params
+            $params = [
+                'code' => $code,
+                'grant_type' => $grant_type,
+                'client_id' => $this->getApp()->getClientId(),
+                'client_secret' => $this->getApp()->getClientSecret(),
+                'redirect_uri' => $redirectUri
+            ];
+        }
 
         $params = http_build_query($params);
 
