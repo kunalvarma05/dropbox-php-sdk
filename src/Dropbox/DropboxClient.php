@@ -153,7 +153,7 @@ class DropboxClient
 
         $options = [];
         if ($response instanceof DropboxResponseToFile) {
-            $options['sink'] = $response->getFilePath();
+            $options['sink'] = $response->getSteamOrFilePath();
         }
 
         //Send the Request to the Server through the HTTP Client
