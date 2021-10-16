@@ -218,7 +218,7 @@ class DropboxClient
             $this->buildAuthHeader($request->getAccessToken()),
             $this->buildContentTypeHeader($request->getContentType()),
             $request->getHeaders()
-            );
+        );
 
         //Return the URL, Headers and Request Body
         return [$url, $headers, $requestBody];

@@ -54,7 +54,7 @@ class DropboxAuthHelper
         OAuth2Client $oAuth2Client,
         RandomStringGeneratorInterface $randomStringGenerator = null,
         PersistentDataStoreInterface $persistentDataStore = null
-        ) {
+    ) {
         $this->oAuth2Client = $oAuth2Client;
         $this->randomStringGenerator = $randomStringGenerator;
         $this->persistentDataStore = $persistentDataStore;

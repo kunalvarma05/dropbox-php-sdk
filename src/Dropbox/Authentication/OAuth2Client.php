@@ -68,7 +68,7 @@ class OAuth2Client
      */
     protected function buildUrl($endpoint = '', array $params = [])
     {
-        $queryParams = http_build_query($params,'','&');
+        $queryParams = http_build_query($params, '', '&');
         return static::BASE_URL . $endpoint . '?' . $queryParams;
     }
 
