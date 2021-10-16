@@ -1,6 +1,6 @@
 risky: false
 version: 7.4
-preset: recommended
+preset: psr2
 tab-width: 4
 use-tabs: false
 disabled:
