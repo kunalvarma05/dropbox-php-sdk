@@ -15,7 +15,7 @@ class AccessToken extends BaseModel
      *
      * @var string
      */
-    protected $refresh_token = null;
+    protected $refresh_token;
 
     /**
      * Expiry Time for the token

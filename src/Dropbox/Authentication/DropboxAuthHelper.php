@@ -228,6 +228,19 @@ class DropboxAuthHelper
     }
 
     /**
+     * Get new Access Token by using the refresh token
+     *
+     * @param \Kunnu\Dropbox\Models\AccessToken $accessToken - Current access token object
+     */
+    public function updateAccessTokenFromRefreshToken($accessToken)
+    {
+        $new_token = $this->getOAuth2Client()->getAccessTokenFromRefreshToken($accessToken->refresh_token);
+
+        $accessToken->token = $new_token['access_token'];
+        $accessToken->expiry_time = $new_token['expires_in'];
+    }
+
+    /**
      * Revoke Access Token
      *
      * @return void
