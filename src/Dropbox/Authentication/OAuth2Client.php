@@ -106,14 +106,15 @@ class OAuth2Client
      *
      * @return string
      */
-    public function getAuthorizationUrl($redirectUri = null, $state = null, array $params = [])
+    public function getAuthorizationUrl($redirectUri = null, $state = null, array $params = [], $token_access_type = null)
     {
         //Request Parameters
         $params = array_merge([
             'client_id' => $this->getApp()->getClientId(),
             'response_type' => 'code',
             'state' => $state,
-            ], $params);
+            'token_access_type' => $token_access_type,
+        ], $params);
 
         if (!is_null($redirectUri)) {
             $params['redirect_uri'] = $redirectUri;
@@ -136,11 +137,11 @@ class OAuth2Client
     {
         //Request Params
         $params = [
-        'code' => $code,
-        'grant_type' => $grant_type,
-        'client_id' => $this->getApp()->getClientId(),
-        'client_secret' => $this->getApp()->getClientSecret(),
-        'redirect_uri' => $redirectUri
+            'code' => $code,
+            'grant_type' => $grant_type,
+            'client_id' => $this->getApp()->getClientId(),
+            'client_secret' => $this->getApp()->getClientSecret(),
+            'redirect_uri' => $redirectUri,
         ];
 
         $params = http_build_query($params, '', '&');
@@ -151,14 +152,52 @@ class OAuth2Client
         //Send Request through the DropboxClient
         //Fetch the Response (DropboxRawResponse)
         $response = $this->getClient()
-        ->getHttpClient()
-        ->send($uri, "POST", null);
+            ->getHttpClient()
+            ->send($uri, "POST", null);
 
         //Fetch Response Body
         $body = $response->getBody();
 
         //Decode the Response body to associative array
         //and return
+        return json_decode((string) $body, true);
+    }
+
+    /**
+     * Get Access token from Refresh Token
+     * @param  string $code        Authorization Code
+     * @param  string $grant_type  Grant Type ['refresh_token']
+     *
+     * @return array
+     */
+    public function getAccessTokenFromRefreshToken($refresh_token, $grant_type = 'refresh_token')
+    {
+
+        //Request Params
+        $params = [
+            'refresh_token' => $refresh_token,
+            'grant_type' => $grant_type,
+            'client_id' => $this->getApp()->getClientId(),
+            'client_secret' => $this->getApp()->getClientSecret(),
+        ];
+
+        $params = http_build_query($params);
+
+        $apiUrl = static::AUTH_TOKEN_URL;
+        $uri = $apiUrl . "?" . $params;
+
+        //Send Request through the DropboxClient
+        //Fetch the Response (DropboxRawResponse)
+        $response = $this->getClient()
+            ->getHttpClient()
+            ->send($uri, "POST", null);
+
+        //Fetch Response Body
+        $body = $response->getBody();
+
+        //Decode the Response body to associative array
+        //and return
+
         return json_decode((string) $body, true);
     }
 
