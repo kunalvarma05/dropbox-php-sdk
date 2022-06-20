@@ -234,10 +234,10 @@ class DropboxAuthHelper
      */
     public function updateAccessTokenFromRefreshToken($accessToken)
     {
-        $new_token = $this->getOAuth2Client()->getAccessTokenFromRefreshToken($accessToken->refresh_token);
+        $newToken = $this->getOAuth2Client()->getAccessTokenFromRefreshToken($accessToken->refresh_token);
 
-        $accessToken->token = $new_token['access_token'];
-        $accessToken->expiry_time = $new_token['expires_in'];
+        $accessToken->token = $newToken['access_token'];
+        $accessToken->expiryTime = $newToken['expires_in'];
     }
 
     /**

@@ -170,12 +170,12 @@ class OAuth2Client
      *
      * @return array
      */
-    public function getAccessTokenFromRefreshToken($refresh_token, $grant_type = 'refresh_token')
+    public function getAccessTokenFromRefreshToken($refreshToken, $grant_type = 'refresh_token')
     {
 
         //Request Params
         $params = [
-            'refresh_token' => $refresh_token,
+            'refresh_token' => $refreshToken,
             'grant_type' => $grant_type,
             'client_id' => $this->getApp()->getClientId(),
             'client_secret' => $this->getApp()->getClientSecret(),
