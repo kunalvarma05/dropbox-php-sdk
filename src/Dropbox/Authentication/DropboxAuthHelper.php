@@ -113,7 +113,7 @@ class DropboxAuthHelper
      *
      * @return string
      */
-    public function getAuthUrl($redirectUri = null, array $params = [], $urlState = null)
+    public function getAuthUrl($redirectUri = null, array $params = [], $urlState = null, $token_access_type = null)
     {
         // If no redirect URI
         // is provided, the
@@ -140,7 +140,7 @@ class DropboxAuthHelper
         }
 
         //Get OAuth2 Authorization URL
-        return $this->getOAuth2Client()->getAuthorizationUrl($redirectUri, $state, $params);
+        return $this->getOAuth2Client()->getAuthorizationUrl($redirectUri, $state, $params, $token_access_type);
     }
 
     /**
