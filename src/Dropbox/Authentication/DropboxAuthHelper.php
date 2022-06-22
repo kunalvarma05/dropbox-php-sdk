@@ -232,9 +232,9 @@ class DropboxAuthHelper
      *
      * @param \Kunnu\Dropbox\Models\AccessToken $accessToken - Current access token object
      */
-    public function getRefreshedAcessToken($accessToken)
+    public function getRefreshedAcessToken($accessToken, $grantType = 'refresh_token')
     {
-        $newToken = $this->getOAuth2Client()->getAccessTokenFromRefreshToken($accessToken->refresh_token);
+        $newToken = $this->getOAuth2Client()->getAccessToken($accessToken->refresh_token, null, $grantType);
 
         return new AccessToken(
             array_merge(

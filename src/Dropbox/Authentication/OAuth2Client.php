@@ -126,9 +126,9 @@ class OAuth2Client
     /**
      * Get Access Token
      *
-     * @param  string $code Authorization Code
+     * @param  string $code Authorization Code | Refresh Token
      * @param  string $redirectUri Redirect URI used while getAuthorizationUrl
-     * @param  string $grant_type Grant Type ['authorization_code']
+     * @param  string $grant_type Grant Type ['authorization_code' | 'refresh_token']
      *
      * @return array
      * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
@@ -144,6 +144,16 @@ class OAuth2Client
             'redirect_uri' => $redirectUri,
         ];
 
+        if ($grant_type === 'refresh_token') {
+            //
+            $params = [
+                'refresh_token' => $code,
+                'grant_type' => $grant_type,
+                'client_id' => $this->getApp()->getClientId(),
+                'client_secret' => $this->getApp()->getClientSecret(),
+            ];
+        }
+        
         $params = http_build_query($params, '', '&');
 
         $apiUrl = static::AUTH_TOKEN_URL;
@@ -160,44 +170,6 @@ class OAuth2Client
 
         //Decode the Response body to associative array
         //and return
-        return json_decode((string) $body, true);
-    }
-
-    /**
-     * Get Access token from Refresh Token
-     * @param  string $code        Authorization Code
-     * @param  string $grant_type  Grant Type ['refresh_token']
-     *
-     * @return array
-     */
-    public function getAccessTokenFromRefreshToken($refreshToken, $grant_type = 'refresh_token')
-    {
-
-        //Request Params
-        $params = [
-            'refresh_token' => $refreshToken,
-            'grant_type' => $grant_type,
-            'client_id' => $this->getApp()->getClientId(),
-            'client_secret' => $this->getApp()->getClientSecret(),
-        ];
-
-        $params = http_build_query($params);
-
-        $apiUrl = static::AUTH_TOKEN_URL;
-        $uri = $apiUrl . "?" . $params;
-
-        //Send Request through the DropboxClient
-        //Fetch the Response (DropboxRawResponse)
-        $response = $this->getClient()
-            ->getHttpClient()
-            ->send($uri, "POST", null);
-
-        //Fetch Response Body
-        $body = $response->getBody();
-
-        //Decode the Response body to associative array
-        //and return
-
         return json_decode((string) $body, true);
     }
 

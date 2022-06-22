@@ -75,10 +75,7 @@ class AccessToken extends BaseModel
         $this->accountId = $this->getDataProperty('account_id');
         $this->teamId = $this->getDataProperty('team_id');
         $this->expiryTime = $this->getDataProperty('expires_in');
-
-        if ($this->getDataProperty('refresh_token')) {
-            $this->refreshToken = $this->getDataProperty('refresh_token');
-        }
+        $this->refreshToken = $this->getDataProperty('refresh_token');
     }
 
     /**
