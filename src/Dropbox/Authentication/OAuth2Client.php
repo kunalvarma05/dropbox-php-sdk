@@ -101,19 +101,20 @@ class OAuth2Client
      *                            to the user.
      * @param string $state       CSRF Token
      * @param array  $params      Additional Params
+     * @param string $tokenAccessType Either `offline` or `online` or null
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#oauth2-authorize
      *
      * @return string
      */
-    public function getAuthorizationUrl($redirectUri = null, $state = null, array $params = [], $token_access_type = null)
+    public function getAuthorizationUrl($redirectUri = null, $state = null, array $params = [], $tokenAccessType = null)
     {
         //Request Parameters
         $params = array_merge([
             'client_id' => $this->getApp()->getClientId(),
             'response_type' => 'code',
             'state' => $state,
-            'token_access_type' => $token_access_type,
+            'token_access_type' => $tokenAccessType,
         ], $params);
 
         if (!is_null($redirectUri)) {
@@ -153,7 +154,7 @@ class OAuth2Client
                 'client_secret' => $this->getApp()->getClientSecret(),
             ];
         }
-        
+
         $params = http_build_query($params, '', '&');
 
         $apiUrl = static::AUTH_TOKEN_URL;

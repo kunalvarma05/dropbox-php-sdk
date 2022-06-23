@@ -108,12 +108,13 @@ class DropboxAuthHelper
      * @param  string $redirectUri Callback URL to redirect to after authorization
      * @param  array  $params      Additional Params
      * @param  string $urlState  Additional User Provided State Data
+     * @param string $tokenAccessType Either `offline` or `online` or null
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#oauth2-authorize
      *
      * @return string
      */
-    public function getAuthUrl($redirectUri = null, array $params = [], $urlState = null, $token_access_type = null)
+    public function getAuthUrl($redirectUri = null, array $params = [], $urlState = null, $tokenAccessType = null)
     {
         // If no redirect URI
         // is provided, the
@@ -140,7 +141,7 @@ class DropboxAuthHelper
         }
 
         //Get OAuth2 Authorization URL
-        return $this->getOAuth2Client()->getAuthorizationUrl($redirectUri, $state, $params, $token_access_type);
+        return $this->getOAuth2Client()->getAuthorizationUrl($redirectUri, $state, $params, $tokenAccessType);
     }
 
     /**
@@ -231,8 +232,9 @@ class DropboxAuthHelper
      * Get new Access Token by using the refresh token
      *
      * @param \Kunnu\Dropbox\Models\AccessToken $accessToken - Current access token object
+     * @param string $grantType ['refresh_token']
      */
-    public function getRefreshedAcessToken($accessToken, $grantType = 'refresh_token')
+    public function getRefreshedAccessToken($accessToken, $grantType = 'refresh_token')
     {
         $newToken = $this->getOAuth2Client()->getAccessToken($accessToken->refresh_token, null, $grantType);
 
