@@ -11,6 +11,20 @@ class AccessToken extends BaseModel
     protected $token;
 
     /**
+     * Refresh Token
+     *
+     * @var string
+     */
+    protected $refreshToken;
+
+    /**
+     * Expiry Time for the token
+     *
+     * @var string
+     */
+    protected $expiryTime;
+
+    /**
      * Token Type
      *
      * @var string
@@ -60,6 +74,8 @@ class AccessToken extends BaseModel
         $this->uid = $this->getDataProperty('uid');
         $this->accountId = $this->getDataProperty('account_id');
         $this->teamId = $this->getDataProperty('team_id');
+        $this->expiryTime = $this->getDataProperty('expires_in');
+        $this->refreshToken = $this->getDataProperty('refresh_token');
     }
 
     /**
@@ -70,6 +86,26 @@ class AccessToken extends BaseModel
     public function getToken()
     {
         return $this->token;
+    }
+
+    /**
+     * Get Refresh Token
+     *
+     * @return string
+     */
+    public function getRefreshToken()
+    {
+        return $this->refreshToken;
+    }
+
+    /**
+     * Get the expiry time
+     *
+     * @return int
+     */
+    public function getExpiryTime()
+    {
+        return (int) $this->expiryTime;
     }
 
     /**
