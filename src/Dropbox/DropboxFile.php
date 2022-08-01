@@ -82,7 +82,7 @@ class DropboxFile
     public static function createByStream($fileName, $resource, $mode = self::MODE_READ)
     {
         // create a new stream and set it to the dropbox file
-        $stream = \GuzzleHttp\Psr7\stream_for($resource);
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor($resource);
         if (!$stream) {
             throw new DropboxClientException('Failed to create DropboxFile instance. Unable to open the given resource.');
         }
@@ -234,7 +234,7 @@ class DropboxFile
         }
 
         // Create a stream
-        $this->stream = \GuzzleHttp\Psr7\stream_for(fopen($this->path, $this->mode));
+        $this->stream = \GuzzleHttp\Psr7\Utils::streamFor(fopen($this->path, $this->mode));
 
         // Unable to create stream
         if (!$this->stream) {
