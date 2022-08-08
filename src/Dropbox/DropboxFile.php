@@ -331,6 +331,6 @@ class DropboxFile
      */
     public function getMimetype()
     {
-        return \GuzzleHttp\Psr7\mimetype_from_filename($this->path) ?: 'text/plain';
+        return \GuzzleHttp\Psr7\MimeType::fromFilename($this->path) ?: 'text/plain';
     }
 }
