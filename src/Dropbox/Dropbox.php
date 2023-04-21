@@ -1288,4 +1288,155 @@ class Dropbox
         //Return the decoded body
         return $body;
     }
+
+    /**
+     * Get a File Request
+     *
+     * @param string $id File Request ID of the file request to get details for
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#file_requests_get
+     *
+     * @return \Dropbox\Models\FileRequest
+     */
+    public function getFileRequest($id)
+    {
+        //Set the id
+        $params['id'] = $id;
+
+        //Get File Request
+        $response = $this->postToAPI('/file_requests/get', $params);
+
+        //Make and Return the Model
+        return $this->makeModelFromResponse($response);
+    }
+
+    /**
+     * Get the list of File Requests
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#file_requests_list
+     *
+     * @return \Dropbox\Models\FileRequestCollection
+     */
+    public function listFileRequests()
+    {
+
+        //Get File Request List
+        $response = $this->postToAPI('/file_requests/list');
+
+        //Make and Return the Model
+        return $this->makeModelFromResponse($response);
+    }
+
+    /**
+     * Create a File Request
+     *
+     * @param  string  $title               Title of the File Request.
+     * @param  string  $destination         The path of the folder in the Dropbox where uploaded files will be sent.
+     * @param  string  $deadline            The deadline for this file request. (format="%Y-%m-%dT%H:%M:%SZ")
+     * @param  string  $allow_late_uploads  If set, allow uploads after the deadline has passed. ['one_day','two_days','seven_days','thirty_days','always']
+     * @param  boolean $open                Whether or not the file request should be open.
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#file_requests_create
+     *
+     * @return \Dropbox\Models\FileRequest
+     */
+    public function createFileRequest($title, $destination, $deadline = '', $allow_late_uploads = '', $open = true)
+    {
+        //Set the title and destination
+        $params['title'] = $title;
+        $params['destination'] = $destination;
+        $params['open'] = $open;
+
+        //Add deadline if specified
+        if (!empty($deadline)) {
+            //Invalid Format
+            if (!preg_match('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})Z/', $deadline)) {
+                throw new DropboxClientException("Invalid format. Must be '%Y-%m-%dT%H:%M:%SZ'.");
+            }
+            $deadline_data = ['deadline' => $deadline];
+
+            //Add allow late uploads if specified
+            if (!empty($allow_late_uploads)) {
+                //Invalid Format
+                if (!in_array($allow_late_uploads, ['one_day','two_days','seven_days','thirty_days','always'])) {
+                    throw new DropboxClientException("Invalid format. Must be any of 'one_day', 'two_days', 'seven_days', 'thirty_days' or 'always'.");
+                }
+                $deadline_data['allow_late_uploads'] = $allow_late_uploads;
+            }
+
+            $params['deadline'] = new FileRequestDeadline($deadline_data);
+        }
+
+        //Create File Request
+        $response = $this->postToAPI('/file_requests/create', $params);
+
+        //Make and Return the Model
+        return $this->makeModelFromResponse($response);
+    }
+
+    /**
+     * Update a File Request
+     *
+     * @param  string  $id                  File Request ID of the file request to update.
+     * @param  string  $title               New title of the File Request.
+     * @param  string  $destination         New path of the folder in the Dropbox where uploaded files will be sent.
+     * @param  string  $deadline            New deadline for this file request. Empty string to clear. (format="%Y-%m-%dT%H:%M:%SZ")
+     * @param  string  $allow_late_uploads  If set, allow uploads after the deadline has passed. ['one_day','two_days','seven_days','thirty_days','always']
+     * @param  boolean $open                Whether or not the file request should be open.
+     *
+     * @link https://www.dropbox.com/developers/documentation/http/documentation#file_requests_update
+     *
+     * @return \Dropbox\Models\FileRequest
+     */
+    public function updateFileRequest($id, $title = null, $destination = null, $deadline = null, $allow_late_uploads = '', $open = null)
+    {
+        //Set the id
+        $params['id'] = $id;
+
+        //Set the new title
+        if (!is_null($title)) {
+            $params['title'] = $title;
+        }
+
+        //Set the new destination
+        if (!is_null($destination)) {
+            $params['destination'] = $destination;
+        }
+
+        //Set the new deadline, empty string to clear
+        if (!is_null($deadline)) {
+            if (empty($deadline)) {
+                $params['deadline'] = ['.tag' => 'update'];
+            } else {
+                //Invalid Format
+                if (!preg_match('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})Z/', $deadline)) {
+                    throw new DropboxClientException("Invalid format. Must be '%Y-%m-%dT%H:%M:%SZ'.");
+                }
+                $deadline_data = ['.tag' => 'update', 'deadline' => $deadline];
+
+                //Add allow late uploads if specified
+                if (!empty($allow_late_uploads)) {
+                    //Invalid Format
+                    if (!in_array($allow_late_uploads, ['one_day','two_days','seven_days','thirty_days','always'])) {
+                        throw new DropboxClientException("Invalid format. Must be any of 'one_day', 'two_days', 'seven_days', 'thirty_days' or 'always'.");
+                    }
+                    $deadline_data['allow_late_uploads'] = $allow_late_uploads;
+                }
+
+                $params['deadline'] = $deadline_data;
+            }
+        } else {
+            $params['deadline'] = ['.tag' => 'no_update'];
+        }
+
+        //Set the new open
+        if (!is_null($open)) {
+            $params['open'] = $open;
+        }
+
+        $response = $this->postToAPI('/file_requests/update', $params);
+
+        //Make and Return the Model
+        return $this->makeModelFromResponse($response);
+    }
 }
