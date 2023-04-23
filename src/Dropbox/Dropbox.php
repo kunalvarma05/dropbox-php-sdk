@@ -2,6 +2,7 @@
 
 namespace Kunnu\Dropbox;
 
+use Kunnu\Dropbox\Models\DeletedList;
 use Kunnu\Dropbox\Models\DeletedMetadata;
 use Kunnu\Dropbox\Models\File;
 use Kunnu\Dropbox\Models\Account;
@@ -1287,5 +1288,87 @@ class Dropbox
 
         //Return the decoded body
         return $body;
+    }
+
+    /**
+     * Delete multiple files/folders at once.
+     * This route is asynchronous, which returns a job ID immediately and runs the delete batch asynchronously.
+     * Use checkDeleteBatch to check the job status
+     *
+     * @param array|\Kunnu\Dropbox\Models\FolderMetadata[]|\Kunnu\Dropbox\Models\FileMetadata[] $files
+     * @return DeletedList|string List of deleted items or job ID
+     * @throws DropboxClientException
+     * @throws \Dropbox_BadRequestException
+     */
+    public function deleteBatch(array $files)
+    {
+        // prepare list of files
+        $entries = [];
+        foreach ($files as $file) {
+            if (is_string($file)) {
+                $path = $file;
+            } elseif (
+                $file instanceof \Kunnu\Dropbox\Models\FolderMetadata ||
+                $file instanceof \Kunnu\Dropbox\Models\FileMetadata
+            ) {
+                $path = $file->getPathLower();
+            } else {
+                throw new \Dropbox_BadRequestException("Invalid argument type");
+            }
+
+            $entries[] = ['path' => $path];
+        }
+
+        $response = $this->postToAPI('/files/delete_batch', ['entries' => $entries]);
+        $body = $response->getDecodedBody();
+
+        //Response doesn't have .tag
+        if (!isset($body['.tag'])) {
+            throw new DropboxClientException("Invalid Response.");
+        }
+
+        if ($body['.tag'] == 'complete') {
+            $entries = isset($body['entries']) ? $body['entries'] : [];
+
+            return new DeletedList($entries);
+        }
+
+        if (!isset($body['async_job_id'])) {
+            throw new DropboxClientException("Could not retrieve Async Job ID.");
+        }
+
+        return $body['async_job_id'];
+    }
+
+    /**
+     * Returns the status of an asynchronous job for deleteBatch. If success, it returns list of result for each entry.
+     *
+     * @param string $asyncJobId
+     * @return DeletedList|string
+     * @throws DropboxClientException
+     */
+    public function checkDeleteBatch($asyncJobId)
+    {
+        //Async Job ID cannot be null
+        if (empty($asyncJobId)) {
+            throw new DropboxClientException("Async Job ID cannot be empty.");
+        }
+
+        //Get Job Status
+        $response = $this->postToAPI('/files/delete_batch/check', ['async_job_id' => $asyncJobId]);
+        $body = $response->getDecodedBody();
+
+        //Status
+        $status = isset($body['.tag']) ? $body['.tag'] : '';
+
+        //If status is complete
+        if ($status === 'complete') {
+            $entries = isset($body['entries']) ? $body['entries'] : [];
+
+            return new DeletedList($entries);
+        }
+
+        //Return the status
+        return $status;
     }
 }
