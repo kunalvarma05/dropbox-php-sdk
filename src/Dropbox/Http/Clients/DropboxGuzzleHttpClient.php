@@ -24,6 +24,11 @@ class DropboxGuzzleHttpClient implements DropboxHttpClientInterface
     protected $client;
 
     /**
+     * @var string|null
+     */
+    protected $namespaceId = null;
+
+    /**
      * Create a new DropboxGuzzleHttpClient instance.
      *
      * @param Client $client GuzzleHttp Client
@@ -33,6 +38,14 @@ class DropboxGuzzleHttpClient implements DropboxHttpClientInterface
         //Set the client
         $this->client = $client ?: new Client();
     }
+
+    /**
+     * @param int $namespaceId The namespace id
+     */
+    public function setNamespace( $namespaceId ){
+        $this->namespaceId = $namespaceId;
+    }
+
 
     /**
      * Send request to the server and fetch the raw response.
@@ -49,6 +62,19 @@ class DropboxGuzzleHttpClient implements DropboxHttpClientInterface
      */
     public function send($url, $method, $body, $headers = [], $options = [])
     {
+        //Create a global header for the namespace
+        if ($this->namespaceId) {
+            $headers = array_merge(
+                $headers,
+                [
+                    'Dropbox-API-Path-Root' => json_encode([
+                        '.tag' => 'namespace_id',
+                        'namespace_id' => $this->namespaceId,
+                    ]),
+                ]
+            );
+        }
+
         //Create a new Request Object
         $request = new Request($method, $url, $headers, $body);
 

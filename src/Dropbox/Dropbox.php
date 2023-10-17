@@ -105,7 +105,8 @@ class Dropbox
         $config = array_merge([
             'http_client_handler' => null,
             'random_string_generator' => null,
-            'persistent_data_store' => null
+            'persistent_data_store' => null,
+            'namespace_id' => null
         ], $config);
 
         //Set the app
@@ -116,6 +117,9 @@ class Dropbox
 
         //Make the HTTP Client
         $httpClient = DropboxHttpClientFactory::make($config['http_client_handler']);
+
+        //Set the namespace id for the global header Dropbox-API-Path-Root
+        $httpClient->setNamespace($config['namespace_id']);
 
         //Make and Set the DropboxClient
         $this->client = new DropboxClient($httpClient);
