@@ -475,18 +475,17 @@ class Dropbox
         return $this->makeModelFromResponse($response);
     }
 
-	/**
+    /**
      * Search a folder for files/folders
      *
-     * @param  string $path   Path to search
-     * @param  string $query  Search Query
-     * @param  array  $params Additional Params
+     * @param string $path Path to search
+     * @param string $query Search Query
+     * @param array $params Additional Params
      *
-     * @link https://www.dropbox.com/developers/documentation/http/documentation#files-search
-     *
-     * @return \Kunnu\Dropbox\Models\SearchResults
+     * @return \Kunnu\Dropbox\Models\ModelInterface
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
-    public function searchV2($query, array $params = [])
+    public function searchV2($path, $query, array $params = [])
     {
         //Specify the root folder as an
         //empty string rather than as "/"
@@ -495,10 +494,15 @@ class Dropbox
         }
 
         //Set the path and query
+        $params['path'] = $path;
         $params['query'] = $query;
 
-		if( !array_key_exists( 'include_highlights', $params ) ){
-			$params['include_highlights'] = false;
+		if( !array_key_exists( 'match_field_options', $params ) ){
+            if( array_key_exists( 'include_highlights', $params ) ){
+                $params['match_field_options'] = '{"include_highlights": ' . ( $params["include_highlights"] ? 'true' : 'false' ) . "}";
+            } else {
+                $params['match_field_options'] = '{ "include_highlights": false }';
+            }
 		}
 
         //Fetch Search Results
