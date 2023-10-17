@@ -82,7 +82,7 @@ class DropboxFile
     public static function createByStream($fileName, $resource, $mode = self::MODE_READ)
     {
         // create a new stream and set it to the dropbox file
-        $stream = \GuzzleHttp\Psr7\stream_for($resource);
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor($resource);
         if (!$stream) {
             throw new DropboxClientException('Failed to create DropboxFile instance. Unable to open the given resource.');
         }
@@ -161,6 +161,7 @@ class DropboxFile
      * Return the contents of the file
      *
      * @return string
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
     public function getContents()
     {
@@ -184,6 +185,7 @@ class DropboxFile
      * Get the Open File Stream
      *
      * @return \GuzzleHttp\Psr7\Stream
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
     public function getStream()
     {
@@ -232,7 +234,7 @@ class DropboxFile
         }
 
         // Create a stream
-        $this->stream = \GuzzleHttp\Psr7\stream_for(fopen($this->path, $this->mode));
+        $this->stream = \GuzzleHttp\Psr7\Utils::streamFor(fopen($this->path, $this->mode));
 
         // Unable to create stream
         if (!$this->stream) {
@@ -296,6 +298,11 @@ class DropboxFile
         return $this->path;
     }
 
+    public function getStreamOrFilePath()
+    {
+        return $this->isCreatedFromStream() ? $this->getStream() : $this->getFilePath();
+    }
+
     /**
      * Get the mode of the file stream
      *
@@ -310,6 +317,7 @@ class DropboxFile
      * Get the size of the file
      *
      * @return int
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
     public function getSize()
     {

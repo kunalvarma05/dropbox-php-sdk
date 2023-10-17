@@ -68,7 +68,7 @@ class OAuth2Client
      */
     protected function buildUrl($endpoint = '', array $params = [])
     {
-        $queryParams = http_build_query($params);
+        $queryParams = http_build_query($params, '', '&');
         return static::BASE_URL . $endpoint . '?' . $queryParams;
     }
 
@@ -101,19 +101,21 @@ class OAuth2Client
      *                            to the user.
      * @param string $state       CSRF Token
      * @param array  $params      Additional Params
+     * @param string $tokenAccessType Either `offline` or `online` or null
      *
      * @link https://www.dropbox.com/developers/documentation/http/documentation#oauth2-authorize
      *
      * @return string
      */
-    public function getAuthorizationUrl($redirectUri = null, $state = null, array $params = [])
+    public function getAuthorizationUrl($redirectUri = null, $state = null, array $params = [], $tokenAccessType = null)
     {
         //Request Parameters
         $params = array_merge([
             'client_id' => $this->getApp()->getClientId(),
             'response_type' => 'code',
             'state' => $state,
-            ], $params);
+            'token_access_type' => $tokenAccessType,
+        ], $params);
 
         if (!is_null($redirectUri)) {
             $params['redirect_uri'] = $redirectUri;
@@ -125,24 +127,35 @@ class OAuth2Client
     /**
      * Get Access Token
      *
-     * @param  string $code        Authorization Code
+     * @param  string $code Authorization Code | Refresh Token
      * @param  string $redirectUri Redirect URI used while getAuthorizationUrl
-     * @param  string $grant_type  Grant Type ['authorization_code']
+     * @param  string $grant_type Grant Type ['authorization_code' | 'refresh_token']
      *
      * @return array
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
     public function getAccessToken($code, $redirectUri = null, $grant_type = 'authorization_code')
     {
         //Request Params
         $params = [
-        'code' => $code,
-        'grant_type' => $grant_type,
-        'client_id' => $this->getApp()->getClientId(),
-        'client_secret' => $this->getApp()->getClientSecret(),
-        'redirect_uri' => $redirectUri
+            'code' => $code,
+            'grant_type' => $grant_type,
+            'client_id' => $this->getApp()->getClientId(),
+            'client_secret' => $this->getApp()->getClientSecret(),
+            'redirect_uri' => $redirectUri,
         ];
 
-        $params = http_build_query($params);
+        if ($grant_type === 'refresh_token') {
+            //
+            $params = [
+                'refresh_token' => $code,
+                'grant_type' => $grant_type,
+                'client_id' => $this->getApp()->getClientId(),
+                'client_secret' => $this->getApp()->getClientSecret(),
+            ];
+        }
+
+        $params = http_build_query($params, '', '&');
 
         $apiUrl = static::AUTH_TOKEN_URL;
         $uri = $apiUrl . "?" . $params;
@@ -150,8 +163,8 @@ class OAuth2Client
         //Send Request through the DropboxClient
         //Fetch the Response (DropboxRawResponse)
         $response = $this->getClient()
-        ->getHttpClient()
-        ->send($uri, "POST", null);
+            ->getHttpClient()
+            ->send($uri, "POST", null);
 
         //Fetch Response Body
         $body = $response->getBody();
@@ -165,6 +178,7 @@ class OAuth2Client
      * Disables the access token
      *
      * @return void
+     * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
      */
     public function revokeAccessToken()
     {
