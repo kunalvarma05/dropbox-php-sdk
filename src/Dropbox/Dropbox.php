@@ -469,7 +469,7 @@ class Dropbox
         $params['query'] = $query;
 
         //Fetch Search Results
-        $response = $this->postToAPI('/files/search', $params);
+        $response = $this->postToAPI('/files/search_v2', $params);
 
         //Make and Return the Model
         return $this->makeModelFromResponse($response);
