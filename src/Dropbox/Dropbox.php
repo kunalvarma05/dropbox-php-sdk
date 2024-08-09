@@ -1213,6 +1213,42 @@ class Dropbox
         return new File($metadata, $contents);
     }
 
+	/**
+	 * Download a folder as a zip file
+	 *
+	 * @param  string                  $path        Path to the file you want to download
+	 * @param  null|string|DropboxFile $dropboxFile DropboxFile object or Path to target file
+	 *
+	 * @return \Kunnu\Dropbox\Models\File
+	 *
+	 * @throws \Kunnu\Dropbox\Exceptions\DropboxClientException
+	 *
+	 * @link https://www.dropbox.com/developers/documentation/http/documentation#files-download_zip
+	 *
+	 */
+	 public function downloadZip($path, $dropboxFile = null)
+	 {
+		 //Path cannot be null
+		 if (is_null($path)) {
+			 throw new DropboxClientException("Path cannot be null.");
+		 }
+
+		 //Make Dropbox File if target is specified
+		 $dropboxFile = $dropboxFile ? $this->makeDropboxFile($dropboxFile, null, null, DropboxFile::MODE_WRITE) : null;
+
+		 //Download File
+		 $response = $this->postToContent('/files/download_zip', ['path' => $path], null, $dropboxFile);
+
+		 //Get file metadata from response headers
+		 $metadata = $this->getMetadataFromResponseHeaders($response);
+
+		 //File Contents
+		 $contents = $dropboxFile ? $this->makeDropboxFile($dropboxFile) : $response->getBody();
+
+		 //Make and return a File model
+		 return new File($metadata, $contents);
+	}
+
     /**
      * Get Current Account
      *
