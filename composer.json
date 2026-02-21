@@ -1,7 +1,14 @@
 {
     "name": "kunalvarma05/dropbox-php-sdk",
     "description": "Dropbox PHP API V2 SDK (Unofficial)",
-    "keywords" : ["dropbox", "sdk", "api", "client", "php", "unofficial"],
+    "keywords": [
+        "dropbox",
+        "sdk",
+        "api",
+        "client",
+        "php",
+        "unofficial"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -11,7 +18,7 @@
     ],
     "require": {
         "guzzlehttp/guzzle": "~6.0|~7.0",
-        "illuminate/collections": "^8.0|^9.0|^10.0|^11.0"
+        "illuminate/collections": "^8.0|^9.0|^10.0|^11.0|^13.0"
     },
     "autoload": {
         "psr-4": {
